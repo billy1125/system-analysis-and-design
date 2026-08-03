@@ -1,0 +1,49 @@
+# ── Jupyter Notebook ──────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── 虛擬環境 ──────────────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── 套件管理 ──────────────────────────────────────────────────
+.pdm.toml
+.pdm-python
+.pdm-build/
+__pypackages__/
+
+# ── 測試與覆蓋率 ──────────────────────────────────────────────
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+
+# ── 型別檢查 ──────────────────────────────────────────────────
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+
+# ── 作業系統 ──────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── 編輯器 ────────────────────────────────────────────────────
+.cursorignore
+.cursorindexingignore
