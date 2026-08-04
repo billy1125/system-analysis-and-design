@@ -14,13 +14,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 | 檔案 | 說明 |
 |------|------|
-| `00-Course-Introduction.md` | 課程介紹。**現有內容與本課主題差距大，屬待修訂狀態**；其他文件提到它時單純引用檔名或連結即可，不要把它目前的課程概要、進度表與課程地圖內容當作本課程的事實依據來延伸撰寫，也不要以它為寫作範本。 |
+| `00-Course-Introduction.md` | 課程介紹與課程規範，**已改寫完成**：含重點速覽、18 週進度表、配分、分組規定、兩份小組報告的產出項目、AI 工具揭露、課堂規範與申訴管道。它是課程設定的事實依據，但 **不是教材章節的寫作範本**（章節格式一律以 `reference/` 為準）。 |
+| `Report-Rules.md` | 報告規範，由 `00-Course-Introduction.md` 抽出獨立。四個評分項目共通的繳交與計分規則：小組報告作為個人項目的前提（含「停止後續評分」）、繳交項目與期限、遲交與檔案問題的扣分，以及口頭報告的規範（含組員中途退出、不可抗力補救）。**改動任一條規則時，務必同步檢查另外三份文件的交叉引用與數字**。 |
+| `rubrics.md` | 四個評分項目的評量規準（Rubrics）、4 級制與百分制的換算、學期成績計算公式。**各面向的評量對象必須與 `00-Course-Introduction.md` 的期中／期末產出清單一致**——不評課程沒教也沒要求的東西。 |
+| `Course-Rules-Acknowledgement.md` | 第二週課堂簽署之「課程規範確認單」的 **內容揭露**（同學實際簽的是排版後紙本）。逐條列出要確認的規則，內容須與上述規範文件保持一致。 |
+| `00-Course-Introduction.slides.md` | 第一週課程介紹的 Marp 投影片，以總覽為主，只放會扣分或錯過補不回來的規則；完整條文一律指回上述兩份文件。 |
 | `reference/chapter-writing-guide.md` | 教材撰寫規範全文（語言、Markdown 格式、圖片與授權、章節結構、參考文獻、學習重點總結、跨章連結）。 |
 | `reference/chapter-template.md` | 章節正文骨架範本，撰寫新章節時複製本檔為 `0X-XXX.md` 開始寫。 |
 | `reference/slides-design-template.md` | 投影片設計規範全文。 |
 | `reference/slides-template.slides.md` | Marp 投影片骨架範本。 |
 | `reference/notebook-guide.md` | 練習筆記本（`.ipynb`）撰寫規範。**本課程是否會用到練習筆記本尚未決定**，此檔先保留備用；`notebooks/` 資料夾也尚未建立，實際要出練習時再依此規範撰寫。 |
 | `images/` | 目前僅含 `course-attendance-rule.png`，為 `00-Course-Introduction.md` 引用的學則截圖；尚未依文章分子資料夾。 |
+
+課程規範類文件（如 `Report-Rules.md`、`Course-Rules-Acknowledgement.md`）採描述性英文檔名放在根目錄，不使用 `0X-` 編號——編號保留給教材章節正文。
 
 下列項目 **尚未建立**，需要時才新增，不要假設它們已經存在：`README.md`、各章正文 `0X-XXX.md` 與投影片 `0X-XXX.slides.md`、`notebooks/`、`temp-reference/`、`.claude/skills/`。各章的格式基準以 `reference/` 下的兩份骨架範本為準；第一份實際產出的章節完成後，應回頭校正範本與實際產出之間的落差，並更新本檔案的檔案清單。
 
