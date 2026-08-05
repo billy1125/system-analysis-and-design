@@ -1,6 +1,6 @@
 # 課程規範理解測驗（自我檢核）
 
-**系統分析與設計（IE226）115-1** ｜ 對應文件：[Course-Introduction.md](Course-Introduction.md)、[Report-Rules.md](Report-Rules.md)、[Grading-Rules.md](Grading-Rules.md)、[Group-Rules.md](Group-Rules.md)
+**系統分析與設計（IE226）115-1** ｜ 對應文件：[「SAD 課程介紹」](Course-Introduction.md)、[「報告規範」](Report-Rules.md)、[「成績計算規範」](Grading-Rules.md)、[「分組規範」](Group-Rules.md)
 
 > **這份測驗不計分、不用繳交，也不用給老師看。** 它的用途只有一個：讓你自己確認，那四份規範文件你是真的讀懂了，不是只有滑過去。
 
