@@ -30,7 +30,7 @@
 | 1 | [Course-Introduction.md](Course-Introduction.md) | 課程怎麼跑、分數怎麼算、關鍵日期在哪幾週。先看開頭的「重點速覽」，再讀全文 |
 | 2 | [Report-Rules.md](Report-Rules.md) | 報告怎麼交、遲交扣幾分、缺席怎麼辦。**這份最長，但出狀況時老師是依它處理** |
 | 3 | [Group-Rules.md](Group-Rules.md) | 分組人數、名單期限、組員變動與組內衝突 |
-| 4 | [rubrics.md](rubrics.md) | 分數是照這份規準給的。覺得分數不理想時，先自己對照一遍 |
+| 4 | [Rubrics.md](Rubrics.md) | 分數是照這份規準給的。覺得分數不理想時，先自己對照一遍 |
 | 5 | [Course-Rules-Quiz.md](Course-Rules-Quiz.md) | 25 題是非題，**不計分、不用繳交**，答案附在文件後面。用來確認你記得的版本是不是對的 |
 
 > **建議在第二週（9/16）上課前完成第 1 到第 5 項。** 課程規範不會因為你沒讀而不適用，學期中真的出狀況時，老師是依文件處理，不是依你記得的版本。
@@ -46,7 +46,7 @@
 | [Course-Introduction.md](Course-Introduction.md) | 課程介紹與課程規範總覽：重點速覽、18 週進度表、學期配分、兩份小組報告的產出項目、期末個人訪談、AI 工具使用揭露、出席與扣考、成績申訴管道 |
 | [Report-Rules.md](Report-Rules.md) | 報告規範，全專案規則的事實來源：繳交項目、繳交方式與期限、準時／遲交／缺交的定義、口頭報告規範、學術誠信、不可抗力，以及集中在最後一節的「分數怎麼算」 |
 | [Group-Rules.md](Group-Rules.md) | 分組規範：分組人數與名單期限、分工紀錄、人力減損、期中後的組員變動申請、組內衝突處理 |
-| [rubrics.md](rubrics.md) | 四個評分項目的評量規準（Rubrics）、4 級制與百分制的換算、學期成績計算公式 |
+| [Rubrics.md](Rubrics.md) | 四個評分項目的評量規準（Rubrics）、4 級制與百分制的換算、學期成績計算公式 |
 | [Course-Rules-Quiz.md](Course-Rules-Quiz.md) | 課程規範理解測驗，供同學自我檢核，附解答與出處章節 |
 
 ### 課程教材
