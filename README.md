@@ -47,7 +47,7 @@
 | [Course-Introduction.md](Course-Introduction.md) | 課程介紹與課程規範總覽：重點速覽、18 週進度表、學期配分、兩份小組報告的產出項目、期末個人訪談、AI 工具使用揭露、出席與扣考、成績申訴管道 |
 | [Report-Rules.md](Report-Rules.md) | 報告規範，繳交規則的事實來源：繳交項目、繳交方式與期限、準時／遲交／缺交的定義、口頭報告規範、學術誠信、不可抗力 |
 | [Grading-Rules.md](Grading-Rules.md) | 成績計算規範，**所有分數與扣分規定的事實來源**：學期成績公式、內容分數與繳交扣分、遲交與檔案問題的扣分、什麼情況直接 0 分、雷同與扣考、某一項未完成時的學期成績上限 |
-| [Group-Rules.md](Group-Rules.md) | 分組規範：分組人數與名單期限、分工紀錄、人力減損、期中後的組員變動申請、組內衝突處理 |
+| [Group-Rules.md](Group-Rules.md) | 分組規範，分四節：組隊規範（人數與名單期限）、成員內部管理（分工紀錄、組內衝突）、組員變動（期中後的轉組申請）、意外處理（人力減損、組員中途消失） |
 | [Rubrics.md](Rubrics.md) | 四個評分項目的評量規準（Rubrics）與等第、分數的換算 |
 | [Course-Rules-Quiz.md](Course-Rules-Quiz.md) | 課程規範理解測驗，供同學自我檢核，附解答與出處章節 |
 
