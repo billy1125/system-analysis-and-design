@@ -1,6 +1,6 @@
 # 系統分析與設計課程評量規準（Rubrics）
 
-**系統分析與設計（IE226）115-1** ｜ 課程總覽見 [00-Course-Introduction.md](00-Course-Introduction.md)、繳交規則見 [Report-Rules.md](Report-Rules.md)
+**系統分析與設計（IE226）115-1** ｜ 課程總覽見 [Course-Introduction.md](Course-Introduction.md)、繳交規則見 [Report-Rules.md](Report-Rules.md)
 
 本文件是本課程 **給分的依據**。分數是照下面這幾張表給的，不是憑印象——覺得分數不理想時，請先自己對照一遍，多數疑問看完就解開了。
 
@@ -314,7 +314,7 @@ $$
 S_i = 0.30(79.2) + 0.30(0) + 0.20(0) + 0.15(0) + 0.05(100) = 28.76
 $$
 
-期中小組報告另需依學校期中預警作業換算為 A/B/C/D 等第，換算方式見 [00-Course-Introduction.md](00-Course-Introduction.md)。
+期中小組報告另需依學校期中預警作業換算為 A/B/C/D 等第，換算方式見 [Course-Introduction.md](Course-Introduction.md)。
 
 ---
 
@@ -357,4 +357,4 @@ $$
 
 ## 7.4 AI 工具使用揭露
 
-若使用生成式人工智慧協助撰寫、整理、繪圖或修訂，應說明使用的工具、使用目的、使用範圍，以及人工查核與修改方式。評分重點在於你是否能理解、查核與說明最終成果，而不是判斷有沒有用 AI——完整規定見 [00-Course-Introduction.md](00-Course-Introduction.md) 的「AI 工具使用揭露」。
+若使用生成式人工智慧協助撰寫、整理、繪圖或修訂，應說明使用的工具、使用目的、使用範圍，以及人工查核與修改方式。評分重點在於你是否能理解、查核與說明最終成果，而不是判斷有沒有用 AI——完整規定見 [Course-Introduction.md](Course-Introduction.md) 的「AI 工具使用揭露」。

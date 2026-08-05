@@ -21,7 +21,7 @@ style: |
 
 ## 這份投影片只是總覽
 
-> **完整規定都在 `00-Course-Introduction.md`、`Report-Rules.md` 與 `Group-Rules.md`，請自己讀完一遍。**
+> **完整規定都在 `Course-Introduction.md`、`Report-Rules.md` 與 `Group-Rules.md`，請自己讀完一遍。**
 
 投影片內容只是重點摘錄，請務必再仔細閱讀以上三份文件。
 
@@ -317,7 +317,7 @@ style: |
 
 ## 今天請記住
 
-1. 這份投影片是總覽，**完整規定請讀 `00-Course-Introduction.md`、`Report-Rules.md` 與 `Group-Rules.md`**
+1. 這份投影片是總覽，**完整規定請讀 `Course-Introduction.md`、`Report-Rules.md` 與 `Group-Rules.md`**
 2. 沒交書面，口頭就是 0 分
 3. 書面在報告前的星期五 23:59:59、投影片在報告當週星期五 23:59:59
 4. 缺期中小組報告，整學期只剩 5 分

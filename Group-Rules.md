@@ -1,6 +1,6 @@
 # 分組規範
 
-**系統分析與設計（IE226）115-1** ｜ 課程總覽見 [00-Course-Introduction.md](00-Course-Introduction.md)、報告怎麼交見 [Report-Rules.md](Report-Rules.md)
+**系統分析與設計（IE226）115-1** ｜ 課程總覽見 [Course-Introduction.md](Course-Introduction.md)、報告怎麼交見 [Report-Rules.md](Report-Rules.md)
 
 > 本課程的期中與期末報告均以 **小組** 為單位進行，分組結果會影響整學期的專題進度與工作分配，請審慎選擇組員並及早完成分組。
 
