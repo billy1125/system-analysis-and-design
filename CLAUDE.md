@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 專案狀態與檔案慣例
 
-專案 **剛起步**，教材章節尚未開始撰寫。目前只有六份課程規範文件（根目錄）、一份課程介紹投影片、一份參考題庫 `question-bank.md`，以及 `reference/` 下的範本與規範。
+專案 **剛起步**，教材章節尚未開始撰寫。目前只有六份課程規範文件（根目錄）、一份課程介紹投影片、一份參考題庫 `Question-Bank.md`，以及 `reference/` 下的範本與規範。
 
 下列項目 **尚未建立**，不要假設它們已經存在：各章正文 `0X-XXX.md` 與投影片 `0X-XXX.slides.md`、`notebooks/`、`temp-reference/`。是否會用到練習筆記本尚未決定（`reference/notebook-guide.md` 先保留備用）。
 

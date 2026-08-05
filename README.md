@@ -56,7 +56,7 @@
 | 文件 | 內容 |
 |---|---|
 | [Course-Introduction.slides.md](Course-Introduction.slides.md) | 第一週課程介紹投影片（Marp 格式）。只放會扣分或錯過補不回來的規則，完整條文一律以規範文件為準 |
-| [question-bank.md](question-bank.md) | 口頭報告與個人訪談的參考題庫。**是方向不是考古題**，實際題目來自各組自己的書面報告 |
+| [Question-Bank.md](Question-Bank.md) | 口頭報告與個人訪談的參考題庫。**是方向不是考古題**，實際題目來自各組自己的書面報告 |
 
 各章教材正文與投影片會在學期進行中陸續補上。
 
