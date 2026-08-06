@@ -19,9 +19,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `reference/` | 長期保留的範本與撰寫規範，是全專案的格式基準，會隨慣例調整而更新 |
 | `.claude/skills/` | Claude Code 技能，一個技能一個資料夾 |
 
-根目錄只留 `README.md` 與本檔，其餘文件一律收進所屬的章節資料夾，圖片跟著引用它的文章走。
+根目錄只留 `README.md`、`TEXTBOOK-PLAN.md` 與本檔，其餘文件一律收進所屬的章節資料夾，圖片跟著引用它的文章走。
 
 教材正文放 `01-Course-Materials/`，**檔名不加數字序號**（如 `User-Analysis.md`），閱讀順序由 `README.md`〈教材正文〉的表格排序決定。此處與 `reference/chapter-template.md` 所寫的「根目錄下的 `0X-XXX.md`」不同，以本檔為準。
+
+**動筆寫任何一章教材之前，先讀 `TEXTBOOK-PLAN.md`**。那份是教材的施工藍圖：十四章的清單、每章的小節規劃與邊界、與報告產出項目的對應、撰寫順序，以及寫完一章要連帶更新哪些檔案。寫完一章要回頭更新它的狀態欄。本檔規定課程設定與跨檔一致性，`TEXTBOOK-PLAN.md` 規定章節範圍，`reference/` 規定格式。
 
 ## 文件清單
 
@@ -50,7 +52,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 改動配分、關鍵日期、繳交方式或扣分數字 | `README.md`〈⚡ 重點速覽〉——那張表是四份基本規範的摘要，條文改了它不會自己跟著改 |
 | 收錄外部來源圖片 | `README.md`〈📄 授權與使用聲明〉的授權例外表，註明來源、作者與授權條款（依 `reference/chapter-writing-guide.md`〈六〉） |
 | 移植外部技能到 `.claude/skills/` | 同上授權例外表，並將原始 `LICENSE` 保留在技能資料夾內 |
-| 完成第一份章節正文 | 回頭校正 `reference/` 兩份骨架範本與實際產出的落差，並更新本檔的權威章節清單與終點章設定 |
+| 完成一份章節正文 | 六項連動見 `TEXTBOOK-PLAN.md`〈五〉：`README.md`〈教材正文〉表格、本檔的權威章節清單與終點章設定、前一章的銜接提示、`Report-Contents.md` 的教材連結、`TEXTBOOK-PLAN.md` 的狀態欄 |
+| 新增、刪除或重排教材章節 | `TEXTBOOK-PLAN.md`〈二〉章節總表與〈三〉內容概要，以及本檔的權威章節清單 |
 
 ## 撰寫規範
 
