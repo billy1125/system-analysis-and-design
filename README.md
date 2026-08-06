@@ -51,7 +51,17 @@
 | [系統分析階段繳交規範](01-Course-Materials/Analysis-Phase-Deliverables.md) | `Analysis-Phase-Deliverables.md` | 期中書面每一項該有的欄位、描述格式與 UML 圖例，用課堂範例系統示範。**是範例不是範本**：寫得精簡是為了看懂結構，各組題目不同，不能照抄 |
 | [系統設計階段繳交規範](01-Course-Materials/Design-Phase-Deliverables.md) | `Design-Phase-Deliverables.md` | 期末書面每一項該有的欄位、描述格式與 UML 圖例，同上以範例系統示範 |
 
-各章教材正文與投影片會在學期進行中陸續補上。
+### 教材正文
+
+概念說明，和上面兩份繳交規範搭配著看：規範說要交什麼，教材說那件事是怎麼做的。
+
+| 文件 | 檔名 | 內容 |
+|---|---|---|
+| [使用者分析](01-Course-Materials/User-Analysis.md) | `User-Analysis.md` | 分析階段的第一步：利害關係人分析、需求收集方法、使用者分群與人物誌、流程分析與事件表、使用案例圖 |
+| [系統需求分析](01-Course-Materials/System-Requirements-Analysis.md) | `System-Requirements-Analysis.md` | 把使用案例展開成需求：需求的五個級別、功能需求與非功能需求的寫法、需求品質判準、優先順序與追溯、系統需求規格 |
+| [功能分析](01-Course-Materials/Functional-Analysis.md) | `Functional-Analysis.md` | 把需求整理成系統的功能結構：系統邊界與範圍外清單、情境圖、功能分解、資料流程圖、功能清單與模組劃分、CRUD 矩陣 |
+
+其餘各章教材正文與投影片會在學期進行中陸續補上。
 
 ---
 

@@ -15,10 +15,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 資料夾 | 說明 |
 |---|---|
 | `00-Course-Introduction/` | 課程規範與參考文件共九份，引用的圖片放在其下的 `images/` |
+| `01-Course-Materials/` | 各階段的繳交規範與教材正文，引用的圖片放在其下的 `images/` |
 | `reference/` | 長期保留的範本與撰寫規範，是全專案的格式基準，會隨慣例調整而更新 |
 | `.claude/skills/` | Claude Code 技能，一個技能一個資料夾 |
 
 根目錄只留 `README.md` 與本檔，其餘文件一律收進所屬的章節資料夾，圖片跟著引用它的文章走。
+
+教材正文放 `01-Course-Materials/`，**檔名不加數字序號**（如 `User-Analysis.md`），閱讀順序由 `README.md`〈教材正文〉的表格排序決定。此處與 `reference/chapter-template.md` 所寫的「根目錄下的 `0X-XXX.md`」不同，以本檔為準。
 
 ## 文件清單
 
@@ -64,8 +67,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 範例取材領域 | 製造業與工業工程場域（生產排程、品管、物料與訂單流程、工廠資訊系統等），情境優先取材自學生實習或未來職場會遇到的系統 |
 | 學習重點總結的固定引言 | 「讀完本章後，你應該能夠理解以下核心概念，並將其應用於工業場域的思考與決策：」 |
 | 參考文獻取材 | 系統分析與設計領域的經典教科書（如 Dennis、Kendall、Pressman、Sommerville、Yourdon）與原典或里程碑論文（如 Royce 1970、Chen 1976、UML 與敏捷方法的原始文獻），各章約 20 筆以上 |
-| 權威章節清單 | **尚未建立**。第一份章節產出後開始在本檔維護「主題 → 權威章節」對照 |
-| 終點章與銜接順序 | **尚未決定**。章節規劃定案後在本檔寫明哪一章是終點章（不需 `> **銜接提示**`），以及各章前指哪一章 |
+| 權威章節清單 | 見下表，新增章節時一併維護 |
+| 終點章與銜接順序 | 目前順序為 `User-Analysis.md` → `System-Requirements-Analysis.md` → `Functional-Analysis.md`，最後一份暫為終點章、不加 `> **銜接提示**`。後續章節產出後即須改寫 |
+
+**權威章節清單（主題 → 完整介紹該主題的章節）**
+
+| 主題 | 權威章節 |
+|---|---|
+| 利害關係人分析、RACI、需求收集方法（質化／量化）、使用者分群、目標受眾與 STP、人物誌 | `01-Course-Materials/User-Analysis.md` |
+| 流程分析（AS-IS／TO-BE、泳道圖）、事件與事件表 | `01-Course-Materials/User-Analysis.md` |
+| 使用案例圖、使用案例敘述、參與者、«include»／«extend» | `01-Course-Materials/User-Analysis.md` |
+| 需求的五個級別、需求工程四階段 | `01-Course-Materials/System-Requirements-Analysis.md` |
+| 功能需求與非功能需求、FURPS+、需求品質判準、MoSCoW、追溯矩陣、SRS | `01-Course-Materials/System-Requirements-Analysis.md` |
+| 系統邊界、情境圖、範圍外清單與範圍蔓延 | `01-Course-Materials/Functional-Analysis.md` |
+| 功能分解與功能階層圖、資料流程圖（DFD）與分層平衡、功能清單 | `01-Course-Materials/Functional-Analysis.md` |
+| 模組劃分、內聚與耦合、CRUD 矩陣 | `01-Course-Materials/Functional-Analysis.md` |
+
+`01-Course-Materials/` 的兩份 `*-Phase-Deliverables.md` 是繳交規範，不是教材正文：規範說「要交什麼」，教材說「怎麼做」。同一主題在兩邊都出現時，概念說明留在教材，繳交欄位與最低標準留在規範，彼此以連結互指。
 
 ## 本專案自訂慣例
 
