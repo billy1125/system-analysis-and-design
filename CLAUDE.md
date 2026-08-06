@@ -14,13 +14,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 | 資料夾 | 說明 |
 |---|---|
+| `00-Course-Introduction/` | 課程規範與參考文件共九份，引用的圖片放在其下的 `images/` |
 | `reference/` | 長期保留的範本與撰寫規範，是全專案的格式基準，會隨慣例調整而更新 |
-| `images/` | Markdown 引用的圖片，依所屬文章分子資料夾 |
 | `.claude/skills/` | Claude Code 技能，一個技能一個資料夾 |
+
+根目錄只留 `README.md` 與本檔，其餘文件一律收進所屬的章節資料夾，圖片跟著引用它的文章走。
 
 ## 文件清單
 
-根目錄的九份課程文件是同一套規則的不同切面。前四份是 `README.md` 歸類的「基本規範」，後五份是「參考文件」。
+`00-Course-Introduction/` 的九份課程文件是同一套規則的不同切面。前四份是 `README.md` 歸類的「基本規範」，後五份是「參考文件」。
 
 | 檔案 | 內容 | 密切關係 |
 |---|---|---|
@@ -68,7 +70,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **文字撰寫風格**：簡潔清晰易理解，如果能用 1 句話說明，就不要用 5 句話，條列的內容如果敘述太多，可改用表格呈現。
 - **不重複說明別的文件已有的內容**：除非有必要，那僅需一句話提醒讀者，然後用文件連結提示。
-- **檔名慣例**：課程規範類文件採描述性英文檔名放在根目錄。
+- **檔名慣例**：課程規範類文件採描述性英文檔名，放在 `00-Course-Introduction/`。
 - **資料夾架構慣例**：資料夾狀況不寫進 `README.md`。
 - `.claude/skills/` 內移植自外部的技能依原始授權維持原樣，不套用本節的檔名與連結慣例。
 - **文件連結慣例**：連結怎麼寫（`[標題](檔名.md)`、內文加「」、表格與清單不加）見 `reference/chapter-writing-guide.md`〈十一、跨章連結格式〉。
