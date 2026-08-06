@@ -43,10 +43,13 @@
 | 文件 | 檔名 | 內容 |
 |---|---|---|
 | [課程評量 Rubrics](00-Course-Introduction/Rubrics.md) | `Rubrics.md` | 四個評分項目的評量規準與等第、分數的換算。分數是照這份規準給的，覺得分數不理想時先自己對照一遍 |
-| [報告內容建議](00-Course-Introduction/Report-Contents.md) | `Report-Contents.md` | 各項報告要交出什麼內容：期中與期末書面應包含的內容、口頭要講到的項目與報告時間、訪談的四類題型、個人報告的篇幅與建議結構 |
+| [報告內容](00-Course-Introduction/Report-Contents.md) | `Report-Contents.md` | 各項報告要交出什麼內容，**列出的項目都要完成**：期中十一項、期末九項、口頭要講到的項目與報告時間、訪談的四類題型、個人報告的篇幅與章節 |
 | [參考題庫](00-Course-Introduction/Question-Bank.md) | `Question-Bank.md` | 口頭報告與個人訪談的提問方向。**是方向不是考古題**，實際題目來自各組自己的書面報告 |
-| [課程規範理解測驗](00-Course-Introduction/Course-Rules-Quiz.md) | `Course-Rules-Quiz.md` | 25 題是非題，附解答與出處章節。**不計分、不用繳交，也不用給老師看**，用來確認你記得的版本是不是對的 |
+| [額外投入加分](00-Course-Introduction/Bonus-Rules.md) | `Bonus-Rules.md` | 想多做一點的同學再看，**不看不影響成績**：做清單以外的內容、把雛型系統實作出來可以加分，上限 3 分 |
+| [課程規範理解測驗](00-Course-Introduction/Course-Rules-Quiz.md) | `Course-Rules-Quiz.md` | 30 題是非題，附解答與出處章節。**不計分、不用繳交，也不用給老師看**，用來確認你記得的版本是不是對的 |
 | [課程介紹投影片](00-Course-Introduction/Course-Introduction.slides.md) | `Course-Introduction.slides.md` | 第一週上課用（Marp 格式）。只放會扣分或錯過補不回來的規則，完整條文一律以規範文件為準 |
+| [系統分析階段繳交規範](01-Course-Materials/Analysis-Phase-Deliverables.md) | `Analysis-Phase-Deliverables.md` | 期中書面每一項該有的欄位、描述格式與 UML 圖例，用課堂範例系統示範。**是範例不是範本**：寫得精簡是為了看懂結構，各組題目不同，不能照抄 |
+| [系統設計階段繳交規範](01-Course-Materials/Design-Phase-Deliverables.md) | `Design-Phase-Deliverables.md` | 期末書面每一項該有的欄位、描述格式與 UML 圖例，同上以範例系統示範 |
 
 各章教材正文與投影片會在學期進行中陸續補上。
 
@@ -65,6 +68,7 @@
 | 四項會互相影響 | 四個項目各自計分，**沒有任何一項是另一項的參加資格**；但訪談問的、個人報告寫的都是小組報告裡做過的事，**少做一項，後面的分數一定跟著掉** | 同上 |
 | 扣分 | 每份報告以 100 分計。書面：**遲交扣 10 分**、**檔案有問題經通知後補上扣 5 分**、**缺交或遲交又交出打不開的檔案，該部分 0 分**；投影片：**過了期限一律扣口頭 10 分，不通知補交** | [成績計算規範](00-Course-Introduction/Grading-Rules.md) |
 | Portal 故障 | 系統端問題不用自己承擔，但要 **在期限前通報**；備援管道與新期限 **公告於 LINE 群組** | [報告規範](00-Course-Introduction/Report-Rules.md) |
+| 加分 | 唯一的加分機制，**上限 3 分加在學期成績上**：做清單以外的內容（全組 +1）、把雛型系統實作出來（**實際動手的人 +2、同組其他人 +1**）。**基本項目沒做完不給、說不出所以然不給** | [額外投入加分](00-Course-Introduction/Bonus-Rules.md) |
 | 分組 | 3–4 人一組，**第三週前** 確定名單；組員變動申請 **最晚第 10 週（11/11）** | [分組規範](00-Course-Introduction/Group-Rules.md) |
 | 出席 | 只看曠課，**曠課超過 18 小時逕行扣考**，扣考等於期末小組報告與個人兩項全部不計分 | [SAD 課程介紹](00-Course-Introduction/Course-Introduction.md)〈課堂規範〉 |
 | 公告管道 | 所有公告都在 **LINE 群組**，請務必加入 | [SAD 課程介紹](00-Course-Introduction/Course-Introduction.md)〈LINE 群組〉 |

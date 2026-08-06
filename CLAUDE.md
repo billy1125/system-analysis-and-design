@@ -31,9 +31,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `Grading-Rules.md` | **所有分數與扣分規定的事實來源**：學期成績公式、內容分數與繳交扣分、什麼情況直接 0 分、雷同與扣考、某一項未完成時的學期成績上限、期中預警的 A/B/C/D 等第換算 | 其他文件一律引用而不重述，**不要把分數散回其他文件** |
 | `Group-Rules.md` | 組隊人數與名單期限、分工紀錄、組內衝突、組員變動申請、人力減損與組員中途消失 | 扣分指向 `Grading-Rules.md`、繳交方式指向 `Report-Rules.md` |
 | `Rubrics.md` | 四個評分項目的評量規準與等第換算，只處理「內容分數」；每套 Rubric 的各面向配分加總必須為 100 | 評量面向必須對得上 `Course-Introduction.md` 的產出清單與 `Report-Contents.md` 的內容清單，不評課程沒教也沒要求的東西 |
-| `Report-Contents.md` | 各項報告要交出什麼內容：書面章節清單、口頭要講到的項目與報告時間、訪談的四類題型、個人報告的篇幅與建議結構。性質是 **建議**，不含任何扣分規定 | 產出清單本身以 `Course-Introduction.md` 為準，這份是把它展開；評分標準指向 `Rubrics.md`。**不要把內容清單複製回 `Rubrics.md` 或 `Report-Rules.md`** |
+| `Report-Contents.md` | 各項報告要交出什麼內容：書面項目清單、口頭要講到的項目與報告時間、訪談的四類題型、個人報告的篇幅與章節。**列出的項目都是必做**，章節名稱可自訂；本身不含任何扣分規定 | 產出清單本身以 `Course-Introduction.md` 為準，這份是把它展開；評分標準指向 `Rubrics.md`。**不要把內容清單複製回 `Rubrics.md` 或 `Report-Rules.md`** |
+| `Bonus-Rules.md` | **唯一的加分機制**：文件類額外項目與雛型系統實作的額度、認定條件、怎麼提出，上限 3 分加在學期成績上 | 加分額度與 `Grading-Rules.md` 公式中的 $B_i$ 一致；「清單以外」的判準以 `Report-Contents.md` 為準 |
 | `Question-Bank.md` | 口頭報告與個人訪談的提問方向，**是方向不是考古題**，實際題目來自各組自己的書面報告 | 題型分類須與 `Report-Contents.md` 的四類題型一致 |
-| `Course-Rules-Quiz.md` | 25 題是非題附解答與出處章節，自我檢核用，不計分不繳交 | 本表前六份的衍生物，只複述不新增規則；解答須標明出處文件與章節 |
+| `Course-Rules-Quiz.md` | 30 題是非題附解答與出處章節，自我檢核用，不計分不繳交；第七區對應選讀的 `Bonus-Rules.md` | 前面各份規範的衍生物，只複述不新增規則；解答須標明出處文件與章節 |
 | `Course-Introduction.slides.md` | 第一週上課用的 Marp 投影片，只放會扣分或錯過補不回來的規則 | 同上，完整條文一律以規範文件為準 |
 
 **改動任一條規則、扣分數字或日期後，逐一比對其餘文件的交叉引用是否同步。** 專案沒有任何自動化流程能攔截這類不一致，只能靠人工檢查。

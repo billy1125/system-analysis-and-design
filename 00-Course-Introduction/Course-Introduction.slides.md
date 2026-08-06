@@ -70,10 +70,12 @@ style: |
 
 ## 期中：系統分析
 
-- 系統需求分析、使用者分析、功能分析
-- Use Case、Activity Diagram
+- 問題定義、使用者分析、Use Case
+- 系統需求分析、功能分析
+- System Sequence Diagram、Activity Diagram
 - ERD、Data Dictionary
-- 初步系統架構分析
+- 初步系統架構分析、風險分析
+- 現況問題與改善建議
 
 教師提供既有系統案例。
 
@@ -81,9 +83,10 @@ style: |
 
 ## 期末：系統設計
 
-- 系統架構、模組設計
-- API Design、Database Design
-- UI Prototype、UML
+- 系統架構、模組設計、主要流程設計
+- UML、API Design
+- Database Design、UI Prototype
+- 系統限制與風險
 - Design Specification
 
 教師提供新的專題需求。
