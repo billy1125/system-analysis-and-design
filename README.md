@@ -59,7 +59,8 @@
 |---|---|---|
 | [使用者分析](01-Course-Materials/User-Analysis.md) | `User-Analysis.md` | 分析階段的第一步：利害關係人分析、需求收集方法、使用者分群與人物誌、流程分析與事件表、使用案例圖 |
 | [系統需求分析](01-Course-Materials/System-Requirements-Analysis.md) | `System-Requirements-Analysis.md` | 把使用案例展開成需求：需求的五個級別、功能需求與非功能需求的寫法、需求品質判準、優先順序與追溯、系統需求規格 |
-| [功能分析](01-Course-Materials/Functional-Analysis.md) | `Functional-Analysis.md` | 把需求整理成系統的功能結構：系統邊界與範圍外清單、情境圖、功能分解、資料流程圖、功能清單與模組劃分、CRUD 矩陣 |
+| [功能分析](01-Course-Materials/Functional-Analysis.md) | `Functional-Analysis.md` | 把需求整理成系統的功能結構：系統邊界與範圍外清單、情境圖、功能分解、資料流程圖、功能清單與模組劃分、CRUD 矩陣、模組設計 |
+| [行為建模](01-Course-Materials/Behavioral-Modeling.md) | `Behavioral-Modeling.md` | 補上系統的動態面：活動圖與泳道、系統循序圖、狀態機圖，以及三張圖在設計階段的深化與交叉檢核 |
 
 其餘各章教材正文與投影片會在學期進行中陸續補上。
 

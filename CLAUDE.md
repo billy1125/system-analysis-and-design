@@ -52,8 +52,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 改動配分、關鍵日期、繳交方式或扣分數字 | `README.md`〈⚡ 重點速覽〉——那張表是四份基本規範的摘要，條文改了它不會自己跟著改 |
 | 收錄外部來源圖片 | `README.md`〈📄 授權與使用聲明〉的授權例外表，註明來源、作者與授權條款（依 `reference/chapter-writing-guide.md`〈六〉） |
 | 移植外部技能到 `.claude/skills/` | 同上授權例外表，並將原始 `LICENSE` 保留在技能資料夾內 |
-| 完成一份章節正文 | 六項連動見 `TEXTBOOK-PLAN.md`〈五〉：`README.md`〈教材正文〉表格、本檔的權威章節清單與終點章設定、前一章的銜接提示、`Report-Contents.md` 的教材連結、`TEXTBOOK-PLAN.md` 的狀態欄 |
-| 新增、刪除或重排教材章節 | `TEXTBOOK-PLAN.md`〈二〉章節總表與〈三〉內容概要，以及本檔的權威章節清單 |
+| 完成一份章節正文 | 六項連動見 `TEXTBOOK-PLAN.md`〈六〉：`README.md`〈教材正文〉表格、本檔的權威章節清單與終點章設定、前一章的銜接提示、`Report-Contents.md` 的教材連結、`TEXTBOOK-PLAN.md` 的狀態欄 |
+| 新增、刪除或重排教材章節 | `TEXTBOOK-PLAN.md`〈三〉章節總表與〈四〉內容概要，以及本檔的權威章節清單 |
+| 撰寫任何一章介紹 UML 圖的教材 | 先看 `TEXTBOOK-PLAN.md`〈二〉的四張核心圖與各自的權威章節，該章要點出自己那張圖在四張裡的位置 |
 
 ## 撰寫規範
 
@@ -71,7 +72,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 學習重點總結的固定引言 | 「讀完本章後，你應該能夠理解以下核心概念，並將其應用於工業場域的思考與決策：」 |
 | 參考文獻取材 | 系統分析與設計領域的經典教科書（如 Dennis、Kendall、Pressman、Sommerville、Yourdon）與原典或里程碑論文（如 Royce 1970、Chen 1976、UML 與敏捷方法的原始文獻），各章約 20 筆以上 |
 | 權威章節清單 | 見下表，新增章節時一併維護 |
-| 終點章與銜接順序 | 目前順序為 `User-Analysis.md` → `System-Requirements-Analysis.md` → `Functional-Analysis.md`，最後一份暫為終點章、不加 `> **銜接提示**`。後續章節產出後即須改寫 |
+| 終點章與銜接順序 | 目前順序為 `User-Analysis.md` → `System-Requirements-Analysis.md` → `Functional-Analysis.md` → `Behavioral-Modeling.md`，最後一份暫為終點章、不加 `> **銜接提示**`。後續章節產出後即須改寫 |
 
 **權威章節清單（主題 → 完整介紹該主題的章節）**
 
@@ -84,7 +85,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 功能需求與非功能需求、FURPS+、需求品質判準、MoSCoW、追溯矩陣、SRS | `01-Course-Materials/System-Requirements-Analysis.md` |
 | 系統邊界、情境圖、範圍外清單與範圍蔓延 | `01-Course-Materials/Functional-Analysis.md` |
 | 功能分解與功能階層圖、資料流程圖（DFD）與分層平衡、功能清單 | `01-Course-Materials/Functional-Analysis.md` |
-| 模組劃分、內聚與耦合、CRUD 矩陣 | `01-Course-Materials/Functional-Analysis.md` |
+| 模組劃分、內聚與耦合、CRUD 矩陣、模組規格與相依關係圖 | `01-Course-Materials/Functional-Analysis.md` |
+| 活動圖與泳道（TO-BE 流程）、分岔與會合 | `01-Course-Materials/Behavioral-Modeling.md` |
+| 系統循序圖與設計階段循序圖、`alt`／`opt`／`loop` 片段 | `01-Course-Materials/Behavioral-Modeling.md` |
+| 狀態機圖、狀態轉移與生命週期 | `01-Course-Materials/Behavioral-Modeling.md` |
 
 `01-Course-Materials/` 的兩份 `*-Phase-Deliverables.md` 是繳交規範，不是教材正文：規範說「要交什麼」，教材說「怎麼做」。同一主題在兩邊都出現時，概念說明留在教材，繳交欄位與最低標準留在規範，彼此以連結互指。
 
