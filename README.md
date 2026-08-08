@@ -48,8 +48,8 @@
 | [額外投入加分](00-Course-Introduction/Bonus-Rules.md) | `Bonus-Rules.md` | 想多做一點的同學再看，**不看不影響成績**：做清單以外的內容、把雛型系統實作出來可以加分，上限 3 分 |
 | [課程規範理解測驗](00-Course-Introduction/Course-Rules-Quiz.md) | `Course-Rules-Quiz.md` | 30 題是非題，附解答與出處章節。**不計分、不用繳交，也不用給老師看**，用來確認你記得的版本是不是對的 |
 | [課程介紹投影片](00-Course-Introduction/Course-Introduction.slides.md) | `Course-Introduction.slides.md` | 第一週上課用（Marp 格式）。只放會扣分或錯過補不回來的規則，完整條文一律以規範文件為準 |
-| [系統分析階段繳交規範](01-Course-Materials/Analysis-Phase-Deliverables.md) | `Analysis-Phase-Deliverables.md` | 期中書面每一項該有的欄位、描述格式與 UML 圖例，用課堂範例系統示範。**是範例不是範本**：寫得精簡是為了看懂結構，各組題目不同，不能照抄 |
-| [系統設計階段繳交規範](01-Course-Materials/Design-Phase-Deliverables.md) | `Design-Phase-Deliverables.md` | 期末書面每一項該有的欄位、描述格式與 UML 圖例，同上以範例系統示範 |
+| [系統分析階段繳交規範](example-system/Analysis-Phase-Deliverables.md) | `Analysis-Phase-Deliverables.md` | 期中書面每一項該有的欄位、描述格式與 UML 圖例，用課堂範例系統示範。**是範例不是範本**：寫得精簡是為了看懂結構，各組題目不同，不能照抄 |
+| [系統設計階段繳交規範](example-system/Design-Phase-Deliverables.md) | `Design-Phase-Deliverables.md` | 期末書面每一項該有的欄位、描述格式與 UML 圖例，同上以範例系統示範 |
 
 ### 教材正文
 

@@ -8,7 +8,7 @@
 
 > **前情提要**：本章假設你已完成[「使用者分析」](User-Analysis.md)的使用案例分析與[「系統需求分析」](System-Requirements-Analysis.md)的需求條列。本章沿用該兩章的編號體例（UC-01 為「回報完工數量」、FR-010 起為其展開的功能需求），其餘編號為本章為求範例完整而延伸。
 
-> **延伸閱讀**：功能分析在各組報告中的繳交格式與最低標準，見[「系統分析階段繳交規範」](Analysis-Phase-Deliverables.md)。
+> **延伸閱讀**：功能分析在各組報告中的繳交格式與最低標準，見[「系統分析階段繳交規範」](../example-system/Analysis-Phase-Deliverables.md)。
 
 ## 一、功能分析在做什麼
 

@@ -15,7 +15,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 資料夾 | 說明 |
 |---|---|
 | `00-Course-Introduction/` | 課程規範與參考文件共九份，引用的圖片放在其下的 `images/` |
-| `01-Course-Materials/` | 各階段的繳交規範與教材正文，引用的圖片放在其下的 `images/` |
+| `01-Course-Materials/` | 教材正文，引用的圖片放在其下的 `images/` |
+| `example-system/` | 兩份繳交規範進版控；底下的範例系統 `sad-user-management/` **不進版控**，只存在本機工作區。它會一直出現在 `git status` 的未追蹤清單裡，不要 `git add`，也不要寫進 `.gitignore` |
 | `reference/` | 長期保留的範本與撰寫規範，是全專案的格式基準，會隨慣例調整而更新 |
 | `.claude/skills/` | Claude Code 技能，一個技能一個資料夾 |
 
@@ -112,7 +113,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 畫面欄位對回資料字典、原型的評估標準 | `01-Course-Materials/UI-Design.md` |
 | 設計規格書架構、需求追溯鏈、文件不一致的檢查、設計決策紀錄與待解問題 | `01-Course-Materials/Design-Specification.md` |
 
-`01-Course-Materials/` 的兩份 `*-Phase-Deliverables.md` 是繳交規範，不是教材正文：規範說「要交什麼」，教材說「怎麼做」。同一主題在兩邊都出現時，概念說明留在教材，繳交欄位與最低標準留在規範，彼此以連結互指。
+`example-system/` 的兩份 `*-Phase-Deliverables.md` 是繳交規範，不是教材正文：規範說「要交什麼」，教材說「怎麼做」。同一主題在兩邊都出現時，概念說明留在教材，繳交欄位與最低標準留在規範，彼此以連結互指。它們示範的對象是同一資料夾下的課堂範例系統，因此與範例系統放在一起。
 
 ## 本專案自訂慣例
 

@@ -8,7 +8,7 @@
 
 > **前情提要**：本章假設你已完成[「使用者分析」](User-Analysis.md)的使用案例分析、[「系統需求分析」](System-Requirements-Analysis.md)的需求條列，以及[「功能分析」](Functional-Analysis.md)的系統邊界與功能結構。本章沿用同一情境（某金屬沖壓工廠導入生產報工與工單追蹤系統）與同一套編號體例（UC-01 為「回報完工數量」、FR-010 起為其展開的功能需求、F-021 起為功能代號）。
 
-> **延伸閱讀**：這三張圖在各組報告中的繳交格式與最低標準，見[「系統分析階段繳交規範」](Analysis-Phase-Deliverables.md)〈三、分析階段建議 UML 圖樣〉與[「系統設計階段繳交規範」](Design-Phase-Deliverables.md)。
+> **延伸閱讀**：這三張圖在各組報告中的繳交格式與最低標準，見[「系統分析階段繳交規範」](../example-system/Analysis-Phase-Deliverables.md)〈三、分析階段建議 UML 圖樣〉與[「系統設計階段繳交規範」](../example-system/Design-Phase-Deliverables.md)。
 
 ## 一、結構之外還要描述行為
 
