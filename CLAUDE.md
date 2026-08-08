@@ -72,12 +72,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 學習重點總結的固定引言 | 「讀完本章後，你應該能夠理解以下核心概念，並將其應用於工業場域的思考與決策：」 |
 | 參考文獻取材 | 系統分析與設計領域的經典教科書（如 Dennis、Kendall、Pressman、Sommerville、Yourdon）與原典或里程碑論文（如 Royce 1970、Chen 1976、UML 與敏捷方法的原始文獻），各章約 20 筆以上 |
 | 權威章節清單 | 見下表，新增章節時一併維護 |
-| 終點章與銜接順序 | 目前順序為 `User-Analysis.md` → `System-Requirements-Analysis.md` → `Functional-Analysis.md` → `Behavioral-Modeling.md`，最後一份暫為終點章、不加 `> **銜接提示**`。後續章節產出後即須改寫 |
+| 終點章與銜接順序 | 十三章全部完成，順序為 `Systems-and-Analysis.md` → `Problem-Definition.md` → `User-Analysis.md` → `System-Requirements-Analysis.md` → `Functional-Analysis.md` → `Behavioral-Modeling.md` → `Data-Modeling.md` → `System-Architecture.md` → `Feasibility-and-Risk.md` → `Object-Modeling.md` → `System-Interface-and-Data-Exchange.md` → `UI-Design.md` → `Design-Specification.md`。**`Design-Specification.md` 是全書終點章**，不加 `> **銜接提示**`；其餘各章末尾都要有銜接提示指向下一章 |
 
 **權威章節清單（主題 → 完整介紹該主題的章節）**
 
 | 主題 | 權威章節 |
 |---|---|
+| 系統的四要素、邊界與環境、子系統 | `01-Course-Materials/Systems-and-Analysis.md` |
+| 資料與資訊的差別、資訊系統的五個組成、ERP／MES／WMS／QMS | `01-Course-Materials/Systems-and-Analysis.md` |
+| 分析與設計的分界、系統分析師的角色、工管背景在系統專案的定位 | `01-Course-Materials/Systems-and-Analysis.md` |
+| 系統開發生命週期、瀑布／疊代／敏捷、專案角色分工、錯誤成本曲線 | `01-Course-Materials/Systems-and-Analysis.md` |
+| 問題定義的四件事、從既有系統反推問題、5 Why 與魚骨圖、問題陳述的寫法 | `01-Course-Materials/Problem-Definition.md` |
+| 可驗收的目標與成功指標、SMART、問題定義書 | `01-Course-Materials/Problem-Definition.md` |
+| 現況問題的盤點、改善建議的三個層次（流程／系統／組織） | `01-Course-Materials/Problem-Definition.md` |
 | 利害關係人分析、RACI、需求收集方法（質化／量化）、使用者分群、目標受眾與 STP、人物誌 | `01-Course-Materials/User-Analysis.md` |
 | 流程分析（AS-IS／TO-BE、泳道圖）、事件與事件表 | `01-Course-Materials/User-Analysis.md` |
 | 使用案例圖、使用案例敘述、參與者、«include»／«extend» | `01-Course-Materials/User-Analysis.md` |
@@ -89,6 +96,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 活動圖與泳道（TO-BE 流程）、分岔與會合 | `01-Course-Materials/Behavioral-Modeling.md` |
 | 系統循序圖與設計階段循序圖、`alt`／`opt`／`loop` 片段 | `01-Course-Materials/Behavioral-Modeling.md` |
 | 狀態機圖、狀態轉移與生命週期 | `01-Course-Materials/Behavioral-Modeling.md` |
+| 實體關聯圖（ERD）、實體與屬性、主鍵與外鍵、基數與多對多拆解 | `01-Course-Materials/Data-Modeling.md` |
+| 名詞分析法、正規化（1NF–3NF）與反正規化 | `01-Course-Materials/Data-Modeling.md` |
+| 資料字典、欄位值域、Schema 落地與畫面欄位對照 | `01-Course-Materials/Data-Modeling.md` |
+| 系統架構圖、主從式與分層式架構、使用者端／應用系統／資料庫三段結構 | `01-Course-Materials/System-Architecture.md` |
+| 外部系統與現場設備介接、地端與雲端、網路分區 | `01-Course-Materials/System-Architecture.md` |
+| 非功能需求如何決定架構、架構取捨與決策說明 | `01-Course-Materials/System-Architecture.md` |
+| 可行性分析四面向、成本效益估算、投資回收期 | `01-Course-Materials/Feasibility-and-Risk.md` |
+| 系統限制的六類盤點、限制與需求的差別 | `01-Course-Materials/Feasibility-and-Risk.md` |
+| 風險與問題的差別、風險辨識與機率乘衝擊、四種風險回應、殘餘風險 | `01-Course-Materials/Feasibility-and-Risk.md` |
+| 類別與物件、關聯與多重性、聚合組合與一般化、概念類別圖與 ERD 的差異 | `01-Course-Materials/Object-Modeling.md` |
+| 設計類別圖、方法與可見性、Controller／Service／Repository（可選層級） | `01-Course-Materials/Object-Modeling.md` |
+| 系統介面規格的五件事、交換時機與頻率、失敗處理、CSV 與 JSON、REST API | `01-Course-Materials/System-Interface-and-Data-Exchange.md` |
+| 使用性原則、線框圖與原型保真度、資訊架構與導覽、現場介面限制 | `01-Course-Materials/UI-Design.md` |
+| 畫面欄位對回資料字典、原型的評估標準 | `01-Course-Materials/UI-Design.md` |
+| 設計規格書架構、需求追溯鏈、文件不一致的檢查、設計決策紀錄與待解問題 | `01-Course-Materials/Design-Specification.md` |
 
 `01-Course-Materials/` 的兩份 `*-Phase-Deliverables.md` 是繳交規範，不是教材正文：規範說「要交什麼」，教材說「怎麼做」。同一主題在兩邊都出現時，概念說明留在教材，繳交欄位與最低標準留在規範，彼此以連結互指。
 
