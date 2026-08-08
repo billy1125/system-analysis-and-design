@@ -259,8 +259,8 @@
 | 原 `Risk-Analysis.md` 同時服務期中與期末 | 改名 `Feasibility-and-Risk.md`，主要服務期末；期中只在 `Problem-Definition.md` 做現況問題與改善，不做完整可行性與風險 |
 | 原 `API-Design.md` 對非資訊背景學生偏技術 | 改名 `System-Interface-and-Data-Exchange.md`；資料交換為條件式必做（題目有外部系統才需要交），REST API 詳細規格列為可選 |
 | 期末題目要不要安排外部系統 | 期末第 5 項與第 11 章的資料交換都以「有外部系統」為前提，但期中的分析對象明訂沒有耦合。出期末題目時要決定：安排一個外部系統（校務系統帳號驗證即可），或讓第 11 章降為選讀 |
-| `User-Analysis.md`〈六〉與 `Behavioral-Modeling.md`〈一〉仍在講「四張核心圖」 | 兩處都要改成期中三張必做 UML，類別圖的說明改指向期末 |
-| `Behavioral-Modeling.md`〈六〉的設計循序圖範例用 Controller／Repository 拆法 | 依期末第 3 項「重點放在主要系統元件或模組之間」改寫成模組層次，Controller 版本降為可選說明 |
+| ~~`User-Analysis.md`〈六〉與 `Behavioral-Modeling.md`〈一〉仍在講「四張核心圖」~~ | ✅ 已改：兩處都改成期中三張必做 UML，類別圖的說明指向期末與[物件建模](01-Course-Materials/Object-Modeling.md) |
+| ~~`Behavioral-Modeling.md`〈六〉的設計循序圖範例用 Controller／Repository 拆法~~ | ✅ 已改：循序圖改為 M1／M2／M5 模組層次，並加註 Controller／Service／Repository 屬可選範圍 |
 | `Functional-Analysis.md`〈六〉的模組規格欄位缺輸入與輸出 | 期末第 2 項要求「目的、主要輸入、主要輸出、使用角色及與其他模組的關係」，欄位表要補齊 |
 | `Design-Specification.md` 原追溯鏈要求到類別與 API | 必做追溯縮成「需求 → 模組 → 流程／互動 → 資料 → 畫面」；有做類別圖或 API 的組別再向外延伸 |
 | `Course-Introduction.md`、`Rubrics.md`、兩份 Deliverables 與本次新清單可能不一致 | 下一步統一修訂這四份文件，避免學生看到不同版本的必做項目 |
