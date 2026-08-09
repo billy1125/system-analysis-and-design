@@ -43,13 +43,17 @@
 | 文件 | 檔名 | 內容 |
 |---|---|---|
 | [課程評量 Rubrics](00-Course-Introduction/Rubrics.md) | `Rubrics.md` | 四個評分項目的評量規準與等第、分數的換算。分數是照這份規準給的，覺得分數不理想時先自己對照一遍 |
-| [報告內容](00-Course-Introduction/Report-Contents.md) | `Report-Contents.md` | 各項報告要交出什麼內容，**列出的項目都要完成**：期中十一項、期末九項、口頭要講到的項目與報告時間、訪談的四類題型、個人報告的篇幅與章節 |
+| [報告內容](00-Course-Introduction/Report-Contents.md) | `Report-Contents.md` | 各項報告要交出什麼內容，**列出的項目都要完成**：期中九項、期末八項、口頭要講到的項目與報告時間、訪談的四類題型、個人報告的篇幅與章節 |
+| [期末設計題目建議](PROJECT-TOPICS.md) | `PROJECT-TOPICS.md` | 18 個可用於期末設計報告的工管系統題目，含選題判準、難度分級、不建議的題型與自訂題目的檢查清單 |
+| [期末設計題目說明](02-Project-Topics/README.md) | `02-Project-Topics/` | 上表 18 題中最推薦的五題的詳細說明書，一題一份。**是題目說明不是參考答案**：講現場長什麼樣、名詞是什麼意思、這一題真正要想的問題，不給 ERD 與資料表 |
 | [參考題庫](00-Course-Introduction/Question-Bank.md) | `Question-Bank.md` | 口頭報告與個人訪談的提問方向。**是方向不是考古題**，實際題目來自各組自己的書面報告 |
 | [額外投入加分](00-Course-Introduction/Bonus-Rules.md) | `Bonus-Rules.md` | 想多做一點的同學再看，**不看不影響成績**：做清單以外的內容、把雛型系統實作出來可以加分，上限 3 分 |
 | [課程規範理解測驗](00-Course-Introduction/Course-Rules-Quiz.md) | `Course-Rules-Quiz.md` | 30 題是非題，附解答與出處章節。**不計分、不用繳交，也不用給老師看**，用來確認你記得的版本是不是對的 |
 | [課程介紹投影片](00-Course-Introduction/Course-Introduction.slides.md) | `Course-Introduction.slides.md` | 第一週上課用（Marp 格式）。只放會扣分或錯過補不回來的規則，完整條文一律以規範文件為準 |
-| [系統分析階段繳交規範](example-system/Analysis-Phase-Deliverables.md) | `Analysis-Phase-Deliverables.md` | 期中書面每一項該有的欄位、描述格式與 UML 圖例，用課堂範例系統示範。**是範例不是範本**：寫得精簡是為了看懂結構，各組題目不同，不能照抄 |
-| [系統設計階段繳交規範](example-system/Design-Phase-Deliverables.md) | `Design-Phase-Deliverables.md` | 期末書面每一項該有的欄位、描述格式與 UML 圖例，同上以範例系統示範 |
+| [系統分析範例報告](example-system/Analysis-Phase-Sample-Report.md) | `Analysis-Phase-Sample-Report.md` | 一份寫好的期中報告成品，只有內容、沒有解說。想知道「交出去的東西長什麼樣」時先看這份 |
+| [系統分析階段繳交規範](example-system/Analysis-Phase-Deliverables.md) | `Analysis-Phase-Deliverables.md` | 上面那份範例報告的解說：每一項該有的欄位、為什麼這樣寫、UML 圖例與方法出處。**是範例不是範本**：寫得精簡是為了看懂結構，各組題目不同，不能照抄 |
+| [系統設計範例報告](example-system/Design-Phase-Sample-Report.md) | `Design-Phase-Sample-Report.md` | 一份寫好的期末報告成品，只有內容、沒有解說。示範對象是工廠的工單派工與現場報工系統 |
+| [系統設計階段繳交規範](example-system/Design-Phase-Deliverables.md) | `Design-Phase-Deliverables.md` | 上面那份設計報告的解說：每一項該有的欄位、為什麼這樣決定、圖怎麼畫與方法出處。**是範例不是範本**，各組題目不同，不能照抄 |
 
 ### 教材正文
 
@@ -63,13 +67,9 @@
 | [系統需求分析](01-Course-Materials/System-Requirements-Analysis.md) | `System-Requirements-Analysis.md` | 把使用案例展開成需求：需求的五個級別、功能需求與非功能需求的寫法、需求品質判準、優先順序與追溯、系統需求規格 |
 | [功能分析](01-Course-Materials/Functional-Analysis.md) | `Functional-Analysis.md` | 把需求整理成系統的功能結構：系統邊界與範圍外清單、情境圖、功能分解、資料流程圖、功能清單與模組劃分、CRUD 矩陣、模組設計 |
 | [行為建模](01-Course-Materials/Behavioral-Modeling.md) | `Behavioral-Modeling.md` | 補上系統的動態面：活動圖與泳道、系統循序圖、狀態機圖，以及三張圖在設計階段的深化與交叉檢核 |
-
 | [資料建模與資料庫設計](01-Course-Materials/Data-Modeling.md) | `Data-Modeling.md` | 系統要記住什麼：實體關聯圖與基數、從需求找實體、正規化、資料字典與值域，以及期中反推與期末推導兩種做法 |
-
 | [系統環境與架構](01-Course-Materials/System-Architecture.md) | `System-Architecture.md` | 系統放在哪裡、和誰連：使用者端與應用系統與資料庫的三段結構、外部系統與現場設備、地端與雲端的取捨、非功能需求如何決定架構 |
-
 | [可行性、限制與風險分析](01-Course-Materials/Feasibility-and-Risk.md) | `Feasibility-and-Risk.md` | 設計與現實的對帳：技術／經濟／組織／時程四面向可行性、成本效益估算、六類系統限制、風險辨識與評估、風險如何回頭改動設計 |
-
 | [物件建模](01-Course-Materials/Object-Modeling.md) | `Object-Modeling.md` | 概念類別圖：類別與關係、多重性、只放領域概念的原則，以及它與 ERD 到底差在哪 |
 | [系統介面與資料交換設計](01-Course-Materials/System-Interface-and-Data-Exchange.md) | `System-Interface-and-Data-Exchange.md` | 兩套系統之間那條線：資料來源與去向、交換內容與欄位對應、時機與頻率、失敗處理，REST API 列為可選 |
 | [使用者介面設計](01-Course-Materials/UI-Design.md) | `UI-Design.md` | 從需求與流程推出畫面：使用性原則、線框圖與保真度、畫面欄位對回資料字典、現場的介面限制 |
