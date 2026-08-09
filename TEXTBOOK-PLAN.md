@@ -69,21 +69,23 @@
 
 | # | 檔名 | 標題 | 對應報告項目 | 狀態 |
 |---|---|---|---|---|
-| 1 | `Systems-and-Analysis.md` | 系統分析與設計導論 | 基礎 | ✅ 已完成 |
-| 2 | `Problem-Definition.md` | 問題定義與現況分析 | 期中 1、9；期末 1（問題背景） | ✅ 已完成 |
-| 3 | `User-Analysis.md` | 使用者分析 | 期中 2 | ✅ 已完成 |
-| 4 | `System-Requirements-Analysis.md` | 系統需求分析 | 期中 4；期末 1（需求摘要） | ✅ 已完成 |
-| 5 | `Functional-Analysis.md` | 功能分析與模組設計 | 期中 5；期末 2 | ✅ 已完成 |
-| 6 | `Behavioral-Modeling.md` | 行為建模 | 期中 3、6；期末 3 | ✅ 已完成 |
-| 7 | `Data-Modeling.md` | 資料建模與資料庫設計 | 期中 7；期末 4（ERD 與資料字典） | ✅ 已完成 |
-| 8 | `System-Architecture.md` | 系統環境與架構 | 期中 8；期末 5（環境與架構） | ✅ 已完成 |
-| 9 | `Feasibility-and-Risk.md` | 可行性、限制與風險分析 | 期末 7 | ✅ 已完成 |
-| 10 | `Object-Modeling.md` | 物件建模 | 期末 4（概念類別圖） | ✅ 已完成 |
-| 11 | `System-Interface-and-Data-Exchange.md` | 系統介面與資料交換設計 | 期末 5（資料交換，題目有外部系統時） | ✅ 已完成 |
-| 12 | `UI-Design.md` | 使用者介面設計 | 期末 6 | ✅ 已完成 |
-| 13 | `Design-Specification.md` | 系統設計規格與追溯 | 期末 8 | ✅ 已完成（終點章） |
+| 1 | `Systems-and-Analysis.md` | 系統分析與設計導論 | 基礎 | ✅ 已完成｜已校準 |
+| 2 | `Problem-Definition.md` | 問題定義與現況分析 | 期中 1、9；期末 1（問題背景） | ✅ 已完成｜已校準 |
+| 3 | `User-Analysis.md` | 使用者分析 | 期中 2 | ✅ 已完成｜已校準 |
+| 4 | `System-Requirements-Analysis.md` | 系統需求分析 | 期中 4；期末 1（需求摘要） | ✅ 已完成｜已校準 |
+| 5 | `Functional-Analysis.md` | 功能分析與模組設計 | 期中 5；期末 2 | ✅ 已完成｜已校準 |
+| 6 | `Behavioral-Modeling.md` | 行為建模 | 期中 3、6；期末 3 | ✅ 已完成｜已校準 |
+| 7 | `Data-Modeling.md` | 資料建模與資料庫設計 | 期中 7；期末 4（ERD 與資料字典） | ✅ 已完成｜已校準 |
+| 8 | `System-Architecture.md` | 系統環境與架構 | 期中 8；期末 5（環境與架構） | ✅ 已完成｜已校準 |
+| 9 | `Feasibility-and-Risk.md` | 可行性、限制與風險分析 | 期末 7 | ✅ 已完成｜已校準 |
+| 10 | `Object-Modeling.md` | 物件建模 | 期末 4（概念類別圖） | ✅ 已完成｜已校準 |
+| 11 | `System-Interface-and-Data-Exchange.md` | 系統介面與資料交換設計 | 期末 5（資料交換，題目有外部系統時） | ✅ 已完成｜已校準 |
+| 12 | `UI-Design.md` | 使用者介面設計 | 期末 6 | ✅ 已完成｜已校準 |
+| 13 | `Design-Specification.md` | 系統設計規格與追溯 | 期末 8 | ✅ 已完成｜已校準（終點章） |
 
 「對應報告項目」欄的編號指 [報告內容](00-Course-Introduction/Report-Contents.md) 修訂後的期中九項與期末八項。
+
+「已校準」指該章已依 `example-system/` 對應階段的繳交規範與範例報告校準過：加註必讀標記（服務期中的加 `🔴 期中必讀`，服務期末的加 `🔵 期末必讀`，兩者都服務的兩個都加）、補齊照教材做不出成品的缺口、消除與範例報告衝突的敘述。十三章兩個階段都已校準完畢。
 
 **全部章節沿用同一個情境**：某金屬沖壓工廠導入生產報工與工單追蹤系統，以及既有三章建立的編號體例（UC-01 為「回報完工數量」、FR-010 起為其展開的功能需求）。新章要延伸編號時往後接，不要重編。
 

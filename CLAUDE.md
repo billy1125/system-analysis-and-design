@@ -57,6 +57,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 完成一份章節正文 | 六項連動見 `TEXTBOOK-PLAN.md`〈六〉：`README.md`〈教材正文〉表格、本檔的權威章節清單與終點章設定、前一章的銜接提示、`Report-Contents.md` 的教材連結、`TEXTBOOK-PLAN.md` 的狀態欄 |
 | 新增、刪除或重排教材章節 | `TEXTBOOK-PLAN.md`〈三〉章節總表與〈四〉內容概要，以及本檔的權威章節清單 |
 | 撰寫任何一章介紹 UML 圖的教材 | 先看 `TEXTBOOK-PLAN.md`〈二〉的四張核心圖與各自的權威章節，該章要點出自己那張圖在四張裡的位置 |
+| 改動 `example-system/` 的階段繳交規範或範例報告 | 回頭核對 `01-Course-Materials/` 對應階段的必讀標記（分析階段對 `🔴 期中必讀`，設計階段對 `🔵 期末必讀`）是否仍然成立——標記的判準就是那兩份文件，它們改了標記不會自己跟著改 |
 
 ## 撰寫規範
 
@@ -73,6 +74,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 範例取材領域 | 製造業與工業工程場域（生產排程、品管、物料與訂單流程、工廠資訊系統等），情境優先取材自學生實習或未來職場會遇到的系統 |
 | 學習重點總結的固定引言 | 「讀完本章後，你應該能夠理解以下核心概念，並將其應用於工業場域的思考與決策：」 |
 | 參考文獻取材 | 系統分析與設計領域的經典教科書（如 Dennis、Kendall、Pressman、Sommerville、Yourdon）與原典或里程碑論文（如 Royce 1970、Chen 1976、UML 與敏捷方法的原始文獻），各章約 20 筆以上 |
+| 必讀標記 | 兩組：`🔴 期中必讀` 與 `🔵 期末必讀`，接在小節標題之後（格式見 `reference/chapter-writing-guide.md`〈七、7.1〉），同一行並列時期中在前、期末在後。**判準是該小節的產出或方法，在該階段的兩份文件中被明確要求或實際示範**——期中看 `example-system/Analysis-Phase-Deliverables.md` 與 `Analysis-Phase-Sample-Report.md`，期末看 `Design-Phase-Deliverables.md` 與 `Design-Phase-Sample-Report.md`；概念相關但那兩份文件沒有真的用到的一律不標，列為可選項目的（設計類別圖、REST API 規格、部署圖等）也不標。目前 `Systems-and-Analysis.md` 只帶期中標記，`Feasibility-and-Risk.md`、`Object-Modeling.md`、`System-Interface-and-Data-Exchange.md`、`UI-Design.md`、`Design-Specification.md` 五章只帶期末標記，其餘七章兩組都有 |
+| 必讀標記的章首說明 | 放在章首導言最後一則 blockquote 之後，全專案措辭一致，依該章帶哪幾組標記三擇一。**只有期中**：「> **期中必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容。判準見[「系統分析階段繳交規範」](../example-system/Analysis-Phase-Deliverables.md)，成品的樣子見[「系統分析範例報告」](../example-system/Analysis-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期中不會直接產出。」**只有期末**：同上句型，標記換成 🔵 期末必讀、九項換成八項、兩份文件換成[「系統設計階段繳交規範」](../example-system/Design-Phase-Deliverables.md)與[「系統設計範例報告」](../example-system/Design-Phase-Sample-Report.md)。**兩組都有**：合寫成一則，不各寫一則——「> **必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容；加註 🔵 期末必讀 的，是期末八項產出直接會用到的。判準與成品的樣子，期中見[「系統分析階段繳交規範」](../example-system/Analysis-Phase-Deliverables.md)與[「系統分析範例報告」](../example-system/Analysis-Phase-Sample-Report.md)，期末見[「系統設計階段繳交規範」](../example-system/Design-Phase-Deliverables.md)與[「系統設計範例報告」](../example-system/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是報告不會直接產出。」 |
 | 權威章節清單 | 見下表，新增章節時一併維護 |
 | 終點章與銜接順序 | 十三章全部完成，順序為 `Systems-and-Analysis.md` → `Problem-Definition.md` → `User-Analysis.md` → `System-Requirements-Analysis.md` → `Functional-Analysis.md` → `Behavioral-Modeling.md` → `Data-Modeling.md` → `System-Architecture.md` → `Feasibility-and-Risk.md` → `Object-Modeling.md` → `System-Interface-and-Data-Exchange.md` → `UI-Design.md` → `Design-Specification.md`。**`Design-Specification.md` 是全書終點章**，不加 `> **銜接提示**`；其餘各章末尾都要有銜接提示指向下一章 |
 
@@ -114,7 +117,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 畫面欄位對回資料字典、原型的評估標準 | `01-Course-Materials/UI-Design.md` |
 | 設計規格書架構、需求追溯鏈、文件不一致的檢查、設計決策紀錄與待解問題 | `01-Course-Materials/Design-Specification.md` |
 
-`example-system/` 的兩份 `*-Phase-Deliverables.md` 是繳交規範，不是教材正文：規範說「要交什麼」，教材說「怎麼做」。同一主題在兩邊都出現時，概念說明留在教材，繳交欄位與最低標準留在規範，彼此以連結互指。它們示範的對象是同一資料夾下的課堂範例系統，因此與範例系統放在一起。
+`example-system/` 的兩份 `*-Phase-Deliverables.md` 是繳交規範，不是教材正文：規範說「要交什麼」，教材說「怎麼做」。同一主題在兩邊都出現時，概念說明留在教材，繳交欄位與最低標準留在規範，彼此以連結互指。每份規範各配一份 `*-Phase-Sample-Report.md`，是照該規範寫完的成品，只放內容不放解說。
+
+**兩個階段刻意用不同的示範系統，改動時不要把它們統一：** 分析階段（`Analysis-Phase-*.md`）用課堂範例系統 `sad-forum`，因為分析要對照既有系統的原始碼才驗證得出有沒有看懂；設計階段（`Design-Phase-*.md`）用 `02-Project-Topics/Work-Order-and-Reporting.md` 那一題的工廠情境，因為期末題目全在製造現場，校園系統示範不出外部系統介接、班別跨日歸屬與現場操作限制。**設計階段的文件不得再出現論壇系統的內容。**
 
 ## 本專案自訂慣例
 
@@ -134,6 +139,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `Rubrics.md` | 課程評量 Rubrics | 大標題的「規準（Rubrics）」重複 |
 | `Course-Rules-Quiz.md` | 課程規範理解測驗 | 省略大標題的「（自我檢核）」 |
 | `Analysis-Phase-Sample-Report.md` | 系統分析範例報告 | 大標題含範例系統名稱，會看起來像是在講那套系統而非示範文件 |
+| `Design-Phase-Sample-Report.md` | 系統設計範例報告 | 同上 |
 | `README.md` | SAD 課程教材 | 大標題只有課程名，看不出是什麼文件 |
 
 新增文件時，只有在大標題不適合直接當連結文字時才登記到上表。
