@@ -16,11 +16,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 |---|---|
 | `00-Course-Introduction/` | 課程規範與參考文件共九份，引用的圖片放在其下的 `images/` |
 | `01-Course-Materials/` | 教材正文，引用的圖片放在其下的 `images/` |
-| `example-system/` | 兩份繳交規範進版控；底下的範例系統 `sad-user-management/` **不進版控**，只存在本機工作區。它會一直出現在 `git status` 的未追蹤清單裡，不要 `git add`，也不要寫進 `.gitignore` |
+| `02-Project-Topics/` | 期末設計題目說明書，一題一份，加一份 `README.md` 當索引。**是題目說明不是參考答案**：只給情境、名詞、角色、單據生命週期與設計難點，不給 ERD、資料表、模組清單與畫面線框 |
+| `example-system/` | 繳交規範與範例報告進版控；底下的範例系統 `sad-forum/` **不進版控**，只存在本機工作區。它會一直出現在 `git status` 的未追蹤清單裡，不要 `git add`，也不要寫進 `.gitignore` |
 | `reference/` | 長期保留的範本與撰寫規範，是全專案的格式基準，會隨慣例調整而更新 |
 | `.claude/skills/` | Claude Code 技能，一個技能一個資料夾 |
 
-根目錄只留 `README.md`、`TEXTBOOK-PLAN.md` 與本檔，其餘文件一律收進所屬的章節資料夾，圖片跟著引用它的文章走。
+根目錄只放**全專案層級的索引與規劃文件**，目前為 `README.md`、`TEXTBOOK-PLAN.md`、`PROJECT-TOPICS.md` 與本檔。其餘文件一律收進所屬的章節資料夾，圖片跟著引用它的文章走。新增根目錄文件時要一併更新這句話的清單。
 
 教材正文放 `01-Course-Materials/`，**檔名不加數字序號**（如 `User-Analysis.md`），閱讀順序由 `README.md`〈教材正文〉的表格排序決定。此處與 `reference/chapter-template.md` 所寫的「根目錄下的 `0X-XXX.md`」不同，以本檔為準。
 
@@ -59,7 +60,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 撰寫規範
 
-格式規範全部收在 `reference/`。**動筆前先讀完對應的規範文件，再複製骨架檔開始寫**：正文看 `chapter-writing-guide.md` 與 `chapter-template.md`，投影片看 `slides-design-template.md` 與 `slides-template.slides.md`。
+格式規範全部收在 `reference/`。**動筆前先讀完對應的規範文件，再複製骨架檔開始寫**：正文看 `chapter-writing-guide.md` 與 `chapter-template.md`，投影片看 `slides-design-template.md` 與 `slides-template.slides.md`。`personal-voice.md` 是語氣與筆法的蒸餾，不必每次動筆前讀，收尾潤稿或收到指示時再用。
 
 兩邊若有衝突，**格式規則以 `reference/` 為準，課程設定以本檔為準**。
 
@@ -117,7 +118,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 本專案自訂慣例
 
-- **文字撰寫風格**：簡潔清晰易理解，如果能用 1 句話說明，就不要用 5 句話，條列的內容如果敘述太多，可改用表格呈現。
+- **文字撰寫風格**：簡潔清晰易理解，如果能用 1 句話說明，就不要用 5 句話，條列的內容如果敘述太多，可改用表格呈現。作者的語氣與筆法蒸餾在 `reference/personal-voice.md`，**收到「用 `reference/personal-voice.md` 調整文章」這類指示時**再讀它的〈速查〉。
 - **不重複說明別的文件已有的內容**：除非有必要，那僅需一句話提醒讀者，然後用文件連結提示。
 - **檔名慣例**：課程規範類文件採描述性英文檔名，放在 `00-Course-Introduction/`。
 - **資料夾架構慣例**：資料夾狀況不寫進 `README.md`。
@@ -132,6 +133,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `Course-Introduction.slides.md` | 課程介紹投影片 | Marp 投影片沒有 `#` 大標 |
 | `Rubrics.md` | 課程評量 Rubrics | 大標題的「規準（Rubrics）」重複 |
 | `Course-Rules-Quiz.md` | 課程規範理解測驗 | 省略大標題的「（自我檢核）」 |
+| `Analysis-Phase-Sample-Report.md` | 系統分析範例報告 | 大標題含範例系統名稱，會看起來像是在講那套系統而非示範文件 |
 | `README.md` | SAD 課程教材 | 大標題只有課程名，看不出是什麼文件 |
 
 新增文件時，只有在大標題不適合直接當連結文字時才登記到上表。
