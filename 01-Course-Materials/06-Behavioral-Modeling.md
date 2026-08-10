@@ -8,9 +8,9 @@
 
 > **前情提要**：本章假設你已完成[「使用者分析」](03-User-Analysis.md)的使用案例分析、[「系統需求分析」](04-System-Requirements-Analysis.md)的需求條列，以及[「功能分析」](05-Functional-Analysis.md)的系統邊界與功能結構。本章沿用同一情境（某金屬沖壓工廠導入生產報工與工單追蹤系統）與同一套編號體例（UC-01 為「回報完工數量」、FR-010 起為其展開的功能需求、F-021 起為功能代號）。
 
-> **延伸閱讀**：這三張圖在各組報告中的繳交格式與最低標準，見[「系統分析範例報告說明」](../04-example-reports/Analysis-Phase-Deliverables.md)〈四、期中的 UML 最低要求〉與[「系統設計範例報告說明」](../04-example-reports/Design-Phase-Deliverables.md)。
+> **延伸閱讀**：這三張圖在各組報告中的繳交格式與最低標準，見[「系統分析範例報告說明」](../03-example-reports/Analysis-Phase-Deliverables.md)〈四、期中的 UML 最低要求〉與[「系統設計範例報告說明」](../03-example-reports/Design-Phase-Deliverables.md)。
 
-> **必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容；加註 🔵 期末必讀 的，是期末八項產出直接會用到的。判準與成品的樣子，期中見[「系統分析範例報告說明」](../04-example-reports/Analysis-Phase-Deliverables.md)與[「系統分析範例報告」](../04-example-reports/Analysis-Phase-Sample-Report.md)，期末見[「系統設計範例報告說明」](../04-example-reports/Design-Phase-Deliverables.md)與[「系統設計範例報告」](../04-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是報告不會直接產出。
+> **必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容；加註 🔵 期末必讀 的，是期末八項產出直接會用到的。判準與成品的樣子，期中見[「系統分析範例報告說明」](../03-example-reports/Analysis-Phase-Deliverables.md)與[「系統分析範例報告」](../03-example-reports/Analysis-Phase-Sample-Report.md)，期末見[「系統設計範例報告說明」](../03-example-reports/Design-Phase-Deliverables.md)與[「系統設計範例報告」](../03-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是報告不會直接產出。
 
 ## 一、結構之外還要描述行為 🔵 期末必讀
 

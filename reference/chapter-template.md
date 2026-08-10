@@ -19,15 +19,15 @@
 
 {只有期中標記：}
 
-> **期中必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容。判準見[「系統分析範例報告說明」](../04-example-reports/Analysis-Phase-Deliverables.md)，成品的樣子見[「系統分析範例報告」](../04-example-reports/Analysis-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期中不會直接產出。
+> **期中必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容。判準見[「系統分析範例報告說明」](../03-example-reports/Analysis-Phase-Deliverables.md)，成品的樣子見[「系統分析範例報告」](../03-example-reports/Analysis-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期中不會直接產出。
 
 {只有期末標記：}
 
-> **期末必讀標記**：標題後加註 🔵 期末必讀 的小節，是期末小組報告八項產出直接會用到的內容。判準見[「系統設計範例報告說明」](../04-example-reports/Design-Phase-Deliverables.md)，成品的樣子見[「系統設計範例報告」](../04-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期末不會直接產出。
+> **期末必讀標記**：標題後加註 🔵 期末必讀 的小節，是期末小組報告八項產出直接會用到的內容。判準見[「系統設計範例報告說明」](../03-example-reports/Design-Phase-Deliverables.md)，成品的樣子見[「系統設計範例報告」](../03-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期末不會直接產出。
 
 {兩組都有——合寫成一則，不各寫一則：}
 
-> **必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容；加註 🔵 期末必讀 的，是期末八項產出直接會用到的。判準與成品的樣子，期中見[「系統分析範例報告說明」](../04-example-reports/Analysis-Phase-Deliverables.md)與[「系統分析範例報告」](../04-example-reports/Analysis-Phase-Sample-Report.md)，期末見[「系統設計範例報告說明」](../04-example-reports/Design-Phase-Deliverables.md)與[「系統設計範例報告」](../04-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是報告不會直接產出。
+> **必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容；加註 🔵 期末必讀 的，是期末八項產出直接會用到的。判準與成品的樣子，期中見[「系統分析範例報告說明」](../03-example-reports/Analysis-Phase-Deliverables.md)與[「系統分析範例報告」](../03-example-reports/Analysis-Phase-Sample-Report.md)，期末見[「系統設計範例報告說明」](../03-example-reports/Design-Phase-Deliverables.md)與[「系統設計範例報告」](../03-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是報告不會直接產出。
 
 ## 一、{小節標題}
 

@@ -14,7 +14,7 @@
 
 > **延伸閱讀**：完整的 REST API 規格（HTTP 方法、狀態碼、Endpoint、Request／Response）在本課程列為可選項目，見〈六〉。
 
-> **期末必讀標記**：標題後加註 🔵 期末必讀 的小節，是期末小組報告八項產出直接會用到的內容。判準見[「系統設計範例報告說明」](../04-example-reports/Design-Phase-Deliverables.md)，成品的樣子見[「系統設計範例報告」](../04-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期末不會直接產出。
+> **期末必讀標記**：標題後加註 🔵 期末必讀 的小節，是期末小組報告八項產出直接會用到的內容。判準見[「系統設計範例報告說明」](../03-example-reports/Design-Phase-Deliverables.md)，成品的樣子見[「系統設計範例報告」](../03-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期末不會直接產出。
 
 ## 一、什麼是系統介面
 

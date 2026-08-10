@@ -12,7 +12,7 @@
 
 > **延伸閱讀**：這一項在報告中要交什麼，見[「報告內容」](../00-Course-Introduction/Report-Contents.md)期末第 8 項。
 
-> **期末必讀標記**：標題後加註 🔵 期末必讀 的小節，是期末小組報告八項產出直接會用到的內容。判準見[「系統設計範例報告說明」](../04-example-reports/Design-Phase-Deliverables.md)，成品的樣子見[「系統設計範例報告」](../04-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期末不會直接產出。
+> **期末必讀標記**：標題後加註 🔵 期末必讀 的小節，是期末小組報告八項產出直接會用到的內容。判準見[「系統設計範例報告說明」](../03-example-reports/Design-Phase-Deliverables.md)，成品的樣子見[「系統設計範例報告」](../03-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期末不會直接產出。
 
 ## 一、規格書不只是裝訂 🔵 期末必讀
 

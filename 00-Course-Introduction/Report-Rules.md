@@ -13,7 +13,7 @@
 | 報告要交出哪些內容 | [報告內容](Report-Contents.md) |
 | 分數怎麼算、遲交與缺交扣多少 | [成績計算規範](Grading-Rules.md) |
 | 老師評分時看哪些面向 | [報告評量 Rubrics](Rubrics.md) |
-| 有沒有範例可以參考 | [系統分析範例報告說明](../04-example-reports/Analysis-Phase-Deliverables.md)、[系統設計範例報告說明](../04-example-reports/Design-Phase-Deliverables.md)，各配一份寫完的[系統分析範例報告](../04-example-reports/Analysis-Phase-Sample-Report.md)、[系統設計範例報告](../04-example-reports/Design-Phase-Sample-Report.md) |
+| 有沒有範例可以參考 | [系統分析範例報告說明](../03-example-reports/Analysis-Phase-Deliverables.md)、[系統設計範例報告說明](../03-example-reports/Design-Phase-Deliverables.md)，各配一份寫完的[系統分析範例報告](../03-example-reports/Analysis-Phase-Sample-Report.md)、[系統設計範例報告](../03-example-reports/Design-Phase-Sample-Report.md) |
 | 口頭報告與訪談會問什麼方向的題目 | [參考題庫](Question-Bank.md) |
 | 做得比要求更多能不能加分 | [額外投入加分](Bonus-Rules.md) |
 

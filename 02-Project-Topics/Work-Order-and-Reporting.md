@@ -299,4 +299,4 @@
 
 ---
 
-*本文件只說明題目，要交什麼見[報告內容](../00-Course-Introduction/Report-Contents.md)〈二〉，每一項該有哪些欄位見[系統設計範例報告說明](../04-example-reports/Design-Phase-Deliverables.md)。*
+*本文件只說明題目，要交什麼見[報告內容](../00-Course-Introduction/Report-Contents.md)〈二〉，每一項該有哪些欄位見[系統設計範例報告說明](../03-example-reports/Design-Phase-Deliverables.md)。*

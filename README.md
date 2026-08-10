@@ -80,16 +80,16 @@
 
 ### 範例報告
 
-兩個階段各一組，成品與說明成對出現：成品讓你看「交出去的東西長什麼樣」，說明講每一項該有什麼欄位、為什麼這樣寫。全部收在 `04-example-reports/`。
+兩個階段各一組，成品與說明成對出現：成品讓你看「交出去的東西長什麼樣」，說明講每一項該有什麼欄位、為什麼這樣寫。全部收在 `03-example-reports/`。
 
 **都是範例不是答案。** 寫得精簡是為了讓你看懂結構，各組題目不同，不能照抄。兩個階段刻意用不同的示範系統：分析階段用課堂範例系統，設計階段用工廠的工單派工與現場報工系統。
 
 | 文件 | 檔名 | 內容 |
 |---|---|---|
-| [系統分析範例報告](04-example-reports/Analysis-Phase-Sample-Report.md) | `Analysis-Phase-Sample-Report.md` | 一份寫好的期中報告成品，只有內容、沒有解說 |
-| [系統分析範例報告說明](04-example-reports/Analysis-Phase-Deliverables.md) | `Analysis-Phase-Deliverables.md` | 上面那份範例報告的解說：每一項該有的欄位、為什麼這樣寫、UML 圖例與方法出處 |
-| [系統設計範例報告](04-example-reports/Design-Phase-Sample-Report.md) | `Design-Phase-Sample-Report.md` | 一份寫好的期末報告成品，只有內容、沒有解說 |
-| [系統設計範例報告說明](04-example-reports/Design-Phase-Deliverables.md) | `Design-Phase-Deliverables.md` | 上面那份設計報告的解說：每一項該有的欄位、為什麼這樣決定、圖怎麼畫與方法出處 |
+| [系統分析範例報告](03-example-reports/Analysis-Phase-Sample-Report.md) | `Analysis-Phase-Sample-Report.md` | 一份寫好的期中報告成品，只有內容、沒有解說 |
+| [系統分析範例報告說明](03-example-reports/Analysis-Phase-Deliverables.md) | `Analysis-Phase-Deliverables.md` | 上面那份範例報告的解說：每一項該有的欄位、為什麼這樣寫、UML 圖例與方法出處 |
+| [系統設計範例報告](03-example-reports/Design-Phase-Sample-Report.md) | `Design-Phase-Sample-Report.md` | 一份寫好的期末報告成品，只有內容、沒有解說 |
+| [系統設計範例報告說明](03-example-reports/Design-Phase-Deliverables.md) | `Design-Phase-Deliverables.md` | 上面那份設計報告的解說：每一項該有的欄位、為什麼這樣決定、圖怎麼畫與方法出處 |
 
 ### 教材正文
 

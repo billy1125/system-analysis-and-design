@@ -126,7 +126,7 @@
 
 「對應報告項目」欄的編號指 [報告內容](00-Course-Introduction/Report-Contents.md) 修訂後的期中九項與期末八項。
 
-「已校準」指該章已依 `04-example-reports/` 對應階段的範例報告說明與範例報告校準過：加註必讀標記（服務期中的加 `🔴 期中必讀`，服務期末的加 `🔵 期末必讀`，兩者都服務的兩個都加）、補齊照教材做不出成品的缺口、消除與範例報告衝突的敘述。十三章兩個階段都已校準完畢。
+「已校準」指該章已依 `03-example-reports/` 對應階段的範例報告說明與範例報告校準過：加註必讀標記（服務期中的加 `🔴 期中必讀`，服務期末的加 `🔵 期末必讀`，兩者都服務的兩個都加）、補齊照教材做不出成品的缺口、消除與範例報告衝突的敘述。十三章兩個階段都已校準完畢。
 
 **全部章節沿用同一個情境**：某金屬沖壓工廠導入生產報工與工單追蹤系統，以及既有三章建立的編號體例（UC-01 為「回報完工數量」、FR-010 起為其展開的功能需求）。新章要延伸編號時往後接，不要重編。
 
@@ -296,7 +296,7 @@
 
 | 問題 | 建議處理 |
 |---|---|
-| 順序圖的必要性不一致：[報告內容](00-Course-Introduction/Report-Contents.md) 與 [SAD 課程介紹](00-Course-Introduction/Course-Introduction.md) 列為必做，但[系統分析範例報告說明](04-example-reports/Analysis-Phase-Deliverables.md) 曾標成「加分」 | 統一改成「必做，但期中只要求 1–2 張核心 SSD」；教材已依必做深度撰寫 |
+| 順序圖的必要性不一致：[報告內容](00-Course-Introduction/Report-Contents.md) 與 [SAD 課程介紹](00-Course-Introduction/Course-Introduction.md) 列為必做，但[系統分析範例報告說明](03-example-reports/Analysis-Phase-Deliverables.md) 曾標成「加分」 | 統一改成「必做，但期中只要求 1–2 張核心 SSD」；教材已依必做深度撰寫 |
 | 概念類別圖的階段定位 | 已定案：期中可選、期末必做（期末報告第 4 項）。`Analysis-Phase-Deliverables.md` 標「建議」與 `Design-Phase-Deliverables.md` 標「建議」的地方要跟著改成期中可選、期末必備 |
 | 狀態機圖在部分文件中介於建議與加分 | 統一為「題目適合時的進階／加分」，不列為全組必做 |
 | 原 `Risk-Analysis.md` 同時服務期中與期末 | 改名 `09-Feasibility-and-Risk.md`，主要服務期末；期中只在 `02-Problem-Definition.md` 做現況問題與改善，不做完整可行性與風險 |

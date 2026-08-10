@@ -2,7 +2,7 @@
 
 這份文件提供期末小組報告（系統設計）可用的題目，全部取材自製造業與工業工程場域，規模皆為八週內做得完的等級。
 
-題目要交出什麼內容見[「報告內容」](00-Course-Introduction/Report-Contents.md)〈二、期末小組報告〉；每一項該有哪些欄位見[「系統設計範例報告說明」](04-example-reports/Design-Phase-Deliverables.md)；一份寫好的成品長什麼樣見[「系統設計範例報告」](04-example-reports/Design-Phase-Sample-Report.md)。
+題目要交出什麼內容見[「報告內容」](00-Course-Introduction/Report-Contents.md)〈二、期末小組報告〉；每一項該有哪些欄位見[「系統設計範例報告說明」](03-example-reports/Design-Phase-Deliverables.md)；一份寫好的成品長什麼樣見[「系統設計範例報告」](03-example-reports/Design-Phase-Sample-Report.md)。
 
 **題目怎麼分配由授課教師決定**，本文件只負責提供選項與判準。
 
@@ -296,7 +296,7 @@
 
 **設計時只挑一個介接點就夠了。** 兩個以上會讓第 5 項吃掉太多篇幅，擠壓到介面原型、可行性與追溯那三項。
 
-沒有列在表上的題目不必硬湊一個外部系統。**「本系統無外部介接」也是合格的答案**，但要寫出判斷依據，不能整節留白——判斷依據怎麼寫見[「系統設計範例報告說明」](04-example-reports/Design-Phase-Deliverables.md)第 5 項〈5.3〉。真的有介接時該寫哪五件事，見[「系統設計範例報告」](04-example-reports/Design-Phase-Sample-Report.md)〈5.4〉。
+沒有列在表上的題目不必硬湊一個外部系統。**「本系統無外部介接」也是合格的答案**，但要寫出判斷依據，不能整節留白——判斷依據怎麼寫見[「系統設計範例報告說明」](03-example-reports/Design-Phase-Deliverables.md)第 5 項〈5.3〉。真的有介接時該寫哪五件事，見[「系統設計範例報告」](03-example-reports/Design-Phase-Sample-Report.md)〈5.4〉。
 
 ---
 

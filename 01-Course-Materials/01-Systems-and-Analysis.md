@@ -10,7 +10,7 @@
 
 > **延伸閱讀**：本章不談任何具體的分析方法或圖表畫法。各項產出實際要怎麼做，見後續各章；各組報告要交出什麼，見[「報告內容」](../00-Course-Introduction/Report-Contents.md)。
 
-> **期中必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容。判準見[「系統分析範例報告說明」](../04-example-reports/Analysis-Phase-Deliverables.md)，成品的樣子見[「系統分析範例報告」](../04-example-reports/Analysis-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期中不會直接產出。本章多數內容是後面各章共用的語彙，標記較少不代表可以略過。
+> **期中必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容。判準見[「系統分析範例報告說明」](../03-example-reports/Analysis-Phase-Deliverables.md)，成品的樣子見[「系統分析範例報告」](../03-example-reports/Analysis-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期中不會直接產出。本章多數內容是後面各章共用的語彙，標記較少不代表可以略過。
 
 ## 一、什麼是系統 🔴 期中必讀
 
