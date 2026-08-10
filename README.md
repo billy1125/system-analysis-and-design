@@ -113,8 +113,6 @@
 | 12 | [使用者介面設計](01-Course-Materials/12-UI-Design.md) | `12-UI-Design.md` | 從需求與流程推出畫面：使用性原則、線框圖與保真度、畫面欄位對回資料字典、現場的介面限制 |
 | 13 | [系統設計規格與追溯](01-Course-Materials/13-Design-Specification.md) | `13-Design-Specification.md` | 把各章產出收成一套設計：規格書架構、五段追溯鏈、六種常見的不一致、設計決策紀錄、交件前的檢查清單 |
 
-各章的投影片會在學期進行中陸續補上。
-
 ---
 
 ## 🔄 文件版本
