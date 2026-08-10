@@ -78,7 +78,7 @@
 | 報告怎麼交、期限是哪一天、缺席與補救怎麼處理 | [報告規範](Report-Rules.md) |
 | 遲交扣幾分、什麼情況直接 0 分、學期成績怎麼算 | [成績計算規範](Grading-Rules.md) |
 | 書面要寫到什麼程度、口頭報告與訪談會問什麼方向 | [報告內容](Report-Contents.md)、[參考題庫](Question-Bank.md) |
-| 每一項怎麼評分、等第怎麼換算 | [課程評量 Rubrics](Rubrics.md) |
+| 每一項怎麼評分、等第怎麼換算 | [報告評量 Rubrics](Rubrics.md) |
 | 有沒有範例可以參考 | 每一項該有哪些欄位、為什麼這樣寫，見[系統分析範例報告說明](../04-example-reports/Analysis-Phase-Deliverables.md)、[系統設計範例報告說明](../04-example-reports/Design-Phase-Deliverables.md)；寫完的成品長什麼樣，見[系統分析範例報告](../04-example-reports/Analysis-Phase-Sample-Report.md)、[系統設計範例報告](../04-example-reports/Design-Phase-Sample-Report.md)。各組題目不同，**照結構寫，不要照內容抄** |
 | 做得比要求更多能不能加分 | [額外投入加分](Bonus-Rules.md) |
 
@@ -101,7 +101,7 @@
 
 抽籤使用老師開發的開源工具 Lucklet：<https://github.com/billy1125/lottery-game>。投影在螢幕上當場操作，全班一起看結果；程式碼公開，亂數由瀏覽器端產生，老師無法預先決定哪一組拿到哪一題。**抽到就是抽到，不重抽、不換題、不接受組間交換。**
 
-各題的規模與難度會盡量拉平，但不可能完全一樣。評分規準（見[「課程評量 Rubrics」](Rubrics.md)）對全班相同，看的是你對自己那一題做得多完整。
+各題的規模與難度會盡量拉平，但不可能完全一樣。評分規準（見[「報告評量 Rubrics」](Rubrics.md)）對全班相同，看的是你對自己那一題做得多完整。
 
 #### 兩份報告請一起規劃
 
@@ -134,7 +134,7 @@
 
 ### 小組與個人評分標準
 
-報告的分數會由兩個方向去打：**內容分數** 看內容做得如何，四個評分項目各自的評量規準（Rubrics）與等第、分數的換算方式，依[「課程評量 Rubrics」](Rubrics.md)；**繳交扣分** 看有沒有按時交、檔案打不打得開，細節請見[「成績計算規範」](Grading-Rules.md)。
+報告的分數會由兩個方向去打：**內容分數** 看內容做得如何，四個評分項目各自的評量規準（Rubrics）與等第、分數的換算方式，依[「報告評量 Rubrics」](Rubrics.md)；**繳交扣分** 看有沒有按時交、檔案打不打得開，細節請見[「成績計算規範」](Grading-Rules.md)。
 
 ## AI 工具使用揭露
 

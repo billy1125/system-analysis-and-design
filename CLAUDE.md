@@ -27,7 +27,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 文件清單
 
-`00-Course-Introduction/` 的課程文件是同一套規則的不同切面。每份文件在自己的範圍內是事實來源，**其他文件一律引用而不重述**。前四份是 `README.md` 歸類的「基本規範」，後五份是「參考文件」。
+`00-Course-Introduction/` 的課程文件是同一套規則的不同切面。每份文件在自己的範圍內是事實來源，**其他文件一律引用而不重述**。`README.md` 把它們分成三類：`Course-Introduction.md` 與 `Report-Rules.md` 是「基本規範」，接著的 `Grading-Rules.md`、`Group-Rules.md`、`Rubrics.md`、`Report-Contents.md`、`Bonus-Rules.md` 是「規範細節說明」，其餘是「參考文件」。
 
 | 檔案 | 角色 | 密切關係 |
 |---|---|---|
@@ -48,8 +48,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 | 你做了什麼 | 還要一併更新 |
 |---|---|
-| 新增或更名課程規範文件 | `README.md`〈📚 這裡有哪些文件〉底下的〈基本規範〉或〈參考文件〉表格，以及本檔〈文件連結慣例〉的連結標題對照表 |
-| 改動配分、關鍵日期、繳交方式或扣分數字 | `README.md`〈⚡ 重點速覽〉——那張表是四份基本規範的摘要，條文改了它不會自己跟著改 |
+| 新增或更名課程規範文件 | `README.md`〈📚 這裡有哪些文件〉底下的〈基本規範〉〈規範細節說明〉〈參考文件〉三張表格之一，以及本檔〈文件連結慣例〉的連結標題對照表 |
+| 新增或更名範例報告 | `README.md`〈📚 這裡有哪些文件〉底下的〈範例報告〉表格 |
+| 改動配分、關鍵日期、繳交方式或扣分數字 | `README.md`〈⚡ 重點速覽〉——那張表是基本規範與規範細節說明的摘要，條文改了它不會自己跟著改 |
 | 收錄外部來源圖片 | `README.md`〈📄 授權與使用聲明〉的授權例外表，註明來源、作者與授權條款（依 `reference/chapter-writing-guide.md`〈六〉） |
 | 移植外部技能到 `.claude/skills/` | 同上授權例外表，並將原始 `LICENSE` 保留在技能資料夾內 |
 | 完成一份章節正文 | 六項連動逐項見 `TEXTBOOK-PLAN.md`〈六〉，其中終點章設定在本檔 |
@@ -93,7 +94,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 |---|---|---|
 | `Course-Introduction.md` | SAD 課程介紹 | 大標題含課程全名，太長 |
 | `Course-Introduction.slides.md` | 課程介紹投影片 | Marp 投影片沒有 `#` 大標 |
-| `Rubrics.md` | 課程評量 Rubrics | 大標題的「規準（Rubrics）」重複 |
+| `Rubrics.md` | 報告評量 Rubrics | 大標題的「規準（Rubrics）」重複 |
 | `Course-Rules-Quiz.md` | 課程規範理解測驗 | 省略大標題的「（自我檢核）」 |
 | `Analysis-Phase-Sample-Report.md` | 系統分析範例報告 | 大標題含範例系統名稱，會看起來像是在講那套系統而非示範文件 |
 | `Design-Phase-Sample-Report.md` | 系統設計範例報告 | 同上 |

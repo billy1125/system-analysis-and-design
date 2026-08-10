@@ -95,4 +95,4 @@
 
 ---
 
-*本資料夾只說明題目，不含繳交規定與評分標準。要交什麼見[報告內容](../00-Course-Introduction/Report-Contents.md)，怎麼給分見[課程評量 Rubrics](../00-Course-Introduction/Rubrics.md)，什麼時候交見[報告規範](../00-Course-Introduction/Report-Rules.md)。*
+*本資料夾只說明題目，不含繳交規定與評分標準。要交什麼見[報告內容](../00-Course-Introduction/Report-Contents.md)，怎麼給分見[報告評量 Rubrics](../00-Course-Introduction/Rubrics.md)，什麼時候交見[報告規範](../00-Course-Introduction/Report-Rules.md)。*

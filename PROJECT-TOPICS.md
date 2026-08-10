@@ -328,4 +328,4 @@
 
 ---
 
-*本文件只提供題目與判準，不含評分規定。評分標準見[「課程評量 Rubrics」](00-Course-Introduction/Rubrics.md)，繳交方式與期限見[「報告規範」](00-Course-Introduction/Report-Rules.md)。*
+*本文件只提供題目與判準，不含評分規定。評分標準見[「報告評量 Rubrics」](00-Course-Introduction/Rubrics.md)，繳交方式與期限見[「報告規範」](00-Course-Introduction/Report-Rules.md)。*

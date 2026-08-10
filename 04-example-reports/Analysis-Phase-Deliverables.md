@@ -913,4 +913,4 @@ diagrams/
 
 ---
 
-*這份文件示範的是結構，不是篇幅。九項每一項該有哪些欄位、圖上該有哪些東西，照著做就對了；內容一律換成你那一題的。評分標準見[「課程評量 Rubrics」](../00-Course-Introduction/Rubrics.md)，繳交方式與期限見[「報告規範」](../00-Course-Introduction/Report-Rules.md)。*
+*這份文件示範的是結構，不是篇幅。九項每一項該有哪些欄位、圖上該有哪些東西，照著做就對了；內容一律換成你那一題的。評分標準見[「報告評量 Rubrics」](../00-Course-Introduction/Rubrics.md)，繳交方式與期限見[「報告規範」](../00-Course-Introduction/Report-Rules.md)。*
