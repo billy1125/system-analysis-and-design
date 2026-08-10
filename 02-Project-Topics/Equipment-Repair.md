@@ -259,9 +259,9 @@
 
 對應教材：
 
-- 狀態機圖怎麼畫、什麼物件適合畫 → [行為建模](../01-Course-Materials/Behavioral-Modeling.md)
-- 風險必須連回設計決策 → [可行性、限制與風險分析](../01-Course-Materials/Feasibility-and-Risk.md)
-- 模組怎麼切、相依關係怎麼查 → [功能分析與模組設計](../01-Course-Materials/Functional-Analysis.md)
+- 狀態機圖怎麼畫、什麼物件適合畫 → [行為建模](../01-Course-Materials/06-Behavioral-Modeling.md)
+- 風險必須連回設計決策 → [可行性、限制與風險分析](../01-Course-Materials/09-Feasibility-and-Risk.md)
+- 模組怎麼切、相依關係怎麼查 → [功能分析與模組設計](../01-Course-Materials/05-Functional-Analysis.md)
 
 ---
 
@@ -276,4 +276,4 @@
 
 ---
 
-*本文件只說明題目，要交什麼見[報告內容](../00-Course-Introduction/Report-Contents.md)〈二〉，每一項該有哪些欄位見[系統設計階段繳交規範](../example-system/Design-Phase-Deliverables.md)。*
+*本文件只說明題目，要交什麼見[報告內容](../00-Course-Introduction/Report-Contents.md)〈二〉，每一項該有哪些欄位見[系統設計範例報告說明](../04-example-reports/Design-Phase-Deliverables.md)。*

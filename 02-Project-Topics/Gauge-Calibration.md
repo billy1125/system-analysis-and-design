@@ -233,9 +233,9 @@
 
 對應教材：
 
-- 欄位值域怎麼寫、資料字典怎麼做 → [資料建模與資料庫設計](../01-Course-Materials/Data-Modeling.md)
-- 畫面欄位怎麼對回資料字典 → [使用者介面設計](../01-Course-Materials/UI-Design.md)
-- 狀態機圖怎麼畫 → [行為建模](../01-Course-Materials/Behavioral-Modeling.md)
+- 欄位值域怎麼寫、資料字典怎麼做 → [資料建模與資料庫設計](../01-Course-Materials/07-Data-Modeling.md)
+- 畫面欄位怎麼對回資料字典 → [使用者介面設計](../01-Course-Materials/12-UI-Design.md)
+- 狀態機圖怎麼畫 → [行為建模](../01-Course-Materials/06-Behavioral-Modeling.md)
 
 ---
 
@@ -250,4 +250,4 @@
 
 ---
 
-*本文件只說明題目，要交什麼見[報告內容](../00-Course-Introduction/Report-Contents.md)〈二〉，每一項該有哪些欄位見[系統設計階段繳交規範](../example-system/Design-Phase-Deliverables.md)。*
+*本文件只說明題目，要交什麼見[報告內容](../00-Course-Introduction/Report-Contents.md)〈二〉，每一項該有哪些欄位見[系統設計範例報告說明](../04-example-reports/Design-Phase-Deliverables.md)。*

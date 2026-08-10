@@ -1,14 +1,14 @@
-# 系統設計階段繳交規範
+# 系統設計範例報告說明
 
 這份文件是[「報告內容」](../00-Course-Introduction/Report-Contents.md)〈二、期末小組報告〉那八項的示範。八項的定義以那份文件為準，這裡只回答一件事：**每一項實際寫出來長什麼樣子**。
 
-示範對象是[「工單派工與現場報工系統」](../02-Project-Topics/Work-Order-and-Reporting.md)，也就是五份期末題目說明書中最難的那一題。一份照著這份規範寫完的成品，見[「系統設計範例報告」](Design-Phase-Sample-Report.md)。
+示範對象是[「工單派工與現場報工系統」](../02-Project-Topics/Work-Order-and-Reporting.md)，也就是五份期末題目說明書中最難的那一題。一份照著這份說明寫完的成品，見[「系統設計範例報告」](Design-Phase-Sample-Report.md)。
 
 ## 一、這份文件怎麼用
 
 ### 1.1 為什麼期中與期末用不同的示範系統
 
-期中的[「系統分析階段繳交規範」](Analysis-Phase-Deliverables.md)用的是課堂範例系統（一套校園論壇），這一份換成工廠的工單系統。**換掉不是為了變化，是因為兩個階段的工作性質不同：**
+期中的[「系統分析範例報告說明」](Analysis-Phase-Deliverables.md)用的是課堂範例系統（一套校園論壇），這一份換成工廠的工單系統。**換掉不是為了變化，是因為兩個階段的工作性質不同：**
 
 | | 期中：分析 | 期末：設計 |
 |---|---|---|
@@ -238,7 +238,7 @@
 
 **「延後」與「不做」要分開寫。** 延後代表認同但排不進來，不做代表評估後認為不該做。兩者混在一起，讀者會以為你只是做不完。
 
-方法見教材[「問題定義與現況分析」](../01-Course-Materials/Problem-Definition.md)與[「系統需求分析」](../01-Course-Materials/System-Requirements-Analysis.md)；系統邊界與範圍外清單見[「功能分析與模組設計」](../01-Course-Materials/Functional-Analysis.md)〈一〉。
+方法見教材[「問題定義與現況分析」](../01-Course-Materials/02-Problem-Definition.md)與[「系統需求分析」](../01-Course-Materials/04-System-Requirements-Analysis.md)；系統邊界與範圍外清單見[「功能分析與模組設計」](../01-Course-Materials/05-Functional-Analysis.md)〈一〉。
 
 ---
 
@@ -422,7 +422,7 @@ C 建立、R 讀取、U 更新、D 刪除。
 - **M3 對 `work_orders` 有 U。** 這一格看起來像是越界——報工模組為什麼要改工單？因為累計數量達標時要把工單狀態改成已完工。**這種「跨出自己主表的更新」一定要在報告裡解釋**，否則讀者會判定為邊界破裂。
 - **M2 與 M6 都對 `work_orders` 有 C 和 U。** 兩個模組寫同一張表，是這份設計上唯一需要注意的地方。分工是：M6 只寫由 ERP 匯入的工單，M2 只寫廠內自建的臨時工單，兩者以工單來源欄位區隔，且 M2 不得修改 ERP 來源工單的計畫數量與交期（NFR-08）。**規則寫下來，這一格就不是問題；沒寫下來，它遲早會變成問題。**
 
-模組規格欄位與相依檢查見教材[「功能分析與模組設計」](../01-Course-Materials/Functional-Analysis.md)〈四〉、〈五〉。
+模組規格欄位與相依檢查見教材[「功能分析與模組設計」](../01-Course-Materials/05-Functional-Analysis.md)〈四〉、〈五〉。
 
 ---
 
@@ -750,7 +750,7 @@ stateDiagram-v2
 
 **這種「狀態機圖上的一條轉移，牽動資料設計的一個欄位」的關係，是第 8 項追溯鏈最好的材料。**
 
-活動圖、循序圖與狀態機圖的畫法見教材[「行為建模」](../01-Course-Materials/Behavioral-Modeling.md)。
+活動圖、循序圖與狀態機圖的畫法見教材[「行為建模」](../01-Course-Materials/06-Behavioral-Modeling.md)。
 
 ---
 
@@ -906,7 +906,7 @@ classDiagram
 
 **這種「A 的設計成立，是因為 B 那邊有一條規則擋住」的依賴關係，一定要寫下來。** 半年後有人放寬了 B，A 就會靜靜地壞掉，而且不會有任何錯誤訊息。
 
-概念類別圖與 ERD 的差別見教材[「物件建模」](../01-Course-Materials/Object-Modeling.md)〈四〉。
+概念類別圖與 ERD 的差別見教材[「物件建模」](../01-Course-Materials/10-Object-Modeling.md)〈四〉。
 
 #### 4.3 ERD
 
@@ -1160,7 +1160,7 @@ erDiagram
 
 **同一個技術做法（旗標標記），在不同的需求下會有相反的畫面行為。** 決定「標記之後要不要顯示」的是需求，不是那個做法本身。這種判斷要寫進報告，它證明你的設計是從需求推出來的，不是從別的系統抄來的。
 
-ERD、正規化與資料字典見教材[「資料建模與資料庫設計」](../01-Course-Materials/Data-Modeling.md)。
+ERD、正規化與資料字典見教材[「資料建模與資料庫設計」](../01-Course-Materials/07-Data-Modeling.md)。
 
 ---
 
@@ -1288,7 +1288,7 @@ ERP 是工單的權威來源，本系統是生產實績的產生者，兩邊要�
 
 **「沒有」也要寫，而且要寫出判斷依據**，不能整節留白。判斷依據的寫法是：逐一檢視所有畫面欄位與資料字典，說明沒有任何欄位的資料來源在系統之外。
 
-架構圖見教材[「系統環境與架構」](../01-Course-Materials/System-Architecture.md)；資料交換的五件事見[「系統介面與資料交換設計」](../01-Course-Materials/System-Interface-and-Data-Exchange.md)。
+架構圖見教材[「系統環境與架構」](../01-Course-Materials/08-System-Architecture.md)；資料交換的五件事見[「系統介面與資料交換設計」](../01-Course-Materials/11-System-Interface-and-Data-Exchange.md)。
 
 ---
 
@@ -1434,7 +1434,7 @@ ERP 是工單的權威來源，本系統是生產實績的產生者，兩邊要�
 
 **這張表要在報告裡出現，即使某幾列的答案是「不適用」。** 逐項問過並寫下答案，跟根本沒想過，在文件上看得出差別。
 
-畫面怎麼從需求推出來、欄位怎麼對回資料字典，見教材[「使用者介面設計」](../01-Course-Materials/UI-Design.md)。
+畫面怎麼從需求推出來、欄位怎麼對回資料字典，見教材[「使用者介面設計」](../01-Course-Materials/12-UI-Design.md)。
 
 ---
 
@@ -1586,7 +1586,7 @@ ERP 是工單的權威來源，本系統是生產實績的產生者，兩邊要�
 
 **R-03 特別值得學，因為它的殘餘風險欄寫的是「無法消除」。** 資料改對了，但基於錯資料做出的決定已經發生了——生管以為快做完了、排了下一張工單，這個決定不會因為報工被作廢而自動還原。**這是資訊系統的限制，不是你的設計不好，但要指出來。** 寫得出這一條，代表你知道系統能做什麼、不能做什麼。
 
-四個面向、限制的六類盤點與風險寫法見教材[「可行性、限制與風險分析」](../01-Course-Materials/Feasibility-and-Risk.md)。
+四個面向、限制的六類盤點與風險寫法見教材[「可行性、限制與風險分析」](../01-Course-Materials/09-Feasibility-and-Risk.md)。
 
 ---
 
@@ -1724,7 +1724,7 @@ Report-Contents 的最低要求是：**至少能從一項關鍵需求一路追�
 
 粗體那一條是這一題特有的。**這套系統畫面上有七個數字不存在任何資料表裡**（〈4.7〉），如果沒有那張推導欄位清單，這七個數字在文件上就是憑空出現的。
 
-追溯鏈怎麼做、交件前怎麼自我檢查，見教材[「系統設計規格與追溯」](../01-Course-Materials/Design-Specification.md)。
+追溯鏈怎麼做、交件前怎麼自我檢查，見教材[「系統設計規格與追溯」](../01-Course-Materials/13-Design-Specification.md)。
 
 ---
 

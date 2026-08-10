@@ -14,12 +14,53 @@
 |---|---|
 | 對應單位是報告主題，不是上課週次 | 教材的主要用途是學生寫報告時查閱，週次會因報告順延或停課而漂移 |
 | 一個報告主題只有一個主要權威章節 | 但一章可以涵蓋多個相關產出，例如活動圖與循序圖同屬行為建模 |
-| 三份文件各管一件事 | 教材講方法與基本概念（這是什麼、為什麼做、怎麼推導、常見錯誤），繳交規範講交付（欄位、格式、最低標準），[課程評量 Rubrics](00-Course-Introduction/Rubrics.md) 講評分，彼此不複製 |
+| 三份文件各管一件事 | 教材講方法與基本概念（這是什麼、為什麼做、怎麼推導、常見錯誤），範例報告說明講交付（欄位、格式、最低標準），[課程評量 Rubrics](00-Course-Introduction/Rubrics.md) 講評分，彼此不複製 |
 | 期中與期末的情境要分清楚 | 期中分析的是已完成、假設可使用的既有系統；期末設計的是尚未實作的新系統方案，因此可行性與風險主要放在期末 |
 | 同一主題跨階段時，章內要明確分層 | 例如資料建模、系統架構與行為建模都要標示「期中做到哪裡、期末深化到哪裡」，避免學生把進階內容誤認為必做 |
 | 章名對應主題，不含階段前綴 | 不出現 `Analysis-Architecture.md` 與 `Design-Architecture.md` 這種切法 |
+| 檔名帶兩位數編號 | 格式 `編號-主題.md`，編號即[SAD 課程介紹](00-Course-Introduction/Course-Introduction.md)〈課程預計進度表〉的授課順序，與下方〈三〉章節總表的 `#` 欄一致；重排章節時要重編檔名並全專案修正連結 |
 
 基礎概念（系統概念、SDLC、開發方法論、專案角色）雖然不對應任何單一報告項目，仍納入教材，因為它們是後面所有章節的共同語彙。
+
+### 1.1 權威章節清單
+
+「一個主題只有一個權威章節」這條原則要落地，靠的是下面這張對照表。**其他章節提到同一主題時，一兩句話帶過並以 `> **延伸閱讀**` 連結指向權威章節，不要重新完整介紹一次**（規則見 `reference/chapter-writing-guide.md`〈十二〉）。新增、刪除或重排章節時一併維護本表。
+
+| 主題 | 權威章節 |
+|---|---|
+| 系統的四要素、邊界與環境、子系統 | `01-Course-Materials/01-Systems-and-Analysis.md` |
+| 資料與資訊的差別、資訊系統的五個組成、ERP／MES／WMS／QMS | `01-Course-Materials/01-Systems-and-Analysis.md` |
+| 分析與設計的分界、系統分析師的角色、工管背景在系統專案的定位 | `01-Course-Materials/01-Systems-and-Analysis.md` |
+| 系統開發生命週期、瀑布／疊代／敏捷、專案角色分工、錯誤成本曲線 | `01-Course-Materials/01-Systems-and-Analysis.md` |
+| 問題定義的四件事、從既有系統反推問題、5 Why 與魚骨圖、問題陳述的寫法 | `01-Course-Materials/02-Problem-Definition.md` |
+| 可驗收的目標與成功指標、SMART、問題定義書 | `01-Course-Materials/02-Problem-Definition.md` |
+| 現況問題的盤點、改善建議的三個層次（流程／系統／組織） | `01-Course-Materials/02-Problem-Definition.md` |
+| 利害關係人分析、RACI、需求收集方法（質化／量化）、使用者分群、目標受眾與 STP、人物誌 | `01-Course-Materials/03-User-Analysis.md` |
+| 流程分析（AS-IS／TO-BE、泳道圖）、事件與事件表 | `01-Course-Materials/03-User-Analysis.md` |
+| 使用案例圖、使用案例敘述、參與者、«include»／«extend» | `01-Course-Materials/03-User-Analysis.md` |
+| 需求的五個級別、需求工程四階段 | `01-Course-Materials/04-System-Requirements-Analysis.md` |
+| 功能需求與非功能需求、FURPS+、需求品質判準、MoSCoW、追溯矩陣、SRS | `01-Course-Materials/04-System-Requirements-Analysis.md` |
+| 系統邊界、情境圖、範圍外清單與範圍蔓延 | `01-Course-Materials/05-Functional-Analysis.md` |
+| 功能分解與功能階層圖、資料流程圖（DFD）與分層平衡、功能清單 | `01-Course-Materials/05-Functional-Analysis.md` |
+| 模組劃分、內聚與耦合、CRUD 矩陣、模組規格與相依關係圖 | `01-Course-Materials/05-Functional-Analysis.md` |
+| 活動圖與泳道（TO-BE 流程）、分岔與會合 | `01-Course-Materials/06-Behavioral-Modeling.md` |
+| 系統循序圖與設計階段循序圖、`alt`／`opt`／`loop` 片段 | `01-Course-Materials/06-Behavioral-Modeling.md` |
+| 狀態機圖、狀態轉移與生命週期 | `01-Course-Materials/06-Behavioral-Modeling.md` |
+| 實體關聯圖（ERD）、實體與屬性、主鍵與外鍵、基數與多對多拆解 | `01-Course-Materials/07-Data-Modeling.md` |
+| 名詞分析法、正規化（1NF–3NF）與反正規化 | `01-Course-Materials/07-Data-Modeling.md` |
+| 資料字典、欄位值域、Schema 落地與畫面欄位對照 | `01-Course-Materials/07-Data-Modeling.md` |
+| 系統架構圖、主從式與分層式架構、使用者端／應用系統／資料庫三段結構 | `01-Course-Materials/08-System-Architecture.md` |
+| 外部系統與現場設備介接、地端與雲端、網路分區 | `01-Course-Materials/08-System-Architecture.md` |
+| 非功能需求如何決定架構、架構取捨與決策說明 | `01-Course-Materials/08-System-Architecture.md` |
+| 可行性分析四面向、成本效益估算、投資回收期 | `01-Course-Materials/09-Feasibility-and-Risk.md` |
+| 系統限制的六類盤點、限制與需求的差別 | `01-Course-Materials/09-Feasibility-and-Risk.md` |
+| 風險與問題的差別、風險辨識與機率乘衝擊、四種風險回應、殘餘風險 | `01-Course-Materials/09-Feasibility-and-Risk.md` |
+| 類別與物件、關聯與多重性、聚合組合與一般化、概念類別圖與 ERD 的差異 | `01-Course-Materials/10-Object-Modeling.md` |
+| 設計類別圖、方法與可見性、Controller／Service／Repository（可選層級） | `01-Course-Materials/10-Object-Modeling.md` |
+| 系統介面規格的五件事、交換時機與頻率、失敗處理、CSV 與 JSON、REST API | `01-Course-Materials/11-System-Interface-and-Data-Exchange.md` |
+| 使用性原則、線框圖與原型保真度、資訊架構與導覽、現場介面限制 | `01-Course-Materials/12-UI-Design.md` |
+| 畫面欄位對回資料字典、原型的評估標準 | `01-Course-Materials/12-UI-Design.md` |
+| 設計規格書架構、需求追溯鏈、文件不一致的檢查、設計決策紀錄與待解問題 | `01-Course-Materials/13-Design-Specification.md` |
 
 ## 二、UML 與建模工具的最低要求
 
@@ -29,10 +70,10 @@
 
 | 圖 | 要回答的問題 | 權威章節 | 對應報告 |
 |---|---|---|---|
-| 使用案例圖　Use Case Diagram | 誰要做什麼 | [使用者分析](01-Course-Materials/User-Analysis.md)〈六〉 | 期中第 2 項必做；期末不必重畫，用文字交代角色與流程即可 |
-| 活動圖　Activity Diagram | 事情怎麼做 | [行為建模](01-Course-Materials/Behavioral-Modeling.md)〈二〉 | 期中第 3 項、期末第 3 項都必做 |
-| 循序圖　Sequence Diagram | 使用者或主要系統元件怎麼互動 | [行為建模](01-Course-Materials/Behavioral-Modeling.md)〈四〉、〈六〉 | 期中第 6 項 1–2 張 SSD；期末第 3 項 1–2 張設計循序圖 |
-| 概念類別圖　Conceptual Class Diagram | 系統管哪些概念、彼此什麼關係 | `Object-Modeling.md`〈四〉 | **期末第 4 項必做**；期中可選 |
+| 使用案例圖　Use Case Diagram | 誰要做什麼 | [使用者分析](01-Course-Materials/03-User-Analysis.md)〈六〉 | 期中第 2 項必做；期末不必重畫，用文字交代角色與流程即可 |
+| 活動圖　Activity Diagram | 事情怎麼做 | [行為建模](01-Course-Materials/06-Behavioral-Modeling.md)〈二〉 | 期中第 3 項、期末第 3 項都必做 |
+| 循序圖　Sequence Diagram | 使用者或主要系統元件怎麼互動 | [行為建模](01-Course-Materials/06-Behavioral-Modeling.md)〈四〉、〈六〉 | 期中第 6 項 1–2 張 SSD；期末第 3 項 1–2 張設計循序圖 |
+| 概念類別圖　Conceptual Class Diagram | 系統管哪些概念、彼此什麼關係 | `10-Object-Modeling.md`〈四〉 | **期末第 4 項必做**；期中可選 |
 
 四張圖在兩個階段的組合不同：**期中畫前三張，期末畫活動圖、循序圖與概念類別圖。** 前三張的關係要反覆強調——使用案例先界定「誰要做什麼」，活動圖再把事情的流程說清楚，循序圖最後把互動順序說清楚。學生必須能把同一項需求在三種表達方式之間對照，而不是把三張圖當成三份互不相關的作業。
 
@@ -69,35 +110,35 @@
 
 | # | 檔名 | 標題 | 對應報告項目 | 狀態 |
 |---|---|---|---|---|
-| 1 | `Systems-and-Analysis.md` | 系統分析與設計導論 | 基礎 | ✅ 已完成｜已校準 |
-| 2 | `Problem-Definition.md` | 問題定義與現況分析 | 期中 1、9；期末 1（問題背景） | ✅ 已完成｜已校準 |
-| 3 | `User-Analysis.md` | 使用者分析 | 期中 2 | ✅ 已完成｜已校準 |
-| 4 | `System-Requirements-Analysis.md` | 系統需求分析 | 期中 4；期末 1（需求摘要） | ✅ 已完成｜已校準 |
-| 5 | `Functional-Analysis.md` | 功能分析與模組設計 | 期中 5；期末 2 | ✅ 已完成｜已校準 |
-| 6 | `Behavioral-Modeling.md` | 行為建模 | 期中 3、6；期末 3 | ✅ 已完成｜已校準 |
-| 7 | `Data-Modeling.md` | 資料建模與資料庫設計 | 期中 7；期末 4（ERD 與資料字典） | ✅ 已完成｜已校準 |
-| 8 | `System-Architecture.md` | 系統環境與架構 | 期中 8；期末 5（環境與架構） | ✅ 已完成｜已校準 |
-| 9 | `Feasibility-and-Risk.md` | 可行性、限制與風險分析 | 期末 7 | ✅ 已完成｜已校準 |
-| 10 | `Object-Modeling.md` | 物件建模 | 期末 4（概念類別圖） | ✅ 已完成｜已校準 |
-| 11 | `System-Interface-and-Data-Exchange.md` | 系統介面與資料交換設計 | 期末 5（資料交換，題目有外部系統時） | ✅ 已完成｜已校準 |
-| 12 | `UI-Design.md` | 使用者介面設計 | 期末 6 | ✅ 已完成｜已校準 |
-| 13 | `Design-Specification.md` | 系統設計規格與追溯 | 期末 8 | ✅ 已完成｜已校準（終點章） |
+| 1 | `01-Systems-and-Analysis.md` | 系統分析與設計導論 | 基礎 | ✅ 已完成｜已校準 |
+| 2 | `02-Problem-Definition.md` | 問題定義與現況分析 | 期中 1、9；期末 1（問題背景） | ✅ 已完成｜已校準 |
+| 3 | `03-User-Analysis.md` | 使用者分析 | 期中 2 | ✅ 已完成｜已校準 |
+| 4 | `04-System-Requirements-Analysis.md` | 系統需求分析 | 期中 4；期末 1（需求摘要） | ✅ 已完成｜已校準 |
+| 5 | `05-Functional-Analysis.md` | 功能分析與模組設計 | 期中 5；期末 2 | ✅ 已完成｜已校準 |
+| 6 | `06-Behavioral-Modeling.md` | 行為建模 | 期中 3、6；期末 3 | ✅ 已完成｜已校準 |
+| 7 | `07-Data-Modeling.md` | 資料建模與資料庫設計 | 期中 7；期末 4（ERD 與資料字典） | ✅ 已完成｜已校準 |
+| 8 | `08-System-Architecture.md` | 系統環境與架構 | 期中 8；期末 5（環境與架構） | ✅ 已完成｜已校準 |
+| 9 | `09-Feasibility-and-Risk.md` | 可行性、限制與風險分析 | 期末 7 | ✅ 已完成｜已校準 |
+| 10 | `10-Object-Modeling.md` | 物件建模 | 期末 4（概念類別圖） | ✅ 已完成｜已校準 |
+| 11 | `11-System-Interface-and-Data-Exchange.md` | 系統介面與資料交換設計 | 期末 5（資料交換，題目有外部系統時） | ✅ 已完成｜已校準 |
+| 12 | `12-UI-Design.md` | 使用者介面設計 | 期末 6 | ✅ 已完成｜已校準 |
+| 13 | `13-Design-Specification.md` | 系統設計規格與追溯 | 期末 8 | ✅ 已完成｜已校準（終點章） |
 
 「對應報告項目」欄的編號指 [報告內容](00-Course-Introduction/Report-Contents.md) 修訂後的期中九項與期末八項。
 
-「已校準」指該章已依 `example-system/` 對應階段的繳交規範與範例報告校準過：加註必讀標記（服務期中的加 `🔴 期中必讀`，服務期末的加 `🔵 期末必讀`，兩者都服務的兩個都加）、補齊照教材做不出成品的缺口、消除與範例報告衝突的敘述。十三章兩個階段都已校準完畢。
+「已校準」指該章已依 `04-example-reports/` 對應階段的範例報告說明與範例報告校準過：加註必讀標記（服務期中的加 `🔴 期中必讀`，服務期末的加 `🔵 期末必讀`，兩者都服務的兩個都加）、補齊照教材做不出成品的缺口、消除與範例報告衝突的敘述。十三章兩個階段都已校準完畢。
 
 **全部章節沿用同一個情境**：某金屬沖壓工廠導入生產報工與工單追蹤系統，以及既有三章建立的編號體例（UC-01 為「回報完工數量」、FR-010 起為其展開的功能需求）。新章要延伸編號時往後接，不要重編。
 
 ## 四、各章內容概要
 
-### 1. 系統分析與設計導論　`Systems-and-Analysis.md`　✅
+### 1. 系統分析與設計導論　`01-Systems-and-Analysis.md`　✅
 
 **合併說明**：原規劃的第 1 章（系統與系統分析導論）與第 2 章（系統開發生命週期與開發方法論）合為本章。兩者都是「還沒開始動手之前該有的共同語彙」，拆成兩章會讓前一章顯得單薄，課堂上也是連著兩週一起講。
 
 已完成，333 行、23 筆文獻，八節：一、什麼是系統／二、資訊系統／三、系統分析在做什麼／四、系統開發生命週期／五、開發方法論／六、專案角色與分工／七、系統為什麼會失敗／八、學習重點總結。
 
-### 2. 問題定義與現況分析　`Problem-Definition.md`　✅
+### 2. 問題定義與現況分析　`02-Problem-Definition.md`　✅
 
 **定位**：本章主要服務期中。期中分析的是已完成、假設可用的既有系統，因此本章 **不做完整可行性評估**。
 
@@ -105,17 +146,17 @@
 
 本章一頭一尾對應期中報告的第 1 項與第 9 項，因此〈六〉開頭明講後兩節要等其他分析全部完成才寫得出來。
 
-### 3. 使用者分析　`User-Analysis.md`　✅
+### 3. 使用者分析　`03-User-Analysis.md`　✅
 
 **核心圖**：〈六〉負責必做 UML 的第一張——使用案例圖，回答「誰要做什麼」。
 
 已完成，452 行。**待修**：〈六〉開頭有一段把使用案例圖說成「四張核心圖的第一張」，並把簡化類別圖列為第四張要學生期中畫的圖——那是舊版設定。改成：使用案例圖是期中三張必做 UML 的第一張；概念類別圖到期末才要求，這裡不必提。
 
-### 4. 系統需求分析　`System-Requirements-Analysis.md`　✅
+### 4. 系統需求分析　`04-System-Requirements-Analysis.md`　✅
 
 已完成，298 行。後續檢查重點：需求必須能由既有系統找到分析依據；期末則用同一套方法把新的問題轉成設計需求。
 
-### 5. 功能分析與模組設計　`Functional-Analysis.md`　✅
+### 5. 功能分析與模組設計　`05-Functional-Analysis.md`　✅
 
 已完成，八節。需要依新報告結構確認兩層要求：
 
@@ -124,7 +165,7 @@
 
 不要求學生把模組直接轉成程式套件或技術類別。若既有內容出現循環依賴檢查，可保留為設計思考，但避免把軟體套件層級依賴當成所有學生必做。
 
-### 6. 行為建模　`Behavioral-Modeling.md`　✅
+### 6. 行為建模　`06-Behavioral-Modeling.md`　✅
 
 **核心圖**：〈二〉負責活動圖，回答「事情怎麼做」；〈四〉負責系統循序圖，回答「使用者與系統怎麼互動」。
 
@@ -146,7 +187,7 @@
 
 **篇幅**：既有約 500 行可保留，但若後續修訂，優先把「圖之間的對照」寫足，不必增加更多 UML 語法。
 
-### 7. 資料建模與資料庫設計　`Data-Modeling.md`　✅
+### 7. 資料建模與資料庫設計　`07-Data-Modeling.md`　✅
 
 **定位**：本章是工管學生的核心章之一。資料建模不是程式設計，而是把「系統需要記住什麼」轉成一致的資料結構。
 
@@ -154,9 +195,9 @@
 
 **最低要求**：主鍵、外鍵、基本資料型別、必填與重要值域。索引、Trigger、Stored Procedure、效能調校列為可選，判斷界線寫在〈七、7.3〉：影響「資料代表什麼意思」的必做，只影響「跑得快不快」的可選。
 
-**邊界**：CRUD 矩陣的定義在 `Functional-Analysis.md`，本章只做對照；類別圖與 ERD 的比較放在 `Object-Modeling.md`，本章不要求先學類別圖才能完成 ERD。
+**邊界**：CRUD 矩陣的定義在 `05-Functional-Analysis.md`，本章只做對照；類別圖與 ERD 的比較放在 `10-Object-Modeling.md`，本章不要求先學類別圖才能完成 ERD。
 
-### 8. 系統環境與架構　`System-Architecture.md`　✅
+### 8. 系統環境與架構　`08-System-Architecture.md`　✅
 
 **定位**：對工管學生，先回答「這套系統由哪些部分組成、在哪裡使用、和哪些既有系統或設備連接」，再介紹架構術語。不把架構選型深度等同於軟體架構課。
 
@@ -168,9 +209,9 @@
 
 **進階內容**：微服務、負載平衡、高可用集中在〈七〉，明講「不要求在報告裡使用」，並點出規模不對的架構是扣分不是加分。
 
-**邊界**：本章只處理「誰跟誰連」；交換什麼資料、什麼時候換、失敗怎麼辦留給 `System-Interface-and-Data-Exchange.md`。
+**邊界**：本章只處理「誰跟誰連」；交換什麼資料、什麼時候換、失敗怎麼辦留給 `11-System-Interface-and-Data-Exchange.md`。
 
-### 9. 可行性、限制與風險分析　`Feasibility-and-Risk.md`　✅
+### 9. 可行性、限制與風險分析　`09-Feasibility-and-Risk.md`　✅
 
 **定位**：本章主要服務期末。期中分析的是已存在、假設可用的系統，不要求重新證明它是否可行；期末設計的是尚未實作的新方案，才需要判斷「能不能做、受到什麼限制、可能出什麼問題」。
 
@@ -180,7 +221,7 @@
 
 **邊界**：〈七、7.3〉明列三個反例，把「組員時間難配合」「我們沒學過這技術」「期末考週太忙」擋在門外——本章談的是系統方案與導入風險。FMEA 與 RPN 只做對照，不重教品管內容。
 
-### 10. 物件建模　`Object-Modeling.md`　✅
+### 10. 物件建模　`10-Object-Modeling.md`　✅
 
 **定位**：概念類別圖是期末報告第 4 項的必做內容；設計類別圖維持進階閱讀。
 
@@ -188,7 +229,7 @@
 
 **深度分層**：〈一〉到〈五〉是期末全班的必讀範圍；〈五〉列出三處實質差異（可放不入庫的概念、標語意關係而非外鍵、多對多不必拆），並明講「兩張圖多數內容重疊是正常的，差別在那少數不重疊的地方」；方法、可見性與技術類別集中在〈六〉。
 
-### 11. 系統介面與資料交換設計　`System-Interface-and-Data-Exchange.md`　✅
+### 11. 系統介面與資料交換設計　`11-System-Interface-and-Data-Exchange.md`　✅
 
 **定位**：把原本的 `API-Design.md` 改為更符合工管學生的「系統介面與資料交換設計」。核心不是先學 REST，而是先理解「系統 A 和系統 B 為什麼要交換資料、交換什麼、什麼時候交換、失敗怎麼辦」。
 
@@ -204,7 +245,7 @@
 
 **篇幅**：約 340 行。**文獻取材**：Fielding 2000、Richardson、Masse。
 
-### 12. 使用者介面設計　`UI-Design.md`　✅
+### 12. 使用者介面設計　`12-UI-Design.md`　✅
 
 **定位**：UI 可以直接暴露需求、流程與資料之間的不一致，因此不是美工章，而是系統設計的驗證工具。
 
@@ -212,7 +253,7 @@
 
 **邊界**：不教任何特定 UI 工具操作。〈一、1.1〉明確區分視覺、使用性與資訊完整性三件事，並寫明本課程只評後兩項，呼應 [報告內容](00-Course-Introduction/Report-Contents.md) 期末第 6 項「用什麼工具畫都可以」。
 
-### 13. 系統設計規格與追溯　`Design-Specification.md`　✅
+### 13. 系統設計規格與追溯　`13-Design-Specification.md`　✅
 
 **定位**：終點不只是「把前面章節裝訂成一份規格書」，而是檢查整套設計是否一致、可追溯、可被別人理解與接手。
 
@@ -244,29 +285,29 @@
 專案沒有任何自動化流程能攔截不一致，只能逐項人工確認：
 
 1. `README.md`〈教材正文〉表格新增一列（文件 ｜ 檔名 ｜ 內容 三欄，連結不加引號）。
-2. `CLAUDE.md` 的權威章節清單新增該章涵蓋的主題。
+2. 本檔〈一、1.1〉權威章節清單新增該章涵蓋的主題。
 3. `CLAUDE.md` 的終點章設定：解除前一章的終點章狀態。
 4. 前一章的「學習重點總結」末尾補 `> **銜接提示**`。
 5. [報告內容](00-Course-Introduction/Report-Contents.md) 對應項目補上教材連結。
 6. 本檔第三節狀態欄改為已完成，第四節該章的待補內容清掉。
-7. 若章名或檔名有變動，搜尋整個專案修正舊連結與舊稱呼，尤其是 `Risk-Analysis.md` → `Feasibility-and-Risk.md`、`API-Design.md` → `System-Interface-and-Data-Exchange.md`。
+7. 若章名或檔名有變動，搜尋整個專案修正舊連結與舊稱呼，尤其是 `Risk-Analysis.md` → `09-Feasibility-and-Risk.md`、`API-Design.md` → `11-System-Interface-and-Data-Exchange.md`。
 
 ## 七、待處理的既有問題
 
 | 問題 | 建議處理 |
 |---|---|
-| 順序圖的必要性不一致：[報告內容](00-Course-Introduction/Report-Contents.md) 與 [SAD 課程介紹](00-Course-Introduction/Course-Introduction.md) 列為必做，但[系統分析階段繳交規範](example-system/Analysis-Phase-Deliverables.md) 曾標成「加分」 | 統一改成「必做，但期中只要求 1–2 張核心 SSD」；教材已依必做深度撰寫 |
+| 順序圖的必要性不一致：[報告內容](00-Course-Introduction/Report-Contents.md) 與 [SAD 課程介紹](00-Course-Introduction/Course-Introduction.md) 列為必做，但[系統分析範例報告說明](04-example-reports/Analysis-Phase-Deliverables.md) 曾標成「加分」 | 統一改成「必做，但期中只要求 1–2 張核心 SSD」；教材已依必做深度撰寫 |
 | 概念類別圖的階段定位 | 已定案：期中可選、期末必做（期末報告第 4 項）。`Analysis-Phase-Deliverables.md` 標「建議」與 `Design-Phase-Deliverables.md` 標「建議」的地方要跟著改成期中可選、期末必備 |
 | 狀態機圖在部分文件中介於建議與加分 | 統一為「題目適合時的進階／加分」，不列為全組必做 |
-| 原 `Risk-Analysis.md` 同時服務期中與期末 | 改名 `Feasibility-and-Risk.md`，主要服務期末；期中只在 `Problem-Definition.md` 做現況問題與改善，不做完整可行性與風險 |
-| 原 `API-Design.md` 對非資訊背景學生偏技術 | 改名 `System-Interface-and-Data-Exchange.md`；資料交換為條件式必做（題目有外部系統才需要交），REST API 詳細規格列為可選 |
+| 原 `Risk-Analysis.md` 同時服務期中與期末 | 改名 `09-Feasibility-and-Risk.md`，主要服務期末；期中只在 `02-Problem-Definition.md` 做現況問題與改善，不做完整可行性與風險 |
+| 原 `API-Design.md` 對非資訊背景學生偏技術 | 改名 `11-System-Interface-and-Data-Exchange.md`；資料交換為條件式必做（題目有外部系統才需要交），REST API 詳細規格列為可選 |
 | 期末題目要不要安排外部系統 | 期末第 5 項與第 11 章的資料交換都以「有外部系統」為前提，但期中的分析對象明訂沒有耦合。出期末題目時要決定：安排一個外部系統（校務系統帳號驗證即可），或讓第 11 章降為選讀 |
-| ~~`User-Analysis.md`〈六〉與 `Behavioral-Modeling.md`〈一〉仍在講「四張核心圖」~~ | ✅ 已改：兩處都改成期中三張必做 UML，類別圖的說明指向期末與[物件建模](01-Course-Materials/Object-Modeling.md) |
-| ~~`Behavioral-Modeling.md`〈六〉的設計循序圖範例用 Controller／Repository 拆法~~ | ✅ 已改：循序圖改為 M1／M2／M5 模組層次，並加註 Controller／Service／Repository 屬可選範圍 |
-| `Functional-Analysis.md`〈六〉的模組規格欄位缺輸入與輸出 | 期末第 2 項要求「目的、主要輸入、主要輸出、使用角色及與其他模組的關係」，欄位表要補齊 |
-| `Design-Specification.md` 原追溯鏈要求到類別與 API | 必做追溯縮成「需求 → 模組 → 流程／互動 → 資料 → 畫面」；有做類別圖或 API 的組別再向外延伸 |
+| ~~`03-User-Analysis.md`〈六〉與 `06-Behavioral-Modeling.md`〈一〉仍在講「四張核心圖」~~ | ✅ 已改：兩處都改成期中三張必做 UML，類別圖的說明指向期末與[物件建模](01-Course-Materials/10-Object-Modeling.md) |
+| ~~`06-Behavioral-Modeling.md`〈六〉的設計循序圖範例用 Controller／Repository 拆法~~ | ✅ 已改：循序圖改為 M1／M2／M5 模組層次，並加註 Controller／Service／Repository 屬可選範圍 |
+| `05-Functional-Analysis.md`〈六〉的模組規格欄位缺輸入與輸出 | 期末第 2 項要求「目的、主要輸入、主要輸出、使用角色及與其他模組的關係」，欄位表要補齊 |
+| `13-Design-Specification.md` 原追溯鏈要求到類別與 API | 必做追溯縮成「需求 → 模組 → 流程／互動 → 資料 → 畫面」；有做類別圖或 API 的組別再向外延伸 |
 | `Course-Introduction.md`、`Rubrics.md`、兩份 Deliverables 與本次新清單可能不一致 | 下一步統一修訂這四份文件，避免學生看到不同版本的必做項目 |
-| 進度表的週次與章節對應 | 全部章節與規範同步後再統一整理 |
+| ~~進度表的週次與章節對應~~ | ✅ 已改：[SAD 課程介紹](00-Course-Introduction/Course-Introduction.md)〈課程預計進度表〉改為每週標示中英主題、對應的期中九項／期末八項產出與教材章節；期末題目抽籤定在第 10 週（11/11） |
 
 ## 八、投影片
 

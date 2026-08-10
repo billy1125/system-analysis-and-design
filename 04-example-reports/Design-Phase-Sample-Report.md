@@ -1,6 +1,6 @@
 # 系統設計報告：工單派工與現場報工系統
 
-> 這是一份寫好的期末書面報告，內容依[「報告內容」](../00-Course-Introduction/Report-Contents.md)〈二、期末小組報告〉的八項排列。每一項該有哪些欄位、為什麼要這樣寫、方法出自哪一章，見[「系統設計階段繳交規範」](Design-Phase-Deliverables.md)；這份只放成品。
+> 這是一份寫好的期末書面報告，內容依[「報告內容」](../00-Course-Introduction/Report-Contents.md)〈二、期末小組報告〉的八項排列。每一項該有哪些欄位、為什麼要這樣寫、方法出自哪一章，見[「系統設計範例報告說明」](Design-Phase-Deliverables.md)；這份只放成品。
 >
 > 題目本身的情境、名詞與設計難點，見[「工單派工與現場報工系統」](../02-Project-Topics/Work-Order-and-Reporting.md)。
 >

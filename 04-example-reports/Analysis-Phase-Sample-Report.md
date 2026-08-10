@@ -2,7 +2,7 @@
 
 > 這是一份寫好的期中書面報告，分析對象是課堂範例系統 `sad-forum`，其完整程式碼與系統文件放在 <https://github.com/billy1125/sad-forum>。
 >
-> 內容依[「報告內容」](../00-Course-Introduction/Report-Contents.md)〈一、期中小組報告〉的九項排列。每一項該有哪些欄位、為什麼要這樣寫、方法出自哪一章，見[「系統分析階段繳交規範」](Analysis-Phase-Deliverables.md)；這份只放成品。
+> 內容依[「報告內容」](../00-Course-Introduction/Report-Contents.md)〈一、期中小組報告〉的九項排列。每一項該有哪些欄位、為什麼要這樣寫、方法出自哪一章，見[「系統分析範例報告說明」](Analysis-Phase-Deliverables.md)；這份只放成品。
 >
 > **各組題目不同，內容要換成自己那一題的。** 篇幅也不是標準——這裡每一項都收得很緊，是為了讓整份在一頁畫面內看得完。
 

@@ -280,10 +280,10 @@
 
 對應教材：
 
-- 活動圖與循序圖、狀態機圖 → [行為建模](../01-Course-Materials/Behavioral-Modeling.md)
-- 主檔明細、正規化 → [資料建模與資料庫設計](../01-Course-Materials/Data-Modeling.md)
-- **風險必須連回具體設計決策** → [可行性、限制與風險分析](../01-Course-Materials/Feasibility-and-Risk.md)
-- 現場操作限制怎麼影響介面 → [使用者介面設計](../01-Course-Materials/UI-Design.md)
+- 活動圖與循序圖、狀態機圖 → [行為建模](../01-Course-Materials/06-Behavioral-Modeling.md)
+- 主檔明細、正規化 → [資料建模與資料庫設計](../01-Course-Materials/07-Data-Modeling.md)
+- **風險必須連回具體設計決策** → [可行性、限制與風險分析](../01-Course-Materials/09-Feasibility-and-Risk.md)
+- 現場操作限制怎麼影響介面 → [使用者介面設計](../01-Course-Materials/12-UI-Design.md)
 
 ---
 
@@ -299,4 +299,4 @@
 
 ---
 
-*本文件只說明題目，要交什麼見[報告內容](../00-Course-Introduction/Report-Contents.md)〈二〉，每一項該有哪些欄位見[系統設計階段繳交規範](../example-system/Design-Phase-Deliverables.md)。*
+*本文件只說明題目，要交什麼見[報告內容](../00-Course-Introduction/Report-Contents.md)〈二〉，每一項該有哪些欄位見[系統設計範例報告說明](../04-example-reports/Design-Phase-Deliverables.md)。*

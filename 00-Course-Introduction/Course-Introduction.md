@@ -15,37 +15,30 @@
 
 本學期自 2026 年 9 月 9 日起，至 2027 年 1 月 6 日止，共 18 週。下表是預計安排，**各週主題與順序可能小幅變動**；報告日期與繳交期限若有調整，一律以 LINE 群組公告為準。
 
-| 週次 | 日期 | 主題 | 說明 |
-|---|---|---|---|
-| 1 | 9/9 | 課程介紹與課程規範說明；系統、資訊系統與系統分析的基本概念 | 講解本文件與[報告規範](Report-Rules.md) |
-| 2 | 9/16 | 系統開發生命週期（SDLC）與開發方法論；專案角色分工與可行性評估 | 期中專題案例發放；建議本週上課前做完課程規範理解測驗（自我檢核，不計分） |
-| 3 | 9/23 | 需求工程導論：需求萃取方法（訪談、觀察、文件分析）、功能性與非功能性需求 | 對應「系統需求分析」；**分組名單確定期限**；**當堂公開抽籤決定各組期中題目** |
-| 4 | 9/30 | 使用者分析：利害關係人辨識、Persona 與使用情境；現況流程（As-Is）盤點 | 對應「使用者分析」 |
-| 5 | 10/7 | 功能分析與 Use Case：Actor 辨識、Use Case Diagram、Use Case 敘述與例外流程 | 對應「功能分析」「Use Case」 |
-| 6 | 10/14 | 流程建模：Activity Diagram（含泳道）及其與 Use Case 的對應關係 | 對應「Activity Diagram」 |
-| 7 | 10/21 | 資料建模：實體關聯圖（ERD）、正規化基礎與 Data Dictionary 撰寫 | 對應「ERD」「Data Dictionary」 |
-| 8 | 10/28 | 初步系統架構分析；期中書面文件整合與口頭報告演練 | 對應「初步系統架構分析」 |
-| 9 | 11/4 | **期中小組報告：系統分析（Analysis）** | **口頭報告；書面最晚 10/30（五）23:59:59、投影片最晚 11/6（五）23:59:59 前上傳 Portal** |
-| 10 | 11/11 | 期中報告講評；從分析到設計的銜接：模組化、內聚與耦合 | **期中小組報告若未報告完，順延至本週續行；各組報告完畢後接續上課；組員變動申請期限** |
-| 11 | 11/18 | 系統架構設計：分層式、主從式與三層式架構，部署與非功能需求的取捨 | 對應「系統架構」；**組員變動核准結果公布** |
-| 12 | 11/25 | **本週不上課** | **該週時數挪作期末個人訪談，可選時段另行公告** |
-| 13 | 12/2 | 模組設計與 UML 設計階段圖：Class Diagram、Sequence Diagram | 對應「模組設計」「UML」 |
-| 14 | 12/9 | 資料庫設計（Database Design）與 API 設計：綱要落地、介面規格與資料交換格式 | 對應「Database Design」「API Design」；**個人訪談時段登記表單開放** |
-| 15 | 12/16 | 使用者介面設計與 UI Prototype；Design Specification 文件整合與報告演練 | 對應「UI Prototype」「Design Specification」|
-| 16 | 12/23 | **期末小組報告：系統設計（Design）** | **口頭報告；書面最晚 12/18（五）23:59:59、投影片最晚 12/25（五）23:59:59 前上傳 Portal；個人訪談時段登記本日截止** |
-| 17 | 12/30 | 期末個人訪談 | 訪談時段依表單登記；**期末小組報告若未報告完，順延至本週續行** |
-| 18 | 2027/1/6 | 期末個人訪談 | 訪談時段依表單登記 |
+| 週次 | 日期 | 主題 Topic | 本週內容 | 對應報告項目與提醒 |
+|---|---|---|---|---|
+| 1 | 9/9 | 課程導論與系統概念<br>Course Orientation and Systems Concepts | 課程規範與評分方式；系統的四要素、邊界與環境；資料與資訊的差別；ERP／MES／WMS／QMS 是什麼 | 講解本文件與[報告規範](Report-Rules.md)；教材：[系統分析與設計導論](../01-Course-Materials/01-Systems-and-Analysis.md) |
+| 2 | 9/16 | 系統開發生命週期與專案角色<br>Systems Development Life Cycle (SDLC) and Project Roles | 瀑布、疊代與敏捷的差別；分析與設計的分界；專案角色分工；錯誤成本曲線 | 期中專題案例發放；建議本週上課前做完[課程規範理解測驗](Course-Rules-Quiz.md)（不計分）；教材：[系統分析與設計導論](../01-Course-Materials/01-Systems-and-Analysis.md) |
+| 3 | 9/23 | 問題定義與現況分析<br>Problem Definition and Current-State Analysis | 從既有系統反推當初要解決的問題；5 Why 與魚骨圖；可驗收的目標與成功指標；改善建議的三個層次 | 期中第 1、9 項；教材：[問題定義與現況分析](../01-Course-Materials/02-Problem-Definition.md)；**分組名單確定期限**；**當堂公開抽籤決定各組期中題目** |
+| 4 | 9/30 | 使用者分析與使用案例<br>User Analysis and Use Cases | 利害關係人辨識與 RACI；使用者分群與人物誌；現況流程（As-Is）盤點與事件表；使用案例圖、使用案例敘述與例外流程 | 期中第 2 項，並為第 3、6 項鋪路；教材：[使用者分析](../01-Course-Materials/03-User-Analysis.md) |
+| 5 | 10/7 | 系統需求分析；功能分析與系統邊界<br>Requirements Analysis; Functional Analysis and System Scope | 功能與非功能需求、FURPS+、需求品質判準、MoSCoW 與追溯矩陣；系統邊界與情境圖、範圍外清單；功能分解與功能清單 | 期中第 4、5 項；教材：[系統需求分析](../01-Course-Materials/04-System-Requirements-Analysis.md)、[功能分析](../01-Course-Materials/05-Functional-Analysis.md)（模組劃分留到第 10 週） |
+| 6 | 10/14 | 行為建模：活動圖與系統循序圖<br>Behavioral Modeling: Activity and System Sequence Diagrams | 活動圖與泳道、分岔與會合、例外分支；系統循序圖（SSD）把系統當黑箱；三張圖之間怎麼對得起來 | 期中第 3、6 項；教材：[行為建模](../01-Course-Materials/06-Behavioral-Modeling.md) |
+| 7 | 10/21 | 資料建模：ERD、正規化與資料字典<br>Data Modeling: ERD, Normalization, and Data Dictionary | 名詞分析法找實體；主鍵、外鍵與多對多拆解；1NF–3NF；Schema 與資料字典的欄位定義 | 期中第 7 項；教材：[資料建模與資料庫設計](../01-Course-Materials/07-Data-Modeling.md) |
+| 8 | 10/28 | 系統環境與整體架構；期中整合演練<br>System Environment and Architecture; Midterm Integration | 使用者端、應用系統、資料庫與外部系統的整體關係；主從式與分層式架構；九項書面文件的一致性自我檢查與口頭報告演練 | 期中第 8 項與全部九項整合；教材：[系統環境與架構](../01-Course-Materials/08-System-Architecture.md) |
+| 9 | 11/4 | **期中小組報告：系統分析**<br>**Midterm Team Presentation: Systems Analysis** | 各組口頭報告 12–15 分鐘，另加 5–8 分鐘問答 | **書面最晚 10/30（五）23:59:59、投影片最晚 11/6（五）23:59:59 前上傳 Portal** |
+| 10 | 11/11 | 期中講評；從分析到設計<br>Midterm Review; From Analysis to Design | 各組共同問題講評；設計階段八項產出總覽與期末技術深度原則；模組化、內聚與耦合 | 期末第 1、2 項起手；教材：[功能分析](../01-Course-Materials/05-Functional-Analysis.md)；**期末題目說明書發放並當堂公開抽籤**；**期中報告若未報告完順延至本週續行，報告完畢後接續上課**；**組員變動申請期限** |
+| 11 | 11/18 | 系統架構設計；可行性、限制與風險<br>Architecture Design; Feasibility, Constraints, and Risk | 非功能需求如何決定架構、架構取捨與決策說明；地端與雲端、網路分區；可行性四面向與成本效益；限制盤點、風險機率乘衝擊與四種回應 | 期末第 5（架構）、7 項；教材：[系統環境與架構](../01-Course-Materials/08-System-Architecture.md)、[可行性、限制與風險分析](../01-Course-Materials/09-Feasibility-and-Risk.md)；**組員變動核准結果公布** |
+| 12 | 11/25 | **本週不上課**<br>**No Class** | — | **該週時數挪作期末個人訪談，可選時段另行公告** |
+| 13 | 12/2 | 功能與模組設計；主要流程與互動設計<br>Module Design; Process and Interaction Design | 模組怎麼切、模組規格的欄位、CRUD 矩陣與相依關係圖；設計階段的活動圖；生命線是模組的設計循序圖；狀態機圖 | 期末第 2、3 項；教材：[功能分析](../01-Course-Materials/05-Functional-Analysis.md)、[行為建模](../01-Course-Materials/06-Behavioral-Modeling.md) |
+| 14 | 12/9 | 資料設計與資料交換設計<br>Data Design and Data Exchange Design | 概念類別圖與 ERD 的差異；從需求推導 Schema 與資料字典、對回畫面欄位；系統介面規格的五件事、CSV 與 JSON、失敗處理 | 期末第 4、5（資料交換）項；教材：[物件建模](../01-Course-Materials/10-Object-Modeling.md)、[資料建模與資料庫設計](../01-Course-Materials/07-Data-Modeling.md)、[系統介面與資料交換設計](../01-Course-Materials/11-System-Interface-and-Data-Exchange.md)；**個人訪談時段登記表單開放** |
+| 15 | 12/16 | 介面原型；設計規格與追溯；期末演練<br>UI Prototyping; Design Specification and Traceability | 使用性原則、線框圖與原型保真度、現場操作限制；需求 → 模組 → 流程 → 資料 → 畫面的追溯鏈；設計決策紀錄；八項文件整合與口頭報告演練 | 期末第 6、8 項與全部八項整合；教材：[使用者介面設計](../01-Course-Materials/12-UI-Design.md)、[系統設計規格與追溯](../01-Course-Materials/13-Design-Specification.md) |
+| 16 | 12/23 | **期末小組報告：系統設計**<br>**Final Team Presentation: Systems Design** | 各組口頭報告 | **書面最晚 12/18（五）23:59:59、投影片最晚 12/25（五）23:59:59 前上傳 Portal；個人訪談時段登記本日截止** |
+| 17 | 12/30 | 期末個人訪談<br>Final Individual Interviews | 一對一口試，每人一次 | 訪談時段依表單登記；**期末小組報告若未報告完，順延至本週續行** |
+| 18 | 2027/1/6 | 期末個人訪談<br>Final Individual Interviews | 一對一口試，每人一次 | 訪談時段依表單登記 |
 
-進度表的主題安排依兩份小組報告的產出項目倒推：第 1–8 週對應期中報告的系統分析（Analysis），第 10–15 週對應期末報告的系統設計（Design），「說明」欄標示該週對應哪一項。
+進度表的主題安排依兩份小組報告的產出項目倒推：**第 1–8 週對應期中報告的九項系統分析（Analysis）產出，第 10–15 週對應期末報告的八項系統設計（Design）產出**，「對應報告項目與提醒」欄標示該週服務哪幾項產出、要讀哪幾章教材。各項產出要寫到什麼程度，見[「報告內容」](Report-Contents.md)；教材的完整章名見[「SAD 課程教材」](../README.md)。
 
 **報告週次可能順延**：口頭報告的實際時間取決於當週的組數與各組報告長度，當週未報告完的組別順延至下一週繼續。
-
-| 項目 | 說明 |
-|---|---|
-| 順延到哪一週 | 期中順延至第 10 週（11/11），期末順延至第 17 週（12/30） |
-| 評分與繳交 | 不影響評分標準，也不算遲交，但 **書面期限不隨之延後**，見[報告規範](Report-Rules.md) |
-| 當天出席 | 順延的組別報告完畢後 **接續當週原訂的授課內容**，已報告完的組別仍須到課 |
-| 特別提醒 | 第 17 週已排定個人訪談，期末報告順延會壓縮訪談時間，請務必控制在原定時間內完成 |
 
 ## 學期配分比重
 
@@ -78,14 +71,18 @@
 
 ## 報告規範
 
-本節只把四個評分項目的概要說清楚：各自要做什麼、要交出哪些東西、時間怎麼安排。**完整規定不在這裡**：
+本節只把四個評分項目的概要說清楚：各自要做什麼、要交出哪些東西、時間怎麼安排。**完整規定不在這裡**，依你想知道的事情跳過去：
 
-- 報告怎麼交、期限是哪一天、缺席與補救如何處理：[報告規範](Report-Rules.md)
-- 遲交扣幾分、什麼情況直接 0 分、學期成績怎麼算：[成績計算規範](Grading-Rules.md)
-- 每一項的評量規準與等第換算：[課程評量 Rubrics](Rubrics.md)
-- 書面要寫到什麼程度、口頭報告與訪談會問什麼方向：[報告內容](Report-Contents.md)、[參考題庫](Question-Bank.md)
+| 你想知道 | 去哪份文件 |
+|---|---|
+| 報告怎麼交、期限是哪一天、缺席與補救怎麼處理 | [報告規範](Report-Rules.md) |
+| 遲交扣幾分、什麼情況直接 0 分、學期成績怎麼算 | [成績計算規範](Grading-Rules.md) |
+| 書面要寫到什麼程度、口頭報告與訪談會問什麼方向 | [報告內容](Report-Contents.md)、[參考題庫](Question-Bank.md) |
+| 每一項怎麼評分、等第怎麼換算 | [課程評量 Rubrics](Rubrics.md) |
+| 有沒有範例可以參考 | 每一項該有哪些欄位、為什麼這樣寫，見[系統分析範例報告說明](../04-example-reports/Analysis-Phase-Deliverables.md)、[系統設計範例報告說明](../04-example-reports/Design-Phase-Deliverables.md)；寫完的成品長什麼樣，見[系統分析範例報告](../04-example-reports/Analysis-Phase-Sample-Report.md)、[系統設計範例報告](../04-example-reports/Design-Phase-Sample-Report.md)。各組題目不同，**照結構寫，不要照內容抄** |
+| 做得比要求更多能不能加分 | [額外投入加分](Bonus-Rules.md) |
 
-> **這四份文件都請完整讀過。** 真的發生爭議時，老師是依那些條文處理，不是依本節的概要。
+> **上面每一份都請完整讀過。** 真的發生爭議時，老師是依那些條文處理，不是依本節的概要。
 
 ### 期中與期末小組報告
 
@@ -93,12 +90,14 @@
 
 | 報告 | 階段 | 題目來源 | 產出項目 |
 |---|---|---|---|
-| **期中小組報告** | 系統分析（Analysis） | 既有系統案例 | 問題定義、使用者分析、Use Case、系統需求分析、功能分析、System Sequence Diagram、Activity Diagram、ERD、Data Dictionary、初步系統架構分析、風險分析、現況問題與改善建議 |
-| **期末小組報告** | 系統設計（Design） | 新的專題需求 | 系統架構、模組設計、主要流程設計、UML、API Design、Database Design、UI Prototype、系統限制與風險、Design Specification |
+| **期中小組報告** | 系統分析（Analysis） | 既有系統案例 | **九項**：1 問題與系統背景、2 使用者與利害關係人分析、3 現況流程分析、4 系統需求分析、5 功能分析與系統邊界、6 使用案例與系統互動分析、7 資料需求分析、8 系統環境與整體架構理解、9 現況問題與改善建議。必做的 UML 為使用案例圖、活動圖、系統循序圖三種 |
+| **期末小組報告** | 系統設計（Design） | 製造現場的新專題需求 | **八項**：1 設計基礎與需求摘要、2 功能與模組設計、3 主要流程與互動設計、4 資料設計、5 系統環境、架構與資料交換設計、6 使用者介面原型、7 可行性、限制與風險分析、8 整體設計規格與追溯。必做的圖為活動圖、循序圖、概念類別圖、ERD、架構圖、模組相依關係圖與介面原型 |
+
+**兩份清單以[「報告內容」](Report-Contents.md)為準**，各項要寫到什麼程度、最低標準是什麼，另見[「系統分析範例報告說明」](../04-example-reports/Analysis-Phase-Deliverables.md)與[「系統設計範例報告說明」](../04-example-reports/Design-Phase-Deliverables.md)，兩份說明各配一份完整的範例報告。
 
 #### 題目怎麼分配
 
-期中與期末的題目老師都會準備數個，**哪一組做哪一題，在課堂上當場公開抽籤決定**。**期中題目於第 3 週（9/23）分組名單確定後當堂抽**；期末題目於發放專題需求的當堂課抽，日期另行公告。
+期中與期末的題目老師都會準備數個，**哪一組做哪一題，在課堂上當場公開抽籤決定**。**期中題目於第 3 週（9/23）分組名單確定後當堂抽**；**期末題目於第 10 週（11/11）發放題目說明書後當堂抽**。
 
 抽籤使用老師開發的開源工具 Lucklet：<https://github.com/billy1125/lottery-game>。投影在螢幕上當場操作，全班一起看結果；程式碼公開，亂數由瀏覽器端產生，老師無法預先決定哪一組拿到哪一題。**抽到就是抽到，不重抽、不換題、不接受組間交換。**
 

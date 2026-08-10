@@ -258,9 +258,9 @@
 
 對應教材：
 
-- 欄位值域怎麼寫 → [資料建模與資料庫設計](../01-Course-Materials/Data-Modeling.md)
-- 風險與問題的差別、風險怎麼寫才評估得了 → [可行性、限制與風險分析](../01-Course-Materials/Feasibility-and-Risk.md)
-- 現場操作限制怎麼影響介面 → [使用者介面設計](../01-Course-Materials/UI-Design.md)
+- 欄位值域怎麼寫 → [資料建模與資料庫設計](../01-Course-Materials/07-Data-Modeling.md)
+- 風險與問題的差別、風險怎麼寫才評估得了 → [可行性、限制與風險分析](../01-Course-Materials/09-Feasibility-and-Risk.md)
+- 現場操作限制怎麼影響介面 → [使用者介面設計](../01-Course-Materials/12-UI-Design.md)
 
 ---
 
@@ -275,4 +275,4 @@
 
 ---
 
-*本文件只說明題目，要交什麼見[報告內容](../00-Course-Introduction/Report-Contents.md)〈二〉，每一項該有哪些欄位見[系統設計階段繳交規範](../example-system/Design-Phase-Deliverables.md)。*
+*本文件只說明題目，要交什麼見[報告內容](../00-Course-Introduction/Report-Contents.md)〈二〉，每一項該有哪些欄位見[系統設計範例報告說明](../04-example-reports/Design-Phase-Deliverables.md)。*
