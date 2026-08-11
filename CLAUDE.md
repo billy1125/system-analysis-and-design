@@ -61,7 +61,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 撰寫規範
 
-格式規範全部收在 `reference/`。**動筆前先讀完對應的規範文件，再複製骨架檔開始寫**：正文看 `chapter-writing-guide.md` 與 `chapter-template.md`，投影片看 `slides-design-template.md` 與 `slides-template.slides.md`。`personal-voice.md` 是語氣與筆法的蒸餾，不必每次動筆前讀，收尾潤稿或收到指示時再用。
+格式規範全部收在 `reference/`。**動筆前先讀完對應的規範文件，再複製骨架檔開始寫**：正文看 `chapter-writing-guide.md` 與 `chapter-template.md`，投影片看 `slides-design-template.md` 與 `slides-template.slides.md`。`personal-voice.md` 是語氣與筆法的蒸餾，不必每次動筆前讀，收尾潤稿或收到指示時再用。`ai-disclosure-template.md` 是 AI 協作揭露的骨架與底線，任何面向讀者的公開文件要加揭露段落時照它寫；本專案的實例在 `README.md`〈🤖 這份教材是怎麼做出來的〉。
 
 兩邊若有衝突，**格式規則以 `reference/` 為準，課程設定以本檔為準**。
 
