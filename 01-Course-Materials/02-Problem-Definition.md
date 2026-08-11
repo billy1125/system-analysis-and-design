@@ -12,7 +12,7 @@
 
 > **延伸閱讀**：本章不做可行性評估。期中的分析對象已經存在，不必再證明它做不做得出來；技術、經濟、組織與時程可行性屬於期末新系統設計的範圍。
 
-> **必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容；加註 🔵 期末必讀 的，是期末八項產出直接會用到的。判準與成品的樣子，期中見[「系統分析範例報告說明」](../03-example-reports/Analysis-Phase-Deliverables.md)與[「系統分析範例報告」](../03-example-reports/Analysis-Phase-Sample-Report.md)，期末見[「系統設計範例報告說明」](../03-example-reports/Design-Phase-Deliverables.md)與[「系統設計範例報告」](../03-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是報告不會直接產出。
+> **必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容；加註 🔵 期末必讀 的，是期末八項產出直接會用到的。判準與成品的樣子，期中見[「系統分析範例報告說明」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)與[「系統分析範例報告」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md)，期末見[「系統設計範例報告說明」](../04-Final-Project-Example-Reports/Design-Phase-Deliverables.md)與[「系統設計範例報告」](../04-Final-Project-Example-Reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是報告不會直接產出。
 
 ## 一、問題定義要回答什麼 🔴 期中必讀 🔵 期末必讀
 

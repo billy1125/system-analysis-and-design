@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}{{ '修改器材' if mode == 'edit' else '新增器材' }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='equipment.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="eq-layout">
+
+  <div class="eq-topbar">
+    <span class="eq-topbar-title">器材借用系統</span>
+    <div class="eq-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="eq-nav-link">返回首頁</a>
+      <a href="{{ url_for('equipment.index') }}" class="eq-nav-link">器材清單</a>
+      <span class="eq-nav-user">{{ user['display_name'] or user['name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="eq-btn eq-btn-danger">登出</a>
+    </div>
+  </div>
+
+  <div class="eq-form-page">
+    <div class="eq-form-card">
+      <h2>{{ '修改器材' if mode == 'edit' else '新增器材' }}</h2>
+
+      {% if error %}
+        <div class="eq-alert eq-alert-error">{{ error }}</div>
+      {% endif %}
+
+      <form method="post">
+        <div class="eq-form-group">
+          <label>器材名稱 <span class="eq-required">*</span></label>
+          <input type="text" name="equipment_name"
+                 value="{{ form['equipment_name'] }}" required>
+        </div>
+
+        <div class="eq-form-group">
+          <label>器材編號 <span class="eq-required">*</span></label>
+          <input type="text" name="equipment_code"
+                 value="{{ form['equipment_code'] }}" required>
+        </div>
+
+        <div class="eq-form-group">
+          <label>器材說明</label>
+          <textarea name="equipment_description">{{ form['equipment_description'] }}</textarea>
+        </div>
+
+        <div class="eq-form-row">
+          <div class="eq-form-group">
+            <label>總數量 <span class="eq-required">*</span></label>
+            <input type="number" name="total_quantity" min="0"
+                   value="{{ form['total_quantity'] }}" required>
+          </div>
+          <div class="eq-form-group">
+            <label>可借數量 <span class="eq-required">*</span></label>
+            <input type="number" name="available_quantity" min="0"
+                   value="{{ form['available_quantity'] }}" required>
+          </div>
+        </div>
+
+        <div class="eq-form-group">
+          <label>器材狀態 <span class="eq-required">*</span></label>
+          <select name="equipment_status">
+            <option value="available"
+              {{ 'selected' if form['equipment_status'] == 'available' }}>可借用</option>
+            <option value="unavailable"
+              {{ 'selected' if form['equipment_status'] == 'unavailable' }}>暫停借用</option>
+            <option value="maintenance"
+              {{ 'selected' if form['equipment_status'] == 'maintenance' }}>維修中</option>
+          </select>
+        </div>
+
+        <div class="eq-form-actions">
+          <button type="submit" class="eq-btn eq-btn-primary">{{ '儲存修改' if mode == 'edit' else '新增器材' }}</button>
+          <a href="{{ url_for('equipment.index', id=equipment['id'] if equipment else '') }}"
+             class="eq-btn eq-btn-secondary">取消</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

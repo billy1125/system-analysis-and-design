@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}{{ form_title }} — 論壇{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='forum.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="forum-layout">
+
+  <!-- ── Top bar ── -->
+  <div class="forum-topbar">
+    <span class="forum-topbar-title">論壇系統</span>
+    <div class="forum-topbar-nav">
+      {% if user %}
+        <span class="forum-nav-user">{{ user['display_name'] or user['name'] or user['email'] }}</span>
+      {% endif %}
+      <a href="{{ back_url }}" class="forum-btn forum-btn-secondary">取消</a>
+    </div>
+  </div>
+
+  <!-- ── Form ── -->
+  <div class="forum-form-page">
+    <div class="forum-form-card">
+      <h2>{{ form_title }}</h2>
+
+      {% if error %}
+        <div class="forum-alert forum-alert-error">{{ error }}</div>
+      {% endif %}
+
+      <form method="POST">
+        {% if show_title %}
+        <div class="forum-form-group">
+          <label for="title">文章標題</label>
+          <input type="text" id="title" name="title"
+                 value="{{ form_data.get('title', '') }}"
+                 placeholder="請輸入文章標題"
+                 maxlength="100"
+                 autocomplete="off">
+        </div>
+        {% endif %}
+
+        {% if show_content %}
+        <div class="forum-form-group">
+          <label for="content">內文</label>
+          <textarea id="content" name="content"
+                    placeholder="請輸入內文"
+                    rows="10">{{ form_data.get('content', '') }}</textarea>
+        </div>
+        {% endif %}
+
+        <div class="forum-form-actions">
+          <button type="submit" class="forum-btn forum-btn-primary">送出</button>
+          <a href="{{ back_url }}" class="forum-btn forum-btn-secondary">取消</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

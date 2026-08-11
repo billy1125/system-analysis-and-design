@@ -6,9 +6,9 @@
 
 本章從頭到尾使用同一個情境：一家生產金屬沖壓件的中型工廠，每天有供應商、客戶與外部維修人員進出廠區，大門警衛室仍以一本紙本登記簿管理，消防演練時說不出廠內還有哪些外部人員。工廠決定導入一套「工廠訪客進出登記系統」，讓訪客事前提出來訪申請、到廠只做報到。以下各節都以這個案子為例。
 
-> **延伸閱讀**：本章談的是這些分析要怎麼做，各組實際要繳交哪些文件、格式與最低標準，見[「系統分析範例報告說明」](../03-example-reports/Analysis-Phase-Deliverables.md)。
+> **延伸閱讀**：本章談的是這些分析要怎麼做，各組實際要繳交哪些文件、格式與最低標準，見[「系統分析範例報告說明」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)。
 
-> **必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容；加註 🔵 期末必讀 的，是期末八項產出直接會用到的。判準與成品的樣子，期中見[「系統分析範例報告說明」](../03-example-reports/Analysis-Phase-Deliverables.md)與[「系統分析範例報告」](../03-example-reports/Analysis-Phase-Sample-Report.md)，期末見[「系統設計範例報告說明」](../03-example-reports/Design-Phase-Deliverables.md)與[「系統設計範例報告」](../03-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是報告不會直接產出。
+> **必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容；加註 🔵 期末必讀 的，是期末八項產出直接會用到的。判準與成品的樣子，期中見[「系統分析範例報告說明」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)與[「系統分析範例報告」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md)，期末見[「系統設計範例報告說明」](../04-Final-Project-Example-Reports/Design-Phase-Deliverables.md)與[「系統設計範例報告」](../04-Final-Project-Example-Reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是報告不會直接產出。
 
 ## 一、為什麼分析要從人開始
 

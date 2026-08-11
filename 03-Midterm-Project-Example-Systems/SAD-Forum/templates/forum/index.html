@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% block title %}論壇{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='forum.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="forum-layout">
+
+  <!-- ── Top bar ── -->
+  <div class="forum-topbar">
+    <span class="forum-topbar-title">論壇系統</span>
+    <div class="forum-topbar-nav">
+      {% if user %}
+        <a href="{{ url_for('hub.home') }}" class="forum-nav-link">返回首頁</a>
+        <span class="forum-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+        <a href="{{ url_for('auth.logout') }}" class="forum-btn forum-btn-danger">登出</a>
+      {% else %}
+        <a href="{{ url_for('auth.login_page') }}" class="forum-btn forum-btn-primary">登入</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ── Flash messages ── -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="forum-flash forum-flash-{{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <!-- ── Two-column content ── -->
+  <div class="forum-content">
+
+    <!-- Left panel: master list -->
+    <div class="forum-left">
+      <div class="forum-panel-header">
+        <h2>文章列表</h2>
+        <div class="forum-panel-actions">
+          <span class="forum-total">共 {{ total }} 篇</span>
+          {% if user %}
+          <a href="{{ url_for('forum.new_post') }}"
+             class="forum-btn forum-btn-primary forum-btn-sm">+ 新增文章</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="forum-table-wrap">
+        <table class="forum-table">
+          <thead>
+            <tr>
+              <th class="col-id">ID</th>
+              <th class="col-title">標題</th>
+              <th class="col-time">登記時間</th>
+              <th class="col-time">更新時間</th>
+              <th class="col-uid">發文者</th>
+              {% if user %}<th class="col-action">操作</th>{% endif %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for m in masters %}
+            <tr class="{{ 'forum-row-selected' if selected_master and selected_master['id'] == m['id'] else '' }}">
+              <td>{{ m['id'] }}</td>
+              <td>
+                <a class="forum-title-link"
+                   href="{{ url_for('forum.index', page=page, master_id=m['id']) }}">
+                  {{ m['title'] }}
+                </a>
+              </td>
+              <td>{{ m['created_at'] }}</td>
+              <td>{{ m['updated_at'] }}</td>
+              <td>{{ m['user_display'] }}</td>
+              {% if user %}
+              <td class="forum-actions-cell">
+                {% if user['role'] == 0 or user['id'] == m['user_id'] %}
+                <a href="{{ url_for('forum.edit_master', master_id=m['id']) }}"
+                   class="forum-btn-action">修改標題</a>
+                {% endif %}
+                {% if user['role'] == 0 %}
+                <form method="POST"
+                      action="{{ url_for('forum.delete_master', master_id=m['id']) }}"
+                      class="forum-inline-form">
+                  <button type="submit" class="forum-btn-action forum-btn-action-danger"
+                          onclick="return confirm('確定刪除此文章及所有回覆？')">刪除</button>
+                </form>
+                {% endif %}
+              </td>
+              {% endif %}
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="{{ 6 if user else 5 }}" class="forum-empty">尚無文章</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      {% if total_pages > 1 %}
+      <div class="forum-pagination">
+        {% if page > 1 %}
+          <a href="{{ url_for('forum.index', page=page-1, master_id=selected_master['id'] if selected_master else none) }}"
+             class="forum-page-btn">&laquo; 上一頁</a>
+        {% else %}
+          <span class="forum-page-btn forum-page-disabled">&laquo; 上一頁</span>
+        {% endif %}
+
+        <span class="forum-page-info">第 {{ page }} 頁 / 共 {{ total_pages }} 頁</span>
+
+        {% if page < total_pages %}
+          <a href="{{ url_for('forum.index', page=page+1, master_id=selected_master['id'] if selected_master else none) }}"
+             class="forum-page-btn">下一頁 &raquo;</a>
+        {% else %}
+          <span class="forum-page-btn forum-page-disabled">下一頁 &raquo;</span>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Right panel: detail list -->
+    <div class="forum-right">
+      {% if selected_master %}
+        <div class="forum-panel-header">
+          <h2>{{ selected_master['title'] }}</h2>
+          <div class="forum-panel-actions">
+            {% if user %}
+            <a href="{{ url_for('forum.reply', master_id=selected_master['id']) }}"
+               class="forum-btn forum-btn-primary forum-btn-sm">+ 回覆</a>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="forum-table-wrap">
+          <table class="forum-table">
+            <thead>
+              <tr>
+                <th class="col-id">ID</th>
+                <th class="col-id">所屬 master ID</th>
+                <th class="col-content">內文</th>
+                <th class="col-time">登記時間</th>
+                <th class="col-time">更新時間</th>
+                <th class="col-uid">發文者</th>
+                {% if user %}<th class="col-action">操作</th>{% endif %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for d in details %}
+              <tr class="{{ 'forum-row-original' if d['is_original_post'] else '' }}">
+                <td>{{ d['id'] }}</td>
+                <td>{{ d['master_id'] }}</td>
+                <td class="forum-content-cell">{{ d['content'] }}</td>
+                <td>{{ d['created_at'] }}</td>
+                <td>{{ d['updated_at'] }}</td>
+                <td>{{ d['user_display'] }}</td>
+                {% if user %}
+                <td class="forum-actions-cell">
+                  {% if user['role'] == 0 or user['id'] == d['user_id'] %}
+                  <a href="{{ url_for('forum.edit_detail', detail_id=d['id']) }}"
+                     class="forum-btn-action">修改</a>
+                  {% endif %}
+                  {% if user['role'] == 0 %}
+                  <form method="POST"
+                        action="{{ url_for('forum.delete_detail', detail_id=d['id']) }}"
+                        class="forum-inline-form">
+                    <button type="submit" class="forum-btn-action forum-btn-action-danger"
+                            onclick="return confirm('確定刪除此回覆？')">刪除</button>
+                  </form>
+                  {% endif %}
+                </td>
+                {% endif %}
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="{{ 7 if user else 6 }}" class="forum-empty">尚無內文</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+      {% else %}
+        <div class="forum-placeholder">
+          <p>請從左側選擇文章以查看內文與回覆</p>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% block title %}首頁{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='hub.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="hub-layout">
+  <div class="hub-topbar">
+    <span class="hub-topbar-title">會員管理系統 v1.0</span>
+    <div class="hub-topbar-user">
+      {% if user %}
+        <span>{{ user['name'] or user['display_name'] or user['email'] }}</span>
+        <a href="{{ url_for('auth.logout') }}" class="hub-logout">登出</a>
+      {% else %}
+        <a href="{{ url_for('auth.register') }}" class="hub-register-link">申請帳號</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="hub-main">
+    {% if user %}
+      {# ── 已登入：顯示完整服務卡片 ── #}
+      <div class="hub-greeting">
+        <h1>歡迎回來，{{ user['name'] or user['display_name'] or user['email'] }}！</h1>
+        <p>請選擇要使用的服務</p>
+      </div>
+
+      <div class="hub-grid">
+        <a href="{{ url_for('profile.dashboard') }}" class="hub-card">
+          <div class="hub-card-icon">&#128100;</div>
+          <div class="hub-card-title">個人資料</div>
+          <div class="hub-card-desc">查看與編輯帳號資訊</div>
+        </a>
+
+        <a href="{{ url_for('forum.index') }}" class="hub-card">
+          <div class="hub-card-icon">&#128172;</div>
+          <div class="hub-card-title">論壇</div>
+          <div class="hub-card-desc">討論區</div>
+        </a>
+
+        {% if user['role'] == 0 %}
+          <a href="{{ url_for('admin.user_list') }}" class="hub-card">
+            <div class="hub-card-icon">&#128100;&#65039;</div>
+            <div class="hub-card-title">會員管理</div>
+            <div class="hub-card-desc">管理所有會員帳號</div>
+          </a>
+        {% endif %}
+      </div>
+
+    {% else %}
+      {# ── 未登入：左側服務卡片 + 右側登入表單 ── #}
+      <div class="hub-guest-layout">
+        <div class="hub-guest-content">
+          <div class="hub-greeting">
+            <h1>歡迎使用會員管理系統</h1>
+            <p>您可以直接瀏覽以下服務，或登入後使用完整功能</p>
+          </div>
+
+          <div class="hub-grid">
+            <a href="{{ url_for('forum.index') }}" class="hub-card">
+              <div class="hub-card-icon">&#128172;</div>
+              <div class="hub-card-title">論壇</div>
+              <div class="hub-card-desc">討論區</div>
+            </a>
+
+            <div class="hub-card hub-card-locked">
+              <div class="hub-card-icon">&#128100;</div>
+              <div class="hub-card-title">個人資料</div>
+              <div class="hub-card-desc">查看與編輯帳號資訊</div>
+              <div class="hub-badge-lock">&#128274; 需登入</div>
+            </div>
+
+            <div class="hub-card hub-card-locked">
+              <div class="hub-card-icon">&#128100;&#65039;</div>
+              <div class="hub-card-title">會員管理</div>
+              <div class="hub-card-desc">管理所有會員帳號</div>
+              <div class="hub-badge-lock">&#128274; 需管理員權限</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hub-login-panel">
+          <div class="hub-login-card">
+            <h2 class="hub-login-title">登入</h2>
+
+            {% if error %}
+              <div class="alert error" style="display:block">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('hub.home') }}" novalidate class="login-form">
+              <div class="form-group">
+                <label for="email">電子郵件</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value="{{ request.form.get('email', '') }}"
+                  placeholder="example@mail.com"
+                  autocomplete="email"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="password">密碼</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="請輸入密碼"
+                  autocomplete="current-password"
+                >
+              </div>
+
+              <div class="form-group">
+                <label>驗證碼</label>
+                <div class="captcha-wrapper">
+                  <img
+                    id="captchaImg"
+                    src="{{ url_for('auth.captcha_image') }}"
+                    width="160"
+                    height="50"
+                    style="border:1px solid #ccc; border-radius:4px; cursor:pointer"
+                    title="點擊刷新"
+                    onclick="this.src='{{ url_for('auth.captcha_image') }}?t='+Date.now()"
+                    alt="驗證碼"
+                  >
+                  <button
+                    type="button"
+                    class="btn-captcha-refresh"
+                    onclick="document.getElementById('captchaImg').src='{{ url_for('auth.captcha_image') }}?t='+Date.now()"
+                  >↻</button>
+                </div>
+                <input
+                  type="text"
+                  name="captcha"
+                  placeholder="請輸入圖中文字（不分大小寫）"
+                  autocomplete="off"
+                  maxlength="6"
+                >
+              </div>
+
+              <button type="submit">登入</button>
+              <a
+                href="{{ url_for('auth.register') }}"
+                class="btn-secondary"
+                style="display:block; text-align:center; padding:11px; margin-top:8px; text-decoration:none"
+              >申請帳號</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

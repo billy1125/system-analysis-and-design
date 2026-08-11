@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}{{ form_title }} — 校園訂餐系統{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='meal.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="meal-layout">
+
+  <div class="meal-topbar">
+    <span class="meal-topbar-title">校園訂餐系統</span>
+    <div class="meal-topbar-nav">
+      <span class="meal-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ back_url }}" class="meal-btn meal-btn-secondary">取消</a>
+    </div>
+  </div>
+
+  <div class="meal-form-page">
+    <div class="meal-form-card">
+      <h2>{{ form_title }}</h2>
+
+      {% if error %}
+        <div class="meal-alert meal-alert-error">{{ error }}</div>
+      {% endif %}
+
+      <form method="POST">
+        <div class="meal-form-row">
+          <div class="meal-form-group">
+            <label for="meal_code">餐點編號</label>
+            <input type="text" id="meal_code" name="meal_code"
+                   value="{{ form['meal_code'] }}" maxlength="20"
+                   placeholder="例如 A01" autocomplete="off">
+          </div>
+          <div class="meal-form-group">
+            <label for="meal_name">餐點名稱</label>
+            <input type="text" id="meal_name" name="meal_name"
+                   value="{{ form['meal_name'] }}" maxlength="60"
+                   placeholder="例如 雞腿便當" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="meal-form-group">
+          <label for="meal_description">餐點說明</label>
+          <textarea id="meal_description" name="meal_description" rows="4"
+                    placeholder="食材、口味、備註（可留空）">{{ form['meal_description'] }}</textarea>
+        </div>
+
+        <div class="meal-form-row">
+          <div class="meal-form-group">
+            <label for="category">分類</label>
+            <select id="category" name="category">
+              {% for key, label in CATEGORY_LABELS.items() %}
+                <option value="{{ key }}" {{ 'selected' if form['category'] == key }}>{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="meal-form-group">
+            <label for="price">單價（元）</label>
+            <input type="number" id="price" name="price" min="0" step="1"
+                   value="{{ form['price'] }}" placeholder="0">
+            <div class="meal-form-hint">以整數新台幣元儲存，不接受小數。</div>
+          </div>
+        </div>
+
+        <div class="meal-form-row">
+          <div class="meal-form-group">
+            <label for="daily_quantity">每日供應份數</label>
+            <input type="number" id="daily_quantity" name="daily_quantity" min="0" step="1"
+                   value="{{ form['daily_quantity'] }}" placeholder="0">
+          </div>
+          <div class="meal-form-group">
+            <label for="remaining_quantity">目前剩餘份數</label>
+            <input type="number" id="remaining_quantity" name="remaining_quantity" min="0" step="1"
+                   value="{{ form['remaining_quantity'] }}" placeholder="0">
+            <div class="meal-form-hint">不可大於每日供應份數。每日開賣前由管理員手動重設。</div>
+          </div>
+        </div>
+
+        <div class="meal-form-group">
+          <label for="meal_status">供應狀態</label>
+          <select id="meal_status" name="meal_status">
+            {% for key, label in MEAL_STATUS_LABELS.items() %}
+              <option value="{{ key }}" {{ 'selected' if form['meal_status'] == key }}>{{ label }}</option>
+            {% endfor %}
+          </select>
+          <div class="meal-form-hint">只有「供應中」且剩餘份數大於 0 的餐點會出現在訂餐表單。</div>
+        </div>
+
+        <div class="meal-form-actions">
+          <button type="submit" class="meal-btn meal-btn-primary">送出</button>
+          <a href="{{ back_url }}" class="meal-btn meal-btn-secondary">取消</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

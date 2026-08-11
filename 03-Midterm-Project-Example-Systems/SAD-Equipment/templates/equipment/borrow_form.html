@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}申請借用{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='equipment.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="eq-layout">
+
+  <div class="eq-topbar">
+    <span class="eq-topbar-title">器材借用系統</span>
+    <div class="eq-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="eq-nav-link">返回首頁</a>
+      <a href="{{ url_for('equipment.index') }}" class="eq-nav-link">器材清單</a>
+      <a href="{{ url_for('equipment.my_orders') }}" class="eq-nav-link">我的借用</a>
+      <span class="eq-nav-user">{{ user['display_name'] or user['name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="eq-btn eq-btn-danger">登出</a>
+    </div>
+  </div>
+
+  <div class="eq-form-page">
+    <div class="eq-form-card">
+      <h2>申請借用</h2>
+
+      <div class="eq-borrow-summary">
+        <div class="eq-borrow-summary-title">{{ equipment['equipment_name'] }}</div>
+        <div class="eq-borrow-summary-meta">
+          <span>編號：{{ equipment['equipment_code'] }}</span>
+          <span>可借數量：{{ equipment['available_quantity'] }}</span>
+          <span>
+            <span class="eq-badge eq-badge-{{ equipment['equipment_status'] }}">
+              {{ status_labels.get(equipment['equipment_status'], equipment['equipment_status']) }}
+            </span>
+          </span>
+        </div>
+        {% if equipment['equipment_description'] %}
+          <div class="eq-borrow-summary-desc">{{ equipment['equipment_description'] }}</div>
+        {% endif %}
+      </div>
+
+      {% if error %}
+        <div class="eq-alert eq-alert-error">{{ error }}</div>
+      {% endif %}
+
+      <form method="post">
+        <div class="eq-form-group">
+          <label>借用數量 <span class="eq-required">*</span></label>
+          <input type="number" name="quantity" min="1"
+                 max="{{ equipment['available_quantity'] }}"
+                 value="{{ form['quantity'] }}" required>
+          <span class="eq-field-hint">最多可借 {{ equipment['available_quantity'] }} 件</span>
+        </div>
+
+        <div class="eq-form-row">
+          <div class="eq-form-group">
+            <label>預計借用開始時間 <span class="eq-required">*</span></label>
+            <input type="datetime-local" name="borrow_start_at"
+                   value="{{ form['borrow_start_at'] }}" required>
+          </div>
+          <div class="eq-form-group">
+            <label>預計歸還時間 <span class="eq-required">*</span></label>
+            <input type="datetime-local" name="borrow_end_at"
+                   value="{{ form['borrow_end_at'] }}" required>
+          </div>
+        </div>
+
+        <div class="eq-form-group">
+          <label>借用用途 <span class="eq-required">*</span></label>
+          <textarea name="borrow_reason" required>{{ form['borrow_reason'] }}</textarea>
+        </div>
+
+        <div class="eq-form-actions">
+          <button type="submit" class="eq-btn eq-btn-primary">送出申請</button>
+          <a href="{{ url_for('equipment.index', id=equipment['id']) }}"
+             class="eq-btn eq-btn-secondary">取消</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

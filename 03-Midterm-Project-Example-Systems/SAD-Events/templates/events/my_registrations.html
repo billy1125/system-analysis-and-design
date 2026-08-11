@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}我的報名紀錄{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='events.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="events-layout">
+
+  <!-- ── Top bar ── -->
+  <div class="events-topbar">
+    <span class="events-topbar-title">校園活動報名系統</span>
+    <div class="events-topbar-nav">
+      <a href="{{ url_for('events.index') }}" class="events-nav-link">活動列表</a>
+      <a href="{{ url_for('hub.home') }}" class="events-nav-link">返回首頁</a>
+      <span class="events-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="events-btn events-btn-danger">登出</a>
+    </div>
+  </div>
+
+  <!-- ── Flash messages ── -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="events-flash events-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <!-- ── Content ── -->
+  <div class="events-my-page">
+    <div class="events-my-card">
+      <div class="events-my-header">
+        <h2>我的報名紀錄</h2>
+        <span class="events-total">共 {{ registrations | length }} 筆</span>
+      </div>
+
+      {% if registrations %}
+      <div class="events-table-wrap-inner">
+        <table class="events-table">
+          <thead>
+            <tr>
+              <th>活動名稱</th>
+              <th class="col-datetime">活動時間</th>
+              <th>地點</th>
+              <th>用餐</th>
+              <th class="col-status">狀態</th>
+              <th class="col-datetime">報名時間</th>
+              <th class="col-action">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for reg in registrations %}
+            <tr class="{{ 'events-row-cancelled' if reg['registration_status'] != 'registered' else '' }}">
+              <td>
+                {% if reg['is_deleted'] %}
+                  {{ reg['event_title'] }}
+                  <span class="events-badge events-badge-ended">活動已撤銷</span>
+                {% else %}
+                  <a href="{{ url_for('events.index', event_id=reg['event_id']) }}"
+                     class="events-title-link">{{ reg['event_title'] }}</a>
+                {% endif %}
+              </td>
+              <td class="events-datetime-cell">{{ reg['event_datetime'][:16] }}</td>
+              <td>{{ reg['event_place'] }}</td>
+              <td>{{ MEAL_LABELS.get(reg['meal_type'], '—') }}</td>
+              <td>
+                <span class="events-badge events-badge-reg-{{ reg['registration_status'] }}">
+                  {{ REG_STATUS_LABELS.get(reg['registration_status'], reg['registration_status']) }}
+                </span>
+              </td>
+              <td class="events-datetime-cell">{{ reg['created_at'][:16] }}</td>
+              <td class="events-actions-cell">
+                {% if reg['registration_status'] == 'registered' and not reg['is_deleted'] %}
+                  <a href="{{ url_for('events.edit_registration', event_id=reg['event_id']) }}"
+                     class="events-btn-action">修改</a>
+                  <form method="POST"
+                        action="{{ url_for('events.cancel', event_id=reg['event_id']) }}"
+                        class="events-inline-form">
+                    <button type="submit" class="events-btn-action events-btn-action-danger"
+                            onclick="return confirm('確定取消報名？')">取消</button>
+                  </form>
+                {% else %}
+                  —
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p class="events-empty" style="padding: 40px 0;">尚無報名紀錄</p>
+      {% endif %}
+
+    </div>
+  </div>
+
+</div>
+{% endblock %}

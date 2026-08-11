@@ -79,7 +79,7 @@
 | 遲交扣幾分、什麼情況直接 0 分、學期成績怎麼算 | [成績計算規範](Grading-Rules.md) |
 | 書面要寫到什麼程度、口頭報告與訪談會問什麼方向 | [報告內容](Report-Contents.md)、[參考題庫](Question-Bank.md) |
 | 每一項怎麼評分、等第怎麼換算 | [報告評量 Rubrics](Rubrics.md) |
-| 有沒有範例可以參考 | 每一項該有哪些欄位、為什麼這樣寫，見[系統分析範例報告說明](../03-example-reports/Analysis-Phase-Deliverables.md)、[系統設計範例報告說明](../03-example-reports/Design-Phase-Deliverables.md)；寫完的成品長什麼樣，見[系統分析範例報告](../03-example-reports/Analysis-Phase-Sample-Report.md)、[系統設計範例報告](../03-example-reports/Design-Phase-Sample-Report.md)。各組題目不同，**照結構寫，不要照內容抄** |
+| 有沒有範例可以參考 | 每一項該有哪些欄位、為什麼這樣寫，見[系統分析範例報告說明](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)、[系統設計範例報告說明](../04-Final-Project-Example-Reports/Design-Phase-Deliverables.md)；寫完的成品長什麼樣，見[系統分析範例報告](../02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md)、[系統設計範例報告](../04-Final-Project-Example-Reports/Design-Phase-Sample-Report.md)。各組題目不同，**照結構寫，不要照內容抄** |
 | 做得比要求更多能不能加分 | [額外投入加分](Bonus-Rules.md) |
 
 > **上面每一份都請完整讀過。** 真的發生爭議時，老師是依那些條文處理，不是依本節的概要。
@@ -95,7 +95,7 @@
 
 兩份書面報告的最後都要再附一份 **分工紀錄**，欄位見[「報告內容」](Report-Contents.md)的「附錄：分工紀錄」，組內怎麼維護見[「分組規範」](Group-Rules.md)。
 
-**兩份清單以[「報告內容」](Report-Contents.md)為準**，各項要寫到什麼程度、最低標準是什麼，另見[「系統分析範例報告說明」](../03-example-reports/Analysis-Phase-Deliverables.md)與[「系統設計範例報告說明」](../03-example-reports/Design-Phase-Deliverables.md)，兩份說明各配一份完整的範例報告。
+**兩份清單以[「報告內容」](Report-Contents.md)為準**，各項要寫到什麼程度、最低標準是什麼，另見[「系統分析範例報告說明」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)與[「系統設計範例報告說明」](../04-Final-Project-Example-Reports/Design-Phase-Deliverables.md)，兩份說明各配一份完整的範例報告。
 
 #### 題目怎麼分配
 

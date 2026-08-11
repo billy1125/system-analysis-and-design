@@ -10,7 +10,7 @@
 
 > **延伸閱讀**：本章不教任何繪圖工具的操作。工具只是產出媒介，換一套工具不影響這一章講的任何原則。
 
-> **期末必讀標記**：標題後加註 🔵 期末必讀 的小節，是期末小組報告八項產出直接會用到的內容。判準見[「系統設計範例報告說明」](../03-example-reports/Design-Phase-Deliverables.md)，成品的樣子見[「系統設計範例報告」](../03-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期末不會直接產出。
+> **期末必讀標記**：標題後加註 🔵 期末必讀 的小節，是期末小組報告八項產出直接會用到的內容。判準見[「系統設計範例報告說明」](../04-Final-Project-Example-Reports/Design-Phase-Deliverables.md)，成品的樣子見[「系統設計範例報告」](../04-Final-Project-Example-Reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期末不會直接產出。
 
 ## 一、介面設計不是美工 🔵 期末必讀
 

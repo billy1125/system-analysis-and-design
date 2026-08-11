@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+{% block title %}校園活動報名{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='events.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="events-layout">
+
+  <!-- ── Top bar ── -->
+  <div class="events-topbar">
+    <span class="events-topbar-title">校園活動報名系統</span>
+    <div class="events-topbar-nav">
+      {% if user %}
+        <a href="{{ url_for('hub.home') }}" class="events-nav-link">返回首頁</a>
+        <a href="{{ url_for('events.my_registrations') }}" class="events-nav-link">我的報名</a>
+        <span class="events-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+        <a href="{{ url_for('auth.logout') }}" class="events-btn events-btn-danger">登出</a>
+      {% else %}
+        <a href="{{ url_for('hub.home') }}" class="events-nav-link">返回首頁</a>
+        <a href="{{ url_for('auth.login_page') }}" class="events-btn events-btn-primary">登入</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ── Flash messages ── -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="events-flash events-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <!-- ── Two-column content ── -->
+  <div class="events-content">
+
+    <!-- ══ Left panel: event list ══ -->
+    <div class="events-left">
+      <div class="events-panel-header">
+        <h2>活動清單</h2>
+        <div class="events-panel-actions">
+          <span class="events-total">共 {{ total }} 筆</span>
+          {% if user %}
+          <a href="{{ url_for('events.new_event') }}"
+             class="events-btn events-btn-primary events-btn-sm">+ 新增活動</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="events-table-wrap">
+        <table class="events-table">
+          <thead>
+            <tr>
+              <th class="col-id">ID</th>
+              <th class="col-title">活動名稱</th>
+              <th class="col-datetime">活動時間</th>
+              <th class="col-quota">名額</th>
+              <th class="col-status">狀態</th>
+              {% if user %}<th class="col-action">操作</th>{% endif %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for e in events %}
+            {% set st = event_statuses[e['id']] %}
+            <tr class="{{ 'events-row-selected' if selected_event and selected_event['id'] == e['id'] else '' }}">
+              <td>{{ e['id'] }}</td>
+              <td>
+                <a class="events-title-link"
+                   href="{{ url_for('events.index', page=page, event_id=e['id']) }}">
+                  {{ e['event_title'] }}
+                </a>
+              </td>
+              <td class="events-datetime-cell">{{ e['event_datetime'][:16] }}</td>
+              <td class="events-quota-cell">{{ e['registered_count'] }}/{{ e['capacity'] }}</td>
+              <td>
+                <span class="events-badge events-badge-{{ st }}">{{ STATUS_LABELS[st] }}</span>
+              </td>
+              {% if user %}
+              <td class="events-actions-cell">
+                {% if user['role'] == 0 or user['id'] == e['user_id'] %}
+                <a href="{{ url_for('events.edit_event', event_id=e['id']) }}"
+                   class="events-btn-action">修改</a>
+                <form method="POST"
+                      action="{{ url_for('events.delete_event', event_id=e['id']) }}"
+                      class="events-inline-form">
+                  <button type="submit" class="events-btn-action events-btn-action-danger"
+                          onclick="return confirm('確定刪除此活動？')">刪除</button>
+                </form>
+                {% endif %}
+              </td>
+              {% endif %}
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="{{ 6 if user else 5 }}" class="events-empty">尚無活動</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      {% if total_pages > 1 %}
+      <div class="events-pagination">
+        {% if page > 1 %}
+          <a href="{{ url_for('events.index', page=page-1, event_id=selected_event['id'] if selected_event else none) }}"
+             class="events-page-btn">&laquo; 上一頁</a>
+        {% else %}
+          <span class="events-page-btn events-page-disabled">&laquo; 上一頁</span>
+        {% endif %}
+
+        <span class="events-page-info">第 {{ page }} 頁 / 共 {{ total_pages }} 頁</span>
+
+        {% if page < total_pages %}
+          <a href="{{ url_for('events.index', page=page+1, event_id=selected_event['id'] if selected_event else none) }}"
+             class="events-page-btn">下一頁 &raquo;</a>
+        {% else %}
+          <span class="events-page-btn events-page-disabled">下一頁 &raquo;</span>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- ══ Right panel: event detail ══ -->
+    <div class="events-right">
+      {% if selected_event %}
+
+        <!-- Header -->
+        <div class="events-panel-header">
+          <div class="events-detail-title-wrap">
+            <h2>{{ selected_event['event_title'] }}</h2>
+            <span class="events-badge events-badge-{{ selected_status }} events-badge-lg">
+              {{ STATUS_LABELS[selected_status] }}
+            </span>
+          </div>
+          <div class="events-panel-actions">
+            {% if user and (user['role'] == 0 or user['id'] == selected_event['user_id']) %}
+              <a href="{{ url_for('events.edit_event', event_id=selected_event['id']) }}"
+                 class="events-btn events-btn-secondary events-btn-sm">修改活動</a>
+              <form method="POST"
+                    action="{{ url_for('events.delete_event', event_id=selected_event['id']) }}"
+                    class="events-inline-form">
+                <button type="submit" class="events-btn events-btn-danger events-btn-sm"
+                        onclick="return confirm('確定刪除此活動？')">刪除活動</button>
+              </form>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Scrollable detail area -->
+        <div class="events-detail-scroll">
+
+          <!-- Info grid -->
+          <div class="events-info-grid">
+            <div class="events-info-row">
+              <span class="events-info-label">活動時間</span>
+              <span class="events-info-value">{{ selected_event['event_datetime'] }}</span>
+            </div>
+            <div class="events-info-row">
+              <span class="events-info-label">活動地點</span>
+              <span class="events-info-value">{{ selected_event['event_place'] }}</span>
+            </div>
+            {% if selected_event['event_target'] %}
+            <div class="events-info-row">
+              <span class="events-info-label">活動對象</span>
+              <span class="events-info-value">{{ selected_event['event_target'] }}</span>
+            </div>
+            {% endif %}
+            <div class="events-info-row">
+              <span class="events-info-label">報名名額</span>
+              <span class="events-info-value">
+                {{ selected_event['registered_count'] }} / {{ selected_event['capacity'] }} 人
+              </span>
+            </div>
+            <div class="events-info-row">
+              <span class="events-info-label">報名期間</span>
+              <span class="events-info-value">
+                {% if selected_event['registration_start_at'] %}
+                  {{ selected_event['registration_start_at'][:16] }}
+                {% else %}
+                  建立後即可
+                {% endif %}
+                &nbsp;～&nbsp;
+                {% if selected_event['registration_end_at'] %}
+                  {{ selected_event['registration_end_at'][:16] }}
+                {% else %}
+                  活動開始前
+                {% endif %}
+              </span>
+            </div>
+            <div class="events-info-row">
+              <span class="events-info-label">發起者</span>
+              <span class="events-info-value">{{ selected_event['user_display'] }}</span>
+            </div>
+          </div>
+
+          <!-- 活動內容 -->
+          {% if selected_event['event_note'] %}
+          <div class="events-section">
+            <h3 class="events-section-title">活動內容</h3>
+            <div class="events-section-body">{{ selected_event['event_note'] }}</div>
+          </div>
+          {% endif %}
+
+          <!-- 注意事項 -->
+          {% if selected_event['event_notice'] %}
+          <div class="events-section">
+            <h3 class="events-section-title">注意事項</h3>
+            <div class="events-section-body">{{ selected_event['event_notice'] }}</div>
+          </div>
+          {% endif %}
+
+          <!-- 聯絡資訊 -->
+          {% if selected_event['event_contact'] %}
+          <div class="events-section">
+            <h3 class="events-section-title">聯絡資訊</h3>
+            <div class="events-section-body">{{ selected_event['event_contact'] }}</div>
+          </div>
+          {% endif %}
+
+          <!-- 報名操作 -->
+          <div class="events-reg-actions">
+            {% if not user %}
+              <span class="events-reg-hint">
+                請先 <a href="{{ url_for('auth.login_page') }}">登入</a> 以報名活動
+              </span>
+            {% elif user_registration and user_registration['registration_status'] == 'registered' %}
+              <span class="events-reg-status">已報名</span>
+              <a href="{{ url_for('events.edit_registration', event_id=selected_event['id']) }}"
+                 class="events-btn events-btn-secondary events-btn-sm">修改報名資訊</a>
+              <form method="POST"
+                    action="{{ url_for('events.cancel', event_id=selected_event['id']) }}"
+                    class="events-inline-form">
+                <button type="submit" class="events-btn events-btn-danger events-btn-sm"
+                        onclick="return confirm('確定取消報名？')">取消報名</button>
+              </form>
+            {% elif user_registration and user_registration['registration_status'] == 'cancelled' %}
+              <span class="events-reg-hint">您已取消報名</span>
+              {% if selected_status == 'available' %}
+              <a href="{{ url_for('events.register', event_id=selected_event['id']) }}"
+                 class="events-btn events-btn-primary events-btn-sm">重新報名</a>
+              {% endif %}
+            {% elif selected_status == 'available' %}
+              <a href="{{ url_for('events.register', event_id=selected_event['id']) }}"
+                 class="events-btn events-btn-primary events-btn-sm">我要報名</a>
+            {% else %}
+              <span class="events-reg-hint">{{ STATUS_LABELS[selected_status] }}，目前無法報名</span>
+            {% endif %}
+          </div>
+
+          <!-- 報名名單 -->
+          <div class="events-section">
+            <h3 class="events-section-title">
+              目前報名者
+              <span class="events-reg-count">{{ selected_event['registered_count'] }} 人</span>
+            </h3>
+
+            {% if all_registrations %}
+            {# 活動發起者 / 管理員的完整檢視：含已取消紀錄與聯絡資訊 #}
+            <div class="events-table-wrap-inner">
+              <table class="events-table events-table-sm">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>報名者</th>
+                    <th>姓名</th>
+                    <th>電話</th>
+                    <th>Email</th>
+                    <th>用餐</th>
+                    <th>狀態</th>
+                    <th>備註</th>
+                    <th>報名時間</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for reg in all_registrations %}
+                  <tr class="{{ 'events-row-cancelled' if reg['registration_status'] == 'cancelled' else '' }}">
+                    <td>{{ reg['id'] }}</td>
+                    <td>{{ reg['user_display'] }}</td>
+                    <td>{{ reg['participant_name'] or '—' }}</td>
+                    <td>{{ reg['participant_phone'] or '—' }}</td>
+                    <td>{{ reg['participant_email'] or '—' }}</td>
+                    <td>{{ MEAL_LABELS.get(reg['meal_type'], '—') }}</td>
+                    <td>
+                      <span class="events-badge events-badge-reg-{{ reg['registration_status'] }}">
+                        {{ REG_STATUS_LABELS.get(reg['registration_status'], reg['registration_status']) }}
+                      </span>
+                    </td>
+                    <td>{{ reg['registration_note'] or '—' }}</td>
+                    <td>{{ reg['created_at'][:16] }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+
+            {% elif registrations %}
+            {# 一般公開檢視：只顯示有效報名者與報名時間 #}
+            <table class="events-table">
+              <thead>
+                <tr>
+                  <th>報名者</th>
+                  <th>報名時間</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for reg in registrations %}
+                <tr>
+                  <td>{{ reg['user_display'] }}</td>
+                  <td>{{ reg['created_at'][:16] }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            {% else %}
+            <p class="events-empty-inline">目前尚無人報名</p>
+            {% endif %}
+
+          </div><!-- /events-section -->
+        </div><!-- /events-detail-scroll -->
+
+      {% else %}
+        <div class="events-placeholder">
+          <p>請從左側選擇活動以查看詳情與報名者</p>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block title %}訂單管理{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='meal.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="meal-layout">
+
+  <div class="meal-topbar">
+    <span class="meal-topbar-title">訂單管理</span>
+    <div class="meal-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="meal-nav-link">返回首頁</a>
+      <a href="{{ url_for('meal.index') }}" class="meal-nav-link">今日菜單</a>
+      <a href="{{ url_for('meal.my_orders') }}" class="meal-nav-link">我的訂單</a>
+      <span class="meal-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="meal-btn meal-btn-danger">登出</a>
+    </div>
+  </div>
+
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="meal-flash meal-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+  {% endfor %}
+
+  <div class="meal-main">
+    <div class="meal-filter-bar">
+      <a href="{{ url_for('meal.admin_orders') }}"
+         class="meal-filter-link {{ 'meal-filter-active' if not status }}">全部</a>
+      {% for key, label in ORDER_STATUS_LABELS.items() %}
+        <a href="{{ url_for('meal.admin_orders', status=key) }}"
+           class="meal-filter-link {{ 'meal-filter-active' if status == key }}">{{ label }}</a>
+      {% endfor %}
+    </div>
+
+    <div class="meal-panel-header">
+      <h2>所有訂單</h2>
+      <span class="meal-total">共 {{ total }} 筆</span>
+    </div>
+
+    <div class="meal-table-wrap">
+      <table class="meal-table">
+        <thead>
+          <tr>
+            <th class="col-id">訂單</th>
+            <th class="col-name">訂購人</th>
+            <th class="col-date">取餐日期</th>
+            <th class="col-slot">時段</th>
+            <th class="col-name">取餐地點</th>
+            <th class="col-price">金額</th>
+            <th class="col-status">狀態</th>
+            <th class="col-time">建立時間</th>
+            <th class="col-action-wide">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for o in orders %}
+            <tr>
+              <td>#{{ o['id'] }}</td>
+              <td>{{ o['orderer_display'] }}</td>
+              <td>{{ o['pickup_date'] }}</td>
+              <td>{{ SLOT_LABELS[o['pickup_slot']] }}</td>
+              <td>{{ o['pickup_location'] }}</td>
+              <td class="meal-num">NT$ {{ o['total_amount'] }}</td>
+              <td>
+                <span class="meal-badge meal-badge-{{ o['order_status'] }}">
+                  {{ ORDER_STATUS_LABELS[o['order_status']] }}
+                </span>
+              </td>
+              <td>{{ o['created_at'] }}</td>
+              <td>
+                <div class="meal-actions-cell">
+                  <a href="{{ url_for('meal.order_detail', order_id=o['id']) }}"
+                     class="meal-btn-action">詳細</a>
+
+                  {% if o['order_status'] == 'pending' %}
+                    <form method="POST" class="meal-review-form"
+                          action="{{ url_for('meal.admin_confirm', order_id=o['id']) }}">
+                      <input type="text" name="review_note" class="meal-review-input"
+                             placeholder="審核備註（可留空）" autocomplete="off">
+                      <button type="submit" class="meal-btn-action">確認</button>
+                    </form>
+                    <form method="POST" class="meal-inline-form"
+                          action="{{ url_for('meal.admin_reject', order_id=o['id']) }}">
+                      <button type="submit" class="meal-btn-action meal-btn-action-danger"
+                              onclick="return confirm('確定要拒絕這張訂單嗎？')">拒絕</button>
+                    </form>
+                  {% elif o['order_status'] == 'confirmed' %}
+                    <form method="POST" class="meal-inline-form"
+                          action="{{ url_for('meal.admin_complete', order_id=o['id']) }}">
+                      <button type="submit" class="meal-btn-action">登記取餐</button>
+                    </form>
+                  {% endif %}
+
+                  {% if o['order_status'] in ('pending', 'confirmed') %}
+                    <form method="POST" class="meal-inline-form"
+                          action="{{ url_for('meal.admin_cancel', order_id=o['id']) }}">
+                      <button type="submit" class="meal-btn-action meal-btn-action-danger"
+                              onclick="return confirm('確定要代為取消這張訂單嗎？')">取消</button>
+                    </form>
+                  {% endif %}
+                </div>
+              </td>
+            </tr>
+          {% else %}
+            <tr><td colspan="9" class="meal-empty">查無訂單</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if total_pages > 1 %}
+      <div class="meal-pagination">
+        {% if page > 1 %}
+          <a href="{{ url_for('meal.admin_orders', status=status or none, page=page-1) }}"
+             class="meal-page-btn">&laquo; 上一頁</a>
+        {% else %}
+          <span class="meal-page-btn meal-page-disabled">&laquo; 上一頁</span>
+        {% endif %}
+
+        <span class="meal-page-info">第 {{ page }} / {{ total_pages }} 頁</span>
+
+        {% if page < total_pages %}
+          <a href="{{ url_for('meal.admin_orders', status=status or none, page=page+1) }}"
+             class="meal-page-btn">下一頁 &raquo;</a>
+        {% else %}
+          <span class="meal-page-btn meal-page-disabled">下一頁 &raquo;</span>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block title %}訂單 #{{ order['id'] }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='meal.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="meal-layout">
+
+  <div class="meal-topbar">
+    <span class="meal-topbar-title">訂單 #{{ order['id'] }}</span>
+    <div class="meal-topbar-nav">
+      <a href="{{ url_for('meal.my_orders') }}" class="meal-nav-link">我的訂單</a>
+      <a href="{{ url_for('meal.index') }}" class="meal-nav-link">今日菜單</a>
+      {% if is_admin %}
+        <a href="{{ url_for('meal.admin_orders') }}" class="meal-nav-link">訂單管理</a>
+      {% endif %}
+      <span class="meal-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="meal-btn meal-btn-danger">登出</a>
+    </div>
+  </div>
+
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="meal-flash meal-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+  {% endfor %}
+
+  <div class="meal-main">
+
+    <div class="meal-info-card">
+      <p class="meal-card-title">訂單資訊</p>
+      <div class="meal-info-row">
+        <span class="meal-info-label">訂單狀態</span>
+        <span class="meal-info-value">
+          <span class="meal-badge meal-badge-{{ order['order_status'] }}">
+            {{ ORDER_STATUS_LABELS[order['order_status']] }}
+          </span>
+        </span>
+      </div>
+      <div class="meal-info-row">
+        <span class="meal-info-label">訂購人</span>
+        <span class="meal-info-value">{{ order['orderer_display'] }}</span>
+      </div>
+      <div class="meal-info-row">
+        <span class="meal-info-label">取餐日期</span>
+        <span class="meal-info-value">{{ order['pickup_date'] }}</span>
+      </div>
+      <div class="meal-info-row">
+        <span class="meal-info-label">取餐時段</span>
+        <span class="meal-info-value">{{ SLOT_LABELS[order['pickup_slot']] }}</span>
+      </div>
+      <div class="meal-info-row">
+        <span class="meal-info-label">取餐地點</span>
+        <span class="meal-info-value">{{ order['pickup_location'] }}</span>
+      </div>
+      <div class="meal-info-row">
+        <span class="meal-info-label">訂單備註</span>
+        <span class="meal-info-value">{{ order['order_note'] or '—' }}</span>
+      </div>
+      <div class="meal-info-row">
+        <span class="meal-info-label">建立時間</span>
+        <span class="meal-info-value">{{ order['created_at'] }}</span>
+      </div>
+      <div class="meal-info-row">
+        <span class="meal-info-label">最後更新</span>
+        <span class="meal-info-value">{{ order['updated_at'] }}</span>
+      </div>
+      {% if order['reviewed_by'] %}
+        <div class="meal-info-row">
+          <span class="meal-info-label">審核人</span>
+          <span class="meal-info-value">{{ order['reviewer_display'] }}</span>
+        </div>
+        <div class="meal-info-row">
+          <span class="meal-info-label">審核時間</span>
+          <span class="meal-info-value">{{ order['reviewed_at'] }}</span>
+        </div>
+        <div class="meal-info-row">
+          <span class="meal-info-label">審核備註</span>
+          <span class="meal-info-value">{{ order['review_note'] or '—' }}</span>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="meal-info-card">
+      <p class="meal-card-title">訂購項目</p>
+      <div class="meal-table-wrap">
+        <table class="meal-table">
+          <thead>
+            <tr>
+              <th class="col-code">編號</th>
+              <th class="col-name">餐點名稱</th>
+              <th class="col-category">分類</th>
+              <th class="col-price">單價</th>
+              <th class="col-qty">份數</th>
+              <th class="col-price">小計</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in items %}
+              <tr>
+                <td>{{ i['meal_code'] or '—' }}</td>
+                <td>{{ i['meal_name'] or '（餐點已下架）' }}</td>
+                <td>
+                  {% if i['category'] %}
+                    <span class="meal-badge meal-badge-category">{{ CATEGORY_LABELS[i['category']] }}</span>
+                  {% else %}—{% endif %}
+                </td>
+                <td class="meal-num">NT$ {{ i['unit_price'] }}</td>
+                <td class="meal-num">{{ i['quantity'] }}</td>
+                <td class="meal-num">NT$ {{ i['subtotal'] }}</td>
+              </tr>
+            {% else %}
+              <tr><td colspan="6" class="meal-empty">此訂單沒有項目</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="meal-total-row">
+        <span>訂單總金額</span>
+        <span class="meal-total-amount">NT$ {{ order['total_amount'] }}</span>
+      </div>
+      <div class="meal-form-hint" style="text-align:right">
+        單價為下單當下的價格快照，不隨菜單調價而變動。
+      </div>
+    </div>
+
+    {% if order['orderer_id'] == user['id'] %}
+      <div class="meal-action-card">
+        <p class="meal-card-title">操作</p>
+        <div class="meal-action-group">
+          {% if order['order_status'] == 'pending' %}
+            <a href="{{ url_for('meal.edit_order', order_id=order['id']) }}"
+               class="meal-btn meal-btn-secondary">修改訂單</a>
+          {% endif %}
+          {% if order['order_status'] in ('pending', 'confirmed') %}
+            <form method="POST" class="meal-inline-form"
+                  action="{{ url_for('meal.cancel_order', order_id=order['id']) }}">
+              <button type="submit" class="meal-btn meal-btn-danger"
+                      onclick="return confirm('確定要取消這張訂單嗎？此操作無法復原。')">取消訂單</button>
+            </form>
+          {% endif %}
+          {% if order['order_status'] not in ('pending', 'confirmed') %}
+            <span class="meal-form-hint">此訂單已結案，無法再修改或取消。</span>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+
+    <a href="{{ url_for('meal.my_orders') }}" class="meal-btn meal-btn-secondary">返回我的訂單</a>
+  </div>
+</div>
+{% endblock %}

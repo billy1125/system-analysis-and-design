@@ -1,0 +1,397 @@
+/* admin.css — 會員管理頁專用樣式。
+ *
+ * 骨架取自 forum.css 後改前綴。按鍵顏色一律引用 common.css 的 token。
+ * 狀態 badge 的底色硬編碼於此（common.css 未定義狀態語意色），見 KI-19。
+ */
+
+/* Admin — overrides login.css body centering */
+body {
+  display: block;
+  background-color: #f0f2f5;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Top bar ──────────────────────────────────────────────────────────────── */
+
+.admin-topbar {
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.admin-topbar-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.admin-topbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.9rem;
+}
+
+.admin-nav-link {
+  color: #555;
+  text-decoration: none;
+}
+
+.admin-nav-link:hover {
+  color: #1a73e8;
+}
+
+.admin-nav-user {
+  color: #555;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+
+.admin-btn {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.2s;
+}
+
+.admin-btn-primary          { background-color: var(--btn-primary-bg);      color: #fff; }
+.admin-btn-primary:hover    { background-color: var(--btn-primary-hover); }
+.admin-btn-secondary        { background-color: var(--btn-secondary-bg);    color: var(--btn-secondary-color); }
+.admin-btn-secondary:hover  { background-color: var(--btn-secondary-hover); }
+.admin-btn-danger           { background-color: var(--btn-danger-bg);       color: #fff; }
+.admin-btn-danger:hover     { background-color: var(--btn-danger-hover); }
+
+.admin-btn-sm {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+}
+
+.admin-btn-action {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  background-color: var(--btn-action-bg);
+  border: 1px solid var(--btn-action-border);
+  color: var(--btn-action-color);
+  transition: background-color 0.2s;
+}
+
+.admin-btn-action:hover { background-color: var(--btn-action-hover); }
+
+.admin-btn-action-danger {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  background-color: var(--btn-action-danger-bg);
+  border: 1px solid var(--btn-action-danger-border);
+  color: var(--btn-action-danger-color);
+  transition: background-color 0.2s;
+}
+
+.admin-btn-action-danger:hover { background-color: var(--btn-action-danger-hover); }
+
+.admin-inline-form { display: inline; }
+
+/* ── Flash messages ───────────────────────────────────────────────────────── */
+
+.admin-flash {
+  padding: 10px 24px;
+  font-size: 0.88rem;
+  flex-shrink: 0;
+}
+
+.admin-flash-error {
+  background: #ffebee;
+  color: #c62828;
+  border-bottom: 1px solid #ef9a9a;
+}
+
+.admin-flash-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-bottom: 1px solid #a5d6a7;
+}
+
+/* ── Main area ────────────────────────────────────────────────────────────── */
+
+.admin-main {
+  flex: 1;
+  padding: 20px 24px;
+}
+
+.admin-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+
+.admin-panel-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.admin-total {
+  font-size: 0.8rem;
+  color: #888;
+  flex-shrink: 0;
+}
+
+/* ── Filter bar ───────────────────────────────────────────────────────────── */
+
+.admin-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.admin-filter-links {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-filter-link {
+  padding: 4px 12px;
+  font-size: 0.82rem;
+  border-radius: 4px;
+  text-decoration: none;
+  background: #fff;
+  color: #555;
+  border: 1px solid #ddd;
+  transition: background-color 0.2s;
+}
+
+.admin-filter-link:hover { background: #f0f0f0; }
+
+.admin-filter-active {
+  background-color: var(--btn-primary-bg);
+  color: #fff;
+  border-color: var(--btn-primary-bg);
+}
+
+.admin-filter-active:hover { background-color: var(--btn-primary-hover); }
+
+.admin-search-form {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.admin-search-input {
+  padding: 5px 10px;
+  font-size: 0.82rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-width: 200px;
+}
+
+.admin-search-input:focus {
+  outline: none;
+  border-color: var(--btn-primary-bg);
+}
+
+/* ── Table ────────────────────────────────────────────────────────────────── */
+
+.admin-table-wrap {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.admin-table th {
+  background: #f5f5f5;
+  color: #555;
+  font-weight: bold;
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+  vertical-align: middle;
+}
+
+.admin-table tbody tr:hover { background: #f9f9f9; }
+
+.admin-row-self td { background: #e8f0fe; }
+
+.admin-self-note {
+  color: #888;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.admin-empty {
+  text-align: center;
+  color: #aaa;
+  padding: 32px 0 !important;
+}
+
+.admin-actions-cell {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ── Column widths ────────────────────────────────────────────────────────── */
+
+.col-id      { width: 48px; }
+.col-email   { min-width: 180px; }
+.col-name    { min-width: 100px; }
+.col-role    { width: 100px; }
+.col-status  { width: 90px; }
+.col-time    { width: 150px; white-space: nowrap; }
+.col-action-wide { min-width: 200px; }
+
+/* ── Badges ───────────────────────────────────────────────────────────────── */
+/* 狀態語意色未納入 common.css 的 token 體系，此處硬編碼（KI-19）。 */
+
+.admin-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 0.78rem;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.admin-badge-active   { background: #e8f5e9; color: #2e7d32; }
+.admin-badge-disabled { background: #fff3e0; color: #ef6c00; }
+.admin-badge-deleted  { background: #fafafa; color: #9e9e9e; }
+
+.admin-badge-role-admin { background: #e3f2fd; color: #1565c0; }
+.admin-badge-role-user  { background: #f5f5f5; color: #616161; }
+
+/* ── Pagination ───────────────────────────────────────────────────────────── */
+
+.admin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 0 0;
+}
+
+.admin-page-btn {
+  padding: 4px 12px;
+  font-size: 0.82rem;
+  border-radius: 4px;
+  text-decoration: none;
+  background: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  transition: background-color 0.2s;
+}
+
+.admin-page-btn:not(.admin-page-disabled):hover { background: #f0f0f0; }
+
+.admin-page-disabled {
+  color: #bbb;
+  cursor: not-allowed;
+}
+
+.admin-page-info {
+  font-size: 0.82rem;
+  color: #666;
+}
+
+/* ── Detail page ──────────────────────────────────────────────────────────── */
+
+.admin-info-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  padding: 20px 24px;
+  max-width: 640px;
+  margin-bottom: 18px;
+}
+
+.admin-info-row {
+  display: flex;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.88rem;
+}
+
+.admin-info-row:last-child { border-bottom: none; }
+
+.admin-info-label {
+  width: 120px;
+  color: #999;
+  flex-shrink: 0;
+}
+
+.admin-info-value {
+  color: #333;
+  word-break: break-all;
+}
+
+.admin-action-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  padding: 20px 24px;
+  max-width: 640px;
+  margin-bottom: 18px;
+}
+
+.admin-action-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.admin-action-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.admin-role-select {
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

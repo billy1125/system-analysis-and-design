@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}登入{% endblock %}
+
+{% block body %}
+<div class="login-card">
+  <h1>系統分析與設計</h1>
+  <h2>校園活動報名系統 v1.0</h2>
+  <h2>登入</h2>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="alert {{ category }}" style="display:block">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  {% if error %}
+    <div class="alert error" style="display:block">{{ error }}</div>
+  {% endif %}
+
+  <form method="POST" action="{{ url_for('auth.login_page') }}" novalidate class="login-form">
+    <div class="form-group">
+      <label for="email">電子郵件</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        value="{{ request.form.get('email', '') }}"
+        placeholder="example@mail.com"
+        autocomplete="email"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="password">密碼</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="請輸入密碼"
+        autocomplete="current-password"
+      >
+    </div>
+
+    <div class="form-group">
+      <label>驗證碼</label>
+      <div class="captcha-wrapper">
+        <img
+          id="captchaImg"
+          src="{{ url_for('auth.captcha_image') }}"
+          width="160"
+          height="50"
+          style="border:1px solid #ccc; border-radius:4px; cursor:pointer"
+          title="點擊刷新"
+          onclick="this.src='{{ url_for('auth.captcha_image') }}?t='+Date.now()"
+          alt="驗證碼"
+        >
+        <button
+          type="button"
+          class="btn-captcha-refresh"
+          onclick="document.getElementById('captchaImg').src='{{ url_for('auth.captcha_image') }}?t='+Date.now()"
+        >↻</button>
+      </div>
+      <input
+        type="text"
+        name="captcha"
+        placeholder="請輸入圖中文字（不分大小寫）"
+        autocomplete="off"
+        maxlength="6"
+      >
+    </div>
+
+    <button type="submit">登入</button>
+    <a
+      href="{{ url_for('auth.register') }}"
+      class="btn-secondary"
+      style="display:block; text-align:center; padding:11px; margin-top:8px; text-decoration:none"
+    >申請帳號</a>
+  </form>
+</div>
+{% endblock %}

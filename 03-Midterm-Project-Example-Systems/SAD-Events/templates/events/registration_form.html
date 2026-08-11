@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}{{ '報名活動' if mode == 'register' else '修改報名資訊' }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='events.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="events-layout">
+
+  <!-- ── Top bar ── -->
+  <div class="events-topbar">
+    <span class="events-topbar-title">校園活動報名系統</span>
+    <div class="events-topbar-nav">
+      <a href="{{ url_for('events.index', event_id=event['id']) }}" class="events-nav-link">返回活動</a>
+      <span class="events-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="events-btn events-btn-danger">登出</a>
+    </div>
+  </div>
+
+  <!-- ── Flash messages ── -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="events-flash events-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <!-- ── Form ── -->
+  <div class="events-form-page">
+    <div class="events-form-card">
+      <h2>{{ '報名活動' if mode == 'register' else '修改報名資訊' }}</h2>
+
+      <!-- Event summary -->
+      <div class="events-reg-summary">
+        <div class="events-reg-summary-title">{{ event['event_title'] }}</div>
+        <div class="events-reg-summary-meta">
+          <span>{{ event['event_datetime'][:16] }}</span>
+          <span>{{ event['event_place'] }}</span>
+          <span>{{ event['registered_count'] }} / {{ event['capacity'] }} 人</span>
+        </div>
+      </div>
+
+      {% if error %}
+      <div class="events-alert events-alert-error">{{ error }}</div>
+      {% endif %}
+
+      <form method="POST">
+
+        <!-- 用餐選項 -->
+        <div class="events-form-group">
+          <label>用餐選項</label>
+          <div class="events-radio-group">
+            <label class="events-radio-label">
+              <input type="radio" name="meal_type" value="0"
+                     {{ 'checked' if form.meal_type == '0' else '' }}>
+              不用餐
+            </label>
+            <label class="events-radio-label">
+              <input type="radio" name="meal_type" value="1"
+                     {{ 'checked' if form.meal_type == '1' else '' }}>
+              葷食
+            </label>
+            <label class="events-radio-label">
+              <input type="radio" name="meal_type" value="2"
+                     {{ 'checked' if form.meal_type == '2' else '' }}>
+              素食
+            </label>
+          </div>
+        </div>
+
+        <hr class="events-form-divider">
+
+        <!-- 報名者資訊（皆為選填） -->
+        <div class="events-form-row">
+          <div class="events-form-group">
+            <label for="participant_name">真實姓名</label>
+            <input type="text" id="participant_name" name="participant_name"
+                   value="{{ form.participant_name }}"
+                   placeholder="選填">
+          </div>
+          <div class="events-form-group">
+            <label for="participant_phone">聯絡電話</label>
+            <input type="tel" id="participant_phone" name="participant_phone"
+                   value="{{ form.participant_phone }}"
+                   placeholder="選填">
+          </div>
+        </div>
+
+        <div class="events-form-group">
+          <label for="participant_email">聯絡 Email</label>
+          <input type="email" id="participant_email" name="participant_email"
+                 value="{{ form.participant_email }}"
+                 placeholder="選填">
+        </div>
+
+        <div class="events-form-group">
+          <label for="registration_note">備註</label>
+          <textarea id="registration_note" name="registration_note"
+                    placeholder="選填"
+                    style="min-height: 80px;">{{ form.registration_note }}</textarea>
+        </div>
+
+        <!-- Actions -->
+        <div class="events-form-actions">
+          <button type="submit" class="events-btn events-btn-primary">
+            {{ '確認報名' if mode == 'register' else '儲存變更' }}
+          </button>
+          <a href="{{ url_for('events.index', event_id=event['id']) }}"
+             class="events-btn events-btn-secondary">取消</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

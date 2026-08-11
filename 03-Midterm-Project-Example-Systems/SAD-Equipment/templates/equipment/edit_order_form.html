@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}修改借用申請{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='equipment.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="eq-layout">
+
+  <div class="eq-topbar">
+    <span class="eq-topbar-title">器材借用系統</span>
+    <div class="eq-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="eq-nav-link">返回首頁</a>
+      <a href="{{ url_for('equipment.index') }}" class="eq-nav-link">器材清單</a>
+      <a href="{{ url_for('equipment.my_orders') }}" class="eq-nav-link">我的借用</a>
+      <span class="eq-nav-user">{{ user['display_name'] or user['name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="eq-btn eq-btn-danger">登出</a>
+    </div>
+  </div>
+
+  <div class="eq-form-page">
+    <div class="eq-form-card">
+      <h2>修改借用申請 #{{ order['id'] }}</h2>
+
+      {% if error %}
+        <div class="eq-alert eq-alert-error">{{ error }}</div>
+      {% endif %}
+
+      <form method="post">
+        <div class="eq-form-row">
+          <div class="eq-form-group">
+            <label>預計借用開始時間 <span class="eq-required">*</span></label>
+            <input type="datetime-local" name="borrow_start_at"
+                   value="{{ form['borrow_start_at'] }}" required>
+          </div>
+          <div class="eq-form-group">
+            <label>預計歸還時間 <span class="eq-required">*</span></label>
+            <input type="datetime-local" name="borrow_end_at"
+                   value="{{ form['borrow_end_at'] }}" required>
+          </div>
+        </div>
+
+        <div class="eq-form-group">
+          <label>借用用途 <span class="eq-required">*</span></label>
+          <textarea name="borrow_reason" required>{{ form['borrow_reason'] }}</textarea>
+        </div>
+
+        <hr class="eq-form-divider">
+        <h3 class="eq-section-title">借用器材</h3>
+
+        {% for item in current_items %}
+        <div class="eq-form-row">
+          <div class="eq-form-group">
+            <label>器材</label>
+            <input type="text" value="{{ item['equipment_name'] }} ({{ item['equipment_code'] }})"
+                   readonly class="eq-input-readonly">
+            <input type="hidden" name="equipment_id[]" value="{{ item['equipment_id'] }}">
+          </div>
+          <div class="eq-form-group">
+            <label>數量 <span class="eq-required">*</span></label>
+            <input type="number" name="quantity[]" min="1" value="{{ item['quantity'] }}" required>
+          </div>
+        </div>
+        {% endfor %}
+
+        <div class="eq-form-actions">
+          <button type="submit" class="eq-btn eq-btn-primary">儲存修改</button>
+          <a href="{{ url_for('equipment.order_detail', order_id=order['id']) }}"
+             class="eq-btn eq-btn-secondary">取消</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

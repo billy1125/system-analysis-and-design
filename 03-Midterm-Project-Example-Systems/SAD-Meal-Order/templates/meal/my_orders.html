@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}我的訂單{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='meal.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="meal-layout">
+
+  <div class="meal-topbar">
+    <span class="meal-topbar-title">我的訂單</span>
+    <div class="meal-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="meal-nav-link">返回首頁</a>
+      <a href="{{ url_for('meal.index') }}" class="meal-nav-link">今日菜單</a>
+      {% if user['role'] == 0 %}
+        <a href="{{ url_for('meal.admin_orders') }}" class="meal-nav-link">訂單管理</a>
+      {% endif %}
+      <span class="meal-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="meal-btn meal-btn-danger">登出</a>
+    </div>
+  </div>
+
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="meal-flash meal-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+  {% endfor %}
+
+  <div class="meal-main">
+    <div class="meal-panel-header">
+      <h2>訂單紀錄</h2>
+      <div class="meal-panel-actions">
+        <span class="meal-total">共 {{ total }} 筆</span>
+        <a href="{{ url_for('meal.new_order') }}" class="meal-btn meal-btn-primary meal-btn-sm">我要訂餐</a>
+      </div>
+    </div>
+
+    <div class="meal-table-wrap">
+      <table class="meal-table">
+        <thead>
+          <tr>
+            <th class="col-id">訂單</th>
+            <th class="col-date">取餐日期</th>
+            <th class="col-slot">時段</th>
+            <th class="col-name">取餐地點</th>
+            <th class="col-price">金額</th>
+            <th class="col-status">狀態</th>
+            <th class="col-time">建立時間</th>
+            <th class="col-action">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for o in orders %}
+            <tr>
+              <td>#{{ o['id'] }}</td>
+              <td>{{ o['pickup_date'] }}</td>
+              <td>{{ SLOT_LABELS[o['pickup_slot']] }}</td>
+              <td>{{ o['pickup_location'] }}</td>
+              <td class="meal-num">NT$ {{ o['total_amount'] }}</td>
+              <td>
+                <span class="meal-badge meal-badge-{{ o['order_status'] }}">
+                  {{ ORDER_STATUS_LABELS[o['order_status']] }}
+                </span>
+              </td>
+              <td>{{ o['created_at'] }}</td>
+              <td>
+                <div class="meal-actions-cell">
+                  <a href="{{ url_for('meal.order_detail', order_id=o['id']) }}"
+                     class="meal-btn-action">詳細</a>
+                  {% if o['order_status'] == 'pending' %}
+                    <a href="{{ url_for('meal.edit_order', order_id=o['id']) }}"
+                       class="meal-btn-action">修改</a>
+                  {% endif %}
+                </div>
+              </td>
+            </tr>
+          {% else %}
+            <tr><td colspan="8" class="meal-empty">尚無訂單</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if total_pages > 1 %}
+      <div class="meal-pagination">
+        {% if page > 1 %}
+          <a href="{{ url_for('meal.my_orders', page=page-1) }}" class="meal-page-btn">&laquo; 上一頁</a>
+        {% else %}
+          <span class="meal-page-btn meal-page-disabled">&laquo; 上一頁</span>
+        {% endif %}
+
+        <span class="meal-page-info">第 {{ page }} / {{ total_pages }} 頁</span>
+
+        {% if page < total_pages %}
+          <a href="{{ url_for('meal.my_orders', page=page+1) }}" class="meal-page-btn">下一頁 &raquo;</a>
+        {% else %}
+          <span class="meal-page-btn meal-page-disabled">下一頁 &raquo;</span>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

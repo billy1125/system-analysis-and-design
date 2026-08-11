@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}我的借用紀錄{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='equipment.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="eq-layout">
+
+  <div class="eq-topbar">
+    <span class="eq-topbar-title">器材借用系統</span>
+    <div class="eq-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="eq-nav-link">返回首頁</a>
+      <a href="{{ url_for('equipment.index') }}" class="eq-nav-link">器材清單</a>
+      {% if user['role'] == 0 %}
+        <a href="{{ url_for('equipment.admin_orders') }}" class="eq-nav-link">借用管理</a>
+      {% endif %}
+      <span class="eq-nav-user">{{ user['display_name'] or user['name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="eq-btn eq-btn-danger">登出</a>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="eq-flash eq-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="eq-my-page">
+    <div class="eq-my-card">
+      <div class="eq-my-header">
+        <h2>我的借用紀錄</h2>
+        <span class="eq-total">共 {{ orders|length }} 筆</span>
+      </div>
+
+      <div class="eq-table-wrap-inner">
+        <table class="eq-table">
+          <thead>
+            <tr>
+              <th class="col-id">ID</th>
+              <th>預計借用開始</th>
+              <th>預計歸還</th>
+              <th>借用用途</th>
+              <th class="col-status">狀態</th>
+              <th>建立時間</th>
+              <th class="col-action">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+            <tr>
+              <td>{{ order['id'] }}</td>
+              <td class="eq-datetime-cell">{{ order['borrow_start_at'] }}</td>
+              <td class="eq-datetime-cell">{{ order['borrow_end_at'] }}</td>
+              <td>{{ order['borrow_reason'] }}</td>
+              <td>
+                <span class="eq-badge eq-badge-order-{{ order['order_status'] }}">
+                  {{ order_status_labels.get(order['order_status'], order['order_status']) }}
+                </span>
+              </td>
+              <td class="eq-datetime-cell">{{ order['created_at'] }}</td>
+              <td class="eq-actions-cell">
+                <a href="{{ url_for('equipment.order_detail', order_id=order['id']) }}"
+                   class="eq-btn-action">詳細</a>
+                {% if order['order_status'] in ('pending', 'approved') %}
+                  {% if order['order_status'] == 'pending' %}
+                    <a href="{{ url_for('equipment.edit_order', order_id=order['id']) }}"
+                       class="eq-btn-action">修改</a>
+                  {% endif %}
+                  <form method="post"
+                        action="{{ url_for('equipment.cancel_order', order_id=order['id']) }}"
+                        class="eq-inline-form"
+                        onsubmit="return confirm('確定取消此借用申請？')">
+                    <button type="submit" class="eq-btn-action eq-btn-action-danger">取消</button>
+                  </form>
+                {% endif %}
+              </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="7" class="eq-empty">目前沒有借用紀錄</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

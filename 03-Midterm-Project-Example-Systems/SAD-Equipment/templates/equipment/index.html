@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% block title %}器材借用系統{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='equipment.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="eq-layout">
+
+  <!-- ── Top bar ── -->
+  <div class="eq-topbar">
+    <span class="eq-topbar-title">器材借用系統</span>
+    <div class="eq-topbar-nav">
+      {% if user %}
+        <a href="{{ url_for('hub.home') }}" class="eq-nav-link">返回首頁</a>
+        <a href="{{ url_for('equipment.my_orders') }}" class="eq-nav-link">我的借用</a>
+        {% if user['role'] == 0 %}
+          <a href="{{ url_for('equipment.admin_orders') }}" class="eq-nav-link">借用管理</a>
+        {% endif %}
+        <span class="eq-nav-user">{{ user['display_name'] or user['name'] or user['email'] }}</span>
+        <a href="{{ url_for('auth.logout') }}" class="eq-btn eq-btn-danger">登出</a>
+      {% else %}
+        <a href="{{ url_for('auth.login_page') }}" class="eq-btn eq-btn-primary">登入</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ── Flash messages ── -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="eq-flash eq-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <!-- ── Two-column content ── -->
+  <div class="eq-content">
+
+    <!-- ══ Left: equipment list ══ -->
+    <div class="eq-left">
+      <div class="eq-panel-header">
+        <h2>器材清單</h2>
+        <div class="eq-panel-actions">
+          <span class="eq-total">共 {{ total }} 筆</span>
+          {% if user and user['role'] == 0 %}
+            <a href="{{ url_for('equipment.new_equipment') }}"
+               class="eq-btn eq-btn-primary eq-btn-sm">+ 新增器材</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="eq-table-wrap">
+        <div class="eq-table-wrap-inner">
+          <table class="eq-table">
+            <thead>
+              <tr>
+                <th class="col-id">ID</th>
+                <th>編號</th>
+                <th>名稱</th>
+                <th class="col-qty">總數</th>
+                <th class="col-qty">可借</th>
+                <th class="col-status">狀態</th>
+                {% if user and user['role'] == 0 %}
+                  <th class="col-action">操作</th>
+                {% endif %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for eq in equipments %}
+              <tr class="{{ 'eq-row-selected' if selected and selected['id'] == eq['id'] else '' }}">
+                <td>{{ eq['id'] }}</td>
+                <td>{{ eq['equipment_code'] }}</td>
+                <td>
+                  <a href="{{ url_for('equipment.index', id=eq['id'], page=page) }}"
+                     class="eq-title-link">{{ eq['equipment_name'] }}</a>
+                </td>
+                <td class="eq-qty-cell">{{ eq['total_quantity'] }}</td>
+                <td class="eq-qty-cell">{{ eq['available_quantity'] }}</td>
+                <td>
+                  <span class="eq-badge eq-badge-{{ eq['equipment_status'] }}">
+                    {{ status_labels.get(eq['equipment_status'], eq['equipment_status']) }}
+                  </span>
+                </td>
+                {% if user and user['role'] == 0 %}
+                <td class="eq-actions-cell">
+                  <a href="{{ url_for('equipment.edit_equipment', equipment_id=eq['id']) }}"
+                     class="eq-btn-action">修改</a>
+                  <form method="post"
+                        action="{{ url_for('equipment.delete_equipment', equipment_id=eq['id']) }}"
+                        class="eq-inline-form"
+                        onsubmit="return confirm('確定刪除此器材？')">
+                    <button type="submit" class="eq-btn-action eq-btn-action-danger">刪除</button>
+                  </form>
+                </td>
+                {% endif %}
+              </tr>
+              {% else %}
+              <tr><td colspan="7" class="eq-empty">目前無器材資料</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      {% if total_pages > 1 %}
+      <div class="eq-pagination">
+        {% if page > 1 %}
+          <a href="{{ url_for('equipment.index', page=page-1, id=selected['id'] if selected else '') }}"
+             class="eq-page-btn">上一頁</a>
+        {% else %}
+          <span class="eq-page-btn eq-page-disabled">上一頁</span>
+        {% endif %}
+        <span class="eq-page-info">第 {{ page }} / {{ total_pages }} 頁</span>
+        {% if page < total_pages %}
+          <a href="{{ url_for('equipment.index', page=page+1, id=selected['id'] if selected else '') }}"
+             class="eq-page-btn">下一頁</a>
+        {% else %}
+          <span class="eq-page-btn eq-page-disabled">下一頁</span>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- ══ Right: equipment detail ══ -->
+    <div class="eq-right">
+      {% if selected %}
+        <div class="eq-panel-header">
+          <div class="eq-detail-title-wrap">
+            <h2>{{ selected['equipment_name'] }}</h2>
+            <span class="eq-badge eq-badge-lg eq-badge-{{ selected['equipment_status'] }}">
+              {{ status_labels.get(selected['equipment_status'], selected['equipment_status']) }}
+            </span>
+          </div>
+          {% if user and user['role'] == 0 %}
+          <div class="eq-panel-actions">
+            <a href="{{ url_for('equipment.edit_equipment', equipment_id=selected['id']) }}"
+               class="eq-btn eq-btn-secondary eq-btn-sm">修改器材</a>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="eq-detail-scroll">
+          <div class="eq-info-grid">
+            <div class="eq-info-row">
+              <span class="eq-info-label">器材編號</span>
+              <span class="eq-info-value">{{ selected['equipment_code'] }}</span>
+            </div>
+            <div class="eq-info-row">
+              <span class="eq-info-label">總數量</span>
+              <span class="eq-info-value">{{ selected['total_quantity'] }}</span>
+            </div>
+            <div class="eq-info-row">
+              <span class="eq-info-label">可借數量</span>
+              <span class="eq-info-value">{{ selected['available_quantity'] }}</span>
+            </div>
+            {% if selected['equipment_description'] %}
+            <div class="eq-info-row">
+              <span class="eq-info-label">說明</span>
+              <span class="eq-info-value">{{ selected['equipment_description'] }}</span>
+            </div>
+            {% endif %}
+          </div>
+
+          {% if user %}
+            {% if selected['equipment_status'] == 'available' and selected['available_quantity'] > 0 %}
+              <div class="eq-borrow-action">
+                <a href="{{ url_for('equipment.borrow', equipment_id=selected['id']) }}"
+                   class="eq-btn eq-btn-primary">申請借用</a>
+              </div>
+            {% else %}
+              <div class="eq-borrow-action">
+                <span class="eq-borrow-hint">此器材目前無法借用</span>
+              </div>
+            {% endif %}
+          {% else %}
+            <div class="eq-borrow-action">
+              <span class="eq-borrow-hint">
+                請 <a href="{{ url_for('auth.login_page') }}">登入</a> 後申請借用
+              </span>
+            </div>
+          {% endif %}
+        </div>
+
+      {% else %}
+        <div class="eq-placeholder">← 點選左側器材以查看詳細資訊</div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

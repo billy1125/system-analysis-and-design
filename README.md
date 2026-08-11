@@ -2,7 +2,7 @@
 
 元智大學工業工程與管理學系「系統分析與設計」（課號 IE226）的課程教材與課程規範，全部以繁體中文撰寫、以 Markdown 格式維護，公開於此供修課同學閱讀。
 
-本課程採 **專題導向（Project-Based Learning）**：不考試，用兩份小組報告、一次個人訪談與一份個人學習與貢獻報告檢核學習成果。這個儲存庫收錄課程介紹、報告與分組規範、評量規準、十三章教材與兩組範例報告，各章投影片陸續產出中。
+本課程採 **專題導向（Project-Based Learning）**：不考試，用兩份小組報告、一次個人訪談與一份個人學習與貢獻報告檢核學習成果。這個儲存庫收錄課程介紹、報告與分組規範、評量規準、十三章教材、兩組範例報告，以及期中要分析的四套範例系統，各章投影片陸續產出中。
 
 ---
 
@@ -72,23 +72,50 @@
 
 | 文件 | 檔名 | 內容 |
 |---|---|---|
-| [期末設計題目說明](02-Project-Topics/README.md) | `02-Project-Topics/` | 五個期末設計題目的說明書，一題一份，另有索引說明選題判準與不建議做的方向。**是題目說明不是參考答案**：講現場長什麼樣、名詞是什麼意思、這一題要想清楚的問題，不給 ERD 與資料表 |
 | [參考題庫](00-Course-Introduction/Question-Bank.md) | `Question-Bank.md` | 口頭報告與個人訪談的提問方向。**是方向不是考古題**，實際題目來自各組自己的書面報告 |
 | [課程規範理解測驗](00-Course-Introduction/Course-Rules-Quiz.md) | `Course-Rules-Quiz.md` | 36 題是非題，附解答與出處章節。**不計分、不用繳交，也不用給老師看**，用來確認你記得的版本是不是對的 |
 | [課程介紹投影片](00-Course-Introduction/Course-Introduction.slides.md) | `Course-Introduction.slides.md` | 第一週上課用（Marp 格式）。只放會扣分或錯過補不回來的規則，完整條文一律以規範文件為準 |
 
 ### 範例報告
 
-兩個階段各一組，成品與說明成對出現：成品讓你看「交出去的東西長什麼樣」，說明講每一項該有什麼欄位、為什麼這樣寫。全部收在 `03-example-reports/`。
+兩個階段各一組，成品與說明成對出現：成品讓你看「交出去的東西長什麼樣」，說明講每一項該有什麼欄位、為什麼這樣寫。期中那一組收在 `02-Midterm-Project-Example-Reports/`，期末那一組收在 `04-Final-Project-Example-Reports/`。
 
 **都是範例不是答案。** 寫得精簡是為了讓你看懂結構，各組題目不同，不能照抄。兩個階段刻意用不同的示範系統：分析階段用課堂範例系統，設計階段用工廠訪客進出登記系統——**那一題刻意不在五個期末題目之中**，所以你抄得到結構，抄不到答案。
 
 | 文件 | 檔名 | 內容 |
 |---|---|---|
-| [系統分析範例報告](03-example-reports/Analysis-Phase-Sample-Report.md) | `Analysis-Phase-Sample-Report.md` | 一份寫好的期中報告成品，只有內容、沒有解說 |
-| [系統分析範例報告說明](03-example-reports/Analysis-Phase-Deliverables.md) | `Analysis-Phase-Deliverables.md` | 上面那份範例報告的解說：每一項該有的欄位、為什麼這樣寫、UML 圖例與方法出處 |
-| [系統設計範例報告](03-example-reports/Design-Phase-Sample-Report.md) | `Design-Phase-Sample-Report.md` | 一份寫好的期末報告成品，只有內容、沒有解說 |
-| [系統設計範例報告說明](03-example-reports/Design-Phase-Deliverables.md) | `Design-Phase-Deliverables.md` | 上面那份設計報告的解說：每一項該有的欄位、為什麼這樣決定、圖怎麼畫與方法出處 |
+| [系統分析範例報告](02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md) | `Analysis-Phase-Sample-Report.md` | 一份寫好的期中報告成品，只有內容、沒有解說 |
+| [系統分析範例報告說明](02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md) | `Analysis-Phase-Deliverables.md` | 上面那份範例報告的解說：每一項該有的欄位、為什麼這樣寫、UML 圖例與方法出處 |
+| [系統設計範例報告](04-Final-Project-Example-Reports/Design-Phase-Sample-Report.md) | `Design-Phase-Sample-Report.md` | 一份寫好的期末報告成品，只有內容、沒有解說 |
+| [系統設計範例報告說明](04-Final-Project-Example-Reports/Design-Phase-Deliverables.md) | `Design-Phase-Deliverables.md` | 上面那份設計報告的解說：每一項該有的欄位、為什麼這樣決定、圖怎麼畫與方法出處 |
+
+### 期中要分析的範例系統
+
+期中報告分析的是既有系統，所以系統本身要跑得起來、看得到原始碼。系統收在 `03-Midterm-Project-Example-Systems/`，都是 Python + Flask + SQLite 寫成，操作介面與資料表結構相近，難度相當。
+
+| 系統 | 資料夾 | 情境 |
+|---|---|---|
+| [器材借用系統](03-Midterm-Project-Example-Systems/SAD-Equipment/README.md) | `SAD-Equipment/` | 器材的借用申請、審核、借出與歸還，含狀態機與庫存數量的一致性 |
+| [活動報名系統](03-Midterm-Project-Example-Systems/SAD-Events/README.md) | `SAD-Events/` | 校園活動的建立與報名，含活動狀態、名額限制與「發起者」這種由資料決定的權限 |
+| [校園訂餐系統](03-Midterm-Project-Example-Systems/SAD-Meal-Order/README.md) | `SAD-Meal-Order/` | 菜單維護、線上訂餐、訂單審核與登記取餐，含訂單狀態機與剩餘份數的佔用和回補 |
+
+同一個資料夾底下還有一套討論區系統（`SAD-Forum/`），**那是上一節的範例報告拿來示範的系統，不是各組可選的題目**。想知道一份分析報告從系統推導到什麼程度，可以拿它和範例報告對著看。每套系統的定位、共通概念與使用步驟，見這個資料夾的[索引](03-Midterm-Project-Example-Systems/README.md)。
+
+每套系統的資料夾內都附有系統規格書與建置流程書（`document/`），**但那是給你對照用的參考，不是你報告的替代品**——分析要自己從畫面、流程與程式碼推導出來。怎麼把系統跑起來，見各系統自己的 `README.md`。
+
+### 期末報告的題目
+
+期末設計的題目是工廠或製造現場的管理系統，五題選一。每題一份說明書，收在 `05-Final-Project-Topics/`，另有一份[索引](05-Final-Project-Topics/README.md)說明選題判準、使用步驟與不建議做的方向。
+
+| 題目 | 領域 | 難度 | 這一題要想清楚的問題 |
+|---|---|---|---|
+| [工具借用與歸還管理系統](05-Final-Project-Topics/Tool-Loan-and-Return.md) | 生產現場管理 | 入門 | 「這支工具在誰手上」要存成欄位，還是由借用紀錄推出來 |
+| [品質異常回報管理系統](05-Final-Project-Topics/Quality-Issue-Reporting.md) | 品質管理 | 入門 | 「處理完了」跟「可以結案了」不是同一件事 |
+| [倉庫盤點管理系統](05-Final-Project-Topics/Inventory-Stocktaking.md) | 物料與倉儲 | 標準 | 盤點期間帳面還在變，比對的基準要不要凍結 |
+| [設備保養紀錄管理系統](05-Final-Project-Topics/Equipment-Maintenance.md) | 設備維護 | 標準 | 「下次應保養日」是算出來的還是填出來的 |
+| [員工教育訓練紀錄系統](05-Final-Project-Topics/Training-Records.md) | 人力資源與工安 | 標準 | 報名、簽到、完成是三件事，一個欄位裝不下 |
+
+**是題目說明不是參考答案。** 五份給的只有情境、名詞、角色、一張單子的一生，以及這一題真正要想的問題；ERD、資料表、模組清單與畫面線框都是你的工作，也是分數所在。難度只反映「要想的事情有幾層」，不反映分數上限——**入門題做得深，分數會高過標準題做得淺**。
 
 ### 教材正文
 
@@ -167,10 +194,11 @@
 
 ### 授權例外
 
-以下項目移植自外部專案，依其 **原始授權條款** 使用，不適用上述 CC BY-NC-SA 授權：
+以下項目不適用上述 CC BY-NC-SA 授權，改依表中各自的授權條款：
 
 | 項目 | 作者 | 授權 | 位置 |
 |---|---|---|---|
+| 期中範例系統的程式碼與系統文件 | Cho-Hsun Lu | MIT | [`03-Midterm-Project-Example-Systems/`](03-Midterm-Project-Example-Systems/)（LICENSE 置於該資料夾內，涵蓋底下四套系統） |
 | `speak-human-tw` skill | Raymond Hou | MIT | [`.claude/skills/speak-human-tw/`](.claude/skills/speak-human-tw/)（原始 LICENSE 保留於該資料夾內） |
 | 學則截圖 `course-attendance-rule.png` | 元智大學 | 校方公開規章，依著作權法為授課目的引用，著作權仍屬元智大學 | `00-Course-Introduction/images/`（引用於 [SAD 課程介紹](00-Course-Introduction/Course-Introduction.md)〈課堂規範〉） |
 

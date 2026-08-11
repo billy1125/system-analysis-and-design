@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+{% block title %}今日菜單{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='meal.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="meal-layout meal-layout-fixed">
+
+  <!-- ── Top bar ── -->
+  <div class="meal-topbar">
+    <span class="meal-topbar-title">校園訂餐系統</span>
+    <div class="meal-topbar-nav">
+      {% if user %}
+        <a href="{{ url_for('hub.home') }}" class="meal-nav-link">返回首頁</a>
+        <a href="{{ url_for('meal.my_orders') }}" class="meal-nav-link">我的訂單</a>
+        {% if user['role'] == 0 %}
+          <a href="{{ url_for('meal.admin_orders') }}" class="meal-nav-link">訂單管理</a>
+        {% endif %}
+        <span class="meal-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+        <a href="{{ url_for('auth.logout') }}" class="meal-btn meal-btn-danger">登出</a>
+      {% else %}
+        <a href="{{ url_for('auth.login_page') }}" class="meal-btn meal-btn-primary">登入</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ── Flash messages ── -->
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="meal-flash meal-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+  {% endfor %}
+
+  <!-- ── Two-column content ── -->
+  <div class="meal-content">
+
+    <!-- 左欄：餐點清單 -->
+    <div class="meal-left">
+      <div class="meal-panel-header">
+        <h2>今日菜單</h2>
+        <div class="meal-panel-actions">
+          <span class="meal-total">共 {{ total }} 道</span>
+          {% if user %}
+            <a href="{{ url_for('meal.new_order') }}"
+               class="meal-btn meal-btn-primary meal-btn-sm">我要訂餐</a>
+          {% endif %}
+          {% if user and user['role'] == 0 %}
+            <a href="{{ url_for('meal.new_meal') }}"
+               class="meal-btn meal-btn-secondary meal-btn-sm">+ 新增餐點</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="meal-filter-bar">
+        <a href="{{ url_for('meal.index') }}"
+           class="meal-filter-link {{ 'meal-filter-active' if not category }}">全部</a>
+        {% for key, label in CATEGORY_LABELS.items() %}
+          <a href="{{ url_for('meal.index', category=key) }}"
+             class="meal-filter-link {{ 'meal-filter-active' if category == key }}">{{ label }}</a>
+        {% endfor %}
+      </div>
+
+      <div class="meal-table-wrap">
+        <table class="meal-table">
+          <thead>
+            <tr>
+              <th class="col-code">編號</th>
+              <th class="col-name">餐點名稱</th>
+              <th class="col-category">分類</th>
+              <th class="col-price">單價</th>
+              <th class="col-qty">剩餘／供應</th>
+              <th class="col-status">狀態</th>
+              {% if user and user['role'] == 0 %}<th class="col-action">操作</th>{% endif %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for m in meals %}
+              <tr class="{{ 'meal-row-selected' if selected and selected['id'] == m['id'] else '' }}">
+                <td>{{ m['meal_code'] }}</td>
+                <td>
+                  <a class="meal-name-link"
+                     href="{{ url_for('meal.index', page=page, category=category or none, meal_id=m['id']) }}">
+                    {{ m['meal_name'] }}
+                  </a>
+                </td>
+                <td><span class="meal-badge meal-badge-category">{{ CATEGORY_LABELS[m['category']] }}</span></td>
+                <td class="meal-num">NT$ {{ m['price'] }}</td>
+                <td class="meal-num">{{ m['remaining_quantity'] }} / {{ m['daily_quantity'] }}</td>
+                <td>
+                  <span class="meal-badge meal-badge-{{ m['meal_status'] }}">
+                    {{ MEAL_STATUS_LABELS[m['meal_status']] }}
+                  </span>
+                </td>
+                {% if user and user['role'] == 0 %}
+                  <td>
+                    <div class="meal-actions-cell">
+                      <a href="{{ url_for('meal.edit_meal', meal_id=m['id']) }}"
+                         class="meal-btn-action">修改</a>
+                      <form method="POST" class="meal-inline-form"
+                            action="{{ url_for('meal.delete_meal', meal_id=m['id']) }}">
+                        <button type="submit" class="meal-btn-action meal-btn-action-danger"
+                                onclick="return confirm('確定要下架這道餐點嗎？既有訂單不受影響。')">下架</button>
+                      </form>
+                    </div>
+                  </td>
+                {% endif %}
+              </tr>
+            {% else %}
+              <tr>
+                <td colspan="{{ 7 if user and user['role'] == 0 else 6 }}" class="meal-empty">尚無餐點</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      {% if total_pages > 1 %}
+        <div class="meal-pagination">
+          {% if page > 1 %}
+            <a href="{{ url_for('meal.index', page=page-1, category=category or none, meal_id=selected['id'] if selected else none) }}"
+               class="meal-page-btn">&laquo; 上一頁</a>
+          {% else %}
+            <span class="meal-page-btn meal-page-disabled">&laquo; 上一頁</span>
+          {% endif %}
+
+          <span class="meal-page-info">第 {{ page }} / {{ total_pages }} 頁</span>
+
+          {% if page < total_pages %}
+            <a href="{{ url_for('meal.index', page=page+1, category=category or none, meal_id=selected['id'] if selected else none) }}"
+               class="meal-page-btn">下一頁 &raquo;</a>
+          {% else %}
+            <span class="meal-page-btn meal-page-disabled">下一頁 &raquo;</span>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- 右欄：餐點詳細 -->
+    <div class="meal-right">
+      {% if selected %}
+        <div class="meal-detail">
+          <h3>{{ selected['meal_name'] }}</h3>
+          <div class="meal-detail-code">{{ selected['meal_code'] }}</div>
+
+          <div class="meal-detail-desc">{{ selected['meal_description'] or '（未提供說明）' }}</div>
+
+          <div class="meal-info-card">
+            <div class="meal-info-row">
+              <span class="meal-info-label">分類</span>
+              <span class="meal-info-value">{{ CATEGORY_LABELS[selected['category']] }}</span>
+            </div>
+            <div class="meal-info-row">
+              <span class="meal-info-label">單價</span>
+              <span class="meal-info-value">NT$ {{ selected['price'] }}</span>
+            </div>
+            <div class="meal-info-row">
+              <span class="meal-info-label">每日供應</span>
+              <span class="meal-info-value">{{ selected['daily_quantity'] }} 份</span>
+            </div>
+            <div class="meal-info-row">
+              <span class="meal-info-label">目前剩餘</span>
+              <span class="meal-info-value">{{ selected['remaining_quantity'] }} 份</span>
+            </div>
+            <div class="meal-info-row">
+              <span class="meal-info-label">供應狀態</span>
+              <span class="meal-info-value">
+                <span class="meal-badge meal-badge-{{ selected['meal_status'] }}">
+                  {{ MEAL_STATUS_LABELS[selected['meal_status']] }}
+                </span>
+              </span>
+            </div>
+            <div class="meal-info-row">
+              <span class="meal-info-label">最後更新</span>
+              <span class="meal-info-value">{{ selected['updated_at'] }}</span>
+            </div>
+          </div>
+
+          <div class="meal-action-group">
+            {% if user %}
+              {% if selected['meal_status'] == 'available' and selected['remaining_quantity'] > 0 %}
+                <a href="{{ url_for('meal.new_order') }}" class="meal-btn meal-btn-primary">我要訂餐</a>
+              {% else %}
+                <span class="meal-form-hint">此餐點目前無法訂購。</span>
+              {% endif %}
+            {% else %}
+              <a href="{{ url_for('auth.login_page') }}" class="meal-btn meal-btn-primary">登入後訂餐</a>
+            {% endif %}
+            {% if user and user['role'] == 0 %}
+              <a href="{{ url_for('meal.edit_meal', meal_id=selected['id']) }}"
+                 class="meal-btn meal-btn-secondary">修改餐點</a>
+            {% endif %}
+          </div>
+        </div>
+      {% else %}
+        <div class="meal-placeholder">
+          <p>請從左側選擇餐點以查看詳細內容</p>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

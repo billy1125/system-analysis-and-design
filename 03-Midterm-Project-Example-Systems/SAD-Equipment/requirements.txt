@@ -1,0 +1,5 @@
+flask
+bcrypt
+captcha
+pytest
+pytest-flask

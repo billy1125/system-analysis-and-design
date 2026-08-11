@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% block title %}{{ '新增活動' if mode == 'new' else '修改活動' }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='events.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="events-layout">
+
+  <!-- ── Top bar ── -->
+  <div class="events-topbar">
+    <span class="events-topbar-title">校園活動報名系統</span>
+    <div class="events-topbar-nav">
+      <a href="{{ url_for('events.index') }}" class="events-nav-link">返回活動列表</a>
+      <span class="events-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="events-btn events-btn-danger">登出</a>
+    </div>
+  </div>
+
+  <!-- ── Flash messages ── -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="events-flash events-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <!-- ── Form ── -->
+  <div class="events-form-page">
+    <div class="events-form-card">
+      <h2>{{ '新增活動' if mode == 'new' else '修改活動' }}</h2>
+
+      {% if error %}
+      <div class="events-alert events-alert-error">{{ error }}</div>
+      {% endif %}
+
+      {% if mode == 'edit' and current_registered > 0 %}
+      <div class="events-alert events-alert-info">
+        目前已有 <strong>{{ current_registered }}</strong> 人有效報名。
+        修改活動時間請注意對報名者的影響；調降名額不可低於此數。
+      </div>
+      {% endif %}
+
+      <form method="POST">
+
+        <!-- ── 基本資訊 ── -->
+        <div class="events-form-group">
+          <label for="event_title">活動標題 <span class="events-required">*</span></label>
+          <input type="text" id="event_title" name="event_title"
+                 value="{{ form.event_title }}"
+                 placeholder="請輸入活動標題" maxlength="200">
+        </div>
+
+        <div class="events-form-row">
+          <div class="events-form-group">
+            <label for="event_datetime">活動日期時間 <span class="events-required">*</span></label>
+            <input type="datetime-local" id="event_datetime" name="event_datetime"
+                   value="{{ form.event_datetime }}">
+          </div>
+          <div class="events-form-group">
+            <label for="capacity">名額上限 <span class="events-required">*</span></label>
+            <input type="number" id="capacity" name="capacity"
+                   value="{{ form.capacity }}" min="1"
+                   placeholder="報名名額上限">
+            {% if mode == 'edit' and current_registered > 0 %}
+            <div class="events-field-hint">目前有效報名：{{ current_registered }} 人</div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="events-form-group">
+          <label for="event_place">活動地點 <span class="events-required">*</span></label>
+          <input type="text" id="event_place" name="event_place"
+                 value="{{ form.event_place }}"
+                 placeholder="請輸入活動地點" maxlength="100">
+        </div>
+
+        <div class="events-form-row">
+          <div class="events-form-group">
+            <label for="registration_start_at">報名開始時間</label>
+            <input type="datetime-local" id="registration_start_at" name="registration_start_at"
+                   value="{{ form.registration_start_at }}">
+            <div class="events-field-hint">留空表示建立後即可報名</div>
+          </div>
+          <div class="events-form-group">
+            <label for="registration_end_at">報名截止時間</label>
+            <input type="datetime-local" id="registration_end_at" name="registration_end_at"
+                   value="{{ form.registration_end_at }}">
+            <div class="events-field-hint">留空表示活動開始前皆可報名</div>
+          </div>
+        </div>
+
+        <hr class="events-form-divider">
+
+        <!-- ── 活動細節 ── -->
+        <div class="events-form-group">
+          <label for="event_note">活動內容 <span class="events-required">*</span></label>
+          <textarea id="event_note" name="event_note"
+                    placeholder="請輸入活動完整說明...">{{ form.event_note }}</textarea>
+        </div>
+
+        <div class="events-form-group">
+          <label for="event_target">活動對象</label>
+          <input type="text" id="event_target" name="event_target"
+                 value="{{ form.event_target }}"
+                 placeholder="例：全校學生、電機系學生">
+        </div>
+
+        <div class="events-form-group">
+          <label for="event_contact">聯絡資訊</label>
+          <input type="text" id="event_contact" name="event_contact"
+                 value="{{ form.event_contact }}"
+                 placeholder="承辦人或聯絡窗口">
+        </div>
+
+        <div class="events-form-group">
+          <label for="event_notice">注意事項</label>
+          <textarea id="event_notice" name="event_notice"
+                    placeholder="活動提醒或限制說明..."
+                    style="min-height: 90px;">{{ form.event_notice }}</textarea>
+        </div>
+
+        <!-- ── Actions ── -->
+        <div class="events-form-actions">
+          <button type="submit" class="events-btn events-btn-primary">
+            {{ '建立活動' if mode == 'new' else '儲存變更' }}
+          </button>
+          {% if mode == 'edit' and event %}
+            <a href="{{ url_for('events.index', event_id=event['id']) }}"
+               class="events-btn events-btn-secondary">取消</a>
+          {% else %}
+            <a href="{{ url_for('events.index') }}"
+               class="events-btn events-btn-secondary">取消</a>
+          {% endif %}
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

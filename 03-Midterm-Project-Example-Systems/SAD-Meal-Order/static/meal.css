@@ -1,0 +1,641 @@
+/* meal.css — 校園訂餐子系統專用樣式。
+ *
+ * 骨架取自 sad-forum 的 forum.css 後改前綴。按鍵顏色一律引用 common.css
+ * 的 token；狀態 badge 的底色硬編碼於此（common.css 未定義狀態語意色，
+ * 與 admin.css 同一個限制，見 KI-19）。
+ */
+
+/* Meal — overrides login.css body centering */
+body {
+  display: block;
+  background-color: #f0f2f5;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.meal-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.meal-layout-fixed {
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Top bar ──────────────────────────────────────────────────────────────── */
+
+.meal-topbar {
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.meal-topbar-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.meal-topbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.9rem;
+}
+
+.meal-nav-link {
+  color: #555;
+  text-decoration: none;
+}
+
+.meal-nav-link:hover { color: #1a73e8; }
+
+.meal-nav-user { color: #555; }
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+
+.meal-btn {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.2s;
+  font-family: inherit;
+}
+
+.meal-btn-primary         { background-color: var(--btn-primary-bg);      color: #fff; }
+.meal-btn-primary:hover   { background-color: var(--btn-primary-hover); }
+.meal-btn-secondary       { background-color: var(--btn-secondary-bg);    color: var(--btn-secondary-color); }
+.meal-btn-secondary:hover { background-color: var(--btn-secondary-hover); }
+.meal-btn-danger          { background-color: var(--btn-danger-bg);       color: #fff; }
+.meal-btn-danger:hover    { background-color: var(--btn-danger-hover); }
+
+.meal-btn-sm {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+}
+
+.meal-btn-action {
+  display: inline-block;
+  padding: 3px 9px;
+  font-size: 0.78rem;
+  border-radius: 3px;
+  text-decoration: none;
+  border: 1px solid var(--btn-action-border);
+  background: var(--btn-action-bg);
+  color: var(--btn-action-color);
+  cursor: pointer;
+  transition: background-color 0.15s;
+  white-space: nowrap;
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+.meal-btn-action:hover { background: var(--btn-action-hover); }
+
+.meal-btn-action-danger {
+  border-color: var(--btn-action-danger-border);
+  background: var(--btn-action-danger-bg);
+  color: var(--btn-action-danger-color);
+}
+
+.meal-btn-action-danger:hover { background: var(--btn-action-danger-hover); }
+
+.meal-inline-form { display: inline; }
+
+/* ── Flash messages ───────────────────────────────────────────────────────── */
+
+.meal-flash {
+  padding: 10px 24px;
+  font-size: 0.88rem;
+  flex-shrink: 0;
+}
+
+.meal-flash-error {
+  background: #ffebee;
+  color: #c62828;
+  border-bottom: 1px solid #ef9a9a;
+}
+
+.meal-flash-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-bottom: 1px solid #a5d6a7;
+}
+
+/* ── Two-column layout (菜單頁) ───────────────────────────────────────────── */
+
+.meal-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.meal-left {
+  width: 58%;
+  min-width: 360px;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  overflow: hidden;
+}
+
+.meal-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+  overflow-y: auto;
+}
+
+/* ── Panel header ─────────────────────────────────────────────────────────── */
+
+.meal-panel-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.meal-panel-header h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.meal-total {
+  font-size: 0.8rem;
+  color: #888;
+  flex-shrink: 0;
+}
+
+.meal-panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* ── Filter bar ───────────────────────────────────────────────────────────── */
+
+.meal-filter-bar {
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  flex-shrink: 0;
+  background: #fff;
+  flex-wrap: wrap;
+}
+
+.meal-filter-link {
+  padding: 4px 12px;
+  font-size: 0.82rem;
+  border-radius: 4px;
+  text-decoration: none;
+  background: #fff;
+  color: #555;
+  border: 1px solid #ddd;
+  transition: background-color 0.2s;
+}
+
+.meal-filter-link:hover { background: #f0f0f0; }
+
+.meal-filter-active {
+  background-color: var(--btn-primary-bg);
+  color: #fff;
+  border-color: var(--btn-primary-bg);
+}
+
+.meal-filter-active:hover { background-color: var(--btn-primary-hover); }
+
+/* ── Table ────────────────────────────────────────────────────────────────── */
+
+.meal-table-wrap {
+  flex: 1;
+  overflow: auto;
+}
+
+.meal-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.meal-table th {
+  background: #f5f5f5;
+  color: #555;
+  font-weight: bold;
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.meal-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+  vertical-align: middle;
+}
+
+.meal-table tbody tr:hover { background: #f9f9f9; }
+
+.meal-row-selected td { background: #e8f0fe !important; }
+
+.meal-name-link {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.meal-name-link:hover { text-decoration: underline; }
+
+.meal-num { text-align: right; white-space: nowrap; }
+
+.meal-empty {
+  text-align: center;
+  color: #aaa;
+  padding: 32px 0 !important;
+}
+
+.meal-actions-cell {
+  white-space: nowrap;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ── Column widths ────────────────────────────────────────────────────────── */
+
+.col-id       { width: 48px; }
+.col-code     { width: 72px; }
+.col-name     { min-width: 120px; }
+.col-category { width: 72px; }
+.col-price    { width: 80px; }
+.col-qty      { width: 90px; }
+.col-status   { width: 96px; }
+.col-time     { width: 150px; white-space: nowrap; }
+.col-date     { width: 110px; white-space: nowrap; }
+.col-slot     { width: 64px; }
+.col-action   { width: 130px; }
+.col-action-wide { min-width: 210px; }
+
+/* ── Badges ───────────────────────────────────────────────────────────────── */
+/* 狀態語意色未納入 common.css 的 token 體系，此處硬編碼（KI-19）。 */
+
+.meal-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 0.78rem;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.meal-badge-available   { background: #e8f5e9; color: #2e7d32; }
+.meal-badge-sold_out    { background: #fff3e0; color: #ef6c00; }
+.meal-badge-unavailable { background: #fafafa; color: #9e9e9e; }
+
+.meal-badge-pending   { background: #fff8e1; color: #f57f17; }
+.meal-badge-confirmed { background: #e3f2fd; color: #1565c0; }
+.meal-badge-completed { background: #e8f5e9; color: #2e7d32; }
+.meal-badge-cancelled { background: #fafafa; color: #9e9e9e; }
+.meal-badge-rejected  { background: #ffebee; color: #c62828; }
+
+.meal-badge-category { background: #f5f5f5; color: #616161; }
+
+/* ── Pagination ───────────────────────────────────────────────────────────── */
+
+.meal-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-top: 1px solid #e8e8e8;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.meal-page-btn {
+  padding: 4px 12px;
+  font-size: 0.82rem;
+  border-radius: 4px;
+  text-decoration: none;
+  background: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  transition: background-color 0.2s;
+}
+
+.meal-page-btn:not(.meal-page-disabled):hover { background: #f0f0f0; }
+
+.meal-page-disabled {
+  color: #bbb;
+  cursor: not-allowed;
+}
+
+.meal-page-info {
+  font-size: 0.82rem;
+  color: #666;
+}
+
+/* ── Detail panel（菜單右欄）──────────────────────────────────────────────── */
+
+.meal-detail {
+  padding: 20px 24px;
+}
+
+.meal-detail h3 {
+  font-size: 1.15rem;
+  color: #1a1a1a;
+  margin: 0 0 4px 0;
+}
+
+.meal-detail-code {
+  font-size: 0.8rem;
+  color: #999;
+  font-family: monospace;
+  margin-bottom: 16px;
+}
+
+.meal-detail-desc {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 18px;
+}
+
+.meal-placeholder {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 0.95rem;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* ── Info card（訂單明細頁）──────────────────────────────────────────────── */
+
+.meal-main {
+  flex: 1;
+  padding: 20px 24px;
+}
+
+.meal-info-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  padding: 20px 24px;
+  max-width: 720px;
+  margin-bottom: 18px;
+}
+
+.meal-info-row {
+  display: flex;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.88rem;
+}
+
+.meal-info-row:last-child { border-bottom: none; }
+
+.meal-info-label {
+  width: 120px;
+  color: #999;
+  flex-shrink: 0;
+}
+
+.meal-info-value {
+  color: #333;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.meal-card-title {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #555;
+  margin: 0 0 12px 0;
+}
+
+.meal-action-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  padding: 20px 24px;
+  max-width: 720px;
+  margin-bottom: 18px;
+}
+
+.meal-action-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.meal-total-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  align-items: baseline;
+  padding: 12px 10px 0;
+  font-size: 0.95rem;
+}
+
+.meal-total-amount {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1a73e8;
+}
+
+/* ── Form page ────────────────────────────────────────────────────────────── */
+
+.meal-form-page {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 24px;
+  overflow-y: auto;
+}
+
+.meal-form-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8e8e8;
+  padding: 32px 36px;
+  width: 100%;
+  max-width: 760px;
+}
+
+.meal-form-card h2 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin: 0 0 20px 0;
+}
+
+.meal-form-section {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #555;
+  margin: 26px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.meal-form-group { margin-bottom: 18px; }
+
+.meal-form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.meal-form-row .meal-form-group {
+  flex: 1;
+  min-width: 180px;
+}
+
+.meal-form-group label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.meal-form-group input[type="text"],
+.meal-form-group input[type="number"],
+.meal-form-group input[type="date"],
+.meal-form-group select,
+.meal-form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+  color: #1a1a1a;
+  background: #fff;
+}
+
+.meal-form-group input:focus,
+.meal-form-group select:focus,
+.meal-form-group textarea:focus { border-color: #1a73e8; }
+
+.meal-form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+.meal-form-hint {
+  font-size: 0.78rem;
+  color: #999;
+  margin-top: 4px;
+}
+
+.meal-form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.meal-qty-input {
+  width: 80px !important;
+  text-align: right;
+}
+
+.meal-item-unavailable td { background: #fff8e1; }
+
+.meal-alert {
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+}
+
+.meal-alert-error {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.meal-alert-info {
+  background: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #90caf9;
+}
+
+/* ── Review note（管理端審核備註）────────────────────────────────────────── */
+
+.meal-review-form {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.meal-review-input {
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-width: 150px;
+  font-family: inherit;
+}
+
+.meal-review-input:focus {
+  outline: none;
+  border-color: var(--btn-primary-bg);
+}
+
+@media (max-width: 900px) {
+  .meal-content { flex-direction: column; }
+
+  .meal-left {
+    width: 100%;
+    min-width: 0;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .meal-layout-fixed {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+}

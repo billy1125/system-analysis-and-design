@@ -12,7 +12,7 @@
 
 > **延伸閱讀**：期末報告第 4 項要交什麼，見[「報告內容」](../00-Course-Introduction/Report-Contents.md)。
 
-> **期末必讀標記**：標題後加註 🔵 期末必讀 的小節，是期末小組報告八項產出直接會用到的內容。判準見[「系統設計範例報告說明」](../03-example-reports/Design-Phase-Deliverables.md)，成品的樣子見[「系統設計範例報告」](../03-example-reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期末不會直接產出。
+> **期末必讀標記**：標題後加註 🔵 期末必讀 的小節，是期末小組報告八項產出直接會用到的內容。判準見[「系統設計範例報告說明」](../04-Final-Project-Example-Reports/Design-Phase-Deliverables.md)，成品的樣子見[「系統設計範例報告」](../04-Final-Project-Example-Reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是期末不會直接產出。
 
 ## 一、為什麼要用物件的觀點 🔵 期末必讀
 

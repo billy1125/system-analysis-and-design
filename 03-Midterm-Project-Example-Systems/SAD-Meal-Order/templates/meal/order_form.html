@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block title %}{{ form_title }} — 校園訂餐系統{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='meal.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="meal-layout">
+
+  <div class="meal-topbar">
+    <span class="meal-topbar-title">校園訂餐系統</span>
+    <div class="meal-topbar-nav">
+      <a href="{{ url_for('meal.index') }}" class="meal-nav-link">今日菜單</a>
+      <a href="{{ url_for('meal.my_orders') }}" class="meal-nav-link">我的訂單</a>
+      <span class="meal-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ back_url }}" class="meal-btn meal-btn-secondary">取消</a>
+    </div>
+  </div>
+
+  <div class="meal-form-page">
+    <div class="meal-form-card">
+      <h2>{{ form_title }}</h2>
+
+      {% if error %}
+        <div class="meal-alert meal-alert-error">{{ error }}</div>
+      {% endif %}
+
+      {% if not meals %}
+        <div class="meal-alert meal-alert-info">
+          目前沒有可訂購的餐點。所有餐點都已售完或停售，請稍後再試。
+        </div>
+        <a href="{{ back_url }}" class="meal-btn meal-btn-secondary">返回</a>
+      {% else %}
+
+      <form method="POST">
+        <div class="meal-form-section">取餐資訊</div>
+
+        <div class="meal-form-row">
+          <div class="meal-form-group">
+            <label for="pickup_date">取餐日期</label>
+            <input type="date" id="pickup_date" name="pickup_date"
+                   value="{{ form['pickup_date'] }}"
+                   min="{{ min_date }}" max="{{ max_date }}">
+            <div class="meal-form-hint">可預訂範圍：{{ min_date }} 至 {{ max_date }}。</div>
+          </div>
+          <div class="meal-form-group">
+            <label for="pickup_slot">取餐時段</label>
+            <select id="pickup_slot" name="pickup_slot">
+              {% for key, label in SLOT_LABELS.items() %}
+                <option value="{{ key }}" {{ 'selected' if form['pickup_slot'] == key }}>{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="meal-form-group">
+          <label for="pickup_location">取餐地點</label>
+          <input type="text" id="pickup_location" name="pickup_location"
+                 value="{{ form['pickup_location'] }}" maxlength="80"
+                 placeholder="例如 行政大樓一樓服務台" autocomplete="off">
+        </div>
+
+        <div class="meal-form-group">
+          <label for="order_note">訂單備註</label>
+          <textarea id="order_note" name="order_note" rows="3"
+                    placeholder="飲食禁忌、甜度冰塊等（可留空）">{{ form['order_note'] }}</textarea>
+        </div>
+
+        <div class="meal-form-section">訂購項目</div>
+
+        <div class="meal-table-wrap">
+          <table class="meal-table">
+            <thead>
+              <tr>
+                <th class="col-code">編號</th>
+                <th class="col-name">餐點名稱</th>
+                <th class="col-category">分類</th>
+                <th class="col-price">單價</th>
+                <th class="col-qty">目前剩餘</th>
+                <th class="col-qty">訂購份數</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for m in meals %}
+                {% set orderable = m['meal_status'] == 'available' and m['remaining_quantity'] > 0 %}
+                <tr class="{{ '' if orderable else 'meal-item-unavailable' }}">
+                  <td>{{ m['meal_code'] }}</td>
+                  <td>
+                    {{ m['meal_name'] }}
+                    {% if not orderable %}
+                      <div class="meal-form-hint">此餐點目前無法訂購，請將份數改為 0。</div>
+                    {% endif %}
+                  </td>
+                  <td><span class="meal-badge meal-badge-category">{{ CATEGORY_LABELS[m['category']] }}</span></td>
+                  <td class="meal-num">NT$ {{ m['price'] }}</td>
+                  <td class="meal-num">{{ m['remaining_quantity'] }}</td>
+                  <td>
+                    <input type="hidden" name="meal_id[]" value="{{ m['id'] }}">
+                    <input type="number" name="quantity[]" class="meal-qty-input"
+                           min="0" step="1" max="{{ m['remaining_quantity'] }}"
+                           value="{{ quantities.get(m['id'], 0) }}">
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="meal-form-hint" style="margin-top:10px">
+          份數填 0 表示不訂購該項。單張訂單最多 {{ max_items }} 份。
+        </div>
+
+        <div class="meal-form-actions">
+          <button type="submit" class="meal-btn meal-btn-primary">送出訂單</button>
+          <a href="{{ back_url }}" class="meal-btn meal-btn-secondary">取消</a>
+        </div>
+      </form>
+
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}
