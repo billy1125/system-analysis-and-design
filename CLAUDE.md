@@ -15,15 +15,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 資料夾 | 說明 |
 |---|---|
 | `00-Course-Introduction/` | 課程規範與參考文件，採描述性英文檔名 |
-| `01-Course-Materials/` | 教材正文，檔名格式 `編號-主題.md`，兩位數編號即授課順序（規則見 `TEXTBOOK-PLAN.md`〈一〉） |
+| `01-Course-Materials/` | 教材正文，檔名格式 `編號-主題.md`，兩位數編號即授課順序（規則見 `temp/TEXTBOOK-PLAN.md`〈一〉） |
 | `02-Project-Topics/` | 期末設計題目說明書，一題一份，加一份 `README.md` 當索引。**是題目說明不是參考答案**：只給情境、名詞、角色、單據生命週期與設計難點，不給 ERD、資料表、模組清單與畫面線框 |
 | `03-example-reports/` | 只放範例報告與各自的說明。分析階段示範用的範例系統 `sad-forum` **不在本專案內**，它是獨立儲存庫 <https://github.com/billy1125/sad-forum>；需要對照原始碼時自行 clone 到專案外，不要放進 `03-example-reports/` |
 | `reference/` | 長期保留的範本與撰寫規範，是全專案的格式基準，會隨慣例調整而更新 |
 | `.claude/skills/` | Claude Code 技能，一個技能一個資料夾 |
+| `temp/` | **不進版控**（已列入 `.gitignore`）。只給作者與 Claude 用的規劃與暫存文件，學生看不到，因此不得被任何版控中的文件連結。目前放 `TEXTBOOK-PLAN.md`（教材施工藍圖）與 `PROJECT-TOPICS.md`（期末選題的來由與判準） |
 
-圖片跟著引用它的文章走，放在該文章所屬資料夾的 `images/` 底下（路徑與檔名規則見 `reference/chapter-writing-guide.md`〈五〉）。根目錄只放**全專案層級的索引與規劃文件**，其餘文件一律收進所屬的章節資料夾。
+圖片跟著引用它的文章走，放在該文章所屬資料夾的 `images/` 底下（路徑與檔名規則見 `reference/chapter-writing-guide.md`〈五〉）。根目錄只放 `README.md` 與 `CLAUDE.md`，規劃文件收進 `temp/`，其餘文件一律收進所屬的章節資料夾。
 
-**動筆寫任何一章教材之前，先讀 `TEXTBOOK-PLAN.md`**。那份是教材的施工藍圖：章節清單、每章的小節規劃與邊界、與報告產出項目的對應、撰寫順序，以及寫完一章要連帶更新哪些檔案。寫完一章要回頭更新它的狀態欄。本檔規定課程設定與跨檔一致性，`TEXTBOOK-PLAN.md` 規定章節範圍，`reference/` 規定格式。
+**動筆寫任何一章教材之前，先讀 `temp/TEXTBOOK-PLAN.md`**。那份是教材的施工藍圖：章節清單、每章的小節規劃與邊界、與報告產出項目的對應、撰寫順序，以及寫完一章要連帶更新哪些檔案。寫完一章要回頭更新它的狀態欄。本檔規定課程設定與跨檔一致性，`temp/TEXTBOOK-PLAN.md` 規定章節範圍，`reference/` 規定格式。
 
 ## 文件清單
 
@@ -53,9 +54,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 改動配分、關鍵日期、繳交方式或扣分數字 | `README.md`〈⚡ 重點速覽〉——那張表是基本規範與規範細節說明的摘要，條文改了它不會自己跟著改 |
 | 收錄外部來源圖片 | `README.md`〈📄 授權與使用聲明〉的授權例外表，註明來源、作者與授權條款（依 `reference/chapter-writing-guide.md`〈六〉） |
 | 移植外部技能到 `.claude/skills/` | 同上授權例外表，並將原始 `LICENSE` 保留在技能資料夾內 |
-| 完成一份章節正文 | 六項連動逐項見 `TEXTBOOK-PLAN.md`〈六〉，其中終點章設定在本檔 |
-| 新增、刪除或重排教材章節 | `TEXTBOOK-PLAN.md`〈一、1.1〉權威章節清單、〈三〉章節總表與〈四〉內容概要 |
-| 撰寫任何一章介紹 UML 圖的教材 | 先看 `TEXTBOOK-PLAN.md`〈二〉的四張核心圖與各自的權威章節，該章要點出自己那張圖在四張裡的位置 |
+| 完成一份章節正文 | 六項連動逐項見 `temp/TEXTBOOK-PLAN.md`〈六〉，其中終點章設定在本檔 |
+| 新增、刪除或重排教材章節 | `temp/TEXTBOOK-PLAN.md`〈一、1.1〉權威章節清單、〈三〉章節總表與〈四〉內容概要 |
+| 撰寫任何一章介紹 UML 圖的教材 | 先看 `temp/TEXTBOOK-PLAN.md`〈二〉的四張核心圖與各自的權威章節，該章要點出自己那張圖在四張裡的位置 |
 | 改動 `03-example-reports/` 的範例報告說明或範例報告 | 回頭核對 `01-Course-Materials/` 對應階段的必讀標記（分析階段對 `🔴 期中必讀`，設計階段對 `🔵 期末必讀`）是否仍然成立——標記的判準就是那兩份文件，它們改了標記不會自己跟著改 |
 
 ## 撰寫規範
@@ -75,8 +76,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 參考文獻取材 | 系統分析與設計領域的經典教科書（如 Dennis、Kendall、Pressman、Sommerville、Yourdon）與原典或里程碑論文（如 Royce 1970、Chen 1976、UML 與敏捷方法的原始文獻），各章約 20 筆以上 |
 | 必讀標記 | 兩組：`🔴 期中必讀` 與 `🔵 期末必讀`，接在小節標題之後（格式見 `reference/chapter-writing-guide.md`〈七、7.1〉），同一行並列時期中在前、期末在後。**判準是該小節的產出或方法，在該階段的兩份文件中被明確要求或實際示範**——期中看 `03-example-reports/Analysis-Phase-Deliverables.md` 與 `Analysis-Phase-Sample-Report.md`，期末看 `Design-Phase-Deliverables.md` 與 `Design-Phase-Sample-Report.md`；概念相關但那兩份文件沒有真的用到的一律不標，列為可選項目的（設計類別圖、REST API 規格、部署圖等）也不標 |
 | 必讀標記的章首說明 | 放在章首導言最後一則 blockquote 之後，依該章帶哪幾組標記三擇一。**三種措辭全專案一致，已寫進 `reference/chapter-template.md` 的骨架，直接貼上，不要自己重寫。** |
-| 權威章節清單 | 見 `TEXTBOOK-PLAN.md`〈一、1.1〉，新增章節時一併維護 |
-| 終點章與銜接順序 | 授課順序即檔名編號順序，見 `TEXTBOOK-PLAN.md`〈三〉章節總表。**`13-Design-Specification.md` 是全書終點章**，不加 `> **銜接提示**`；其餘各章末尾都要有銜接提示指向下一號章節 |
+| 權威章節清單 | 見 `temp/TEXTBOOK-PLAN.md`〈一、1.1〉，新增章節時一併維護 |
+| 終點章與銜接順序 | 授課順序即檔名編號順序，見 `temp/TEXTBOOK-PLAN.md`〈三〉章節總表。**`13-Design-Specification.md` 是全書終點章**，不加 `> **銜接提示**`；其餘各章末尾都要有銜接提示指向下一號章節 |
 
 `03-example-reports/` 的兩份 `*-Phase-Deliverables.md` 是範例報告說明，不是教材正文：說明講「要交什麼」，教材講「怎麼做」。同一主題在兩邊都出現時，概念說明留在教材，繳交欄位與最低標準留在說明，彼此以連結互指。每份說明各配一份 `*-Phase-Sample-Report.md`，是照該說明寫完的成品，只放內容不放解說。
 
