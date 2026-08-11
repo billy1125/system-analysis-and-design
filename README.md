@@ -74,7 +74,7 @@
 |---|---|---|
 | [期末設計題目說明](02-Project-Topics/README.md) | `02-Project-Topics/` | 五個期末設計題目的說明書，一題一份，另有索引說明選題判準與不建議做的方向。**是題目說明不是參考答案**：講現場長什麼樣、名詞是什麼意思、這一題要想清楚的問題，不給 ERD 與資料表 |
 | [參考題庫](00-Course-Introduction/Question-Bank.md) | `Question-Bank.md` | 口頭報告與個人訪談的提問方向。**是方向不是考古題**，實際題目來自各組自己的書面報告 |
-| [課程規範理解測驗](00-Course-Introduction/Course-Rules-Quiz.md) | `Course-Rules-Quiz.md` | 30 題是非題，附解答與出處章節。**不計分、不用繳交，也不用給老師看**，用來確認你記得的版本是不是對的 |
+| [課程規範理解測驗](00-Course-Introduction/Course-Rules-Quiz.md) | `Course-Rules-Quiz.md` | 36 題是非題，附解答與出處章節。**不計分、不用繳交，也不用給老師看**，用來確認你記得的版本是不是對的 |
 | [課程介紹投影片](00-Course-Introduction/Course-Introduction.slides.md) | `Course-Introduction.slides.md` | 第一週上課用（Marp 格式）。只放會扣分或錯過補不回來的規則，完整條文一律以規範文件為準 |
 
 ### 範例報告
