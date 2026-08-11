@@ -14,11 +14,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 以學習為目的之**校園訂餐系統**。它由兩個部分組成：
 
-1. **會員登入與管理系統**——直接沿用 `billy1125/sad-forum`，涵蓋帳號的完整生命週期
-   （申請、登入、個人資料維護、管理員治理）
+1. **會員登入與管理系統**——涵蓋帳號的完整生命週期（申請、登入、個人資料維護、
+   管理員治理）
 2. **訂餐子系統**——本專案的核心，示範一個真正的交易型業務子系統：主檔／明細、
-   狀態機、庫存的一致性維護。設計模式取自 `billy1125/Course-SAD-Sample-System`
-   的器材借用（equipment）
+   狀態機、庫存的一致性維護
 
 涵蓋：
 
@@ -30,11 +29,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 訂單狀態機與庫存不變量
 
 同時作為 Agentic / Harness Engineering 的練習專案。
-
-> **範圍外**：論壇（`sad-forum` 有）、校園活動報名（events）、器材借用（equipment）
-> 三個子系統**不屬於本系統**。文件中提到它們時，一律是說明血緣或對照關係。
-
----
 
 ## 技術棧
 
@@ -75,7 +69,7 @@ pytest -k "restock"                     # 執行名稱符合的測試
 sad-meal-order/
 ├── app.py                        # 主程式：組裝 Blueprint、啟動伺服器
 ├── utils.py                      # 跨 Blueprint 共用 helpers
-├── pytest.ini                    # 限定 testpaths，避免收集參考專案的測試
+├── pytest.ini                    # 限定 testpaths
 ├── requirements.txt
 ├── Dockerfile / docker-compose.yml / .dockerignore
 ├── database.db                   # SQLite（git 忽略，自動建立）
@@ -185,8 +179,7 @@ pending ──confirm──> confirmed ──complete──> completed
 
 三個常見的誤改：
 
-1. **`complete_meal_order()` 順手寫成回補庫存**（照抄範本的 `mark_order_returned`）。
-   便當吃掉就沒了，器材才會還回來
+1. **`complete_meal_order()` 順手寫成回補份數**。便當吃掉就沒了，不會像器材那樣還回來
 2. **`confirm_meal_order()` 先扣減再檢查**，導致部分確認。必須先全部檢查通過才動手
 3. **在 Blueprint 中重複檢查訂單狀態**。狀態檢查的權威位置在資料層
 
@@ -325,7 +318,7 @@ pending ──confirm──> confirmed ──complete──> completed
 | `/meal/order/new`、`/meal/my-orders`、`/meal/orders/*` | 1 + 2 |
 | `/meal/new`、`/meal/edit/*`、`/meal/delete/*`、`/meal/admin/*` | 1 + 2 + 3 |
 
-> `meal._current_user()` **必須**做 `_is_usable` 檢查（相對於範本已修正）。否則被停用
+> `meal._current_user()` **必須**做 `_is_usable` 檢查。否則被停用
 > 的帳號只要 session 未清，仍能送出訂單、佔用真實的餐點份數，讓 admin 的停用功能形同
 > 虛設。
 
@@ -342,7 +335,7 @@ pending ──confirm──> confirmed ──complete──> completed
 
 完整清單見 [`document/system-spec.md`](document/system-spec.md) 第 11 章。分兩類：
 
-- **沿用自 `sad-forum`（KI-01 ~ KI-31）**：保留不修，它們本身就是教材
+- **會員系統的既有技術債（KI-01 ~ KI-31）**：保留不修，它們本身就是教材
 - **訂餐子系統新增（KI-M1 ~ KI-M10）**：全部是刻意的取捨，每一條都有記錄理由
 
 判準只有一條：**缺陷的影響是否會外溢到當事人以外的人。**
@@ -449,15 +442,3 @@ pending ──confirm──> confirmed ──complete──> completed
 | [`document/auth.md`](document/auth.md)、[`hub.md`](document/hub.md)、[`profile.md`](document/profile.md)、[`admin.md`](document/admin.md) | 會員系統各子系統的細部行為 |
 
 測試規範見 [`tests/CLAUDE.md`](tests/CLAUDE.md)。
-
----
-
-## 兩個參考專案
-
-| 目錄 | 提供什麼 | 用法 |
-|------|---------|------|
-| `sad-forum/` | 會員登入與管理系統（auth、hub、profile、admin）、資料層骨架、測試骨架、`rules/`、文件結構 | 修改會員系統時先看它的對應檔案——本系統的四個 Blueprint 是**逐字沿用** |
-| `Course-SAD-Sample-System/` | 器材借用（equipment）的主檔／明細 + 狀態機 + 資源數量增減 | 擴充訂餐子系統時參考它的模式；但**不要照抄** `mark_order_returned` 的回補邏輯 |
-
-兩者都是獨立的 git repo，**不要修改它們**。它們的存在是為了讓「本系統改了什麼、
-為什麼改」可以直接 diff 出來。

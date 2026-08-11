@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}借閱明細{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='loans.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="loan-layout">
+
+  <div class="loan-topbar">
+    <span class="loan-topbar-title">借閱明細</span>
+    <div class="loan-topbar-nav">
+      <a href="{{ url_for('loans.my_loans') }}" class="loan-nav-link">我的借閱</a>
+      <a href="{{ url_for('books.index') }}" class="loan-nav-link">館藏查詢</a>
+      {% if is_admin %}
+        <a href="{{ url_for('loans.admin_loans') }}" class="loan-nav-link">借閱管理</a>
+      {% endif %}
+      <span class="loan-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="loan-btn loan-btn-danger">登出</a>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="loan-flash loan-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="loan-my-page">
+    <div class="loan-my-card">
+      <div class="loan-my-header">
+        <h2>借閱單 #{{ loan['id'] }}</h2>
+        {% if loan['returned_at'] %}
+          <span class="loan-badge loan-badge-lg loan-badge-returned">已歸還</span>
+        {% elif loan['is_overdue'] %}
+          <span class="loan-badge loan-badge-lg loan-badge-overdue">逾期未還</span>
+        {% else %}
+          <span class="loan-badge loan-badge-lg loan-badge-borrowed">借閱中</span>
+        {% endif %}
+      </div>
+
+      <div class="loan-info-grid">
+        <div class="loan-info-row">
+          <span class="loan-info-label">書名</span>
+          <span class="loan-info-value">
+            <a href="{{ url_for('books.index', id=loan['book_id']) }}"
+               class="loan-title-link">{{ loan['title'] }}</a>
+          </span>
+        </div>
+        <div class="loan-info-row">
+          <span class="loan-info-label">作者</span>
+          <span class="loan-info-value">{{ loan['author'] }}</span>
+        </div>
+        <div class="loan-info-row">
+          <span class="loan-info-label">ISBN</span>
+          <span class="loan-info-value">{{ loan['isbn'] }}</span>
+        </div>
+        <div class="loan-info-row">
+          <span class="loan-info-label">複本條碼</span>
+          <span class="loan-info-value">{{ loan['copy_barcode'] }}</span>
+        </div>
+        <div class="loan-info-row">
+          <span class="loan-info-label">借閱人</span>
+          <span class="loan-info-value">
+            {{ loan['borrower_name'] or loan['borrower_display'] or loan['borrower_email'] }}
+          </span>
+        </div>
+        <div class="loan-info-row">
+          <span class="loan-info-label">借出時間</span>
+          <span class="loan-info-value">{{ loan['borrowed_at'] }}</span>
+        </div>
+        <div class="loan-info-row">
+          <span class="loan-info-label">應還日期</span>
+          <span class="loan-info-value">{{ loan['due_at'] }}</span>
+        </div>
+        <div class="loan-info-row">
+          <span class="loan-info-label">實際歸還</span>
+          <span class="loan-info-value">{{ loan['returned_at'] or '—' }}</span>
+        </div>
+        <div class="loan-info-row">
+          <span class="loan-info-label">續借次數</span>
+          <span class="loan-info-value">{{ loan['renew_count'] }} / {{ max_renew_count }}</span>
+        </div>
+      </div>
+
+      <div class="loan-form-actions">
+        {% if not loan['returned_at'] %}
+          {% if loan['borrower_id'] == user['id'] %}
+            <form method="post" action="{{ url_for('loans.renew', loan_id=loan['id']) }}"
+                  class="loan-inline-form">
+              <button type="submit" class="loan-btn loan-btn-primary">
+                續借（延長 {{ renew_period_days }} 天）
+              </button>
+            </form>
+          {% endif %}
+          <form method="post" action="{{ url_for('loans.return_book', loan_id=loan['id']) }}"
+                class="loan-inline-form"
+                onsubmit="return confirm('確定登記歸還？')">
+            <button type="submit" class="loan-btn loan-btn-secondary">
+              {{ '登記歸還' if loan['borrower_id'] != user['id'] else '歸還' }}
+            </button>
+          </form>
+        {% endif %}
+        <a href="{{ url_for('loans.my_loans') }}" class="loan-btn loan-btn-secondary">返回我的借閱</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

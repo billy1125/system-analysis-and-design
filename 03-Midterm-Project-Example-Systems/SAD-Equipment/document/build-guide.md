@@ -35,27 +35,6 @@
 - [`rules/database.md`](../rules/database.md) — `db/` 套件使用方式、transaction 寫法、軟刪除模式、回傳值慣例
 - [`tests/CLAUDE.md`](../tests/CLAUDE.md) — 測試命名與覆蓋要求
 
-### 0.3 兩個參考專案
-
-本系統由兩個既有專案整併而成。以下所有「從 A 複製」「從 B 抽取」的指示，來源都是它們：
-
-| 代號 | 專案 | 提供 |
-|------|------|------|
-| **A** | `sad-forum` | 會員帳號與管理（auth / hub / profile / admin）、`db/users.py`、`utils.py`、`rules/`、測試架構、CSS token |
-| **B** | `Course-SAD-Sample-System` | 器材借用（`db/equipment.py`、`blueprints/equipment/`、七個模板、`equipment.css`） |
-
-> **這兩個專案是唯讀的參考來源，任何階段都不得修改它們。**
-
-取得方式：`sad-forum` 就在同一個資料夾底下（`../SAD-Forum/`）；
-`Course-SAD-Sample-System` 不在本儲存庫內，需要時自行 clone 到專案外：
-
-```bash
-git clone https://github.com/billy1125/Course-SAD-Sample-System.git
-```
-
-**不要把它放進本專案目錄下**，否則 `pytest` 會同時收集兩套 `tests/conftest.py`，
-產生 `ImportPathMismatchError` 而無法執行任何測試。
-
 ### 0.4 階段總覽
 
 | Phase | 名稱 | 主要產出 | 相依 |
@@ -129,14 +108,14 @@ which docker
 
 ### 產出檔案
 
-| 檔案 | 來源 | 說明 |
-|------|------|------|
-| `requirements.txt` | A 原樣複製 | 五行，不釘選版本 |
-| `utils.py` | A 原樣複製 | `_gen_captcha`、`_is_usable`、`login_required` |
-| `.gitignore` | A 修改後複製 | 末尾追加排除兩個參考專案 |
-| `.gitattributes`、`.dockerignore` | A 原樣複製 | `.dockerignore` 追加排除參考專案、`document/`、`rules/` |
-| `app.py` | 全新建立 | 先只有 `/health`，Blueprint 隨階段逐一加入 |
-| `blueprints/__init__.py` | 全新建立 | 空檔案 |
+| 檔案 | 說明 |
+|------|------|
+| `requirements.txt` | 五行，不釘選版本 |
+| `utils.py` | `_gen_captcha`、`_is_usable`、`login_required` |
+| `.gitignore`、`.gitattributes` | Python 專案的標準內容 |
+| `.dockerignore` | 追加排除 `document/`、`rules/` 與測試 |
+| `app.py` | 先只有 `/health`，Blueprint 隨階段逐一加入 |
+| `blueprints/__init__.py` | 空檔案 |
 
 `app.py` 的最終形態：
 
@@ -204,11 +183,11 @@ python -c "from app import app; print(app.name)"
 
 ### 產出檔案
 
-| 檔案 | 來源 | 說明 |
-|------|------|------|
-| `db/connection.py` | A 原樣複製 | `_get_conn()` |
-| `db/users.py` | A 原樣複製 | 十個公開函式 + `_seed_users_if_empty` |
-| `db/__init__.py` | A 修改後複製 | 移除 forum 的匯出，`init_db()` 先只建 `users` |
+| 檔案 | 說明 |
+|------|------|
+| `db/connection.py` | `_get_conn()` |
+| `db/users.py` | 十個公開函式 + `_seed_users_if_empty` |
+| `db/__init__.py` | 移除 forum 的匯出，`init_db()` 先只建 `users` |
 
 ### 關鍵決策
 
@@ -264,13 +243,13 @@ print(bcrypt.checkpw(b'password123', u['hash'].encode()))
 
 ### 產出檔案
 
-| 檔案 | 來源 | 說明 |
-|------|------|------|
-| `templates/base.html` | A 修改後複製 | 只改預設 `<title>` |
-| `static/common.css` | A 原樣複製 | 只有一個 `:root` token 區塊 |
-| `static/login.css` | A 原樣複製 | `button[type=submit]` 限定在 `.login-form` 內 |
-| `static/hub.css`、`profile.css`、`admin.css` | A 原樣複製 | |
-| `static/equipment.css` | B 原樣複製 | `eq-*` 前綴 |
+| 檔案 | 說明 |
+|------|------|
+| `templates/base.html` | 只改預設 `<title>` |
+| `static/common.css` | 只有一個 `:root` token 區塊 |
+| `static/login.css` | `button[type=submit]` 限定在 `.login-form` 內 |
+| `static/hub.css`、`profile.css`、`admin.css` | |
+| `static/equipment.css` | `eq-*` 前綴 |
 
 ### 關鍵決策
 
@@ -309,11 +288,11 @@ ls static/                             # 預期六個 .css
 
 ### 產出檔案
 
-| 檔案 | 來源 |
-|------|------|
-| `blueprints/auth/__init__.py`、`CLAUDE.md` | A 原樣複製 |
-| `templates/auth/login.html` | A 修改後複製（只改標題文字） |
-| `templates/auth/register.html` | A 原樣複製 |
+| 檔案 |
+|------|
+| `blueprints/auth/__init__.py`、`CLAUDE.md` |
+| `templates/auth/login.html` |
+| `templates/auth/register.html` |
 
 同時在 `app.py` 加入 `register_blueprint(auth_bp)`。
 
@@ -359,11 +338,11 @@ print(r.status_code, r.headers.get('Location'))   # 302 /
 
 ### 產出檔案
 
-| 檔案 | 來源 |
-|------|------|
-| `blueprints/hub/__init__.py` | A 原樣複製 |
-| `blueprints/hub/CLAUDE.md` | A 修改後複製（卡片清單改為器材相關） |
-| `templates/hub/home.html` | A 修改後複製（服務卡片全部重寫） |
+| 檔案 |
+|------|
+| `blueprints/hub/__init__.py` |
+| `blueprints/hub/CLAUDE.md` |
+| `templates/hub/home.html` |
 
 此階段先只放「個人資料」卡片；器材與管理卡片在 Phase 7、9 補上。
 
@@ -413,10 +392,10 @@ print('歡迎使用' in c.get('/').get_data(as_text=True))    # True（退回訪
 
 ### 產出檔案
 
-| 檔案 | 來源 |
-|------|------|
-| `blueprints/profile/__init__.py`、`CLAUDE.md` | A 原樣複製 |
-| `templates/profile/dashboard.html` | A 原樣複製 |
+| 檔案 |
+|------|
+| `blueprints/profile/__init__.py`、`CLAUDE.md` |
+| `templates/profile/dashboard.html` |
 
 ### 關鍵決策
 
@@ -461,10 +440,10 @@ print(u['name'], u['display_name'])       # 新名字 None
 
 ### 產出檔案
 
-| 檔案 | 來源 |
-|------|------|
-| `blueprints/admin/__init__.py`、`CLAUDE.md` | A 原樣複製 |
-| `templates/admin/user_list.html`、`user_detail.html` | A 原樣複製 |
+| 檔案 |
+|------|
+| `blueprints/admin/__init__.py`、`CLAUDE.md` |
+| `templates/admin/user_list.html`、`user_detail.html` |
 
 同時在 `templates/hub/home.html` 補上「會員管理」卡片（`{% if user['role'] == 0 %}`）。
 
@@ -531,17 +510,17 @@ print(db.find_user_by_id(1)['is_active'])                    # 0
 
 ### 產出檔案
 
-| 檔案 | 來源 | 說明 |
-|------|------|------|
-| `db/equipment.py` | B 修改後複製 | 改為相對 import、補 docstring、新增種子函式 |
-| `db/__init__.py` | 修改 | 匯出 16 個 equipment 函式；`init_db()` 加入建表與種子 |
-| `db/CLAUDE.md` | 全新建立 | 完整欄位字典 |
+| 檔案 | 說明 |
+|------|------|
+| `db/equipment.py` | 改為相對 import、補 docstring、新增種子函式 |
+| `db/__init__.py` | 匯出 16 個 equipment 函式；`init_db()` 加入建表與種子 |
+| `db/CLAUDE.md` | 完整欄位字典 |
 
-從 B 複製時的三處改動：
+三個容易漏掉的地方：
 
-1. `from db.connection import _get_conn` → `from .connection import _get_conn`
-2. 為每個公開函式補上 docstring（A 專案的慣例）
-3. 新增 `_SEED_EQUIPMENT` 與 `_seed_equipment_if_empty(conn)`
+1. import 一律用相對形式：`from .connection import _get_conn`
+2. 每個公開函式都要有 docstring
+3. 種子器材由 `_SEED_EQUIPMENT` 與 `_seed_equipment_if_empty(conn)` 提供
 
 ### 關鍵決策
 
@@ -639,11 +618,11 @@ print(db.get_equipment(e)['available_quantity'])                # 0，不是 -1
 
 ### 產出檔案
 
-| 檔案 | 來源 | 說明 |
-|------|------|------|
-| `blueprints/equipment/__init__.py` | B 修改後複製 | 守門邏輯調整（見下） |
-| `blueprints/equipment/CLAUDE.md` | 全新建立 | |
-| `templates/equipment/*.html`（7 個） | B 修改後複製 | topbar 加「返回首頁」 |
+| 檔案 | 說明 |
+|------|------|
+| `blueprints/equipment/__init__.py` | 守門邏輯調整（見下） |
+| `blueprints/equipment/CLAUDE.md` | |
+| `templates/equipment/*.html`（7 個） | topbar 加「返回首頁」 |
 
 同時：
 
@@ -652,10 +631,10 @@ print(db.get_equipment(e)['available_quantity'])                # 0，不是 -1
 
 ### 關鍵決策
 
-**守門邏輯必須從 B 的版本調整。** B 的 `_current_user()` 只查資料庫、不檢查帳號有效性：
+**守門邏輯不可只查資料庫。** 下面這種只查 id、不檢查帳號有效性的寫法是錯的：
 
 ```python
-# B 的版本——不要照抄
+# 不要這樣寫
 def _current_user():
     if 'user_id' in session:
         return db.find_user_by_id(session['user_id'])
@@ -758,8 +737,8 @@ print(c2.get('/equipment/').status_code)    # 200
 
 ### 常見錯誤
 
-- 照抄 B 的 `_current_user()`，守門修正沒做到
-- `borrow()` 保留了 B 的「帳號已停用」flash 分支，造成兩套處置並存
+- `_current_user()` 漏了 `_is_usable` 檢查
+- `borrow()` 用「帳號已停用」flash 草草擋下失效帳號，與第 2 層守門形成兩套處置
 - 模板新增狀態時只加了中文標籤、忘了加 CSS class（兩者不共用同一份字串）
 - `strict_slashes=False` 漏掉，`/equipment` 會 308 到 `/equipment/`
 
@@ -773,27 +752,27 @@ print(c2.get('/equipment/').status_code)    # 200
 
 ### 產出檔案
 
-| 檔案 | 來源 | 說明 |
-|------|------|------|
-| `tests/__init__.py`、`data/__init__.py` | A 原樣複製 | 空檔案 |
-| `tests/conftest.py` | A 原樣複製 | 五個 fixture |
-| `tests/data/users.py` | A 修改後複製 | `MESSAGES` 增加 equipment 區塊 |
-| `tests/test_auth.py`、`test_profile.py`、`test_admin.py` | A 原樣複製 | |
-| `tests/test_hub.py` | A 修改後複製 | 論壇斷言改為器材斷言 |
-| `tests/test_equipment.py` | B 修改後複製並大幅擴充 | 30 → 52 個 |
-| `tests/CLAUDE.md` | 全新建立 | |
-| `pytest.ini` | 全新建立 | 限定 `testpaths` |
+| 檔案 | 說明 |
+|------|------|
+| `tests/__init__.py`、`data/__init__.py` | 空檔案 |
+| `tests/conftest.py` | 五個 fixture |
+| `tests/data/users.py` | `MESSAGES` 增加 equipment 區塊 |
+| `tests/test_auth.py`、`test_profile.py`、`test_admin.py` | |
+| `tests/test_hub.py` | 論壇斷言改為器材斷言 |
+| `tests/test_equipment.py` | 30 → 52 個 |
+| `tests/CLAUDE.md` | |
+| `pytest.ini` | 限定 `testpaths` |
 
 `pytest.ini`：
 
 ```ini
 [pytest]
 testpaths = tests
-norecursedirs = sad-forum Course-SAD-Sample-System .git __pycache__
+norecursedirs = .git __pycache__
 ```
 
-**沒有這個檔案，只要兩個參考專案放在本目錄下，`pytest` 就完全跑不起來**——
-三套 `tests/conftest.py` 的模組名稱相同，會產生 `ImportPathMismatchError`。
+**這個檔案限定收集範圍**：pytest 只走進本系統的 `tests/`，不會誤收其他目錄下
+同名的 `conftest.py` 而產生 `ImportPathMismatchError`。
 
 ### 關鍵決策
 
@@ -812,9 +791,9 @@ def test_borrow_disabled_user_redirects_to_login(other_client, equipment):
 
 漏掉 `set_user_active(3, 1)` 時測試仍會通過（都是 302），但測到的是完全不同的那一層。
 
-**從 B 搬移測試時必須修正一個錯誤斷言。** B 的 `test_available_quantity_not_below_zero`
-先讓第一張單借出、再核准第二張，實際上 `approve_order` 會重新檢查庫存而回傳 `False`，
-但原測試沒有斷言回傳值，所以看不出來。本系統拆成兩個測試：
+**庫存不足的測試要拆成兩條。** 「先讓第一張單借出、再核准第二張」這種寫法，
+實際上 `approve_order` 會重新檢查庫存而回傳 `False`；若沒有斷言回傳值就看不出來。
+本系統拆成兩個測試：
 
 - `test_approve_rechecks_stock_after_borrowed` — 庫存借光後核准失敗
 - `test_available_quantity_not_below_zero` — 兩張都先核准，第二張在登記借出時才失敗
@@ -862,24 +841,24 @@ pytest --collect-only -q | grep "::" | sed 's/::.*//' | sort | uniq -c
 
 ### 產出檔案
 
-| 檔案 | 來源 |
-|------|------|
-| `Dockerfile`、`docker-compose.yml` | A 原樣複製 |
-| `CLAUDE.md` | 全新建立 |
-| `README.md` | 全新建立 |
-| `rules/flask-blueprint.md`、`database.md` | A 修改後複製（範例改以 equipment 為對象） |
-| `document/system-spec.md`、`build-guide.md` | 全新建立 |
-| `document/auth.md`、`profile.md`、`admin.md` | A 原樣複製 |
-| `document/hub.md`、`equipment.md` | 全新建立 |
-| `blueprints/*/CLAUDE.md`、`db/CLAUDE.md`、`tests/CLAUDE.md` | 部分複製、部分新建 |
+| 檔案 |
+|------|
+| `Dockerfile`、`docker-compose.yml` |
+| `CLAUDE.md` |
+| `README.md` |
+| `rules/flask-blueprint.md`、`database.md` |
+| `document/system-spec.md`、`build-guide.md` |
+| `document/auth.md`、`profile.md`、`admin.md` |
+| `document/hub.md`、`equipment.md` |
+| `blueprints/*/CLAUDE.md`、`db/CLAUDE.md`、`tests/CLAUDE.md` |
 
 ### 關鍵決策
 
 **資料庫放在 named volume。** `docker-compose.yml` 以 `DB_PATH=/app/data/database.db`
 搭配 `db_data:/app/data`，讓 `docker compose down` 不會清掉資料，`down -v` 才會。
 
-**`.dockerignore` 必須排除兩個參考專案**，否則映像會膨脹數十 MB，而且會把它們的
-`database.db` 一起打包進去。
+**`.dockerignore` 必須排除 `tests/`、`document/`、`rules/` 與 `database.db`**，
+否則映像會膨脹，而且會把開發用的資料庫一起打包進去。
 
 ### 驗收
 
@@ -888,7 +867,7 @@ pytest --collect-only -q | grep "::" | sed 's/::.*//' | sort | uniq -c
 ```bash
 grep -n "DB_PATH" docker-compose.yml       # 應指向 /app/data/database.db
 grep -n "db_data" docker-compose.yml       # 應同時出現在 volumes 與 services
-cat .dockerignore                          # 應含 sad-forum/ 與 Course-SAD-Sample-System/
+cat .dockerignore                          # 應含 tests/、document/、rules/
 ```
 
 有 Docker 環境時：
@@ -1019,7 +998,7 @@ print('profile POST:', db.find_user_by_id(1)['name'])
 ## 附錄：完整檔案清單
 
 ```
-sad-equipment/
+SAD-Equipment/
 ├── .dockerignore            .gitattributes         .gitignore
 ├── CLAUDE.md                README.md
 ├── Dockerfile               docker-compose.yml

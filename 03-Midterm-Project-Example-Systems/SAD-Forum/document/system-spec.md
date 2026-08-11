@@ -49,32 +49,9 @@
 - 上述功能的自動化測試
 - Docker 容器化部署設定
 
-**範圍外（明確不包含）：**
+**範圍外（明確不包含）：** 帳號生命週期與論壇以外的業務子系統。本系統刻意維持在讀得完的規模。
 
-- 校園活動報名（events）
-- 器材借用（equipment）
-
-這兩個子系統存在於教學範本中，但**不搬入本系統**。本文件中若出現這些名稱，一律是在說明「範本有、本系統沒有」的對照關係，不代表本系統的組成部分。
-
-### 1.3 與參考範本的血緣關係
-
-本系統由 `billy1125/Course-SAD-Sample-System`（含 6 個子系統的教學範本）抽取而來。
-
-**範本已於建置完成後從本 repo 移除**，原始碼可從該 GitHub repo 重新取得。本文件保留與範本的對照，是為了說明每一個設計決策的來歷——哪些是照抄、哪些是刻意修改、哪些是刻意不修改。
-
-| 面向 | 參考範本 | 本系統 |
-|------|---------|--------|
-| 子系統數 | 6 個 Blueprint（auth、hub、profile、forum、events、equipment） | 5 個 Blueprint（auth、hub、profile、admin、forum） |
-| 資料表數 | 9 張（users + forum 2 張 + events 3 張 + equipment 3 張） | **3 張**（users、forum、forum_details） |
-| `db/` 模組 | 5 個（connection、users、forum、events、equipment） | 3 個（connection、users、forum） |
-| 首頁服務卡片 | 論壇、校園活動報名、器材借用、個人資料 | 個人資料、論壇、會員管理（僅管理員可見） |
-| 管理員功能 | 刪除任何文章／修改任何活動／審核借用單 | **管理所有會員帳號** + 刪除任何文章與回覆 |
-| forum 的帳號有效性檢查 | **無**（`_current_user()` 不驗 `_is_usable`） | **有**（本版修正，見 §11.5） |
-| CSS 檔案 | 6 個 | 6 個（common、login、hub、profile、admin、forum） |
-| 測試檔案 | 6 個，151 個案例 | 5 個，約 112 個案例 |
-| 一次性種子機制 | 有（`setup/` 目錄，執行後自我刪除） | **無**（該機制同時服務 events 與 equipment，一併移除）。論壇的範例資料改由 `_seed_forum_if_empty()` 提供，與種子帳號同一套機制 |
-
-### 1.4 名詞定義
+### 1.3 名詞定義
 
 | 名詞 | 定義 |
 |------|------|
@@ -184,7 +161,7 @@ SQLite（database.db，WAL 模式）
 ### 3.3 目錄結構
 
 ```text
-sad-user-management/
+SAD-Forum/
 ├── app.py                        # 主程式：組裝 Blueprint、啟動伺服器
 ├── utils.py                      # 跨 Blueprint 共用 helpers
 ├── requirements.txt
@@ -373,12 +350,6 @@ def _current_user():
 ```
 
 論壇之所以能這樣收斂而 admin 不行，是因為兩者對「查不到有效使用者」的處置不同。論壇主頁必須把 `None` 當成合法的訪客狀態繼續渲染，因此不能在 helper 裡直接 redirect；admin 則是任何一層失敗都要中斷請求，處置各不相同，收斂進 helper 反而會遮蔽差異。
-
-> **對照範本的兩個缺陷**：
-> 1. 範本 `blueprints/equipment/__init__.py` 的 `_is_admin` 沒有搭配 `_is_usable`，因此 `role = 0` 但已被停用的帳號只要 session 還在，仍能通過所有管理員檢查。
-> 2. 範本 `blueprints/forum/__init__.py` 的 `_current_user()`（第 11–15 行）只查 id 不驗狀態，該檔第 4 行也**沒有** import `_is_usable`。被停用或刪除的帳號仍可發文、回覆、修改、（若為管理員）刪文。
->
-> 本系統兩者都修正，並各以專屬測試案例守住。詳見 §11.5。
 
 ### 4.5 自我保護規則與「最後一個管理員」
 
@@ -622,7 +593,7 @@ is_deleted                                          is_deleted
 
 ### 6.2 `users` 表 DDL
 
-以下為 `db/__init__.py` 中 `init_db()` 執行的完整建表語句，**原樣沿用範本，不做任何修改**：
+以下為 `db/__init__.py` 中 `init_db()` 執行的完整建表語句：
 
 ```sql
 CREATE TABLE IF NOT EXISTS users (
@@ -688,7 +659,7 @@ id 由 AUTOINCREMENT 依 `_SEED_USERS` 的順序產生，**未在 INSERT 中顯�
 
 **時間戳以 `datetime('now', '-N minutes')` 明確指定**，不用欄位預設值。理由是全部在同一秒內建立時 `updated_at` 會完全相同，列表排序變得不確定，「有新回覆的文章會浮上來」這個行為就看不出來了。五篇的最後活動時間分別散在 3 天前到 2 小時前之間。
 
-> **為何不沿用範本的 `setup/` 機制。** 範本用一個一次性的 `setup/` 目錄植入模擬資料，執行後把整個目錄刪掉。那套機制有兩個問題：一是不冪等，重置資料庫後除非手動把目錄放回去，否則永遠拿不回範例資料；二是它同時服務 events 與 equipment，那兩個子系統已經不在本系統內。
+> **為何種子資料由 `_seed_*_if_empty()` 提供。** 另一種常見做法是用一次性的 `setup/` 目錄植入模擬資料、執行後把目錄刪掉。那套機制不冪等：重置資料庫後除非手動把目錄放回去，否則永遠拿不回範例資料。本系統改成在 `init_db()` 裡檢查資料表是否為空再植入，重置幾次都拿得回來。
 >
 > 改用 `_seed_*_if_empty` 讓兩類種子資料的機制一致——`rm database.db && python app.py` 就能完整回到初始狀態，這也是 `README` 與 `CLAUDE.md` 一直宣稱的行為。
 
@@ -738,7 +709,7 @@ def list_users(page, page_size, status='all', keyword=None):
 
 ### 6.7 `forum` 與 `forum_details` 表 DDL
 
-以下為 `db/forum.py` 的 `_init_forum_tables(conn)` 執行的建表語句，**原樣沿用範本**：
+以下為 `db/forum.py` 的 `_init_forum_tables(conn)` 執行的建表語句：
 
 ```sql
 CREATE TABLE IF NOT EXISTS forum (
@@ -762,7 +733,7 @@ CREATE TABLE IF NOT EXISTS forum_details (
 )
 ```
 
-> **表名注意**：主檔的表名是 `forum`（單數，無 `_masters` 後綴）。範本的 `blueprints/forum/CLAUDE.md` 誤寫為 `forum_masters`，本系統的對應文件已更正。函式名稱 `list_forum_masters` 中的 `masters` 指的是「主檔」這個概念，不是表名。
+> **表名注意**：主檔的表名是 `forum`（單數，無 `_masters` 後綴）。函式名稱 `list_forum_masters` 中的 `masters` 指的是「主檔」這個概念，不是表名。
 
 ### 6.8 `forum` 相關欄位字典
 
@@ -1145,7 +1116,7 @@ topbar（系統名稱、返回首頁、使用者名稱 + 登出／或「登入�
 
 `admin`、`profile`、`forum` 的表單**不加**這個 class，否則會誤套登入頁樣式。
 
-**已知的 token 缺口：** 狀態 badge（啟用／停用／已刪除／管理員／一般使用者）的底色目前硬編碼在 `admin.css` 中，因為 `common.css` 沒有定義狀態語意色。`forum.css` 的 `.forum-row-original`、`.forum-row-selected`、`.forum-alert-*` 也有同樣情況。這與範本的做法一致（一致性優先），記錄於 KI-19。
+**已知的 token 缺口：** 狀態 badge（啟用／停用／已刪除／管理員／一般使用者）的底色目前硬編碼在 `admin.css` 中，因為 `common.css` 沒有定義狀態語意色。`forum.css` 的 `.forum-row-original`、`.forum-row-selected`、`.forum-alert-*` 也有同樣情況。全站一致地這樣處理，記錄於 KI-19。
 
 ---
 
@@ -1247,7 +1218,7 @@ EMAIL_REGEX = re.compile(r'^[^\s@]+@[^\s@]+\.[^\s@]+$')
 
 共 33 條。auth 與 admin 的 22 條集中在 `tests/data/users.py` 的 `MESSAGES` 中，修改任何一條時**必須同步更新**，否則測試會失敗。
 
-> 論壇的 11 條**不放進 `MESSAGES`**。原因是 `tests/test_forum.py` 沿用範本原樣搬移，它把字串直接寫在斷言中，沒有 import `MESSAGES`。強行改寫會讓測試檔與範本產生無謂的差異，不利對照。這個不一致本身列為 KI-29。
+> 論壇的 11 條**不放進 `MESSAGES`**。`tests/test_forum.py` 把這些字串直接寫在斷言中，沒有 import `MESSAGES`，與 auth／admin 的做法不一致。這個不一致本身列為 KI-29。
 
 **既有 11 條（auth 與 hub 共用）**
 
@@ -1398,11 +1369,11 @@ flash 的價值在於**跨 redirect** 傳遞訊息——它把字串暫存進 se
 
 本章是這份規格書最重要的部分。
 
-本系統從一個教學範本抽取而來，**刻意沿用範本既有的技術債，不做強行強化**。原因是這些債本身就是教材：學生能夠在一個小到讀得完的系統裡，看見「已知的缺陷」如何具體地存在於程式碼中，而不是只在課本上讀到條列的原則。
+本系統**刻意保留既有的技術債，不做強行強化**。原因是這些債本身就是教材：學生能夠在一個小到讀得完的系統裡，看見「已知的缺陷」如何具體地存在於程式碼中，而不是只在課本上讀到條列的原則。
 
 共 30 條（編號至 KI-31，其中 KI-18 保留不用）。每一條都記錄：描述、影響、**為何本版接受**、修補方向與工作量。
 
-> 編號說明：KI-18 原本指向「範本 equipment 的 `_is_admin` 未搭配 `_is_usable`」。本系統的 `admin` 子系統已修正這一點，因此它不是本系統的技術債，改列於 §11.5「本版相對於範本的修正」。編號保留不再使用，避免既有交叉引用失效。
+> 編號說明：KI-18 原本指向「`_is_admin` 未搭配 `_is_usable`」。`admin` 子系統已處理這一點，因此它不是本系統的技術債，改列於 §11.5。編號保留不再使用，避免既有交叉引用失效。
 
 ### 11.0 為何有些債修、有些不修
 
@@ -1449,7 +1420,7 @@ flash 的價值在於**跨 redirect** 傳遞訊息——它把字串暫存進 se
 **KI-07 — 驗證碼答案在登入成功後未清除**
 描述：`session['captcha']` 寫入後從未被 `session.pop()`，只會被下一次 `GET /captcha.png` 覆寫。
 影響：同一組驗證碼答案可以在多次 POST 中重複使用。攻擊者只要人工辨識一次，就能以同一個 cookie 無限次嘗試不同密碼——驗證碼作為防自動化機制形同虛設。
-為何接受：這是範本的既有行為，抽取時原樣保留以維持與範本的可對照性。
+為何接受：刻意保留為教材，讓學生看得到這個缺口具體長什麼樣子。
 修補方向：登入流程（成功與失敗皆然）結束後執行 `session.pop('captcha', None)`。工作量 15 分鐘，但需同步調整測試中 `_set_captcha` 的呼叫時機。
 > 這是本章中**修補成本最低、安全效益最高**的一項。
 
@@ -1462,7 +1433,7 @@ flash 的價值在於**跨 redirect** 傳遞訊息——它把字串暫存進 se
 **KI-14 — `/logout` 是 GET 且有副作用**
 描述：`@auth_bp.route('/logout')` 只接受 GET，卻執行 `session.clear()`。這直接違反 `rules/flask-blueprint.md` 中「有副作用的動作一律用 POST」的規範。
 影響：可被 `<img src="/logout">` 之類的方式從外站觸發，造成登出 CSRF。危害輕微（只是被登出），但它是一個規範與實作不一致的明確案例。
-為何接受：範本既有行為，且改成 POST 會讓三個模板的登出連結都要改成表單。
+為何接受：改成 POST 會讓三個模板的登出連結都要改成表單。
 修補方向：改為 `methods=['POST']`，模板中的 `<a>` 改成 `<form>` + `<button>`。工作量 30 分鐘。
 
 **KI-15 — 無 session fixation 防護**
@@ -1490,7 +1461,7 @@ flash 的價值在於**跨 redirect** 傳遞訊息——它把字串暫存進 se
 描述：`profile.dashboard_update()` 只套用了 `@login_required`，**沒有** `_is_usable(user)` 檢查。相對地，`profile.dashboard()`（GET）有做這個檢查。
 影響：一個已被管理員停用或軟刪除的會員，只要瀏覽器中的 session cookie 還沒被清除，仍然可以成功修改自己的姓名與顯示名稱。
 
-這條債在範本中影響有限——範本沒有停用會員的介面，只有種子資料裡有一個停用帳號。**但本系統新增了 FR-ADMIN-03（停用）與 FR-ADMIN-05（刪除），這條路徑因此從理論缺陷變成了可實際觸發的行為矛盾**：管理員在會員管理介面按下「停用」，系統顯示「帳號已停用」，但被停用者只要不重新整理頁面、直接送出個人資料表單，寫入依然成功。
+**因為系統有 FR-ADMIN-03（停用）與 FR-ADMIN-05（刪除），這條路徑不只是理論缺陷，而是可實際觸發的行為矛盾**：管理員在會員管理介面按下「停用」，系統顯示「帳號已停用」，但被停用者只要不重新整理頁面、直接送出個人資料表單，寫入依然成功。
 
 為何接受：經明確裁決保留。它是本系統中最好的教材——**技術債不會停留在原地，它會隨著新功能的加入而擴大影響範圍**。一個在舊系統中無關痛癢的疏漏，在新功能的脈絡下變成了功能矛盾。這個現象在真實專案中極為常見，值得學生親眼看見一次。
 
@@ -1510,19 +1481,19 @@ if not _is_usable(user):
 **KI-04 — `POST /profile/update` 無輸入驗證與成功回饋**
 描述：`name` 與 `display_name` 只做 `.strip()` 與空字串轉 `None`，沒有長度、字元或內容驗證。資料庫欄位是無長度限制的 `TEXT`。更新成功後直接 redirect，沒有任何 flash 回饋。
 影響：可寫入任意長度的字串。使用者送出表單後看不到「已儲存」的確認，只能從畫面上的值判斷。
-為何接受：範本既有行為，且與 KI-03 同屬 profile 子系統，一併保留以維持該子系統與範本的完全一致。
+為何接受：與 KI-03 同屬 profile 子系統，一併保留為教材。
 修補方向：加入長度上限檢查與 `flash('已更新', 'success')`。工作量 30 分鐘。
 
 **KI-22 — email 未做大小寫正規化，且登入不驗格式**
 描述：`create_user()` 直接以原始字串 INSERT，而 `email` 的 UNIQUE 約束使用 SQLite 預設的 BINARY collation。`EMAIL_REGEX` 只在 `/register` 使用，`/login` 與 hub 內嵌登入完全不驗格式。
 影響：`User@example.com` 與 `user@example.com` 會是兩個獨立的帳號。使用者登入時大小寫打錯就會失敗，且錯誤訊息是「帳號或密碼錯誤」，難以自行診斷。
-為何接受：範本既有行為。
+為何接受：刻意保留為教材。
 修補方向：`create_user()` 與 `find_user_by_email()` 都對 email 執行 `.lower()`；或把欄位改為 `TEXT COLLATE NOCASE`。工作量 30 分鐘，但既有資料需要遷移。
 
 **KI-23 — hub 內嵌登入是 auth 登入的完整複製**
 描述：`blueprints/hub/__init__.py` 的登入處理與 `blueprints/auth/__init__.py` 幾乎逐行相同，包含五條錯誤訊息各自硬編碼兩份。
 影響：任何登入政策的強化（失敗鎖定、密碼規則、session 重生、驗證碼清除）都必須同時改兩處。漏改任何一處，攻擊者就能從另一個入口繞過。
-為何接受：範本既有設計，且 `document/hub.md` 已把這件事記為既定行為。抽出共用函式會讓兩個 Blueprint 產生依賴，違反「Blueprint 不互相 import」的邊界原則；抽到 `utils.py` 又會讓 `utils.py` 承載業務邏輯。
+為何接受：`document/hub.md` 已把這件事記為既定行為。抽出共用函式會讓兩個 Blueprint 產生依賴，違反「Blueprint 不互相 import」的邊界原則；抽到 `utils.py` 又會讓 `utils.py` 承載業務邏輯。
 修補方向：這是一個真正的設計難題，沒有廉價解法。可能的方向是把登入邏輯下放為 `db` 層或獨立的 `services` 模組的函式。工作量 2 小時以上，且會改變專案的分層架構。
 > 修補 KI-02、KI-07、KI-15 時，**務必記得兩處都要改**。
 
@@ -1537,7 +1508,7 @@ if not _is_usable(user):
 **KI-09 — 無 `FOREIGN KEY` 宣告**
 描述：三張表之間有三條邏輯關聯（`forum.user_id`、`forum_details.user_id`、`forum_details.master_id`），但全部沒有 `FOREIGN KEY` 宣告，SQLite 的 `PRAGMA foreign_keys` 也未開啟。
 影響：資料完整性完全依賴 application 層自律。具體來說：可以寫入指向不存在使用者的文章；刪除文章不會自動刪除回覆（級聯必須在 `soft_delete_forum_master()` 中明寫）；孤兒明細（`master_id` 指向不存在的主檔）不會被資料庫拒絕。
-為何接受：這是範本一致的做法，且在**軟刪除**的前提下 FK 的約束力本來就有限——`ON DELETE CASCADE` 只對實體 DELETE 生效，對 `UPDATE is_deleted = 1` 完全不作用。真正的價值是 `FOREIGN KEY` 能擋住無效的 `user_id` 與 `master_id` 寫入。
+為何接受：在**軟刪除**的前提下 FK 的約束力本來就有限——`ON DELETE CASCADE` 只對實體 DELETE 生效，對 `UPDATE is_deleted = 1` 完全不作用。真正的價值是 `FOREIGN KEY` 能擋住無效的 `user_id` 與 `master_id` 寫入。
 修補方向：在兩張 forum 表的 DDL 加上 `REFERENCES`，並在 `_get_conn()` 中執行 `PRAGMA foreign_keys = ON`。工作量 30 分鐘，但既有測試若有插入無效 id 的案例會失敗，需一併檢查。
 > 教學建議：讓學生實際插入一筆 `user_id = 999` 的文章，觀察資料庫不會拒絕，然後在論壇主頁看到作者欄是空的（`LEFT JOIN` 找不到對應的 user）。這比任何文字說明都有效。
 
@@ -1582,25 +1553,25 @@ if not _is_usable(user):
 **KI-28 — 論壇內容無長度上限**
 描述：`title` 與 `content` 只做 `.strip()` 與非空檢查，沒有任何長度上限。資料庫欄位是無長度限制的 `TEXT`，前端也沒有 `maxlength` 屬性。
 影響：單一使用者可以寫入任意大小的內容，撐爆資料庫或讓論壇主頁載入緩慢（標題會直接渲染在列表中）。這不是 XSS——Jinja2 的自動跳脫已經擋住了——而是純粹的資源耗用。配合 KI-02（無 rate limiting），一個腳本就能塞滿磁碟。
-為何接受：範本既有行為。加入長度檢查需要同時決定「多長算長」、在前後端各實作一次、並補上對應的測試與訊息字串，而這個決定沒有客觀答案。
+為何接受：加入長度檢查需要同時決定「多長算長」、在前後端各實作一次、並補上對應的測試與訊息字串，而這個決定沒有客觀答案。
 修補方向：在 `blueprints/forum/__init__.py` 定義 `_MAX_TITLE = 200`、`_MAX_CONTENT = 10000` 兩個常數並加入驗證，模板加 `maxlength`，新增兩條訊息字串。工作量 1 小時。
 
 **KI-29 — 論壇訊息字串未納入 `MESSAGES`**
 描述：auth 與 admin 的 22 條訊息集中在 `tests/data/users.py` 的 `MESSAGES` 中，但論壇的 11 條直接硬編碼在 `tests/test_forum.py` 的斷言裡。
 影響：同一個專案有兩套訊息字串的管理方式。修改論壇訊息時必須自己記得去改測試，沒有集中的地方可查。
-為何接受：`tests/test_forum.py` 是從範本原樣搬移的 39 個案例，改寫成引用 `MESSAGES` 會讓它與範本產生大量差異，不利對照學習。
+為何接受：`tests/test_forum.py` 的 39 個案例把訊息直接寫在斷言中，改寫成引用 `MESSAGES` 要動到的行數遠多於它換來的一致性。
 修補方向：在 `tests/data/` 新增 `forum.py` 存放論壇的 `MESSAGES`，並改寫 `test_forum.py` 的斷言。工作量 1 小時。
 
 **KI-30 — 可以刪除首篇內文，留下沒有內文的文章**
 描述：`POST /forum/delete/detail/<id>` 不檢查目標是否為 `is_original_post = 1` 的那一筆。管理員刪掉它之後，該文章仍然存在於列表中、仍有標題、仍有其他回覆，但點進去看不到原始貼文。
 影響：產生一個語意不完整的狀態。使用者看到的是一串回覆卻不知道在回覆什麼。
-為何接受：範本既有行為。要處理的話有三種選擇（禁止刪除首篇／刪首篇即刪整篇／顯示「原文已刪除」佔位），三者都合理，選哪一個屬於產品決策而非技術問題。
+為何接受：要處理的話有三種選擇（禁止刪除首篇／刪首篇即刪整篇／顯示「原文已刪除」佔位），三者都合理，選哪一個屬於產品決策而非技術問題。
 修補方向：建議採第三種——在 `list_forum_details()` 中不過濾首篇，改在模板中對已刪除的首篇顯示佔位文字。這保留了討論脈絡，也不會讓管理員的操作產生意外的連鎖。工作量 1 小時。
 
 **KI-27 — 種子帳號的 id 是隱含綁定**
 描述：`_SEED_USERS` 的 INSERT 沒有顯式指定 id，1／2／3 是由 AUTOINCREMENT 依插入順序產生的。但 `tests/conftest.py` 的 `authed_client`、`admin_client`、`other_client` 三個 fixture 直接寫死 `sess['user_id'] = 1/2/3`。
 影響：若有人調整 `_SEED_USERS` 的順序，全套測試的權限斷言會**靜默錯位**——測試仍然通過或失敗，但驗證的已經不是原本的身分。
-為何接受：範本既有做法，且 `_SEED_USERS` 的順序不常變動。
+為何接受：`_SEED_USERS` 的順序不常變動。
 修補方向：INSERT 時顯式指定 id，或在 `tests/data/users.py` 中以 email 查詢 id 而非寫死。工作量 30 分鐘。
 
 ### 11.4 使用者體驗與前端
@@ -1608,13 +1579,13 @@ if not _is_usable(user):
 **KI-17 — admin POST 動作後不保留篩選狀態**
 描述：四個管理動作成功後一律 `redirect(url_for('admin.user_list'))`，不帶任何 query string。
 影響：管理員在「已停用」篩選的第 3 頁對某人執行操作，操作完會被丟回「全部」篩選的第 1 頁，必須重新篩選與翻頁。連續處理多筆時很不順手。
-為何接受：與範本 equipment 的管理動作做法一致。保留狀態需要在每個表單中夾帶 hidden 欄位，或在 redirect 時重組 query string，會讓路由與模板都變複雜。
+為何接受：保留狀態需要在每個表單中夾帶 hidden 欄位，或在 redirect 時重組 query string，會讓路由與模板都變複雜。
 修補方向：在每個 inline form 中加入 `<input type="hidden" name="page">` 等欄位，redirect 時帶回。工作量 1 小時。
 
 **KI-19 — 狀態 badge 底色未納入 token 體系**
 描述：啟用／停用／已刪除／管理員／一般使用者這五種 badge 的底色硬編碼在 `admin.css` 中，因為 `common.css` 只定義了按鍵顏色，沒有狀態語意色。
 影響：違反「顏色的單一來源」原則。日後要調整狀態色需要改各子系統的 CSS。
-為何接受：與範本各子系統的做法一致，一致性優先於原則的完整性。
+為何接受：全站各子系統一致地這樣處理，一致性優先於原則的完整性。
 修補方向：在 `common.css` 補上 `--badge-success-*`、`--badge-warning-*`、`--badge-neutral-*` 等 token。工作量 30 分鐘。
 
 **KI-31 — `hub.css` 的兩個按鍵未使用設計 token**
@@ -1627,21 +1598,21 @@ if not _is_usable(user):
 **KI-26 — `base.html` 沒有共用的 flash 區塊**
 描述：`base.html` 只有 14 行，提供 `title`、`head`、`body` 三個 block，沒有統一的 flash 訊息渲染。各 template 自行處理 `get_flashed_messages()`。
 影響：新增頁面時容易忘記加 flash 區塊，導致訊息送出了卻不顯示。`rules/flask-blueprint.md` 中「flash 分類視 `base.html` 的實作而定」這句話目前沒有對應的實作。
-為何接受：範本既有結構。
+為何接受：刻意保留為教材。
 修補方向：在 `base.html` 的 `body` block 之前加入統一的 flash 渲染區塊，各子系統移除自己的版本。工作量 45 分鐘，需同時調整五個 template 與對應的 CSS。
 
-### 11.5 本版相對於範本的修正
+### 11.5 幾項刻意的強化
 
-以下五項是抽取過程中順手修正的，記錄於此以便與範本對照：
+以下幾項是刻意做強的地方，記錄於此以說明取捨：
 
-| 項目 | 範本狀態 | 本系統 |
+| 項目 | 若不處理會怎樣 | 本系統的做法 |
 |------|---------|--------|
 | `auth/login.html` 的標題標籤 | `<h2>範例系統 v1.0</h1>` 開閉不匹配 | 修正為 `</h2>` |
 | `profile/dashboard.html` 的樣式 | 第 5–76 行為內嵌 `<style>`，色碼硬編碼，未使用 token | 外提為 `static/profile.css`，class 加 `profile-` 前綴，顏色改用 `var(--btn-*)` |
 | `blueprints/auth/__init__.py` | `login_required` 被 import 但整檔未使用 | 移除該 import |
 | `blueprints/hub/CLAUDE.md` | 描述「未登入 → redirect `/login`」，與程式碼不符 | 更正為「未登入退回訪客視圖，可內嵌登入」 |
 | `tests/data/users.py` 首行註解 | 寫 `db._seed_if_empty()`，函式名已改 | 更正為 `db.users._seed_users_if_empty()` |
-| `admin` 的權限檢查 | 範本 equipment 的 `_is_admin` 未搭配 `_is_usable`，停用中的管理員仍可通過 | 採三段式檢查，並以專屬測試案例守住 |
+| `admin` 的權限檢查 | `_is_admin` 未搭配 `_is_usable` 時，停用中的管理員仍可通過 | 採三段式檢查，並以專屬測試案例守住 |
 | **`forum` 的帳號有效性檢查** | `blueprints/forum/__init__.py:11-15` 的 `_current_user()` 只查 id 不驗狀態；該檔第 4 行未 import `_is_usable`。停用或已刪除的帳號仍可發文、回覆、修改、刪文 | `_current_user()` 加入 `_is_usable` 判斷，不通過即回傳 `None`。判準見 §11.0 |
 | `blueprints/forum/CLAUDE.md` 的表名 | 寫作 `forum_masters`，實際表名是 `forum` | 更正為 `forum` |
 
@@ -1668,7 +1639,7 @@ if user is None:
 
 `forum.index` 是唯一**不加**這段的路由——它必須把 `None` 當成合法的訪客狀態繼續渲染。
 
-對應的測試案例（`tests/test_forum.py` 新增，相對範本 39 條增為 42 條）：
+對應的測試案例（`tests/test_forum.py`，共 42 條）：
 
 - `test_new_post_disabled_user_redirects_to_login` — 以 `other_client`（id=3，停用）POST `/forum/new`，斷言 302 → `/login` 且 `db.list_forum_masters()` 的 total 未增加
 - `test_reply_disabled_user_redirects_to_login` — 同上，針對回覆
@@ -1729,18 +1700,18 @@ def _set_captcha(client, answer='ABCDE'):
 | `tests/test_hub.py` | hub Blueprint | 9 |
 | `tests/test_profile.py` | profile Blueprint | 8 |
 | `tests/test_admin.py` | admin Blueprint | 約 30 |
-| `tests/test_forum.py` | forum Blueprint | 42（範本 39 + 守門修正 3） |
+| `tests/test_forum.py` | forum Blueprint | 42 |
 | **合計** | | **約 112** |
 
 `tests/test_admin.py` 的案例分佈：
 
-- **權限守門（10）** — 匿名、一般使用者、管理員三種身分 × 清單／明細／三個 POST 動作。其中 `test_user_list_disabled_admin_redirects_to_login` 專門守住 §4.4 提到的範本缺陷：先 `db.set_user_role(3, 0)` 讓 id=3 成為管理員（但 `is_active = 0`），再以 `other_client` 存取，驗證第 2 層檢查先於第 3 層生效。所有 POST 被擋的案例**必須同時斷言資料庫未改變**，只驗 302 不足以證明後端擋住了
+- **權限守門（10）** — 匿名、一般使用者、管理員三種身分 × 清單／明細／三個 POST 動作。其中 `test_user_list_disabled_admin_redirects_to_login` 專門守住 §4.4 的守門順序：先 `db.set_user_role(3, 0)` 讓 id=3 成為管理員（但 `is_active = 0`），再以 `other_client` 存取，驗證第 2 層檢查先於第 3 層生效。所有 POST 被擋的案例**必須同時斷言資料庫未改變**，只驗 302 不足以證明後端擋住了
 - **清單、篩選、搜尋、分頁（7）** — 四種 `status` 的篩選結果、關鍵字比對 email 與 name、第二頁的分頁。分頁測試以 local fixture 用 `db.create_user()` 補 8 筆湊足 11 筆
 - **啟用與停用（6）** — 正常停用、正常啟用、redirect 目標、R1 自我保護、目標不存在、目標已刪除
 - **角色調整（4）** — 升為管理員、降為一般使用者、R3 自我保護、非法 role 值
 - **刪除（3）** — 正常軟刪除、R2 自我保護、刪除後無法登入（整合案例：軟刪除 id=1 → `_set_captcha` → `POST /login` → 斷言「帳號或密碼錯誤」）
 
-`tests/test_hub.py` 相對範本 6 條增為 9 條：保留論壇卡片的斷言（`'論壇'` 與 `/forum` 仍然存在），移除活動報名與器材借用的斷言，新增「管理員看得到會員管理卡片」與「一般使用者看不到」兩條。
+`tests/test_hub.py` 共 9 條：論壇卡片的斷言（`'論壇'` 與 `/forum` 存在）、「管理員看得到會員管理卡片」與「一般使用者看不到」。
 
 `tests/test_forum.py` 的 42 條分佈：
 
@@ -1851,18 +1822,7 @@ pytest -q --durations=5         # 顯示最慢的五個案例
 | `POST /forum/delete/master/<id>` | 文章不存在或已刪除／無權限刪除文章／文章已刪除 |
 | `POST /forum/delete/detail/<id>` | 回覆不存在或已刪除／無權限刪除回覆／回覆已刪除 |
 
-## 附錄 B：與參考範本的檔案對照
-
-| 類別 | 檔案 |
-|------|------|
-| **原樣沿用** | `utils.py`、`db/{connection,forum}.py`、`blueprints/{__init__,hub/__init__,profile/__init__}.py`、`templates/{base.html,auth/register.html}`、`templates/forum/{index,post_form}.html`、`static/{common,login,hub,forum}.css`、`tests/{conftest,test_auth,test_profile}.py`、`Dockerfile`、`docker-compose.yml`、`.dockerignore` |
-| **修改後沿用** | `app.py`（Blueprint 6→5、移除 `setup/` 機制）、`db/{__init__,users}.py`、`blueprints/auth/__init__.py`、**`blueprints/forum/__init__.py`（守門修正，見 §11.5）**、`templates/{hub/home.html,auth/login.html,profile/dashboard.html}`、`tests/{test_hub.py,test_forum.py,data/users.py}`、`rules/*`、`CLAUDE.md`、`README.md`、`document/{auth,hub,profile,forum}.md` |
-| **全新建立** | `blueprints/admin/{__init__.py,CLAUDE.md}`、`templates/admin/{user_list,user_detail}.html`、`static/{admin,profile}.css`、`tests/test_admin.py`、`document/{admin,system-spec,build-guide}.md` |
-| **不搬移** | `db/{events,equipment}.py`、`blueprints/{events,equipment}/`、`templates/{events,equipment}/`、`static/{events,equipment}.css`、`tests/test_{events,equipment}.py`、`document/events.md`、`setup/` 機制 |
-
-`db/forum.py` 是本次唯一**整份原樣搬移的資料模組**——它的十個函式、兩張表的 DDL、三處 transaction 都不需要任何修改。相對地 `blueprints/forum/__init__.py` 需要改 `_current_user()` 與六條路由的 `None` 處理，是「資料層乾淨、控制層有缺陷」的典型案例。
-
-## 附錄 C：詞彙表
+## 附錄 B：詞彙表
 
 | 中文 | 英文 | 在本系統中的具體所指 |
 |------|------|---------------------|

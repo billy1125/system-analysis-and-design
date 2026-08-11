@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}借閱管理{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='loans.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="loan-layout">
+
+  <div class="loan-topbar">
+    <span class="loan-topbar-title">借閱管理</span>
+    <div class="loan-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="loan-nav-link">返回首頁</a>
+      <a href="{{ url_for('books.index') }}" class="loan-nav-link">館藏查詢</a>
+      <a href="{{ url_for('reservations.admin_reservations') }}" class="loan-nav-link">預約管理</a>
+      <a href="{{ url_for('admin.user_list') }}" class="loan-nav-link">會員管理</a>
+      <span class="loan-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="loan-btn loan-btn-danger">登出</a>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="loan-flash loan-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="loan-my-page">
+    <div class="loan-my-card">
+      <div class="loan-my-header">
+        <h2>全館借閱紀錄</h2>
+        <span class="loan-total">共 {{ total }} 筆，逾期 {{ overdue_total }} 筆</span>
+      </div>
+
+      <div class="loan-filter-bar">
+        <div class="loan-filter-links">
+          <a href="{{ url_for('loans.admin_loans', status='active', q=keyword or none) }}"
+             class="loan-filter-link {{ 'loan-filter-active' if status == 'active' }}">借閱中</a>
+          <a href="{{ url_for('loans.admin_loans', status='overdue', q=keyword or none) }}"
+             class="loan-filter-link {{ 'loan-filter-active' if status == 'overdue' }}">逾期</a>
+          <a href="{{ url_for('loans.admin_loans', status='returned', q=keyword or none) }}"
+             class="loan-filter-link {{ 'loan-filter-active' if status == 'returned' }}">已歸還</a>
+          <a href="{{ url_for('loans.admin_loans', status='all', q=keyword or none) }}"
+             class="loan-filter-link {{ 'loan-filter-active' if status == 'all' }}">全部</a>
+        </div>
+
+        <form method="get" action="{{ url_for('loans.admin_loans') }}" class="loan-search-form">
+          <input type="hidden" name="status" value="{{ status }}">
+          <input type="text" name="q" value="{{ keyword }}" class="loan-search-input"
+                 placeholder="搜尋書名或借閱人">
+          <button type="submit" class="loan-btn loan-btn-primary loan-btn-sm">搜尋</button>
+        </form>
+      </div>
+
+      <table class="loan-table">
+        <thead>
+          <tr>
+            <th class="col-id">ID</th>
+            <th>書名</th>
+            <th>條碼</th>
+            <th>借閱人</th>
+            <th>借出日</th>
+            <th>到期日</th>
+            <th class="col-status">狀態</th>
+            <th class="col-action">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for l in loans %}
+          <tr>
+            <td>{{ l['id'] }}</td>
+            <td>{{ l['title'] }}</td>
+            <td>{{ l['copy_barcode'] }}</td>
+            <td>{{ l['borrower_name'] or l['borrower_display'] or l['borrower_email'] }}</td>
+            <td class="loan-datetime-cell">{{ l['borrowed_at'][:10] }}</td>
+            <td class="loan-datetime-cell">{{ l['due_at'][:10] }}</td>
+            <td>
+              {% if l['returned_at'] %}
+                <span class="loan-badge loan-badge-returned">已歸還</span>
+              {% elif l['is_overdue'] %}
+                <span class="loan-badge loan-badge-overdue">逾期未還</span>
+              {% else %}
+                <span class="loan-badge loan-badge-borrowed">借閱中</span>
+              {% endif %}
+            </td>
+            <td class="loan-actions-cell">
+              <a href="{{ url_for('loans.loan_detail', loan_id=l['id']) }}"
+                 class="loan-btn-action">詳細</a>
+              {% if not l['returned_at'] %}
+                <form method="post" action="{{ url_for('loans.return_book', loan_id=l['id']) }}"
+                      class="loan-inline-form">
+                  <input type="hidden" name="from" value="admin">
+                  <button type="submit" class="loan-btn-action">還書登記</button>
+                </form>
+              {% endif %}
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="8" class="loan-empty">沒有符合條件的借閱紀錄</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% if total_pages > 1 %}
+      <div class="loan-pagination">
+        {% if page > 1 %}
+          <a href="{{ url_for('loans.admin_loans', status=status, q=keyword or none, page=page-1) }}"
+             class="loan-page-btn">上一頁</a>
+        {% else %}
+          <span class="loan-page-btn loan-page-disabled">上一頁</span>
+        {% endif %}
+        <span class="loan-page-info">第 {{ page }} / {{ total_pages }} 頁</span>
+        {% if page < total_pages %}
+          <a href="{{ url_for('loans.admin_loans', status=status, q=keyword or none, page=page+1) }}"
+             class="loan-page-btn">下一頁</a>
+        {% else %}
+          <span class="loan-page-btn loan-page-disabled">下一頁</span>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

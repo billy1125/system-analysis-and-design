@@ -21,8 +21,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 同時作為 Agentic / Harness Engineering 的練習專案。
 
-> **範圍外**：校園活動報名（events）、器材借用（equipment）兩個子系統**不屬於本系統**。本系統由教學範本 `billy1125/Course-SAD-Sample-System` 抽取而來，該範本已不在本 repo 內；文件中提到它時，一律是說明血緣或對照關係。
-
 ---
 
 ## 技術棧
@@ -61,7 +59,7 @@ pytest -k "test_login"                  # 執行特定測試
 ## 專案結構
 
 ```
-sad-user-management/
+SAD-Forum/
 ├── app.py                        # 主程式：組裝 Blueprint、啟動伺服器
 ├── utils.py                      # 跨 Blueprint 共用 helpers
 ├── requirements.txt
@@ -288,7 +286,7 @@ sad-user-management/
 | `/forum/new`、`/forum/reply/*`、`/forum/edit/*` | 1 + 2 |
 | `/forum/delete/*` | 1 + 2 + 3 |
 
-> `forum._current_user()` **必須**做 `_is_usable` 檢查（相對於範本已修正）。否則被停用或刪除的帳號只要 session 未清，仍能發表公開內容，讓 admin 的停用功能形同虛設。
+> `forum._current_user()` **必須**做 `_is_usable` 檢查。否則被停用或刪除的帳號只要 session 未清，仍能發表公開內容，讓 admin 的停用功能形同虛設。
 
 ### 自我保護規則
 
@@ -308,7 +306,7 @@ sad-user-management/
 
 ## 已知技術債
 
-本系統刻意沿用參考範本的既有技術債，**不做強行強化**——這些債本身就是教材。完整清單（30 條，含影響、接受理由、修補方向與工作量）見 [`document/system-spec.md`](document/system-spec.md) 第 11 章。
+本系統刻意保留既有的技術債，**不做強行強化**——這些債本身就是教材。完整清單（30 條，含影響、接受理由、修補方向與工作量）見 [`document/system-spec.md`](document/system-spec.md) 第 11 章。
 
 修改程式碼時最需要注意的四條：
 

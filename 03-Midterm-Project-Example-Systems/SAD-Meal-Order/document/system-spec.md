@@ -37,8 +37,7 @@
 系統提供五件事：讓訪客申請帳號並登入、讓會員查看與修改自己的資料、讓管理員治理所有
 會員帳號、讓任何人瀏覽今日菜單、讓會員線上訂餐並由管理員審核。
 
-前三件構成一條完整的**帳號生命週期**（直接沿用 `billy1125/sad-forum` 的會員登入與管理
-系統）；後兩件是本系統的核心，示範一個真正的**交易型業務子系統**——它有主檔／明細、
+前三件構成一條完整的**帳號生命週期**；後兩件是本系統的核心，示範一個真正的**交易型業務子系統**——它有主檔／明細、
 有狀態機、有需要維持一致的庫存。
 
 會員系統與業務子系統的組合，讓「帳號狀態變化的後果」變得可以觀察：一個被停用的帳號
@@ -60,64 +59,10 @@
 
 **範圍外（明確不包含）：**
 
-- 論壇／討論區（`sad-forum` 有，本系統不搬入）
-- 校園活動報名（events）、器材借用（equipment）
+- 帳號生命週期與訂餐以外的業務子系統
 - 線上金流與付款（訂單只記錄金額，不處理收付）
 - 每日庫存自動重設（`remaining_quantity` 由管理員手動調整，見 KI-M7）
 - 通知（email、簡訊、站內信）
-
-本文件中若出現「論壇」「器材借用」等名稱，一律是在說明血緣或對照關係，不代表本系統
-的組成部分。
-
-### 1.3 與參考專案的血緣關係
-
-本系統有兩個來源，職責分明：
-
-| 來源 | 提供什麼 |
-|------|---------|
-| `billy1125/sad-forum` | **會員登入與管理系統**：auth、hub、profile、admin 四個 Blueprint，`db/users.py`、`utils.py`、三個 CSS、測試骨架、`rules/` 與文件結構 |
-| `billy1125/Course-SAD-Sample-System` | **業務子系統的設計模式**：器材借用（equipment）的「申請單主檔 + 明細 + 管理員推動的狀態機 + 資源數量增減」四件事 |
-
-兩個參考專案在本 repo 中以 `sad-forum/` 與 `Course-SAD-Sample-System/` 兩個目錄保留，
-供對照閱讀。它們各自帶有 `tests/conftest.py`，因此本專案的 `pytest.ini` 必須限定
-`testpaths = tests`，否則 pytest 會同時收集三套同名的 tests 套件而報
-`ImportPathMismatchError`。
-
-#### 相對於 `sad-forum`
-
-| 面向 | sad-forum | 本系統 |
-|------|-----------|--------|
-| 子系統數 | 5 個（auth、hub、profile、admin、forum） | 5 個（auth、hub、profile、admin、**meal**） |
-| 資料表數 | 3 張（users、forum、forum_details） | **4 張**（users、meals、meal_orders、meal_order_items） |
-| `db/` 模組 | 3 個（connection、users、forum） | 3 個（connection、users、**meals**） |
-| 業務子系統的性質 | 使用者產生內容（UGC） | **交易**（有狀態機與庫存） |
-| 業務子系統的路由數 | 7 | **14** |
-| 訊息字串集中管理 | 論壇的 11 條未集中（其 KI-29） | **全部集中**於 `tests/data/users.py`（見 §11.5） |
-| 測試案例數 | 約 112 | **152** |
-
-auth、hub、profile、admin 四個 Blueprint 的程式碼**逐字沿用**，只有 `hub/home.html`
-的服務卡片改為訂餐相關。這是刻意的：會員系統是已驗收過的既有資產，這次要練的是
-在它上面接一個新的業務子系統。
-
-#### 相對於 `Course-SAD-Sample-System`
-
-`meal` 子系統的骨架取自該範本的 `equipment`，對應關係：
-
-| equipment | meal | 差異 |
-|-----------|------|------|
-| `equipment` 表 | `meals` 表 | 多了 `category`、`price`；`available_quantity` 改名 `remaining_quantity` |
-| `borrow_orders` 表 | `meal_orders` 表 | 借用起訖時間改為取餐日期 + 時段 + 地點；多了 `total_amount` |
-| `borrow_order_items` 表 | `meal_order_items` 表 | **多了 `unit_price`、`subtotal`**（借用沒有金額） |
-| 7 個訂單狀態 | **5 個** | 併掉 `approved` / `borrowed` 的兩段式；刪掉 `overdue`（沒有實作偵測邏輯，是死狀態） |
-| 扣庫存在 `borrowed` | 扣庫存在 `confirmed` | 訂餐沒有「登記借出」這一步 |
-| 歸還時回補 | **取餐時不回補** | 便當吃掉就沒了，器材會還回來 |
-| `_current_user()` 不驗 `_is_usable` | **驗** | 與 sad-forum 對 forum 的修正同一判準（見 §11.5） |
-
-> 狀態從 7 個收斂到 5 個，是本系統最重要的一個設計取捨。範本的
-> `pending → approved → borrowed → returned` 之所以要四段，是因為「核准」與「實際交付」
-> 在器材借用中確實是兩件事（核准了但人沒來拿）。訂餐沒有這個落差——確認訂單就代表
-> 廚房開始準備，因此併成 `pending → confirmed → completed`。範本的 `overdue` 狀態
-> 沒有任何程式碼會把訂單設成它，是個不可達狀態，一併刪除。
 
 ### 1.4 名詞定義
 
@@ -269,7 +214,7 @@ SQLite（database.db，WAL 模式）
 sad-meal-order/
 ├── app.py                        # 主程式：組裝 Blueprint、啟動伺服器
 ├── utils.py                      # 跨 Blueprint 共用 helpers
-├── pytest.ini                    # 限定 testpaths，避免收集參考專案的測試
+├── pytest.ini                    # 限定 testpaths
 ├── requirements.txt
 ├── Dockerfile
 ├── docker-compose.yml
@@ -312,10 +257,7 @@ sad-meal-order/
 ├── document/
 │   ├── system-spec.md            # 本文件
 │   ├── build-guide.md
-│   └── {auth,hub,profile,admin,meal}.md
-│
-├── sad-forum/                    # 參考專案（會員系統來源）
-└── Course-SAD-Sample-System/     # 參考專案（業務子系統設計模式來源）
+    └── {auth,hub,profile,admin,meal}.md
 ```
 
 ### 3.5 Blueprint 職責
@@ -1407,25 +1349,21 @@ POST /profile/update             **仍然成功**——KI-03 的刻意缺陷
 
 ### 11.0 為何有些債修、有些不修
 
-本系統的技術債分兩類來源：**沿用自 `sad-forum` 的會員系統**，以及**新寫的訂餐子系統**。
+本系統的技術債分兩類：**會員系統的**（`KI-` 開頭，15 條），以及**訂餐子系統的**
+（`KI-M` 開頭，10 條），全系統共 **25 條**。
 
 處理原則不同：
 
-- **沿用的債保留不修**（`KI-` 開頭，15 條）。它們本身就是教材，且修補會讓本系統與參考
-  專案的對照關係斷掉
-- **新寫的部分若有債，必須是刻意的取捨並記錄**（`KI-M` 開頭，10 條）。不接受「忘了寫」
+- **會員系統的債保留不修**。它們本身就是教材
+- **訂餐子系統的債必須是刻意的取捨並記錄**。不接受「忘了寫」
 
 > `KI-` 的編號**刻意不連續**（有 KI-01、KI-03、KI-05… 卻沒有 KI-04、KI-06）。
-> 它們沿用 `sad-forum` 規格書的原始編號，只搬移在本系統中仍然成立的條目。保留原編號
-> 是為了讓兩份規格書可以互相對照——KI-03 在兩邊指的是同一件事。全系統共 **25 條**。
+> 編號一經指定就不再重用，避免既有的交叉引用失效。
 
 判準只有一條：**缺陷的影響是否會外溢到當事人以外的人。**
 
 - `profile` 的 KI-03（停用帳號仍可改自己的姓名）：只影響自己 → **保留**
 - `meal` 的守門（停用帳號若能下單，會佔用別人訂不到的份數）：影響別人 → **修補**
-
-這條判準是本系統與 `sad-forum` 共用的，也是它對範本 `Course-SAD-Sample-System` 做出
-的同一個修正（範本的 `equipment._current_user()` 不驗 `_is_usable`）。
 
 ### 11.1 安全性（沿用）
 
@@ -1463,23 +1401,23 @@ POST /profile/update             **仍然成功**——KI-03 的刻意缺陷
 |----|------|------|---------|---------|
 | **KI-M1** | `pending` 不佔用庫存，可超額登記 | 十個人各訂最後一份便當都會成功，直到管理員確認第一張，其餘九張才在確認時失敗 | 若下單即扣減，使用者隨手送一張放著不管就把份數卡住了。這是「先登記、由管理員決定是否成立」的語意 | 加入 pending 的軟性保留與逾時釋放；或在下單時警告「目前已有 N 張待確認訂單」 |
 | **KI-M2** | `meals.meal_code` 無 UNIQUE 約束，後端也不驗重複 | 可建立兩道編號都是 A01 的餐點，菜單上分不出來 | 加 UNIQUE 會需要處理 `IntegrityError` 與軟刪除的交互（下架後編號能不能重用？），複雜度超出教學需要 | 加 `UNIQUE(meal_code) WHERE is_deleted = 0` 的部分索引，並在 `_validate_meal_form` 中查重 |
-| **KI-M3** | 多品項以 `meal_id[]` / `quantity[]` 兩組平行欄位傳遞 | 依賴瀏覽器保證兩列表等長且同序 | 沿用 `Course-SAD-Sample-System` 器材借用的既有慣例，維持對照關係 | 改用 `quantity_<meal_id>` 的自描述欄位名 |
+| **KI-M3** | 多品項以 `meal_id[]` / `quantity[]` 兩組平行欄位傳遞 | 依賴瀏覽器保證兩列表等長且同序 | 這是常見的多品項表單寫法，改掉要連同模板與解析一起動 | 改用 `quantity_<meal_id>` 的自描述欄位名 |
 | **KI-M4** | 修改訂單時明細全部軟刪除後重新寫入，不做逐筆 diff | 明細 id 每次修改都跳號；`meal_order_items` 累積軟刪除紀錄 | 明細沒有需要保留的身分（沒有外部引用它的 id），重寫比比對簡單得多 | 逐筆比對後只 UPDATE 有變動的列 |
 | **KI-M5** | 取餐時段的合法值只存在於 `SLOT_LABELS` 字典，無對應的資料層常數 | 與 `MEAL_STATUSES` 等三個 tuple 的做法不一致 | 時段目前只有顯示用途，沒有資料層邏輯依賴它 | 在 `db/meals.py` 加 `PICKUP_SLOTS` tuple，驗證改為比對它 |
-| **KI-M6** | `hub/home.html` 未渲染 flash 區塊 | 所有 redirect 到首頁的 flash 訊息被靜默丟棄，包含第 3 層權限失敗的「無操作權限」 | 沿用自 `sad-forum` 的既有缺陷，修補會讓兩個專案的首頁不一致 | 在 `.hub-main` 開頭加上與其他子系統相同的 `get_flashed_messages` 迴圈（約五行） |
+| **KI-M6** | `hub/home.html` 未渲染 flash 區塊 | 所有 redirect 到首頁的 flash 訊息被靜默丟棄，包含第 3 層權限失敗的「無操作權限」 | 刻意保留為教材 | 在 `.hub-main` 開頭加上與其他子系統相同的 `get_flashed_messages` 迴圈（約五行） |
 | **KI-M7** | `remaining_quantity` 不會每日自動重設 | 管理員必須每天手動把每道餐點的剩餘份數改回 `daily_quantity` | 自動重設需要排程機制（cron 或背景執行緒），超出單檔 Flask 應用的範圍 | 加一條 `POST /meal/admin/reset-daily` 手動觸發；或引入 APScheduler |
 | **KI-M8** | 訂餐表單無即時小計 | 使用者要送出後才知道總金額 | 全站不用 JavaScript 前端框架，即時小計需要前端狀態 | 加一段約 15 行的原生 JS 監聽 `input` 事件 |
 | **KI-M9** | `meal_orders.is_deleted` 有欄位但無任何路由會設為 1 | 死欄位，讀者會誤以為有刪除訂單的功能 | 保留欄位讓四張表的結構一致；訂單的「刪除」在業務上就是取消 | 移除欄位，或補上管理員的軟刪除路由 |
 | **KI-M10** | 無任何索引 | `meal_order_items.meal_order_id` 與 `meal_orders.orderer_id` 每次查詢都全表掃描 | 教學資料量（數十筆）下感受不到差異 | `CREATE INDEX idx_items_order ON meal_order_items(meal_order_id)` 等三條 |
 
-### 11.5 本系統相對於參考專案的修正
+### 11.5 幾項刻意做強的地方
 
-以下三項是本系統**刻意不沿用**參考專案做法的地方，每一項都必須在此列出理由：
+以下三項是本系統刻意不便宜行事的地方，每一項都必須在此列出理由：
 
-| # | 項目 | 參考專案 | 本系統 | 理由 |
+| # | 項目 | 常見做法 | 本系統 | 理由 |
 |---|------|---------|--------|------|
-| 1 | 業務子系統的 `_current_user()` | `Course-SAD-Sample-System` 的 `equipment._current_user()` **不驗** `_is_usable` | **驗** | 被停用的帳號若能下單，會佔用真實的餐點份數，讓別人訂不到。缺陷的影響外溢到當事人以外的人（判準見 §11.0） |
-| 2 | 訊息字串集中管理 | `sad-forum` 的論壇訊息未納入 `MESSAGES`（其 KI-29） | **全部納入** | 訂餐的訊息有 36 條，散在斷言中無法維護。這是新寫的部分，適用「新寫的債必須是刻意取捨」原則 |
+| 1 | 業務子系統的 `_current_user()` | 只查 id，**不驗** `_is_usable` | **驗** | 被停用的帳號若能下單，會佔用真實的餐點份數，讓別人訂不到。缺陷的影響外溢到當事人以外的人（判準見 §11.0） |
+| 2 | 訊息字串集中管理 | 散落在各測試檔的斷言字面量中 | **全部納入 `MESSAGES`** | 訂餐的訊息有 36 條，散在斷言中無法維護 |
 | 3 | 訂單狀態數 | `equipment` 有 7 個狀態，其中 `overdue` 不可達 | **5 個**，全部可達 | 不可達的狀態是死碼。訂餐沒有「逾期未取」的偵測邏輯，不該留一個沒人會設定的狀態 |
 
 另有一項是**刻意不修正**的：`profile` 的 KI-03。它與第 1 項形成對照——同一個缺陷，
@@ -1600,9 +1538,8 @@ pytest -k "restock"             # 只跑名稱含 restock 的
 pytest -q                       # 精簡輸出
 ```
 
-`pytest.ini` 限定 `testpaths = tests`。若移除這一行，pytest 會同時收集
-`sad-forum/tests/` 與 `Course-SAD-Sample-System/tests/`，三套同名的 `tests` 套件會
-產生 `ImportPathMismatchError`，導致**一個測試都跑不起來**。
+`pytest.ini` 限定 `testpaths = tests`，確保 pytest 只收集本系統的測試，
+不會走進不相干的目錄而收到同名的 `tests` 套件。
 
 ---
 
@@ -1643,31 +1580,7 @@ pytest -q                       # 精簡輸出
 | `POST /meal/admin/orders/<id>/complete` | adminForbidden、orderCompleted、orderCompleteFailed |
 | `POST /meal/admin/orders/<id>/cancel` | adminForbidden、orderCancelled、orderCancelFailed |
 
-## 附錄 B：與參考專案的檔案對照
-
-| 本系統檔案 | 來源 | 動作 |
-|-----------|------|------|
-| `utils.py`、`db/connection.py`、`db/users.py` | sad-forum | 原樣複製 |
-| `blueprints/{auth,hub,profile,admin}/__init__.py` | sad-forum | 原樣複製 |
-| `templates/{base,auth/*,profile/*,admin/*}.html` | sad-forum | 原樣複製（`base.html` 僅改預設 title） |
-| `templates/hub/home.html` | sad-forum | 修改後複製（服務卡片改為訂餐相關） |
-| `templates/auth/login.html` | sad-forum | 修改後複製（標題改為「校園訂餐系統 v1.0」） |
-| `static/{common,login,hub,profile,admin}.css` | sad-forum | 原樣複製 |
-| `tests/conftest.py`、`tests/test_{auth,profile,admin}.py` | sad-forum | 原樣複製 |
-| `tests/test_hub.py` | sad-forum | 修改後複製（卡片斷言改為訂餐） |
-| `tests/data/users.py` | sad-forum | 修改後複製（新增 `MEALS`、`ORDERS`、36 條 meal 訊息） |
-| `rules/*.md`、`document/{auth,hub,profile,admin}.md` | sad-forum | 修改後複製（forum 相關改為 meal） |
-| `Dockerfile`、`docker-compose.yml`、`.dockerignore`、`.gitignore` | sad-forum | 原樣複製 |
-| `app.py` | sad-forum | 修改後複製（forum_bp → meal_bp） |
-| `db/meals.py` | Course-SAD-Sample-System `db/equipment.py` | **改寫**（狀態機收斂、加入金額欄位） |
-| `blueprints/meal/__init__.py` | 同上 `blueprints/equipment/__init__.py` | **改寫** |
-| `templates/meal/*.html` | 同上 `templates/equipment/*.html` | **改寫** |
-| `static/meal.css` | sad-forum `static/forum.css` | **改寫**（改前綴、加狀態 badge） |
-| `tests/test_meal.py` | 同上 `tests/test_equipment.py` | **全新撰寫** |
-| `pytest.ini` | — | **全新建立** |
-| `document/{system-spec,build-guide,meal}.md` | — | **全新撰寫** |
-
-## 附錄 C：詞彙表
+## 附錄 B：詞彙表
 
 | 中文 | 英文 / 識別字 | 說明 |
 |------|--------------|------|

@@ -119,7 +119,7 @@ if not _is_admin(user):
 
 - `static/admin.css` — 前綴 `admin-`，按鍵顏色一律 `var(--btn-*)`
 
-狀態 badge（啟用中／已停用／已刪除／角色）的底色硬編碼於此，因為 `common.css` 未定義狀態語意色。與範本各子系統的做法一致，記錄為 KI-19。
+狀態 badge（啟用中／已停用／已刪除／角色）的底色硬編碼於此，因為 `common.css` 未定義狀態語意色。全站一致地這樣處理，記錄為 KI-19。
 
 admin 的表單**不加** `class="login-form"`，否則會誤套登入頁的按鈕樣式。
 

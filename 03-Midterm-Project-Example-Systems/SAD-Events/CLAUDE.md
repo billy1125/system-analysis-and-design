@@ -23,19 +23,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 同時作為 Agentic / Harness Engineering 的練習專案。
 
-### 血緣關係
-
-本系統由兩個參考專案組合而來：
-
-| 來源 | 提供的部分 |
-|------|-----------|
-| `sad-forum` | 專案骨架、會員登入與管理系統（auth / hub / profile / admin）、`rules/`、測試架構、CSS token 體系、文件體例 |
-| `Course-SAD-Sample-System` | 校園活動報名子系統（events）的資料模型、路由設計、畫面與樣式 |
-
-> **範圍外**：討論區（forum）、器材借用（equipment）兩個子系統**不屬於本系統**。
-> 文件中提到它們時，一律是說明血緣或對照關係。
-
----
 
 ## 技術棧
 
@@ -302,8 +289,8 @@ sad-events/
 | `/events/new`、`/events/<id>/register`、`/cancel`、`/edit_registration`、`/events/my` | 1 + 2 |
 | `/events/edit/*`、`/events/delete/*` | 1 + 2 + 3（發起者或管理員） |
 
-> `events._current_user()` **必須**做 `_is_usable` 檢查（相對於 `Course-SAD-Sample-System`
-> 已修正）。否則被停用或刪除的帳號只要 session 未清，仍能建立活動、報名並佔用別人的名額，
+> `events._current_user()` **必須**做 `_is_usable` 檢查。否則被停用或刪除的帳號
+> 只要 session 未清，仍能建立活動、報名並佔用別人的名額，
 > 讓 admin 的停用功能形同虛設。
 
 ### 自我保護規則（admin）
@@ -336,7 +323,7 @@ sad-events/
 
 ## 已知技術債
 
-本系統沿用兩個參考專案的既有技術債，**不做強行強化**——這些債本身就是教材。
+本系統刻意保留既有的技術債，**不做強行強化**——這些債本身就是教材。
 完整清單見 [`document/system-spec.md`](document/system-spec.md) 第 11 章。
 
 修改程式碼時最需要注意的五條：
@@ -419,9 +406,8 @@ sad-events/
 
 不用 `<a href="#">` 搭配 `onclick` 來假裝按鍵——語意錯誤、鍵盤和無障礙行為不正確。
 
-> 這是相對於 `Course-SAD-Sample-System` 的修正：範本的 events 模板用
-> `<a href="#" onclick="...this.closest('form').submit()">` 送出刪除與取消，
-> 本系統一律改為 `<button type="submit" onclick="return confirm(...)">`。
+> 具體做法：刪除與取消一律用 `<button type="submit" onclick="return confirm(...)">`，
+> 不用 `<a href="#" onclick="...this.closest('form').submit()">` 這種寫法。
 
 全站僅十處允許使用 inline event handler：
 

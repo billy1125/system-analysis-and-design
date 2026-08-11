@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}我的借閱{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='loans.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="loan-layout">
+
+  <div class="loan-topbar">
+    <span class="loan-topbar-title">我的借閱</span>
+    <div class="loan-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="loan-nav-link">返回首頁</a>
+      <a href="{{ url_for('books.index') }}" class="loan-nav-link">館藏查詢</a>
+      <a href="{{ url_for('reservations.my_reservations') }}" class="loan-nav-link">我的預約</a>
+      <span class="loan-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="loan-btn loan-btn-danger">登出</a>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="loan-flash loan-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="loan-my-page">
+    <div class="loan-my-card">
+      <div class="loan-my-header">
+        <h2>借閱紀錄</h2>
+        <span class="loan-total">借閱中 {{ active_count }} / {{ max_active_loans }} 冊</span>
+      </div>
+
+      <div class="loan-filter-links">
+        <a href="{{ url_for('loans.my_loans', status='all') }}"
+           class="loan-filter-link {{ 'loan-filter-active' if status == 'all' }}">全部</a>
+        <a href="{{ url_for('loans.my_loans', status='active') }}"
+           class="loan-filter-link {{ 'loan-filter-active' if status == 'active' }}">借閱中</a>
+        <a href="{{ url_for('loans.my_loans', status='returned') }}"
+           class="loan-filter-link {{ 'loan-filter-active' if status == 'returned' }}">已歸還</a>
+      </div>
+
+      <table class="loan-table">
+        <thead>
+          <tr>
+            <th class="col-id">ID</th>
+            <th>書名</th>
+            <th>條碼</th>
+            <th>借出日</th>
+            <th>到期日</th>
+            <th class="col-qty">續借</th>
+            <th class="col-status">狀態</th>
+            <th class="col-action">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for l in loans %}
+          <tr>
+            <td>{{ l['id'] }}</td>
+            <td>{{ l['title'] }}</td>
+            <td>{{ l['copy_barcode'] }}</td>
+            <td class="loan-datetime-cell">{{ l['borrowed_at'][:10] }}</td>
+            <td class="loan-datetime-cell">{{ l['due_at'][:10] }}</td>
+            <td class="loan-qty-cell">{{ l['renew_count'] }} / {{ max_renew_count }}</td>
+            <td>
+              {% if l['returned_at'] %}
+                <span class="loan-badge loan-badge-returned">已歸還</span>
+              {% elif l['is_overdue'] %}
+                <span class="loan-badge loan-badge-overdue">逾期未還</span>
+              {% else %}
+                <span class="loan-badge loan-badge-borrowed">借閱中</span>
+              {% endif %}
+            </td>
+            <td class="loan-actions-cell">
+              <a href="{{ url_for('loans.loan_detail', loan_id=l['id']) }}"
+                 class="loan-btn-action">詳細</a>
+              {% if not l['returned_at'] %}
+                {% if not l['is_overdue'] and l['renew_count'] < max_renew_count %}
+                  <form method="post" action="{{ url_for('loans.renew', loan_id=l['id']) }}"
+                        class="loan-inline-form">
+                    <button type="submit" class="loan-btn-action">續借</button>
+                  </form>
+                {% endif %}
+                <form method="post" action="{{ url_for('loans.return_book', loan_id=l['id']) }}"
+                      class="loan-inline-form"
+                      onsubmit="return confirm('確定歸還這本書？')">
+                  <button type="submit" class="loan-btn-action">歸還</button>
+                </form>
+              {% endif %}
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="8" class="loan-empty">沒有符合條件的借閱紀錄</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

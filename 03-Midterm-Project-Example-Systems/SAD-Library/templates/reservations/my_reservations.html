@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}我的預約{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='reservations.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="res-layout">
+
+  <div class="res-topbar">
+    <span class="res-topbar-title">我的預約</span>
+    <div class="res-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="res-nav-link">返回首頁</a>
+      <a href="{{ url_for('books.index') }}" class="res-nav-link">館藏查詢</a>
+      <a href="{{ url_for('loans.my_loans') }}" class="res-nav-link">我的借閱</a>
+      <span class="res-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="res-btn res-btn-danger">登出</a>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="res-flash res-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="res-my-page">
+    <div class="res-my-card">
+      <div class="res-my-header">
+        <h2>預約紀錄</h2>
+        <span class="res-total">共 {{ reservations|length }} 筆</span>
+      </div>
+
+      <p class="res-field-hint">
+        預約僅代表候補排隊，不會替您保留書本。狀態顯示「可取書」時請儘早前往借閱，取書順序為先到先得。
+      </p>
+
+      <table class="res-table">
+        <thead>
+          <tr>
+            <th class="col-id">ID</th>
+            <th>書名</th>
+            <th>作者</th>
+            <th>預約時間</th>
+            <th class="col-qty">順位</th>
+            <th class="col-status">狀態</th>
+            <th class="col-action">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in reservations %}
+          <tr>
+            <td>{{ r['id'] }}</td>
+            <td>{{ r['title'] }}</td>
+            <td>{{ r['author'] }}</td>
+            <td class="res-datetime-cell">{{ r['reserved_at'][:16] }}</td>
+            <td class="res-qty-cell">
+              {{ r['queue_position'] if r['reservation_status'] == 'waiting' else '—' }}
+            </td>
+            <td>
+              <span class="res-badge res-badge-{{ r['reservation_status'] }}">
+                {{ status_labels.get(r['reservation_status'], r['reservation_status']) }}
+              </span>
+            </td>
+            <td class="res-actions-cell">
+              {% if r['reservation_status'] == 'ready' %}
+                <form method="post" action="{{ url_for('loans.borrow', book_id=r['book_id']) }}"
+                      class="res-inline-form">
+                  <button type="submit" class="res-btn-action">立即借閱</button>
+                </form>
+              {% endif %}
+              {% if r['reservation_status'] in ('waiting', 'ready') %}
+                <form method="post" action="{{ url_for('reservations.cancel', reservation_id=r['id']) }}"
+                      class="res-inline-form"
+                      onsubmit="return confirm('確定取消此預約？')">
+                  <button type="submit" class="res-btn-action res-btn-action-danger">取消預約</button>
+                </form>
+              {% else %}
+                <span class="res-field-hint">—</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="7" class="res-empty">目前沒有預約紀錄</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

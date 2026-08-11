@@ -37,28 +37,12 @@
   軟刪除模式、回傳值慣例
 - [`tests/CLAUDE.md`](../tests/CLAUDE.md) — 測試命名與覆蓋要求
 
-### 0.3 兩個參考專案的角色
-
-本流程書中所有「從參考專案複製」的指示，來源是以下兩者之一：
-
-| 目錄 | 提供什麼 | 取得方式 |
-|------|---------|---------|
-| `sad-forum/` | **會員登入與管理系統**（auth、hub、profile、admin）、資料層骨架、測試骨架、`rules/`、文件結構 | 就在同一個資料夾底下：`../SAD-Forum/` |
-| `Course-SAD-Sample-System/` | **業務子系統的設計模式**：器材借用（equipment）的主檔／明細 + 狀態機 + 資源數量增減 | `git clone https://github.com/billy1125/Course-SAD-Sample-System.git` |
-
-> **本系統把兩個參考專案留在 repo 內**，供對照閱讀（`sad-forum` 提供「照抄什麼」的
-> 依據，`Course-SAD-Sample-System` 提供「模仿什麼」的依據）。代價是 `pytest` 會同時
-> 收集三套同名的 `tests` 套件，因此 **Phase 1 必須建立 `pytest.ini`**，否則後續每個
-> 階段的測試驗收都會失敗。這是本流程書相對於 `sad-forum` 流程書的第一個差異。
-
 ### 0.4 專案根目錄的現況
 
 開始前，專案根目錄應該有：
 
 ```text
-sad-meal-order/
-├── sad-forum/                    # 已 clone
-├── Course-SAD-Sample-System/     # 已 clone
+SAD-Meal-Order/
 └── document/
     ├── system-spec.md
     └── build-guide.md            # 本文件
@@ -124,9 +108,6 @@ which docker
 ```
 預期：**可能無輸出**。若本機未安裝 Docker CLI，Phase 13 只能做靜態檢查
 
-```bash
-ls sad-forum/ Course-SAD-Sample-System/
-```
 預期：兩個目錄都存在且有 `app.py`
 
 ### 關鍵決策記錄
@@ -149,15 +130,15 @@ ls sad-forum/ Course-SAD-Sample-System/
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `app.py` | sad-forum | **修改後複製** |
-| `utils.py` | sad-forum | 原樣複製 |
-| `blueprints/__init__.py` | sad-forum | 原樣複製（空檔） |
-| `requirements.txt` | sad-forum | 原樣複製 |
-| `pytest.ini` | — | **全新建立** |
-| `.gitignore` / `.gitattributes` / `.dockerignore` | sad-forum | 原樣複製 |
-| `.claude/settings.json` | sad-forum | 原樣複製 |
+| 檔案 | 動作 |
+|------|------|
+| `app.py` | **建立** |
+| `utils.py` | 建立 |
+| `blueprints/__init__.py` | 建立（空檔） |
+| `requirements.txt` | 建立 |
+| `pytest.ini` | **建立** |
+| `.gitignore` / `.gitattributes` / `.dockerignore` | 建立 |
+| `.claude/settings.json` | 建立 |
 
 ### `app.py` 的修改內容
 
@@ -175,11 +156,11 @@ from blueprints.profile import profile_bp
 
 **2. `register_blueprint` 同步替換**
 
-註冊順序不影響行為，但建議維持字母序（admin、auth、hub、meal、profile），與參考專案
+註冊順序不影響行為，但建議維持字母序（admin、auth、hub、meal、profile），與各處
 的慣例一致。
 
 **保留不動的部分：** `app.secret_key` 那一行、`GET /health` 路由、`app.run` 的參數。
-這三項都帶有已知技術債（KI-05、KI-16、KI-24），依「沿用參考專案技術債」的原則保留。
+這三項都帶有已知技術債（KI-05、KI-16、KI-24），依「保留既有技術債作為教材」的原則不動。
 
 > 此時 `blueprints/meal/` 尚未建立，**無法實際 import 或啟動**。可以先把 meal 的兩行
 > 註解掉，等 Phase 9 再打開；或直接寫上去，只做語法檢查不做 import 檢查。本流程書
@@ -190,7 +171,7 @@ from blueprints.profile import profile_bp
 ```ini
 [pytest]
 testpaths = tests
-norecursedirs = sad-forum Course-SAD-Sample-System .git __pycache__
+norecursedirs = .git __pycache__
 ```
 
 **這個檔案不是可選的。** 沒有它的話，`pytest` 會同時收集三套 `tests/conftest.py`，
@@ -240,11 +221,11 @@ test -f pytest.ini && grep -q "testpaths = tests" pytest.ini && echo "pytest.ini
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `db/connection.py` | sad-forum | 原樣複製 |
-| `db/users.py` | sad-forum | 原樣複製 |
-| `db/__init__.py` | sad-forum | **修改後複製** |
+| 檔案 | 動作 |
+|------|------|
+| `db/connection.py` | 建立 |
+| `db/users.py` | 建立 |
+| `db/__init__.py` | **建立** |
 
 ### `db/__init__.py` 的修改內容
 
@@ -327,11 +308,11 @@ rm -f /tmp/t1.db /tmp/t2.db /tmp/t3.db
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `templates/base.html` | sad-forum | **修改後複製**（預設 title 改為「校園訂餐系統」） |
-| `static/common.css` | sad-forum | 原樣複製 |
-| `static/login.css` | sad-forum | 原樣複製 |
+| 檔案 | 動作 |
+|------|------|
+| `templates/base.html` | **建立**（預設 title 改為「校園訂餐系統」） |
+| `static/common.css` | 建立 |
+| `static/login.css` | 建立 |
 
 ### 關鍵決策
 
@@ -374,12 +355,12 @@ grep -o "校園訂餐系統" templates/base.html
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/auth/__init__.py` | sad-forum | 原樣複製 |
-| `blueprints/auth/CLAUDE.md` | sad-forum | 原樣複製 |
-| `templates/auth/login.html` | sad-forum | **修改後複製**（標題改為「校園訂餐系統 v1.0」） |
-| `templates/auth/register.html` | sad-forum | 原樣複製 |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/auth/__init__.py` | 建立 |
+| `blueprints/auth/CLAUDE.md` | 建立 |
+| `templates/auth/login.html` | **建立**（標題改為「校園訂餐系統 v1.0」） |
+| `templates/auth/register.html` | 建立 |
 
 ### 修改內容
 
@@ -429,12 +410,12 @@ grep -c 'class="login-form"' templates/auth/login.html templates/auth/register.h
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/hub/__init__.py` | sad-forum | 原樣複製 |
-| `blueprints/hub/CLAUDE.md` | sad-forum | **修改後複製**（服務卡片表） |
-| `templates/hub/home.html` | sad-forum | **修改後複製**（暫時移除 forum 卡片） |
-| `static/hub.css` | sad-forum | 原樣複製 |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/hub/__init__.py` | 建立 |
+| `blueprints/hub/CLAUDE.md` | **建立**（服務卡片表） |
+| `templates/hub/home.html` | **建立**（暫時移除 forum 卡片） |
+| `static/hub.css` | 建立 |
 
 ### 關鍵決策
 
@@ -492,12 +473,12 @@ rm -f /tmp/t5.db
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/profile/__init__.py` | sad-forum | 原樣複製 |
-| `blueprints/profile/CLAUDE.md` | sad-forum | 原樣複製 |
-| `templates/profile/dashboard.html` | sad-forum | 原樣複製 |
-| `static/profile.css` | sad-forum | 原樣複製 |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/profile/__init__.py` | 建立 |
+| `blueprints/profile/CLAUDE.md` | 建立 |
+| `templates/profile/dashboard.html` | 建立 |
+| `static/profile.css` | 建立 |
 
 ### 關鍵決策
 
@@ -556,13 +537,13 @@ GET  /profile      200
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/admin/__init__.py` | sad-forum | 原樣複製 |
-| `blueprints/admin/CLAUDE.md` | sad-forum | **修改後複製**（三處 forum 對照改為 meal） |
-| `templates/admin/user_list.html` | sad-forum | 原樣複製 |
-| `templates/admin/user_detail.html` | sad-forum | 原樣複製 |
-| `static/admin.css` | sad-forum | 原樣複製 |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/admin/__init__.py` | 建立 |
+| `blueprints/admin/CLAUDE.md` | **建立**（三處 forum 對照改為 meal） |
+| `templates/admin/user_list.html` | 建立 |
+| `templates/admin/user_detail.html` | 建立 |
+| `static/admin.css` | 建立 |
 
 ### 關鍵決策
 
@@ -639,11 +620,11 @@ session 已清 -> True
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `db/meals.py` | `Course-SAD-Sample-System/db/equipment.py` | **改寫** |
-| `db/__init__.py` | Phase 2 的產出 | **修改**（加入 meals 匯出與 `init_db()` 的兩行） |
-| `db/CLAUDE.md` | sad-forum | **改寫** |
+| 檔案 | 動作 |
+|------|------|
+| `db/meals.py` | **建立** |
+| `db/__init__.py` | **修改**（加入 meals 匯出與 `init_db()` 的兩行） |
+| `db/CLAUDE.md` | **建立** |
 
 ### 從 `equipment.py` 改寫的六件事
 
@@ -924,8 +905,8 @@ rm -f /tmp/m?.db
 
 ### 常見錯誤
 
-- **`complete_meal_order` 順手寫成回補庫存**（照抄 `mark_order_returned`）。這是從
-  equipment 改寫時最容易犯的錯，而且驗收 6 之外的測試都抓不到
+- **`complete_meal_order` 順手寫成回補份數**。便當吃掉就沒了，這是最容易犯的錯，
+  而且驗收 6 之外的測試都抓不到
 - `confirm_meal_order` 先扣減再檢查，導致部分確認
 - 回補沒有以 `daily_quantity` 封頂
 - 種子訂單忘了扣庫存，導致驗收 1 顯示 A02 是 40/40
@@ -943,17 +924,17 @@ rm -f /tmp/m?.db
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/meal/__init__.py` | `Course-SAD-Sample-System/blueprints/equipment/__init__.py` | **改寫** |
-| `blueprints/meal/CLAUDE.md` | — | **全新建立** |
-| `templates/meal/index.html` | 同上 `equipment/index.html` | **改寫** |
-| `templates/meal/meal_form.html` | 同上 `equipment_form.html` | **改寫** |
-| `templates/meal/order_form.html` | 同上 `borrow_form.html` + `edit_order_form.html` | **改寫並合併** |
-| `templates/meal/my_orders.html` | 同上 `my_orders.html` | **改寫** |
-| `templates/meal/order_detail.html` | 同上 `order_detail.html` | **改寫** |
-| `templates/meal/admin_orders.html` | 同上 `admin_orders.html` | **改寫** |
-| `static/meal.css` | `sad-forum/static/forum.css` | **改寫**（改前綴、加狀態 badge） |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/meal/__init__.py` | **建立** |
+| `blueprints/meal/CLAUDE.md` | **建立** |
+| `templates/meal/index.html` | **建立** |
+| `templates/meal/meal_form.html` | **建立** |
+| `templates/meal/order_form.html` | **改寫並合併** |
+| `templates/meal/my_orders.html` | **建立** |
+| `templates/meal/order_detail.html` | **建立** |
+| `templates/meal/admin_orders.html` | **建立** |
+| `static/meal.css` | **建立**（改前綴、加狀態 badge） |
 
 ### 建議的實作順序
 
@@ -979,7 +960,7 @@ rm -f /tmp/m?.db
 
 **2. `_current_user()` 必須做 `_is_usable` 檢查。**
 
-範本的 `equipment._current_user()` **沒有**這個檢查。本系統修正它——被停用的帳號若能
+這個檢查不可省略——被停用的帳號若能
 下單，會佔用真實的餐點份數，讓別人訂不到。判準是「缺陷的影響是否外溢到當事人以外的人」。
 
 **3. 價格一律從資料庫重新查。**
@@ -993,7 +974,7 @@ rm -f /tmp/m?.db
 狀態檢查在資料層（Phase 8 已完成）。
 
 **5. `order_form.html` 由訂餐與修改共用**，靠 `form_title`、`back_url`、`quantities`
-三個變數區分。範本的 `borrow_form.html` 與 `edit_order_form.html` 是兩個檔案，本系統
+三個變數區分。「新增」與「修改」不拆成兩個檔案，本系統
 合併——兩者的欄位與驗證完全相同，共用不會產生分支地獄。
 
 **6. `edit_order` 列出的餐點是「目前可訂」聯集「這張訂單已點」。**
@@ -1181,7 +1162,7 @@ rm -f /tmp/p9g.db
 
 ### 常見錯誤
 
-- `_current_user()` 照抄範本，忘了加 `_is_usable`（驗收 4 會抓到）
+- `_current_user()` 忘了加 `_is_usable`（驗收 4 會抓到）
 - 把價格從表單讀進來（驗收 5 會抓到）
 - 在 Blueprint 中重複寫狀態檢查，與資料層的檢查不一致
 - `edit_order` 只列 `list_orderable_meals()`，導致已停售的品項被無聲刪除
@@ -1199,11 +1180,11 @@ rm -f /tmp/p9g.db
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `templates/hub/home.html` | Phase 5 的產出 | **修改** |
-| `blueprints/hub/CLAUDE.md` | Phase 5 的產出 | **修改**（服務卡片表） |
-| `document/hub.md` | sad-forum | **修改後複製** |
+| 檔案 | 動作 |
+|------|------|
+| `templates/hub/home.html` | **修改** |
+| `blueprints/hub/CLAUDE.md` | **修改**（服務卡片表） |
+| `document/hub.md` | **建立** |
 
 ### 修改內容
 
@@ -1338,18 +1319,18 @@ grep -c "KI-19" static/admin.css static/meal.css
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `tests/__init__.py` | sad-forum | 原樣複製 |
-| `tests/conftest.py` | sad-forum | 原樣複製（零修改） |
-| `tests/data/__init__.py` | sad-forum | 原樣複製 |
-| `tests/data/users.py` | sad-forum | **修改後複製**（加 `MEALS`、`ORDERS`、36 條 meal 訊息） |
-| `tests/test_auth.py` | sad-forum | 原樣複製 |
-| `tests/test_profile.py` | sad-forum | **修改後複製**（新增兩個保護 KI-03 的測試） |
-| `tests/test_admin.py` | sad-forum | 原樣複製 |
-| `tests/test_hub.py` | sad-forum | **修改後複製**（卡片斷言改為訂餐） |
-| `tests/test_meal.py` | — | **全新撰寫**（78 個案例） |
-| `tests/CLAUDE.md` | sad-forum | **改寫** |
+| 檔案 | 動作 |
+|------|------|
+| `tests/__init__.py` | 建立 |
+| `tests/conftest.py` | 建立 |
+| `tests/data/__init__.py` | 建立 |
+| `tests/data/users.py` | **建立**（加 `MEALS`、`ORDERS`、36 條 meal 訊息） |
+| `tests/test_auth.py` | 建立 |
+| `tests/test_profile.py` | **建立**（新增兩個保護 KI-03 的測試） |
+| `tests/test_admin.py` | 建立 |
+| `tests/test_hub.py` | **建立**（卡片斷言改為訂餐） |
+| `tests/test_meal.py` | **全新撰寫**（78 個案例） |
+| `tests/CLAUDE.md` | **建立** |
 
 ### `tests/conftest.py` 為什麼零修改
 
@@ -1470,7 +1451,7 @@ pytest tests/test_meal.py -k "restock or restore" -v
 
 ### 常見錯誤
 
-- 忘了 `pytest.ini`，`pytest` 收集到參考專案的 `conftest.py`，報
+- 忘了 `pytest.ini`，`pytest` 走進不相干的目錄收集到別的 `conftest.py`，報
   `ImportPathMismatchError`。症狀是**一個測試都跑不起來**，而不是某幾個失敗
 - 在同一個測試中同時請求 `authed_client` 與 `admin_client`，得到同一個物件，
   於是 session 被後者覆蓋。症狀是「明明用一般使用者測，卻得到管理員的結果」
@@ -1487,16 +1468,15 @@ pytest tests/test_meal.py -k "restock or restore" -v
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `Dockerfile` | sad-forum | 原樣複製 |
-| `docker-compose.yml` | sad-forum | 原樣複製 |
-| `.dockerignore` | sad-forum | **修改後複製** |
+| 檔案 | 動作 |
+|------|------|
+| `Dockerfile` | 建立 |
+| `docker-compose.yml` | 建立 |
+| `.dockerignore` | **建立** |
 
-### `.dockerignore` 的修改內容
+### `.dockerignore` 的內容
 
-參考專案的版本排除 `__pycache__`、`*.pyc`、`.git/`、`tests/`。本系統**必須額外排除
-兩個參考專案目錄**，否則映像會膨脹好幾倍：
+排除快取、資料庫檔與測試，避免映像膨脹並把開發用資料庫打包進去：
 
 ```
 __pycache__/
@@ -1505,8 +1485,7 @@ __pycache__/
 *.db
 .git/
 tests/
-sad-forum/
-Course-SAD-Sample-System/
+.pytest_cache/
 ```
 
 ### 靜態驗收（無 Docker CLI 時也能做）
@@ -1520,11 +1499,6 @@ grep -E "^(FROM|EXPOSE|CMD)" Dockerfile
 grep -E "DB_PATH|4000|db_data" docker-compose.yml
 ```
 預期：`DB_PATH=/app/data/database.db`、`"4000:4000"`、`db_data:/app/data`
-
-```bash
-grep -c "sad-forum\|Course-SAD-Sample-System" .dockerignore
-```
-預期：`2`
 
 **關鍵一致性檢查**：`docker-compose.yml` 的 `DB_PATH` 必須指向 volume 掛載點之內，
 否則容器重建時資料會遺失。
@@ -1562,7 +1536,7 @@ docker compose down -v && docker compose up -d
 
 ### 常見錯誤
 
-- 忘了在 `.dockerignore` 排除兩個參考專案，映像從幾十 MB 膨脹到數百 MB
+- 忘了在 `.dockerignore` 排除 `tests/` 與資料庫檔，映像比需要的大上許多
 - `DB_PATH` 指向 `/app/database.db`（不在 volume 內），容器重建就掉資料
 - `Dockerfile` 忘了 `RUN mkdir -p /app/data`
 
@@ -1753,27 +1727,19 @@ ls document/
 預期：`admin.md auth.md build-guide.md hub.md meal.md profile.md system-spec.md`
 
 ```bash
-find . -name CLAUDE.md -not -path './sad-forum/*' -not -path './Course-SAD-Sample-System/*' | sort
+find . -name CLAUDE.md | sort
 ```
 預期：8 個——根目錄、`db/`、`tests/`、五個 Blueprint
 
 ```bash
-grep -rn "forum\|論壇" --include="*.py" --include="*.html" --include="*.css" . \
-  --exclude-dir=sad-forum --exclude-dir=Course-SAD-Sample-System \
-  | grep -v "sad-forum"
+grep -rn "forum\|論壇" --include="*.py" --include="*.html" --include="*.css" .
 ```
 預期：**無輸出**。程式碼、樣板與 CSS 中不得有任何 forum 的殘留
 
 ```bash
-grep -rn "forum\|論壇" --include="*.md" . \
-  --exclude-dir=sad-forum --exclude-dir=Course-SAD-Sample-System \
-  | grep -v "sad-forum" | wc -l
+grep -rn "forum\|論壇" --include="*.md" . | wc -l
 ```
-預期：**約 20 行**，且**每一行都必須是在說明血緣或建置步驟**（例如「原本是 `forum_bp`」、
-「論壇的明細只指向主檔」）。逐行確認沒有殘留的功能描述。
-
-`.md` 中允許出現 forum，是因為本專案的價值有一半在於「相對於參考專案改了什麼」——
-把對照關係也一併清掉，讀者就看不出設計決策的來歷了。
+預期：**0**。文件中也不應該出現與本系統無關的子系統名稱。
 
 ### 完工檢查清單
 
@@ -1789,91 +1755,30 @@ grep -rn "forum\|論壇" --include="*.md" . \
 - [ ] CSS 稽核六項全部通過
 - [ ] 八份 `CLAUDE.md` 齊備
 - [ ] `document/` 七份文件齊備
-- [ ] `.dockerignore` 排除兩個參考專案
+- [ ] `.dockerignore` 排除測試、快取與資料庫檔
 
 ---
 
 ## 附錄 A：完整檔案清單
 
-### A. 原樣複製自 `sad-forum`（21 個）
+### A. 各檔案建立於哪個階段
 
-```
-utils.py
-requirements.txt
-Dockerfile
-docker-compose.yml
-.gitignore  .gitattributes
-.claude/settings.json
-blueprints/__init__.py
-db/connection.py  db/users.py
-blueprints/auth/__init__.py  blueprints/auth/CLAUDE.md
-blueprints/hub/__init__.py
-blueprints/profile/__init__.py  blueprints/profile/CLAUDE.md
-blueprints/admin/__init__.py
-templates/auth/register.html
-templates/profile/dashboard.html
-templates/admin/user_list.html  templates/admin/user_detail.html
-static/common.css  static/login.css  static/hub.css
-static/profile.css  static/admin.css
-tests/__init__.py  tests/conftest.py  tests/data/__init__.py
-tests/test_auth.py  tests/test_profile.py  tests/test_admin.py
-```
+| 檔案 | Phase |
+|------|:--:|
+| `app.py`、`utils.py`、`blueprints/__init__.py`、`requirements.txt`、`pytest.ini` | 1 |
+| `.gitignore`、`.gitattributes`、`.dockerignore`、`.claude/settings.json` | 1 |
+| `db/{__init__,connection,users}.py`、`db/CLAUDE.md` | 2 |
+| `templates/base.html`、`static/{common,login}.css` | 3 |
+| `blueprints/auth/`、`templates/auth/{login,register}.html` | 4 |
+| `blueprints/hub/`、`templates/hub/home.html`、`static/hub.css` | 5 |
+| `blueprints/profile/`、`templates/profile/dashboard.html`、`static/profile.css` | 6 |
+| `blueprints/admin/`、`templates/admin/{user_list,user_detail}.html`、`static/admin.css` | 7 |
+| `db/meals.py`（三張表、狀態機、種子餐點） | 8 |
+| `blueprints/meal/`、`templates/meal/*.html`（六個）、`static/meal.css` | 9 |
+| `tests/`（`conftest.py`、`data/users.py`、五個測試檔、`CLAUDE.md`） | 12 |
+| `Dockerfile`、`docker-compose.yml` | 13 |
+| `rules/*.md`、`document/*.md`、`README.md`、`CLAUDE.md` | 各階段 |
 
-### B. 修改後複製（12 個）
-
-```
-app.py                          # forum_bp -> meal_bp
-db/__init__.py                  # forum 匯出 -> meals 匯出
-templates/base.html             # 預設 title
-templates/auth/login.html       # 標題
-templates/hub/home.html         # 服務卡片
-.dockerignore                   # 加排除兩個參考專案
-blueprints/hub/CLAUDE.md        # 服務卡片表
-blueprints/admin/CLAUDE.md      # 三處 forum 對照
-tests/data/users.py             # 加 MEALS、ORDERS、36 條訊息
-tests/test_hub.py               # 卡片斷言
-rules/database.md               # transaction 實例、LEFT JOIN 例外
-rules/flask-blueprint.md        # 開放瀏覽的例子
-document/hub.md  document/profile.md  document/admin.md  document/auth.md
-```
-
-### C. 從 `Course-SAD-Sample-System` 改寫（8 個）
-
-```
-db/meals.py                     <- db/equipment.py
-blueprints/meal/__init__.py     <- blueprints/equipment/__init__.py
-templates/meal/index.html       <- templates/equipment/index.html
-templates/meal/meal_form.html   <- templates/equipment/equipment_form.html
-templates/meal/order_form.html  <- borrow_form.html + edit_order_form.html（合併）
-templates/meal/my_orders.html   <- templates/equipment/my_orders.html
-templates/meal/order_detail.html<- templates/equipment/order_detail.html
-templates/meal/admin_orders.html<- templates/equipment/admin_orders.html
-```
-
-### D. 全新建立（11 個）
-
-```
-pytest.ini
-static/meal.css                 # 骨架取自 sad-forum/static/forum.css
-tests/test_meal.py
-CLAUDE.md
-README.md
-db/CLAUDE.md                    # 改寫
-blueprints/meal/CLAUDE.md
-tests/CLAUDE.md                 # 改寫
-document/system-spec.md
-document/build-guide.md
-document/meal.md
-```
-
-### E. 明確不搬移
-
-| 來源 | 檔案 | 理由 |
-|------|------|------|
-| sad-forum | `blueprints/forum/`、`db/forum.py`、`templates/forum/`、`static/forum.css`、`tests/test_forum.py` | 論壇不在本系統範圍內 |
-| sad-forum | `document/forum.md`、`document/web-*.md` | 同上；純前端版是另一條平行線 |
-| Course-SAD-Sample-System | `blueprints/events/`、`db/events.py`、`templates/events/` | 校園活動報名不在範圍內 |
-| Course-SAD-Sample-System | 其 `db/users.py`、`blueprints/auth/` 等 | 會員系統以 `sad-forum` 的版本為準（它修正過守門順序） |
 
 ## 附錄 B：訂餐子系統的跨階段速查
 

@@ -321,7 +321,7 @@ POST /equipment/admin/orders/<order_id>/return
 | 模板 | 用途 | 重點 |
 |------|------|------|
 | `index.html` | 器材主頁 | 左側清單（`?id=N&page=N`）+ 右側詳細；選取列加 `eq-row-selected` |
-| `equipment_form.html` | 新增／修改器材 | 由 `mode='new'|'edit'` 決定標題與送出目標 |
+| `equipment_form.html` | 新增／修改器材 | 由 `mode='new'` / `mode='edit'` 決定標題與送出目標 |
 | `borrow_form.html` | 借用申請 | `<input type="datetime-local">`；顯示目前可借數量 |
 | `my_orders.html` | 我的借用紀錄 | 狀態徽章 + 依狀態顯示可用操作 |
 | `order_detail.html` | 借用單詳細 | 表頭 + 明細表 + 審核資訊 + 操作按鈕 |

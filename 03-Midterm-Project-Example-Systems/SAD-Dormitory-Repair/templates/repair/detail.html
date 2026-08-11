@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+{% block title %}報修單 #{{ req['id'] }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='repair.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="repair-layout">
+  <div class="repair-topbar">
+    <span class="repair-topbar-title">報修單 #{{ req['id'] }}</span>
+    <div class="repair-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="repair-nav-link">返回首頁</a>
+      <a href="{{ url_for('repair.index') }}" class="repair-nav-link">我的報修單</a>
+      {% if is_admin %}
+        <a href="{{ url_for('repair.manage') }}" class="repair-nav-link">報修管理</a>
+      {% endif %}
+      <span class="repair-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="repair-btn repair-btn-danger">登出</a>
+    </div>
+  </div>
+
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="repair-flash repair-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+  {% endfor %}
+
+  <div class="repair-detail-main">
+
+    {# ── 左欄：報修單本體與處理歷程 ────────────────────────────────────── #}
+    <div class="repair-detail-left">
+      <div class="repair-card">
+        <div class="repair-card-head">
+          <h2 class="repair-detail-title">{{ req['title'] }}</h2>
+          <span class="repair-badge repair-status-{{ req['request_status'] }}">
+            {{ status_labels[req['request_status']] }}
+          </span>
+        </div>
+
+        <div class="repair-info-grid">
+          <div class="repair-info-row">
+            <span class="repair-info-label">維修類別</span>
+            <span class="repair-info-value">{{ category_labels[req['category']] }}</span>
+          </div>
+          <div class="repair-info-row">
+            <span class="repair-info-label">優先等級</span>
+            <span class="repair-info-value">
+              <span class="repair-badge repair-pri-{{ req['priority'] }}">
+                {{ priority_labels[req['priority']] }}
+              </span>
+            </span>
+          </div>
+          <div class="repair-info-row">
+            <span class="repair-info-label">報修地點</span>
+            <span class="repair-info-value">{{ req['dorm_building'] }} {{ req['room_no'] }}</span>
+          </div>
+          <div class="repair-info-row">
+            <span class="repair-info-label">申報人</span>
+            <span class="repair-info-value">{{ req['requester_display'] }}</span>
+          </div>
+          <div class="repair-info-row">
+            <span class="repair-info-label">聯絡電話</span>
+            <span class="repair-info-value">{{ req['contact_phone'] or req['requester_phone'] or '—' }}</span>
+          </div>
+          <div class="repair-info-row">
+            <span class="repair-info-label">承辦人</span>
+            <span class="repair-info-value">{{ req['assignee_display'] or '尚未派工' }}</span>
+          </div>
+          <div class="repair-info-row">
+            <span class="repair-info-label">申報時間</span>
+            <span class="repair-info-value">{{ req['created_at'] }}</span>
+          </div>
+          <div class="repair-info-row">
+            <span class="repair-info-label">派工時間</span>
+            <span class="repair-info-value">{{ req['assigned_at'] or '—' }}</span>
+          </div>
+          <div class="repair-info-row">
+            <span class="repair-info-label">開始處理</span>
+            <span class="repair-info-value">{{ req['started_at'] or '—' }}</span>
+          </div>
+          <div class="repair-info-row">
+            <span class="repair-info-label">結案時間</span>
+            <span class="repair-info-value">{{ req['closed_at'] or '—' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="repair-card">
+        <p class="repair-card-title">處理歷程（{{ logs | length }} 則）</p>
+
+        <div class="repair-timeline">
+          {% for log in logs %}
+            <div class="repair-timeline-item repair-log-{{ log['log_type'] }}">
+              <div class="repair-timeline-marker"></div>
+              <div class="repair-timeline-body">
+                <div class="repair-timeline-head">
+                  <span class="repair-log-badge repair-log-badge-{{ log['log_type'] }}">
+                    {{ log_type_labels[log['log_type']] }}
+                  </span>
+                  <span class="repair-log-author">{{ log['author_display'] }}</span>
+                  {% if log['author_role'] == 0 %}
+                    <span class="repair-log-role">管理員</span>
+                  {% endif %}
+                  <span class="repair-log-time">{{ log['created_at'] }}</span>
+                </div>
+                <div class="repair-log-content">{{ log['content'] }}</div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        {% if req['request_status'] in closed_statuses %}
+          <p class="repair-closed-note">
+            此報修單已結案（{{ status_labels[req['request_status']] }}），不再接受回覆。
+            {% if is_admin and req['request_status'] == 'completed' %}
+              若問題再次發生，可在右側「重新開啟」。
+            {% elif req['request_status'] != 'completed' %}
+              若問題仍在，請另外申報一張新的報修單。
+            {% endif %}
+          </p>
+        {% else %}
+          <form method="POST" action="{{ url_for('repair.add_comment', request_id=req['id']) }}"
+                class="repair-comment-form" novalidate>
+            <label for="content">新增回覆</label>
+            <textarea id="content" name="content" rows="3"
+                      placeholder="補充說明、約定時間，或回報處理狀況"></textarea>
+            <button type="submit" class="repair-btn repair-btn-primary repair-btn-sm">送出回覆</button>
+          </form>
+        {% endif %}
+      </div>
+    </div>
+
+    {# ── 右欄：依身分與狀態決定可執行的操作 ────────────────────────────── #}
+    <div class="repair-detail-right">
+
+      {% if is_requester %}
+        <div class="repair-card">
+          <p class="repair-card-title">我的操作</p>
+          {% if req['request_status'] == 'pending' %}
+            <a href="{{ url_for('repair.edit_request', request_id=req['id']) }}"
+               class="repair-btn repair-btn-secondary repair-btn-block">修改報修單</a>
+          {% endif %}
+          {% if req['request_status'] in ('pending', 'assigned') %}
+            <form method="POST" action="{{ url_for('repair.cancel', request_id=req['id']) }}">
+              <button type="submit" class="repair-btn repair-btn-danger repair-btn-block"
+                      onclick="return confirm('確定要取消這張報修單嗎？')">取消報修</button>
+            </form>
+          {% endif %}
+          {% if req['request_status'] not in ('pending', 'assigned') %}
+            <p class="repair-note">
+              報修單已進入「{{ status_labels[req['request_status']] }}」，
+              申報人不能再修改或取消。有問題請在左側新增回覆。
+            </p>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if is_admin %}
+        <div class="repair-card">
+          <p class="repair-card-title">管理操作</p>
+
+          {% if req['request_status'] == 'pending' %}
+            <form method="POST" action="{{ url_for('repair.assign', request_id=req['id']) }}"
+                  class="repair-action-form">
+              <label for="assignee_id">派工給</label>
+              <select id="assignee_id" name="assignee_id">
+                {% for a in assignees %}
+                  <option value="{{ a['id'] }}">{{ a['name'] or a['display_name'] or a['email'] }}</option>
+                {% endfor %}
+              </select>
+              <label for="assign_note">派工備註</label>
+              <input type="text" id="assign_note" name="note" placeholder="選填">
+              <button type="submit" class="repair-btn repair-btn-primary repair-btn-block">派工</button>
+            </form>
+
+            <hr class="repair-action-divider">
+
+            <form method="POST" action="{{ url_for('repair.reject', request_id=req['id']) }}"
+                  class="repair-action-form">
+              <label for="reject_note">退件原因 <span class="required">*</span></label>
+              <input type="text" id="reject_note" name="note" placeholder="必填，申報人會看到這段文字">
+              <button type="submit" class="repair-btn repair-btn-danger repair-btn-block">退件</button>
+            </form>
+
+          {% elif req['request_status'] == 'assigned' %}
+            <form method="POST" action="{{ url_for('repair.start', request_id=req['id']) }}"
+                  class="repair-action-form">
+              <label for="start_note">處理備註</label>
+              <input type="text" id="start_note" name="note" placeholder="選填">
+              <button type="submit" class="repair-btn repair-btn-primary repair-btn-block">開始處理</button>
+            </form>
+
+          {% elif req['request_status'] == 'in_progress' %}
+            <form method="POST" action="{{ url_for('repair.complete', request_id=req['id']) }}"
+                  class="repair-action-form">
+              <label for="complete_note">完工說明</label>
+              <input type="text" id="complete_note" name="note" placeholder="選填，例如更換的零件">
+              <button type="submit" class="repair-btn repair-btn-primary repair-btn-block">登記完成</button>
+            </form>
+
+          {% elif req['request_status'] == 'completed' %}
+            <form method="POST" action="{{ url_for('repair.reopen', request_id=req['id']) }}"
+                  class="repair-action-form">
+              <label for="reopen_note">重新開啟原因 <span class="required">*</span></label>
+              <input type="text" id="reopen_note" name="note" placeholder="必填，例如「住戶回報仍在漏水」">
+              <button type="submit" class="repair-btn repair-btn-secondary repair-btn-block">重新開啟</button>
+            </form>
+
+          {% else %}
+            <p class="repair-note">
+              此報修單為「{{ status_labels[req['request_status']] }}」，沒有可執行的狀態異動。
+            </p>
+          {% endif %}
+
+          <hr class="repair-action-divider">
+
+          <form method="POST" action="{{ url_for('repair.delete', request_id=req['id']) }}">
+            <button type="submit" class="repair-btn repair-btn-danger repair-btn-block"
+                    onclick="return confirm('確定要刪除這張報修單及其所有處理紀錄嗎？')">刪除報修單</button>
+          </form>
+        </div>
+
+        <div class="repair-card">
+          <p class="repair-card-title">狀態流程</p>
+          <ol class="repair-flow">
+            <li class="{{ 'repair-flow-done' if req['request_status'] != 'pending' else 'repair-flow-now' }}">待受理</li>
+            <li class="{{ 'repair-flow-done' if req['request_status'] in ('in_progress', 'completed')
+                          else ('repair-flow-now' if req['request_status'] == 'assigned' else '') }}">已派工</li>
+            <li class="{{ 'repair-flow-done' if req['request_status'] == 'completed'
+                          else ('repair-flow-now' if req['request_status'] == 'in_progress' else '') }}">處理中</li>
+            <li class="{{ 'repair-flow-now' if req['request_status'] == 'completed' }}">已完成</li>
+          </ol>
+          <p class="repair-note">
+            退件與取消是離開流程的兩條分支：退件由管理員在「待受理」時執行，
+            取消由申報人在「待受理」或「已派工」時執行。
+          </p>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}

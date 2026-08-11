@@ -72,32 +72,6 @@
 
 這些功能的設計方向見第 13 章。
 
-### 1.3 血緣關係
-
-本系統由兩個既有專案組合而來：
-
-| 來源 | 提供的部分 |
-|------|-----------|
-| `sad-forum` | 專案骨架（`app.py`、`utils.py`、`db/connection.py`、`db/users.py`）、會員登入與管理系統（auth / hub / profile / admin 四個 Blueprint 及其模板與 CSS）、`rules/` 兩份開發規範、測試架構與 fixtures、`common.css` 的 token 體系、本文件的體例 |
-| `Course-SAD-Sample-System` | 校園活動報名子系統（events）的資料模型（三張表）、路由設計（八條）、`_event_status()` 狀態機、四個模板與 `events.css` |
-
-`sad-forum` 本身也是由 `Course-SAD-Sample-System` 抽取而來的，因此三者共用同一套慣例。
-
-| 面向 | `Course-SAD-Sample-System` | `sad-forum` | 本系統 |
-|------|---------|--------|--------|
-| 子系統數 | 6 個 Blueprint | 5 個 Blueprint | **5 個**（auth、hub、profile、admin、events） |
-| 資料表數 | 9 張 | 3 張 | **4 張**（users、events、event_details、registrations） |
-| `db/` 模組 | 5 個 | 3 個 | **3 個**（connection、users、events） |
-| 會員管理 | 無 | 有 | **有**（沿用 `sad-forum`） |
-| 活動報名 | 有 | 無 | **有**（沿用 `Course-SAD-Sample-System`） |
-| events 的帳號有效性檢查 | **無** | — | **有**（本版修正，見 §11.5） |
-| 刪除／取消按鍵的元素 | `<a href="#" onclick>` | `<button type="submit">` | **`<button type="submit">`**（本版修正） |
-| CSS 檔案 | 6 個 | 6 個 | 6 個（common、login、hub、profile、admin、events） |
-| 測試案例 | 151 | 約 112 | **152** |
-| 一次性種子機制 | 有（`setup/` 目錄，執行後自我刪除） | 無 | **無**。活動的範例資料改由 `_seed_events_if_empty()` 提供，與種子帳號同一套機制 |
-
-> **兩個來源專案都不在本資料夾內，本文件提到它們時一律是說明血緣或對照關係。**
-
 ### 1.4 名詞定義
 
 | 名詞 | 定義 |
@@ -589,7 +563,7 @@ users
 
 **資料庫層沒有外鍵約束。** `events.user_id`、`registrations.user_id`、
 `registrations.event_id`、`event_details.event_id` 都只是普通的 INTEGER 欄位。
-這是沿用範本的既有設計（KI-20），也是為什麼所有刪除都必須是軟刪除——
+這是刻意保留的設計（KI-20），也是為什麼所有刪除都必須是軟刪除——
 真的 `DELETE` 一個使用者，那些活動與報名的作者欄位就會 JOIN 不到人。
 
 ### 6.1.1 為何活動要拆成兩張表
@@ -604,7 +578,7 @@ users
 建立、更新、刪除都必須成對進行，所以 `create_event`、`update_event`、
 `soft_delete_event` 三個函式都用 `with conn:` 包成 transaction。
 
-> 對照 `sad-forum` 的 `forum` / `forum_details`：那是**一對多**（一篇文章多則回覆），
+> 對照常見的「文章／回覆」結構：那是**一對多**（一篇文章多則回覆），
 > 拆表的理由是「一筆主檔對應不定筆明細」。本系統的活動是**一對一**，
 > 拆表的理由是「冷熱欄位分離」。同樣是主檔／明細的形狀，動機完全不同。
 
@@ -882,7 +856,7 @@ LIMIT ? OFFSET ?
 user 2 有兩筆 `registered`（活動 3、5）；user 3 沒有任何報名紀錄。
 
 **時間欄位一律以 `datetime('now', '±N days')` 換算，不寫死絕對日期。**
-理由與 `sad-forum` 種子文章使用相對時間戳相同：寫死日期的種子資料過幾個月後
+理由是寫死日期的種子資料過幾個月後
 會全部變成「活動已結束」，五種狀態就看不出差異了。
 
 > 實作細節：`datetime('now', NULL)` 在 SQLite 中回傳 `NULL`，
@@ -929,8 +903,8 @@ user 2 有兩筆 `registered`（活動 3、5）；user 3 沒有任何報名紀�
 - 「對某個活動做某件事」的路徑放在 `/<event_id>/<動作>`（報名、取消、修改報名）；
   「對活動本身做某件事」的路徑放在 `/<動作>/<event_id>`（修改、刪除）
 
-> 這兩種形狀的不一致是沿用範本的（KI-25）。可以理解成
-> 「動詞在前 = 操作活動」「id 在前 = 操作活動底下的東西」，但範本並未如此宣告。
+> 這兩種形狀的不一致是刻意保留的（KI-25）。可以理解成
+> 「動詞在前 = 操作活動」「id 在前 = 操作活動底下的東西」，但系統並未如此宣告。
 
 ### 7.3 POST-Redirect-GET 與元素語意
 
@@ -1260,7 +1234,7 @@ user 2 有兩筆 `registered`（活動 3、5）；user 3 沒有任何報名紀�
 | 11 | 報名截止 ≤ 活動開始 | `報名截止時間不可晚於活動開始時間` |
 | 12 | 報名開始 ≤ 報名截止 | `報名開始時間不可晚於報名截止時間` |
 
-**一次只回報第一個錯誤**，不列出全部問題。這是沿用範本的簡化（KI-30），
+**一次只回報第一個錯誤**，不列出全部問題。這是刻意的簡化（KI-30），
 在欄位多達十個時體驗不佳——使用者可能要來回送出好幾次。
 
 ### 9.7 訊息字串總表（50 條）
@@ -1441,7 +1415,7 @@ volumes:
 
 ### 11.0 為何有些債修、有些不修
 
-本系統沿用兩個參考專案的既有技術債，**不做全面強化**——這些債本身就是教材。
+本系統刻意保留既有的技術債，**不做全面強化**——這些債本身就是教材。
 但有三項做了修正（§11.5）。判準只有一條：
 
 > **缺陷的影響是否會外溢到當事人以外的人。**
@@ -1462,7 +1436,7 @@ volumes:
 | KI-01 | 無 CSRF token | 所有 POST（報名、取消、刪除活動、會員管理）可被跨站偽造 | 引入 Flask-WTF 會把表單處理變成另一套抽象，遮蔽「表單 → request.form」這條主線 | 加入 Flask-WTF 或手寫 token 機制 |
 | KI-02 | 登入無速率限制 | 可暴力破解密碼 | 需要額外的狀態儲存（Redis 或資料表） | Flask-Limiter，或在 `users` 加失敗計數欄位 |
 | KI-05 | `SECRET_KEY` 有預設值 | 未設環境變數時使用公開已知的金鑰，session 可被偽造 | 方便本機直接執行 | 生產環境強制要求環境變數，未設則拒絕啟動 |
-| KI-07 | 驗證碼在登入成功後未 `session.pop` | 驗證碼可重放 | 沿用範本 | 登入成功後 `session.pop('captcha', None)` |
+| KI-07 | 驗證碼在登入成功後未 `session.pop` | 驗證碼可重放 | 刻意保留為教材 | 登入成功後 `session.pop('captcha', None)` |
 | KI-15 | 無 session fixation 防護 | 登入前後 session id 不變 | 不用 Flask-Login 的代價 | 登入成功後重新產生 session |
 | KI-16 | `/health` 無任何保護 | 可被用於探測服務存在 | 健康檢查端點的常見做法 | 加入 IP 白名單或 token |
 | KI-18 | 公開報名名單顯示所有報名者的姓名或 email | **訪客即可看到**。未填姓名的帳號會退回顯示 email | 「誰已經報名」是活動報名系統的常見需求；但顯示 email 確實過度 | 只顯示遮罩後的名稱（`王＊明`），或改為僅顯示人數 |
@@ -1476,10 +1450,10 @@ volumes:
 | **KI-11** | 名額檢查與報名寫入不在同一個 transaction | 兩個請求同時通過 `_event_status()` 的 `full` 檢查後同時 INSERT，名額會超收 | 教學情境不會發生；而正確的修法需要引入鎖或 `INSERT ... SELECT ... WHERE`，複雜度陡增 | 把 `count_registered` 與 `INSERT` 放進同一個 `with conn:`，或改用 `INSERT ... WHERE (SELECT COUNT(*) ...) < capacity` |
 | **KI-13** | `datetime.now()`（本機時間）與 SQLite `datetime('now')`（UTC）混用 | 種子資料、`created_at`、`cancelled_at` 是 UTC；狀態判斷是本機時間。台灣時區有 8 小時偏差 | 種子活動的時間間隔都 ≥ 1 天，偏差不會翻轉任何狀態；使用者建立的活動則兩邊都是本機時間，一致 | 全面改用 UTC，顯示時再轉當地時區 |
 | KI-14 | `waiting` 與 `rejected` 是不可達狀態 | DDL 與模板都支援，但沒有任何路由會產生 | 為未來的候補與強制取消機制預留 | 見第 13 章 |
-| KI-22 | `registrations.is_deleted` 從不被設為 1 | 欄位存在但無寫入路徑 | 沿用範本；取消報名用 `registration_status` 而非 `is_deleted` | 移除欄位，或定義它與 `cancelled` 的語意差別 |
+| KI-22 | `registrations.is_deleted` 從不被設為 1 | 欄位存在但無寫入路徑 | 取消報名用 `registration_status` 而非 `is_deleted` | 移除欄位，或定義它與 `cancelled` 的語意差別 |
 | KI-23 | hub 內嵌登入是 auth 登入的完整複製 | 五條錯誤訊息各硬編碼兩份；登入政策強化必須兩處都改 | 抽取共用函式會讓兩個 Blueprint 產生依賴，違反模組邊界原則 | 把驗證邏輯抽到 `utils.py` 或獨立的 service 模組 |
-| KI-25 | 活動路由的 id 位置不一致 | `/events/edit/<id>` 與 `/events/<id>/register` 兩種形狀 | 沿用範本 | 統一為 `/events/<id>/edit` 等 RESTful 形狀 |
-| KI-30 | 表單驗證一次只回報第一個錯誤 | 活動表單有十個欄位，使用者可能要來回送出多次 | 沿用範本的簡化寫法 | 改為收集全部錯誤後一次回傳 |
+| KI-25 | 活動路由的 id 位置不一致 | `/events/edit/<id>` 與 `/events/<id>/register` 兩種形狀 | 刻意保留為教材 | 統一為 `/events/<id>/edit` 等 RESTful 形狀 |
+| KI-30 | 表單驗證一次只回報第一個錯誤 | 活動表單有十個欄位，使用者可能要來回送出多次 | 刻意的簡化寫法 | 改為收集全部錯誤後一次回傳 |
 | KI-32 | 同一個活動狀態有兩份中文字串 | badge 用「名額已滿」，flash 用「活動名額已滿」；修改時容易漏掉一邊 | 短標籤與完整句子的用途不同 | 定義 `SHORT_LABELS` 與 `FLASH_MESSAGES` 並在測試中斷言兩者的 key 集合相同 |
 
 ### 11.3 資料層
@@ -1489,10 +1463,10 @@ volumes:
 | KI-09 | 每個請求都重新查詢使用者 | 每個受保護路由至少多一次 DB 查詢 | 換來「角色調整立即生效」 | 快取，但需處理失效 |
 | KI-10 | 每個 `db.*` 函式重複 `_get_conn()` / `close()` | 24 個函式各有三行樣板 | 不用 ORM 的代價；context manager 會多一層間接 | 自訂 context manager 或 decorator |
 | KI-12 | `soft_delete_event` 不處理報名紀錄 | 活動被撤銷後，報名紀錄仍存在且仍在「我的報名」中顯示 | **這是刻意的**——報名紀錄是報名者的資料，不該因活動撤銷而消失。模板加上「活動已撤銷」標記 | 若要改變此行為，同時標記報名為 `rejected` 並通知報名者 |
-| KI-20 | 資料庫無外鍵約束 | 孤兒資料在資料庫層不會被阻止 | 沿用範本；軟刪除策略已在應用層規避 | 啟用 `PRAGMA foreign_keys=ON` 並加上 `REFERENCES` |
+| KI-20 | 資料庫無外鍵約束 | 孤兒資料在資料庫層不會被阻止 | 軟刪除策略已在應用層規避 | 啟用 `PRAGMA foreign_keys=ON` 並加上 `REFERENCES` |
 | KI-21 | 無任何索引 | `list_events` 的 JOIN 與 `get_registration` 的查詢都是全表掃描 | 資料量級不需要 | 至少加上 `registrations(event_id, user_id)` 與 `events(event_datetime)` |
 | KI-26 | 電話與 Email 欄位無後端格式驗證 | 可存入任意字串。前端的 `type="email"` 可被繞過 | 選填欄位，且格式因國別而異 | 加入基本的正規表達式驗證 |
-| KI-27 | `event_title` 無後端長度驗證 | 前端 `maxlength="200"` 可被繞過，可存入任意長度標題 | 沿用範本；`event_place` 有驗但 `event_title` 沒有，這個不一致本身就值得討論 | 補上 `len(...) > 200` 檢查 |
+| KI-27 | `event_title` 無後端長度驗證 | 前端 `maxlength="200"` 可被繞過，可存入任意長度標題 | `event_place` 有驗但 `event_title` 沒有，這個不一致本身就值得討論 | 補上 `len(...) > 200` 檢查 |
 | KI-28 | 四段活動長文字無長度上限 | 可寫入任意大小的內容 | Jinja2 已擋住 XSS；資源耗用在教學情境不成問題 | 加入長度上限（如 10000 字元） |
 
 ### 11.4 使用者體驗與前端
@@ -1500,28 +1474,28 @@ volumes:
 | ID | 問題 | 影響 | 為何接受 | 修補方向 |
 |----|------|------|---------|---------|
 | KI-08 | Blueprint 中的訊息字串硬編碼 | 修改時必須同步更新 `tests/data/users.py` | 集中管理會多一層間接 | 建立 `messages.py` 常數模組，Blueprint 與測試共用 |
-| KI-17 | admin 的四個 POST 動作 redirect 時不帶 query string | 篩選與頁碼會被重設 | 沿用範本 | redirect 時帶回原本的 `status` / `q` / `page` |
+| KI-17 | admin 的四個 POST 動作 redirect 時不帶 query string | 篩選與頁碼會被重設 | 刻意保留為教材 | redirect 時帶回原本的 `status` / `q` / `page` |
 | KI-19 | 狀態 badge 的底色硬編碼於 `admin.css` 與 `events.css` | `common.css` 未定義狀態語意色，兩個檔案各有一套 | 兩者的狀態語意不同（帳號狀態 vs 活動狀態） | 在 `common.css` 加入 `--status-ok-*`、`--status-warn-*` 等 token |
-| KI-31 | `hub.css` 的 `.hub-register-link` 與 `.hub-logout` 寫死色碼 | 違反「顏色一律用 token」原則；類別名稱不含 `btn`，稽核抓不到 | 沿用範本 | 改用 `var(--btn-primary-bg)` / `var(--btn-danger-bg)` |
+| KI-31 | `hub.css` 的 `.hub-register-link` 與 `.hub-logout` 寫死色碼 | 違反「顏色一律用 token」原則；類別名稱不含 `btn`，稽核抓不到 | 刻意保留為教材 | 改用 `var(--btn-primary-bg)` / `var(--btn-danger-bg)` |
 | KI-33 | 活動主頁雙欄配置未做 responsive | 760 px 以下右欄會被擠壓 | 桌面優先的教學專案 | 加入 media query，窄螢幕改為單欄堆疊 |
 | KI-34 | 無 ARIA 標記與鍵盤導覽最佳化 | 螢幕閱讀器體驗不佳 | 超出教學範圍 | 加上 `aria-label`、`role`、focus 管理 |
 | KI-35 | 分頁只有「上一頁／下一頁」，無法跳頁 | 活動多時要按很多次 | 資料量級不需要 | 加入頁碼列表 |
-| KI-36 | `blueprints/auth/__init__.py` 直接 `import sqlite3` 以攔截 `IntegrityError` | 資料庫實作洩漏到 Blueprint 層，違反「SQL 只寫在 `db/` 內」的模組邊界原則。換掉資料庫就得改這裡 | 沿用 FORUM；替代方案是讓 `db.create_user()` 自行攔截並回傳 `None` 或拋出自訂例外，但那會多一層間接 | `db/users.py` 定義 `EmailTakenError` 並在 `create_user()` 中轉換 |
+| KI-36 | `blueprints/auth/__init__.py` 直接 `import sqlite3` 以攔截 `IntegrityError` | 資料庫實作洩漏到 Blueprint 層，違反「SQL 只寫在 `db/` 內」的模組邊界原則。換掉資料庫就得改這裡 | 替代方案是讓 `db.create_user()` 自行攔截並回傳 `None` 或拋出自訂例外，但那會多一層間接 | `db/users.py` 定義 `EmailTakenError` 並在 `create_user()` 中轉換 |
 
-### 11.5 本版相對於來源的三項修正
+### 11.5 三項刻意做強的地方
 
-| # | 修正 | 來源的狀況 | 為何修 |
-|:--:|------|-----------|--------|
-| 1 | **`events._current_user()` 加上 `_is_usable` 檢查** | `Course-SAD-Sample-System` 的版本只查 id 不驗狀態 | 被停用的帳號只要 session 未清，仍能建立公開活動、報名並佔用別人的名額，讓 admin 的停用功能形同虛設。影響外溢到當事人以外，依 §11.0 的判準必須修 |
-| 2 | **刪除與取消改用 `<button type="submit">`** | 範本用 `<a href="#" onclick="...this.closest('form').submit()">` | 語意錯誤：`<a>` 表示導航，這裡是有副作用的 POST。而且鍵盤操作與螢幕閱讀器行為不正確。`sad-forum` 已改為 `<button>`，本系統沿用其慣例 |
-| 3 | **events 的訊息字串集中到 `MESSAGES`** | `sad-forum` 的論壇訊息散落在測試斷言中（其 KI-29），與集中管理的 auth／admin 訊息不一致 | 不繼承一個明知是不一致的做法。50 條訊息現在全部在一處 |
+| # | 項目 | 為什麼這樣做 |
+|:--:|------|-------------|
+| 1 | **`events._current_user()` 加上 `_is_usable` 檢查** | 只查 id 不驗狀態的話，被停用的帳號只要 session 未清，仍能建立公開活動、報名並佔用別人的名額，讓 admin 的停用功能形同虛設。影響外溢到當事人以外，依 §11.0 的判準必須修 |
+| 2 | **刪除與取消改用 `<button type="submit">`** | 用 `<a href="#" onclick="...this.closest('form').submit()">` 是語意錯誤：`<a>` 表示導航，這裡是有副作用的 POST，而且鍵盤操作與螢幕閱讀器行為不正確 |
+| 3 | **events 的訊息字串集中到 `MESSAGES`** | 訊息散落在測試斷言中會造成兩處不一致，改一句話要翻遍測試檔。50 條訊息現在全部在一處 |
 
-另有兩項**刻意不搬移**：
+另有兩項**刻意不做**：
 
-| 項目 | 為什麼不搬 |
+| 項目 | 為什麼不做 |
 |------|-----------|
-| `db.admin_set_registration_status()` | 範本定義了這個函式，但沒有任何路由呼叫它。搬過來就是死碼；`rejected` 狀態的完整設計見第 13 章 |
-| `setup/` 一次性種子機制 | 範本用它植入活動與論壇的模擬資料，執行後自我刪除。本系統改用與種子帳號同一套的 `_seed_events_if_empty()`——同一個機制、同一個時機、同一套「表為空才執行」的判斷，讀者不必學兩種東西 |
+| `admin_set_registration_status()` 這類沒有路由呼叫的函式 | 沒有入口的函式就是死碼；`rejected` 狀態的完整設計見第 13 章 |
+| 一次性的種子植入機制 | 種子資料一律走 `_seed_events_if_empty()`——與種子帳號同一個機制、同一個時機、同一套「表為空才執行」的判斷，讀者不必學兩種東西 |
 
 ---
 
@@ -1543,10 +1517,7 @@ volumes:
 | 種子資料 | `db.init_db()` 自動植入三個帳號與五筆活動，測試不必自行建立 |
 | 登入狀態 | 直接以 `session_transaction()` 注入 `session['user_id']`，不走登入流程 |
 | 驗證碼 | 直接以 `session_transaction()` 注入 `session['captcha']` |
-| 參考專案 | `pytest.ini` 的 `norecursedirs` 排除 `sad-forum/` 與 `Course-SAD-Sample-System/` |
-
-最後一項是本專案特有的：兩個參考目錄各有 `tests/conftest.py`，
-若被一併收集會產生 `ImportPathMismatchError`，導致**任何測試都無法執行**。
+| 收集範圍 | `pytest.ini` 的 `testpaths = tests` 限定只收集本系統的測試 |
 
 ### 12.3 Fixtures
 
@@ -1708,35 +1679,7 @@ pytest --collect-only -q            # 只列出案例
 | `POST /events/<id>/cancel` | `活動不存在或已刪除`、`您沒有有效的報名紀錄`、`已取消報名` |
 | `POST /events/<id>/edit_registration` | `活動不存在或已刪除`、`您沒有有效的報名紀錄`、`請選擇正確的用餐選項`、`報名資訊已更新` |
 
-## 附錄 B：與來源專案的檔案對照
-
-| 本系統檔案 | 來源 | 動作 |
-|-----------|------|------|
-| `app.py` | `sad-forum` | 修改（Blueprint 從 admin/auth/forum/hub/profile 改為 admin/auth/events/hub/profile） |
-| `utils.py` | `sad-forum` | 原樣 |
-| `db/connection.py`、`db/users.py` | `sad-forum` | 原樣 |
-| `db/__init__.py` | `sad-forum` | 修改（匯出改為 events；`init_db()` 建三張活動表） |
-| `db/events.py` | `Course-SAD-Sample-System` | 修改（加入 `_seed_events_if_empty`；移除 `admin_set_registration_status`；`list_my_registrations` 加選 `e.is_deleted`；補 docstring 標註） |
-| `blueprints/{auth,hub,profile,admin}/__init__.py` | `sad-forum` | 原樣 |
-| `blueprints/events/__init__.py` | `Course-SAD-Sample-System` | 修改（`_current_user()` 加 `_is_usable`；七條寫入路由加 `None` 處理；欄位常數化；`REG_STATUS_LABELS` 分離；`_parse_dt` 抽取） |
-| `templates/base.html` | `sad-forum` | 修改（`<title>` 預設值） |
-| `templates/{auth,profile,admin}/*` | `sad-forum` | 原樣（`login.html` 改標題文字，`user_list.html` 加活動列表連結） |
-| `templates/hub/home.html` | `sad-forum` | 修改（服務卡片改為活動報名相關） |
-| `templates/events/*` | `Course-SAD-Sample-System` | 修改（`<a onclick>` → `<button type="submit">`；標籤 dict 改由 Blueprint 傳入；`my_registrations.html` 加「活動已撤銷」處理） |
-| `static/{common,login,hub,profile,admin}.css` | `sad-forum` | 原樣（`admin.css` 改一行註解） |
-| `static/events.css` | `Course-SAD-Sample-System` | 修改（`.events-btn` 補 `line-height` 與 `vertical-align`） |
-| `tests/conftest.py` | `sad-forum` | 原樣 |
-| `tests/test_{auth,profile,admin}.py` | `sad-forum` | 原樣 |
-| `tests/test_hub.py` | `sad-forum` | 改寫（論壇 → 活動） |
-| `tests/test_events.py` | `Course-SAD-Sample-System` | 大幅改寫（36 → 80 個案例） |
-| `tests/data/users.py` | `sad-forum` | 修改（加 `SEED_EVENTS` 與 28 條 events 訊息） |
-| `rules/*.md` | `sad-forum` | 修改（forum 的例子改為 events） |
-| `document/{auth,profile,admin}.md` | `sad-forum` | 原樣（`profile.md` 改一段對照） |
-| `.dockerignore` | `sad-forum` | 修改（加入兩行排除兩個參考目錄） |
-| `pytest.ini` | — | **全新** |
-| `document/{system-spec,build-guide,hub,events}.md`、`README.md`、各 `CLAUDE.md` | — | **全新** |
-
-## 附錄 C：詞彙表
+## 附錄 B：詞彙表
 
 | 中文 | 英文 | 在本系統中的意義 |
 |------|------|-----------------|

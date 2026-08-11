@@ -39,7 +39,7 @@
 | `/forum/new`、`/reply/*`、`/edit/*` | 已登入 + 帳號有效 |
 | `/forum/delete/*` | 已登入 + 帳號有效 + 管理員 |
 
-**`_current_user()` 已包含 `_is_usable` 檢查**，停用或已刪除的帳號一律回傳 `None`。這是相對範本的修正——範本的版本只查 id 不驗狀態，導致被停用的帳號仍能發表公開內容。
+**`_current_user()` 已包含 `_is_usable` 檢查**，停用或已刪除的帳號一律回傳 `None`。只查 id 不驗狀態的話，被停用的帳號仍能發表公開內容。
 
 因此**六條寫入路由必須各自處理 `user is None`**（`session.clear()` + redirect 登入頁）。新增第七條寫入路由時務必一併加上，否則會在取用 `user['id']` 時拋 `TypeError`。
 

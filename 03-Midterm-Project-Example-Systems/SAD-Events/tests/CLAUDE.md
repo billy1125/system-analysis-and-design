@@ -32,9 +32,8 @@ tests/
 
 ## `pytest.ini`
 
-專案根目錄下有兩個參考用的獨立專案（`sad-forum/`、`Course-SAD-Sample-System/`），
-各自帶有 `tests/conftest.py`。若一併被收集會產生 `ImportPathMismatchError`，
-導致**任何測試都無法執行**。因此根目錄的 `pytest.ini` 限定：
+pytest 預設會往下走進所有子目錄收集測試。為了確保只收集本系統的測試，
+根目錄的 `pytest.ini` 限定：
 
 ```ini
 testpaths = tests
@@ -138,9 +137,8 @@ def test_register_full_event_rejected(other_client):
 
 **修改 Blueprint 中的訊息字串時，必須同步更新 `MESSAGES`。**
 
-> 這一點相對於參考範本 `sad-forum` 是個修正：那裡的論壇訊息散落在 `test_forum.py`
-> 的斷言中，與集中在 `MESSAGES` 的 auth／admin 訊息不一致（其 KI-29）。
-> 本系統把 events 的訊息全部集中，不留這個不一致。
+> 訊息字串一律集中在 `MESSAGES`，不散落到各個測試檔的斷言裡。
+> 散落會造成兩個後果：改一句訊息要翻遍測試檔，以及同一句訊息在不同檔案裡不一致。
 
 ---
 

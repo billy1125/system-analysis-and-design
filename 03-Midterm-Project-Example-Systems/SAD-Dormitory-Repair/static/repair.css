@@ -1,0 +1,779 @@
+/* repair.css — 報修子系統專用樣式。
+ *
+ * 含狀態 badge、處理歷程時間軸與詳細頁的左右兩欄配置。
+ * 按鍵顏色一律引用 common.css 的 token。
+ *
+ * 狀態與優先等級的 badge 底色硬編碼於此：common.css 只定義按鍵色，
+ * 未定義狀態語意色（見 system-spec.md 的 KI-19）。
+ */
+
+/* Repair — overrides login.css body centering */
+body {
+  display: block;
+  background-color: #f0f2f5;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.repair-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Top bar ──────────────────────────────────────────────────────────────── */
+
+.repair-topbar {
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.repair-topbar-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.repair-topbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.9rem;
+}
+
+.repair-nav-link {
+  color: #555;
+  text-decoration: none;
+}
+
+.repair-nav-link:hover { color: #1a73e8; }
+
+.repair-nav-user { color: #555; }
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+
+.repair-btn {
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.2s;
+  font-family: inherit;
+}
+
+.repair-btn-primary         { background-color: var(--btn-primary-bg);   color: #fff; }
+.repair-btn-primary:hover   { background-color: var(--btn-primary-hover); }
+.repair-btn-secondary       { background-color: var(--btn-secondary-bg);  color: var(--btn-secondary-color); }
+.repair-btn-secondary:hover { background-color: var(--btn-secondary-hover); }
+.repair-btn-danger          { background-color: var(--btn-danger-bg);    color: #fff; }
+.repair-btn-danger:hover    { background-color: var(--btn-danger-hover); }
+
+.repair-btn-sm {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+}
+
+.repair-btn-block {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.repair-btn-action {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  background-color: var(--btn-action-bg);
+  border: 1px solid var(--btn-action-border);
+  color: var(--btn-action-color);
+  transition: background-color 0.2s;
+  font-family: inherit;
+}
+
+.repair-btn-action:hover { background-color: var(--btn-action-hover); }
+
+.repair-btn-action-danger {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  background-color: var(--btn-action-danger-bg);
+  border: 1px solid var(--btn-action-danger-border);
+  color: var(--btn-action-danger-color);
+  transition: background-color 0.2s;
+  font-family: inherit;
+}
+
+.repair-btn-action-danger:hover { background-color: var(--btn-action-danger-hover); }
+
+.repair-inline-form { display: inline; }
+
+/* ── Flash messages ───────────────────────────────────────────────────────── */
+
+.repair-flash {
+  padding: 10px 24px;
+  font-size: 0.88rem;
+  flex-shrink: 0;
+}
+
+.repair-flash-error {
+  background: #ffebee;
+  color: #c62828;
+  border-bottom: 1px solid #ef9a9a;
+}
+
+.repair-flash-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-bottom: 1px solid #a5d6a7;
+}
+
+/* ── Main area ────────────────────────────────────────────────────────────── */
+
+.repair-main {
+  flex: 1;
+  padding: 20px 24px;
+}
+
+.repair-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+
+.repair-panel-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.repair-total {
+  font-size: 0.8rem;
+  color: #888;
+  flex-shrink: 0;
+}
+
+/* ── Status summary (manage page) ─────────────────────────────────────────── */
+
+.repair-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.repair-summary-item {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 14px 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.repair-summary-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.repair-summary-active {
+  border-color: var(--btn-primary-bg);
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.12);
+}
+
+.repair-summary-count {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.repair-summary-label {
+  display: block;
+  font-size: 0.78rem;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* ── Filter bar ───────────────────────────────────────────────────────────── */
+
+.repair-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.repair-filter-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.repair-filter-link {
+  padding: 4px 12px;
+  font-size: 0.82rem;
+  border-radius: 4px;
+  text-decoration: none;
+  background: #fff;
+  color: #555;
+  border: 1px solid #ddd;
+  transition: background-color 0.2s;
+}
+
+.repair-filter-link:hover { background: #f0f0f0; }
+
+.repair-filter-active {
+  background-color: var(--btn-primary-bg);
+  color: #fff;
+  border-color: var(--btn-primary-bg);
+}
+
+.repair-filter-active:hover { background-color: var(--btn-primary-hover); }
+
+.repair-search-form {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.repair-search-input {
+  padding: 5px 10px;
+  font-size: 0.82rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-width: 220px;
+}
+
+.repair-search-input:focus {
+  outline: none;
+  border-color: var(--btn-primary-bg);
+}
+
+/* ── Table ────────────────────────────────────────────────────────────────── */
+
+.repair-table-wrap {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.repair-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.repair-table th {
+  background: #f5f5f5;
+  color: #555;
+  font-weight: bold;
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+  white-space: nowrap;
+}
+
+.repair-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+  vertical-align: middle;
+}
+
+.repair-table tbody tr:hover { background: #f9f9f9; }
+
+.repair-title-link {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.repair-title-link:hover { text-decoration: underline; }
+
+.repair-empty {
+  text-align: center;
+  color: #aaa;
+  padding: 32px 0 !important;
+}
+
+.repair-actions-cell {
+  white-space: nowrap;
+}
+
+/* ── Column widths ────────────────────────────────────────────────────────── */
+
+.col-id     { width: 60px; }
+.col-title  { min-width: 180px; }
+.col-cat    { width: 90px; white-space: nowrap; }
+.col-loc    { width: 110px; white-space: nowrap; }
+.col-name   { width: 110px; }
+.col-pri    { width: 70px; }
+.col-status { width: 90px; }
+.col-time   { width: 150px; white-space: nowrap; }
+.col-action { width: 110px; }
+
+/* ── Badges ───────────────────────────────────────────────────────────────── */
+/* 狀態與優先等級的語意色未納入 common.css 的 token 體系，此處硬編碼（KI-19）。 */
+
+.repair-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 0.78rem;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.repair-status-pending     { background: #fff3e0; color: #ef6c00; }
+.repair-status-assigned    { background: #e3f2fd; color: #1565c0; }
+.repair-status-in_progress { background: #ede7f6; color: #5e35b1; }
+.repair-status-completed   { background: #e8f5e9; color: #2e7d32; }
+.repair-status-rejected    { background: #ffebee; color: #c62828; }
+.repair-status-cancelled   { background: #fafafa; color: #9e9e9e; }
+
+.repair-pri-low    { background: #f5f5f5; color: #757575; }
+.repair-pri-normal { background: #f1f8e9; color: #558b2f; }
+.repair-pri-high   { background: #fff8e1; color: #ef6c00; }
+.repair-pri-urgent { background: #ffebee; color: #c62828; font-weight: bold; }
+
+/* ── Pagination ───────────────────────────────────────────────────────────── */
+
+.repair-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 0 0;
+}
+
+.repair-page-btn {
+  padding: 4px 12px;
+  font-size: 0.82rem;
+  border-radius: 4px;
+  text-decoration: none;
+  background: #fff;
+  color: #333;
+  border: 1px solid #ddd;
+  transition: background-color 0.2s;
+}
+
+.repair-page-btn:not(.repair-page-disabled):hover { background: #f0f0f0; }
+
+.repair-page-disabled {
+  color: #bbb;
+  cursor: not-allowed;
+}
+
+.repair-page-info {
+  font-size: 0.82rem;
+  color: #666;
+}
+
+/* ── Detail page layout ───────────────────────────────────────────────────── */
+
+.repair-detail-main {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  padding: 20px 24px;
+  align-items: flex-start;
+}
+
+.repair-detail-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.repair-detail-right {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.repair-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 20px 22px;
+  margin-bottom: 18px;
+}
+
+.repair-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.repair-detail-title {
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin: 0;
+  word-break: break-word;
+}
+
+.repair-card-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #555;
+  margin: 0 0 14px 0;
+}
+
+.repair-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0 24px;
+}
+
+.repair-info-row {
+  display: flex;
+  padding: 7px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.86rem;
+}
+
+.repair-info-label {
+  width: 82px;
+  color: #999;
+  flex-shrink: 0;
+}
+
+.repair-info-value {
+  color: #333;
+  word-break: break-word;
+}
+
+/* ── Timeline ─────────────────────────────────────────────────────────────── */
+
+.repair-timeline {
+  position: relative;
+  padding-left: 18px;
+}
+
+.repair-timeline::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: #e8e8e8;
+}
+
+.repair-timeline-item {
+  position: relative;
+  padding-bottom: 18px;
+}
+
+.repair-timeline-item:last-child { padding-bottom: 0; }
+
+.repair-timeline-marker {
+  position: absolute;
+  left: -18px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #bdbdbd;
+  border: 2px solid #fff;
+}
+
+.repair-log-report  .repair-timeline-marker { background: #1a73e8; }
+.repair-log-status  .repair-timeline-marker { background: #7e57c2; }
+.repair-log-comment .repair-timeline-marker { background: #bdbdbd; }
+
+.repair-timeline-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+}
+
+.repair-log-badge {
+  display: inline-block;
+  padding: 1px 8px;
+  font-size: 0.72rem;
+  border-radius: 10px;
+}
+
+.repair-log-badge-report  { background: #e3f2fd; color: #1565c0; }
+.repair-log-badge-status  { background: #ede7f6; color: #5e35b1; }
+.repair-log-badge-comment { background: #f5f5f5; color: #616161; }
+
+.repair-log-author {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.repair-log-role {
+  font-size: 0.7rem;
+  color: #1565c0;
+  background: #e3f2fd;
+  border-radius: 8px;
+  padding: 1px 6px;
+}
+
+.repair-log-time {
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+.repair-log-content {
+  font-size: 0.88rem;
+  color: #333;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── Comment form ─────────────────────────────────────────────────────────── */
+
+.repair-comment-form {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.repair-comment-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.repair-comment-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  resize: vertical;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.repair-comment-form textarea:focus { border-color: var(--btn-primary-bg); }
+
+.repair-closed-note {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+  font-size: 0.83rem;
+  color: #888;
+  line-height: 1.7;
+}
+
+/* ── Action panel (right column) ──────────────────────────────────────────── */
+
+.repair-action-form label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #555;
+  margin: 10px 0 5px;
+}
+
+.repair-action-form input[type="text"],
+.repair-action-form select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  color: #1a1a1a;
+}
+
+.repair-action-form input[type="text"]:focus,
+.repair-action-form select:focus { border-color: var(--btn-primary-bg); }
+
+.repair-action-divider {
+  border: none;
+  border-top: 1px solid #f0f0f0;
+  margin: 18px 0 6px;
+}
+
+.repair-note {
+  font-size: 0.78rem;
+  color: #999;
+  line-height: 1.7;
+  margin: 10px 0 0;
+}
+
+/* ── Status flow indicator ────────────────────────────────────────────────── */
+
+.repair-flow {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+  counter-reset: flow;
+}
+
+.repair-flow li {
+  position: relative;
+  padding: 5px 0 5px 26px;
+  font-size: 0.83rem;
+  color: #bbb;
+  counter-increment: flow;
+}
+
+.repair-flow li::before {
+  content: counter(flow);
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 50%;
+  background: #f0f0f0;
+  color: #bbb;
+  font-size: 0.7rem;
+}
+
+.repair-flow-done { color: #666; }
+.repair-flow-done::before { background: #e8f5e9; color: #2e7d32; }
+
+.repair-flow-now { color: #1a1a1a; font-weight: bold; }
+.repair-flow-now::before { background: var(--btn-primary-bg); color: #fff; }
+
+/* ── Form page ────────────────────────────────────────────────────────────── */
+
+.repair-form-page {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 24px;
+}
+
+.repair-form-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8e8e8;
+  padding: 30px 34px;
+  width: 100%;
+  max-width: 680px;
+}
+
+.repair-form-card h2 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin: 0 0 20px 0;
+}
+
+.repair-form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.repair-form-row .repair-form-group { flex: 1; min-width: 0; }
+
+.repair-form-group { margin-bottom: 16px; }
+
+.repair-form-group label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.repair-form-group input[type="text"],
+.repair-form-group select,
+.repair-form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s;
+  color: #1a1a1a;
+  background: #fff;
+}
+
+.repair-form-group input[type="text"]:focus,
+.repair-form-group select:focus,
+.repair-form-group textarea:focus { border-color: var(--btn-primary-bg); }
+
+.repair-form-group textarea {
+  resize: vertical;
+  min-height: 150px;
+  line-height: 1.6;
+}
+
+.repair-form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+/* ── Inline alerts (form page) ────────────────────────────────────────────── */
+
+.repair-alert {
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 0.86rem;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.repair-alert-error {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.repair-alert-info {
+  background: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #90caf9;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .repair-detail-main { flex-direction: column; }
+  .repair-detail-right { width: 100%; }
+  .repair-form-row { flex-direction: column; gap: 0; }
+}

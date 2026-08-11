@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block title %}會員管理{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="admin-layout">
+  <div class="admin-topbar">
+    <span class="admin-topbar-title">會員管理</span>
+    <div class="admin-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="admin-nav-link">返回首頁</a>
+      <a href="{{ url_for('profile.dashboard') }}" class="admin-nav-link">個人資料</a>
+      <span class="admin-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="admin-btn admin-btn-danger">登出</a>
+    </div>
+  </div>
+
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="admin-flash admin-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+  {% endfor %}
+
+  <div class="admin-main">
+    <div class="admin-filter-bar">
+      <div class="admin-filter-links">
+        <a href="{{ url_for('admin.user_list', status='all', q=keyword or none) }}"
+           class="admin-filter-link {{ 'admin-filter-active' if status == 'all' }}">全部</a>
+        <a href="{{ url_for('admin.user_list', status='active', q=keyword or none) }}"
+           class="admin-filter-link {{ 'admin-filter-active' if status == 'active' }}">啟用中</a>
+        <a href="{{ url_for('admin.user_list', status='disabled', q=keyword or none) }}"
+           class="admin-filter-link {{ 'admin-filter-active' if status == 'disabled' }}">已停用</a>
+        <a href="{{ url_for('admin.user_list', status='deleted', q=keyword or none) }}"
+           class="admin-filter-link {{ 'admin-filter-active' if status == 'deleted' }}">已刪除</a>
+      </div>
+
+      <form method="get" action="{{ url_for('admin.user_list') }}" class="admin-search-form">
+        <input type="hidden" name="status" value="{{ status }}">
+        <input type="text" name="q" value="{{ keyword }}" class="admin-search-input"
+               placeholder="搜尋 email、姓名或顯示名稱">
+        <button type="submit" class="admin-btn admin-btn-primary admin-btn-sm">搜尋</button>
+      </form>
+    </div>
+
+    <div class="admin-panel-header">
+      <span class="admin-panel-title">會員清單</span>
+      <span class="admin-total">共 {{ total }} 筆</span>
+    </div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th class="col-id">ID</th>
+            <th class="col-email">Email</th>
+            <th class="col-name">姓名</th>
+            <th class="col-name">顯示名稱</th>
+            <th class="col-role">角色</th>
+            <th class="col-status">狀態</th>
+            <th class="col-time">建立時間</th>
+            <th class="col-time">最後登入</th>
+            <th class="col-action-wide">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for u in users %}
+            <tr class="{{ 'admin-row-self' if u['id'] == user['id'] }}">
+              <td>{{ u['id'] }}</td>
+              <td>{{ u['email'] }}</td>
+              <td>{{ u['name'] or '—' }}</td>
+              <td>{{ u['display_name'] or '—' }}</td>
+              <td>
+                <span class="admin-badge {{ 'admin-badge-role-admin' if u['role'] == 0 else 'admin-badge-role-user' }}">
+                  {{ ROLE_LABELS[u['role']] }}
+                </span>
+              </td>
+              <td>
+                {% if u['is_deleted'] %}
+                  <span class="admin-badge admin-badge-deleted">已刪除</span>
+                {% elif u['is_active'] %}
+                  <span class="admin-badge admin-badge-active">啟用中</span>
+                {% else %}
+                  <span class="admin-badge admin-badge-disabled">已停用</span>
+                {% endif %}
+              </td>
+              <td>{{ u['created_at'] }}</td>
+              <td>{{ u['last_login_at'] or '—' }}</td>
+              <td>
+                <div class="admin-actions-cell">
+                  {% if u['id'] == user['id'] %}
+                    <span class="admin-self-note">（目前登入帳號）</span>
+                  {% elif not u['is_deleted'] %}
+                    {% if u['is_active'] %}
+                      <form method="POST" class="admin-inline-form"
+                            action="{{ url_for('admin.deactivate_user', user_id=u['id']) }}">
+                        <button type="submit" class="admin-btn-action">停用</button>
+                      </form>
+                    {% else %}
+                      <form method="POST" class="admin-inline-form"
+                            action="{{ url_for('admin.activate_user', user_id=u['id']) }}">
+                        <button type="submit" class="admin-btn-action">啟用</button>
+                      </form>
+                    {% endif %}
+                    <form method="POST" class="admin-inline-form"
+                          action="{{ url_for('admin.delete_user', user_id=u['id']) }}">
+                      <button type="submit" class="admin-btn-action-danger"
+                              onclick="return confirm('確定要刪除這個帳號嗎？此操作無法復原。')">刪除</button>
+                    </form>
+                  {% endif %}
+                  <a href="{{ url_for('admin.user_detail', user_id=u['id']) }}"
+                     class="admin-btn-action">詳細</a>
+                </div>
+              </td>
+            </tr>
+          {% else %}
+            <tr><td colspan="9" class="admin-empty">查無資料</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="admin-pagination">
+      {% if page > 1 %}
+        <a href="{{ url_for('admin.user_list', status=status, q=keyword or none, page=page-1) }}"
+           class="admin-page-btn">上一頁</a>
+      {% else %}
+        <span class="admin-page-btn admin-page-disabled">上一頁</span>
+      {% endif %}
+
+      <span class="admin-page-info">第 {{ page }} / {{ total_pages }} 頁</span>
+
+      {% if page < total_pages %}
+        <a href="{{ url_for('admin.user_list', status=status, q=keyword or none, page=page+1) }}"
+           class="admin-page-btn">下一頁</a>
+      {% else %}
+        <span class="admin-page-btn admin-page-disabled">下一頁</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

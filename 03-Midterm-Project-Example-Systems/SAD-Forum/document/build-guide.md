@@ -34,23 +34,12 @@
 - [`rules/database.md`](../rules/database.md) — `db/` 套件使用方式、transaction 寫法、軟刪除模式、回傳值慣例
 - [`tests/CLAUDE.md`](../tests/CLAUDE.md) — 測試命名與覆蓋要求
 
-`Course-SAD-Sample-System` 是本專案的教學範本，以下所有「從範本複製」的指示，來源都是它。
-
-> **範本已於建置完成後從本 repo 移除。** 若要重跑本流程書，先取得範本：
->
-> ```bash
-> git clone https://github.com/billy1125/Course-SAD-Sample-System.git
-> ```
->
-> 並在完成後刪除它——留著會讓 `pytest` 同時收集兩套 `tests/conftest.py`，
-> 產生 `ImportPathMismatchError` 而無法執行任何測試。
-
 ### 0.3 專案根目錄的現況
 
 開始前，專案根目錄應該有：
 
 ```text
-sad-user-management/
+SAD-Forum/
 ├── CLAUDE.md                     # 已改寫為只涵蓋本系統的版本
 ├── requirements.txt              # flask / bcrypt / captcha / pytest / pytest-flask
 └── document/
@@ -114,11 +103,6 @@ which docker
 ```
 預期：**無輸出**。本機目前未安裝 Docker CLI
 
-```bash
-ls /Users/chohsunlu/Documents/GitHub/sad-user-management/
-```
-預期：至少看到 `CLAUDE.md`、`requirements.txt`、`document/`，以及重新 clone 下來的範本目錄
-
 ### 關鍵決策記錄
 
 **Docker CLI 未安裝。** 這代表 Phase 10 只能做靜態檢查（確認設定檔內容正確），無法實際建置映像與啟動容器。這個限制必須在 Phase 10 中明確標示，不能假裝驗收通過。取得 Docker 環境後應回頭補跑該階段的動態驗收。
@@ -138,52 +122,31 @@ ls /Users/chohsunlu/Documents/GitHub/sad-user-management/
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `app.py` | 範本 | **修改後複製** |
-| `utils.py` | 範本 | 原樣複製 |
-| `blueprints/__init__.py` | 範本 | 原樣複製（空檔） |
-| `.gitignore` | 範本 | 原樣複製 |
-| `.gitattributes` | 範本 | 原樣複製 |
-| `.dockerignore` | 範本 | 原樣複製 |
-| `.claude/settings.json` | 範本 | 原樣複製 |
+| 檔案 | 動作 |
+|------|------|
+| `app.py` | **建立** |
+| `utils.py` | 建立 |
+| `blueprints/__init__.py` | 建立（空檔） |
+| `.gitignore` | 建立 |
+| `.gitattributes` | 建立 |
+| `.dockerignore` | 建立 |
+| `.claude/settings.json` | 建立 |
 
 ### `app.py` 的修改內容
 
-範本的 `app.py` 有 37 行，改後約 25 行。三處修改：
+`app.py` 完成後約 25 行。三個重點：
 
-**1. Blueprint import 從 6 個減為 5 個**
+**1. import 五個 Blueprint**
 
-刪除這兩行：
+`auth_bp`、`hub_bp`、`profile_bp`、`forum_bp`，並在 Phase 7 時加入 `admin_bp`。
 
-```python
-from blueprints.equipment import equipment_bp
-from blueprints.events import events_bp
-```
+> 註冊順序不影響行為，但建議依 `admin`、`auth`、`forum`、`hub`、`profile` 的字母序排列。
 
-保留 `auth_bp`、`hub_bp`、`profile_bp`、`forum_bp`，並在 Phase 7 時加入 `admin_bp`。
+**2. `register_blueprint` 對應五條**
 
-> 註冊順序不影響行為。但建議依 `admin`、`auth`、`forum`、`hub`、`profile` 的字母序排列，與範本的慣例一致。
+**3. 啟動區塊只做兩件事**
 
-**2. `register_blueprint` 同步從 6 條減為 5 條**
-
-刪除 `equipment_bp` 與 `events_bp` 兩行的註冊，保留 `forum_bp`。
-
-**3. 移除 `setup/` 一次性種子機制**
-
-範本的啟動區塊是：
-
-```python
-if __name__ == '__main__':
-    db.init_db()
-    if os.path.isdir('setup'):
-        from setup import seed as _setup_seed
-        _setup_seed.run()
-        shutil.rmtree('setup')
-    app.run(host='0.0.0.0', port=4000, debug=True)
-```
-
-中間三行連同 `import shutil` 一併刪除。這個機制的用途是植入論壇文章與活動報名的模擬資料，本系統沒有對應的資料表，留著只是死碼。改後：
+種子資料由 `db/` 內的 `_seed_*_if_empty()` 提供，不另設一次性的植入機制（理由見規格書）：
 
 ```python
 if __name__ == '__main__':
@@ -191,7 +154,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=4000, debug=True)
 ```
 
-**保留不動的部分：** `app.secret_key` 那一行、`GET /health` 路由、`app.run` 的參數。這三項都帶有已知技術債（KI-05、KI-16、KI-24），但依「沿用範本技術債」的原則保留。
+**保留不動的部分：** `app.secret_key` 那一行、`GET /health` 路由、`app.run` 的參數。這三項都帶有已知技術債（KI-05、KI-16、KI-24），依「保留既有技術債作為教材」的原則不動。
 
 ### 驗收
 
@@ -227,13 +190,13 @@ grep -c "shutil\|setup" app.py
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `db/__init__.py` | 範本 | **修改後複製** |
-| `db/connection.py` | 範本 | 原樣複製 |
-| `db/users.py` | 範本 | **修改後複製**（新增三個函式） |
-| `db/forum.py` | 範本 | **原樣複製**（整份 172 行不動一個字） |
-| `db/CLAUDE.md` | 範本 | **改寫** |
+| 檔案 | 動作 |
+|------|------|
+| `db/__init__.py` | **建立** |
+| `db/connection.py` | 建立 |
+| `db/users.py` | **建立**（新增三個函式） |
+| `db/forum.py` | 建立（整份 172 行不動一個字） |
+| `db/CLAUDE.md` | **建立** |
 
 ### `db/forum.py` 的修改內容
 
@@ -491,12 +454,12 @@ print('再跑一次 init_db() 後:', db.list_forum_masters(1, 10)[1])
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `templates/base.html` | 範本 | 原樣複製 |
-| `static/common.css` | 範本 | 原樣複製 |
-| `static/login.css` | 範本 | 原樣複製 |
-| `static/hub.css` | 範本 | 原樣複製 |
+| 檔案 | 動作 |
+|------|------|
+| `templates/base.html` | 建立 |
+| `static/common.css` | 建立 |
+| `static/login.css` | 建立 |
+| `static/hub.css` | 建立 |
 
 四個檔案**都不需要修改**。`hub.css` 雖然是首頁專用，但裡面全部是 `hub-` 前綴的通用類別，沒有任何子系統的專屬樣式，可以整份帶走。
 
@@ -540,12 +503,12 @@ grep -c "common.css\|login.css" templates/base.html
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/auth/__init__.py` | 範本 | **修改後複製**（刪 1 行） |
-| `blueprints/auth/CLAUDE.md` | 範本 | 原樣複製（檢查後微調） |
-| `templates/auth/login.html` | 範本 | **修改後複製**（修 1 行） |
-| `templates/auth/register.html` | 範本 | 原樣複製 |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/auth/__init__.py` | **建立**（刪 1 行） |
+| `blueprints/auth/CLAUDE.md` | 建立（檢查後微調） |
+| `templates/auth/login.html` | **建立**（修 1 行） |
+| `templates/auth/register.html` | 建立 |
 
 ### 修改內容
 
@@ -556,7 +519,7 @@ from utils import _gen_captcha, login_required   # 改為
 from utils import _gen_captcha
 ```
 
-`login_required` 在整個檔案中沒有被使用過，是範本遺留的無效 import。
+`login_required` 在整個檔案中沒有被使用過，不要留下這個無效 import。
 
 **其餘一律不動。** 特別是這四項雖然帶有已知技術債，都必須原樣保留：
 
@@ -632,11 +595,11 @@ curl -s localhost:4000/login | grep -c "</h1>"
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/hub/__init__.py` | 範本 | 原樣複製 |
-| `blueprints/hub/CLAUDE.md` | 範本 | **改寫**（修正過時描述） |
-| `templates/hub/home.html` | 範本 | **修改後複製**（本階段的主要工作） |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/hub/__init__.py` | 建立 |
+| `blueprints/hub/CLAUDE.md` | **建立**（修正過時描述） |
+| `templates/hub/home.html` | **建立**（本階段的主要工作） |
 
 同時在 `app.py` 中加入 `hub_bp` 的註冊。
 
@@ -646,7 +609,7 @@ curl -s localhost:4000/login | grep -c "</h1>"
 
 ### `templates/hub/home.html` 的修改內容
 
-範本有 166 行，改後約 150 行。四處修改：
+`home.html` 完成後約 150 行。四個重點：
 
 **1. 刪除已登入區的兩張跨系統卡片**
 
@@ -701,15 +664,11 @@ curl -s localhost:4000/login | grep -c "</h1>"
 
 **保留不動的部分：** topbar、歡迎語、內嵌登入表單整段（含 `class="login-form"`、驗證碼圖片的兩個 `onclick`、底部的申請帳號連結）。
 
-### `blueprints/hub/CLAUDE.md` 的改寫
+### `blueprints/hub/CLAUDE.md` 的內容
 
-範本的這份文件與程式碼**矛盾**。它寫著：
+這份文件最容易寫錯的地方是把 hub 描述成「未登入 → redirect `auth.login_page`」。`blueprints/hub/__init__.py` 的實際行為是：未登入可以瀏覽，並在頁面右側顯示內嵌登入表單；`_is_usable` 為假時是 `session.clear()` 後**退回訪客視圖**，不 redirect。
 
-> 未登入（無 `session['user_id']`）→ redirect `auth.login_page`
-
-但 `blueprints/hub/__init__.py` 的實際行為是：未登入可以瀏覽，並在頁面右側顯示內嵌登入表單；`_is_usable` 為假時是 `session.clear()` 後**退回訪客視圖**，不 redirect。
-
-改寫為正確的雙模式描述，並補上管理員卡片的條件顯示說明。
+要寫成正確的雙模式描述，並補上管理員卡片的條件顯示說明。
 
 ### 驗收
 
@@ -754,7 +713,7 @@ print('normal user:', '歡迎回來' in t, '論壇' in t, '會員管理' in t)
 
 管理員視圖（`user_id = 2`）的驗收延後到 Phase 7。
 
-> 本階段的 `url_for('forum.index')` 之所以不會 `BuildError`，是因為 Phase 1 保留了 `forum_bp` 的註冊，而 `blueprints/forum/` 是從範本原樣複製過來的。若你把 Phase 8 往後排並暫時移除了 `forum_bp`，這裡就會炸——那就先把論壇卡片註解掉，Phase 8 完成後再放回來。
+> 本階段的 `url_for('forum.index')` 之所以不會 `BuildError`，是因為 Phase 1 已經註冊了 `forum_bp`。若你把 Phase 8 往後排並暫時移除了 `forum_bp`，這裡就會炸——那就先把論壇卡片註解掉，Phase 8 完成後再放回來。
 
 ### 常見錯誤
 
@@ -774,12 +733,12 @@ print('normal user:', '歡迎回來' in t, '論壇' in t, '會員管理' in t)
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/profile/__init__.py` | 範本 | 原樣複製 |
-| `blueprints/profile/CLAUDE.md` | 範本 | **修改後複製**（CSS 段落） |
-| `templates/profile/dashboard.html` | 範本 | **修改後複製**（抽出樣式） |
-| `static/profile.css` | — | **全新建立**（從內嵌樣式外提） |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/profile/__init__.py` | 建立 |
+| `blueprints/profile/CLAUDE.md` | **建立**（CSS 段落） |
+| `templates/profile/dashboard.html` | **建立**（抽出樣式） |
+| `static/profile.css` | **建立**（從內嵌樣式外提） |
 
 同時在 `app.py` 中加入 `profile_bp` 的註冊。
 
@@ -822,7 +781,7 @@ print('normal user:', '歡迎回來' in t, '論壇' in t, '會員管理' in t)
 
 ### 關鍵決策
 
-**為什麼外提樣式不算「強行強化技術債」。** `rules/flask-blueprint.md` 的「新增子系統七項清單」明訂每個子系統要有自己的 `static/<name>.css`。範本的 profile 沒有遵守這條，是**結構上的不一致**，不是安全或行為上的技術債。本次抽取順手補齊，屬於「與範本的差異」而非「修補技術債」。
+**為什麼外提樣式不算「強行強化技術債」。** `rules/flask-blueprint.md` 的「新增子系統七項清單」明訂每個子系統要有自己的 `static/<name>.css`。把樣式留在模板的內嵌 `<style>` 裡是**結構上的不一致**，不是安全或行為上的技術債，因此補齊它不算修補技術債。
 
 profile 的**行為邏輯**（KI-03、KI-04）則完全不動。這兩件事的界線要分清楚。
 
@@ -1004,7 +963,7 @@ if not _is_admin(user):
 
 其他類別：`.admin-layout`、`.admin-topbar`、`.admin-topbar-title`、`.admin-topbar-nav`、`.admin-nav-link`、`.admin-flash` 與 `-error` / `-success`、`.admin-filter-bar`、`.admin-filter-link`、`.admin-filter-active`、`.admin-table-wrap`、`.admin-table`、`.admin-empty`、`.admin-total`、`.admin-inline-form`、`.admin-actions-cell`、`.admin-badge` 與 `-active` / `-disabled` / `-deleted` / `-role-admin` / `-role-user`、`.admin-info-grid`、`.admin-info-row`、`.admin-info-label`、`.admin-info-value`、`.admin-pagination`、`.admin-page-btn`、`.admin-page-disabled`、`.admin-page-info`。
 
-**狀態 badge 的底色可以硬編碼**（`common.css` 沒有定義狀態語意色），這與範本各子系統的做法一致，記錄為 KI-19。**按鈕的顏色不可硬編碼。**
+**狀態 badge 的底色可以硬編碼**（`common.css` 沒有定義狀態語意色），全站一致地這樣處理，記錄為 KI-19。**按鈕的顏色不可硬編碼。**
 
 admin 的表單**一律不加** `.login-form` class。
 
@@ -1116,13 +1075,13 @@ for uid, label in [(2,'admin'), (1,'normal')]:
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/forum/__init__.py` | 範本 | **修改後複製**（守門修正） |
-| `blueprints/forum/CLAUDE.md` | 範本 | **修改後複製**（表名更正 + 守門說明） |
-| `templates/forum/index.html` | 範本 | 原樣複製 |
-| `templates/forum/post_form.html` | 範本 | 原樣複製 |
-| `static/forum.css` | 範本 | 原樣複製 |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/forum/__init__.py` | **建立**（守門修正） |
+| `blueprints/forum/CLAUDE.md` | **建立**（表名更正 + 守門說明） |
+| `templates/forum/index.html` | 建立 |
+| `templates/forum/post_form.html` | 建立 |
+| `static/forum.css` | 建立 |
 
 `app.py` 的 `forum_bp` 註冊在 Phase 1 已保留，本階段不需再動。`db/forum.py` 在 Phase 2 已原樣複製。
 
@@ -1130,11 +1089,11 @@ for uid, label in [(2,'admin'), (1,'normal')]:
 
 `templates/forum/index.html`（191 行）與 `post_form.html`（61 行）只引用 `hub.home`、`auth.logout`、`auth.login_page` 與 `forum.*` 自己的 endpoint，對 events 與 equipment 零耦合。`static/forum.css`（401 行）全部是 `forum-` 前綴加上一組 `col-*` 欄寬工具類，也不需要動。
 
-這一點值得對照 Phase 5：同樣是範本的模板，`hub/home.html` 因為是「服務入口」而必然耦合所有子系統，`forum/index.html` 因為是「葉節點」而完全獨立。**耦合集中在入口，不散佈在葉節點**——這是模組化做對了的表現。
+這一點值得對照 Phase 5：`hub/home.html` 因為是「服務入口」而必然耦合所有子系統，`forum/index.html` 因為是「葉節點」而完全獨立。**耦合集中在入口，不散佈在葉節點**——這是模組化做對了的表現。
 
 ### `blueprints/forum/__init__.py` 的修改內容
 
-範本有 248 行，改後約 262 行。這是本階段唯一需要動腦的地方。
+`__init__.py` 完成後約 262 行。這是本階段唯一需要動腦的地方。
 
 **1. 第 4 行的 import 加上 `_is_usable`**
 
@@ -1143,9 +1102,9 @@ from utils import login_required                  # 改為
 from utils import _is_usable, login_required
 ```
 
-**2. `_current_user()` 加入帳號有效性判斷**
+**2. `_current_user()` 必須加入帳號有效性判斷**
 
-範本第 11–15 行：
+只查 id 不驗狀態的寫法是這樣：
 
 ```python
 def _current_user():
@@ -1192,9 +1151,9 @@ if user is None:
 - 可以刪除首篇內文，留下沒有內文的文章（KI-30）
 - 訊息字串硬編碼、未納入 `MESSAGES`（KI-29）
 
-### `blueprints/forum/CLAUDE.md` 的修改內容
+### `blueprints/forum/CLAUDE.md` 的內容
 
-範本這份文件有一處**與程式碼矛盾**：「資料模型」一節寫著資料表叫 `forum_masters`，但 `db/forum.py` 建的表是 `forum`。更正它。
+「資料模型」一節的表名要寫 `forum`，不是 `forum_masters`——`db/forum.py` 建的表是前者。
 
 另外補上兩段：`_current_user()` 已包含 `_is_usable` 檢查，以及「六條寫入路由必須各自處理 `user is None`」的說明——後者若不寫清楚，日後有人新增第七條路由時很容易漏掉。
 
@@ -1434,11 +1393,11 @@ done
 
 三點說明：
 
-**檢查的是 `background-color`，不是「任何色碼」。** `.forum-btn-primary` 與 `.admin-btn-primary` 都寫了 `color: #fff`（白色文字），這是範本既有的做法，也無法用現有的 token 表達——`common.css` 只定義底色，沒有定義文字色。硬性要求「零色碼」會把這個合理的寫法誤判為違規。
+**檢查的是 `background-color`，不是「任何色碼」。** `.forum-btn-primary` 與 `.admin-btn-primary` 都寫了 `color: #fff`（白色文字），這無法用現有的 token 表達——`common.css` 只定義底色，沒有定義文字色。硬性要求「零色碼」會把這個合理的寫法誤判為違規。
 
 **檢查範圍限定在按鍵規則內。** 直接對整個檔案 grep `background-color: #` 會抓到 `body` 的頁面底色與 `.profile-check-icon` 的圓形底色，那些不是按鍵，本來就不該套 token。
 
-**`hub.css` 不在檢查清單中。** 它的 `.hub-register-link` 與 `.hub-logout` 在視覺與語意上都是按鍵，卻寫死了色碼——這是範本的既有技術債（KI-31），且因為類別名稱不含 `btn`，上面那條 grep 也抓不到。`hub.css` 依規定逐字複製，不修改。要確認它確實只有這兩處：
+**`hub.css` 不在檢查清單中。** 它的 `.hub-register-link` 與 `.hub-logout` 在視覺與語意上都是按鍵，卻寫死了色碼——這是刻意保留的技術債（KI-31），且因為類別名稱不含 `btn`，上面那條 grep 也抓不到。要確認它確實只有這兩處：
 
 ```bash
 grep -nE "background-color: *#[0-9a-fA-F]{3,6}" static/hub.css
@@ -1477,22 +1436,22 @@ grep -c "^\.col-" static/forum.css static/admin.css
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `tests/__init__.py` | 範本 | 原樣複製（空檔） |
-| `tests/conftest.py` | 範本 | 原樣複製 |
-| `tests/data/__init__.py` | 範本 | 原樣複製（空檔） |
-| `tests/data/users.py` | 範本 | **修改後複製** |
-| `tests/test_auth.py` | 範本 | 原樣複製（23 案例） |
-| `tests/test_profile.py` | 範本 | 原樣複製（8 案例） |
-| `tests/test_hub.py` | 範本 | **修改後複製**（6 → 9 案例） |
-| `tests/test_forum.py` | 範本 | **修改後複製**（39 → 42 案例） |
-| `tests/test_admin.py` | — | **全新建立**（約 30 案例） |
-| `tests/CLAUDE.md` | 範本 | **改寫** |
+| 檔案 | 動作 |
+|------|------|
+| `tests/__init__.py` | 建立（空檔） |
+| `tests/conftest.py` | 建立 |
+| `tests/data/__init__.py` | 建立（空檔） |
+| `tests/data/users.py` | **建立** |
+| `tests/test_auth.py` | 建立（23 案例） |
+| `tests/test_profile.py` | 建立（8 案例） |
+| `tests/test_hub.py` | **建立**（6 → 9 案例） |
+| `tests/test_forum.py` | **建立**（39 → 42 案例） |
+| `tests/test_admin.py` | **建立**（約 30 案例） |
+| `tests/CLAUDE.md` | **建立** |
 
 ### `tests/conftest.py` 為什麼零修改
 
-範本的 conftest 只依賴 `db_module.DB_PATH` 與 `db.init_db()`，沒有任何對特定子系統的耦合。五個 fixture（`app`、`client`、`authed_client`、`admin_client`、`other_client`）在本系統中全部沿用。
+conftest 只依賴 `db_module.DB_PATH` 與 `db.init_db()`，沒有任何對特定子系統的耦合。五個 fixture（`app`、`client`、`authed_client`、`admin_client`、`other_client`）因此不需要為了論壇或會員管理做任何調整。
 
 `other_client`（id=3，停用帳號但 session 直接注入）在本系統中的用途擴大了三倍：
 
@@ -1530,21 +1489,21 @@ key 沿用既有的 camelCase 命名，字串必須與系統規格書 §9.5 逐�
 
 > `adminDeactivated` 的字串「帳號已停用」與既有的 `accountDisabled` 完全相同，但語意不同：前者是管理操作成功的 flash，後者是登入被拒的錯誤。兩個 key 必須分開，斷言時要注意上下文。
 
-**論壇的 11 條訊息不加入 `MESSAGES`。** `tests/test_forum.py` 沿用範本原樣搬移，它把字串直接寫在斷言中，沒有 import `MESSAGES`。強行改寫會讓測試檔與範本產生無謂的差異，不利對照學習。這個不一致列為 KI-29，修補方向見規格書。
+**論壇的 11 條訊息不加入 `MESSAGES`。** `tests/test_forum.py` 把字串直接寫在斷言中，沒有 import `MESSAGES`。這個不一致列為 KI-29，修補方向見規格書。
 
 `USERS` 不需修改。
 
 ### `tests/test_hub.py` 的修改內容
 
-範本有 6 個案例，改後 9 個。兩處變動：
+本檔共 9 個案例。兩處要注意：
 
-**1. `test_hub_renders_for_guest`（第 9–10 行）**
+**1. `test_hub_renders_for_guest`**
 
-原本斷言頁面含 `'論壇'`、`'校園活動報名'`、`'歡迎使用'` 三個字串。**刪除 `'校園活動報名'` 那一行，保留另外兩行**——論壇卡片在訪客區仍然存在。
+斷言訪客視圖含 `'論壇'` 與 `'歡迎使用'`——論壇卡片在訪客區也看得到。
 
-**2. `test_hub_shows_forum_link`（第 26–30 行）零修改**
+**2. `test_hub_shows_forum_link`**
 
-這個案例斷言 `'論壇'` 與 `'/forum'` 出現在已登入視圖中。論壇卡片保留了，因此**整個案例原樣沿用**。
+斷言 `'論壇'` 與 `'/forum'` 出現在已登入視圖中。
 
 > 前一版的系統要把這條改寫成 `test_hub_shows_profile_link`。現在不用改了——這是納入論壇後最容易搞混的一處。
 
@@ -1577,7 +1536,7 @@ def test_deactivate_normal_user_forbidden_and_db_unchanged(authed_client):
     assert db.find_user_by_id(3)['is_active'] == 0   # 種子值，未被改動
 ```
 
-其中一條專門守住 §4.4 提到的範本缺陷：
+其中一條專門守住 §4.4 的守門順序：
 
 ```python
 def test_user_list_disabled_admin_redirects_to_login(other_client):
@@ -1622,7 +1581,7 @@ def test_deleted_user_cannot_login(admin_client, client):
 
 ### `tests/test_forum.py` 的修改內容
 
-範本有 39 個案例，全部原樣沿用，**新增 3 條**驗證 Phase 8 的守門修正：
+本檔共 42 個案例，其中 **3 條**專門驗證 Phase 8 的守門：
 
 ```python
 def test_new_post_disabled_user_redirects_to_login(other_client):
@@ -1711,11 +1670,11 @@ pytest -k "disabled" -v
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `Dockerfile` | 範本 | 原樣複製 |
-| `docker-compose.yml` | 範本 | 原樣複製（volume 名稱可選改） |
-| `.dockerignore` | 範本 | Phase 1 已建立 |
+| 檔案 | 動作 |
+|------|------|
+| `Dockerfile` | 建立 |
+| `docker-compose.yml` | 建立（volume 名稱可選改） |
+| `.dockerignore` | Phase 1 已建立 |
 
 三個檔案與子系統無關，可以整份帶走。`docker-compose.yml` 的 named volume 名稱 `db_data` 可以改成語意更明確的 `user_data`，但改了之後既有容器的資料會對不上，**若已有執行中的容器就不要改**。
 
@@ -1812,13 +1771,13 @@ docker compose down -v       # 這才會刪除資料
 | CSS 表 | 六列（common／login／hub／profile／admin／forum） |
 | 開發規範文件表 | 含 `document/system-spec.md` 與 `document/build-guide.md` |
 
-### `document/forum.md` 的修改內容
+### `document/forum.md` 的內容
 
-範本這份文件（180 行）大部分可以原樣沿用，但有兩處必須改：
+這份文件約 180 行，有兩處特別容易寫錯：
 
-**1. 「資料表」一節的表名。** 範本在 `blueprints/forum/CLAUDE.md` 中誤寫為 `forum_masters`，`document/forum.md` 需複查是否有同樣的錯誤，一併更正為 `forum`。
+**1. 「資料表」一節的表名。** 是 `forum`，不是 `forum_masters`。
 
-**2. 「權限規則」一節補上帳號有效性。** 範本只描述了登入與角色兩層，需補上第二層：
+**2. 「權限規則」一節要寫滿三層。** 只寫登入與角色兩層會漏掉中間這一層：
 
 > 所有寫入類路由的 `_current_user()` 會在帳號被停用或刪除時回傳 `None`，路由隨即 `session.clear()` 並導向登入頁。因此被管理員停用的帳號無法發文、回覆或修改，即使瀏覽器中的 session 尚未過期。
 >
@@ -1931,7 +1890,7 @@ grep -rn "events\|equipment" \
   | grep -v "pointer-events"
 ```
 
-預期：程式碼與 `CLAUDE.md` 應完全無命中；`document/` 與 `rules/` 下只剩**刻意說明範本血緣的段落**。逐筆檢視每一個命中，確認它的語境是「範圍外」「不搬移」或「與範本對照」，而不是「本系統的組成部分」。
+預期：**無命中**。逐筆檢視每一個命中，確認它不是本系統的組成部分。
 
 > 注意這條與前一版不同：**`forum` 已不在掃描清單中**，因為論壇現在是本系統的一部分。把 `forum` 加回 grep 會產生上百筆合法的命中，反而讓真正的殘留藏不住。
 
@@ -1974,7 +1933,7 @@ ls document/
 ```bash
 grep -rn "forum_masters" blueprints/ document/ db/
 ```
-預期：**無輸出**（表名是 `forum`，範本的誤植已全數更正）
+預期：**無輸出**（表名一律是 `forum`）
 
 ```bash
 grep -c "redirect \`/login\`" CLAUDE.md
@@ -2149,7 +2108,7 @@ profile POST name : 停用後改的名字
 - [ ] 七條手動旅程全部走通
 - [ ] **forum 的守門修正生效**（停用帳號無法發文）
 - [ ] **KI-03 的缺陷仍在**（停用帳號仍可改自己資料），與規格書 §11.2 一致
-- [ ] `grep -rn "events\|equipment"`（排除範本目錄與 `pointer-events`）只剩刻意的對照說明
+- [ ] `grep -rn "events\|equipment"`（排除 `pointer-events`）無命中
 - [ ] 論壇的六個檔案齊全（`db/forum.py`、blueprint、兩個 template、CSS、測試）
 - [ ] `static/` 恰六個 CSS，`.login-form` 恰三處，inline handler 恰八處
 - [ ] `document/` 七份文件齊全
@@ -2160,81 +2119,37 @@ profile POST name : 停用後改的名字
 
 ## 附錄：完整檔案清單
 
-### A. 原樣複製（25 個）
+### A. 各檔案建立於哪個階段
 
-| 來源（範本相對路徑） | 目的地 | 建立於 |
-|---------------------|--------|:--:|
-| `utils.py` | `utils.py` | Phase 1 |
-| `blueprints/__init__.py` | 同 | Phase 1 |
-| `.gitignore` `.gitattributes` `.dockerignore` | 同名 | Phase 1 |
-| `.claude/settings.json` | 同 | Phase 1 |
-| `db/connection.py` | 同 | Phase 2 |
-| **`db/forum.py`** | 同 | **Phase 2** |
-| `templates/base.html` | 同 | Phase 3 |
-| `static/common.css` `login.css` `hub.css` | 同 | Phase 3 |
-| `templates/auth/register.html` | 同 | Phase 4 |
-| `blueprints/auth/CLAUDE.md` | 同 | Phase 4 |
-| `blueprints/hub/__init__.py` | 同 | Phase 5 |
-| `blueprints/profile/__init__.py` | 同 | Phase 6 |
-| **`templates/forum/index.html`** | 同 | **Phase 8** |
-| **`templates/forum/post_form.html`** | 同 | **Phase 8** |
-| **`static/forum.css`** | 同 | **Phase 8** |
-| `tests/__init__.py` `tests/data/__init__.py` | 同 | Phase 10 |
-| `tests/conftest.py` | 同 | Phase 10 |
-| `tests/test_auth.py` `tests/test_profile.py` | 同 | Phase 10 |
-| `Dockerfile` `docker-compose.yml` | 同 | Phase 11 |
-| `document/auth.md` | 同 | Phase 12 |
+| 檔案 | Phase |
+|------|:--:|
+| `app.py`（註冊五個 Blueprint；啟動區塊只有 `init_db()` 與 `app.run()`） | 1 |
+| `utils.py`、`blueprints/__init__.py` | 1 |
+| `.gitignore`、`.gitattributes`、`.dockerignore`、`.claude/settings.json` | 1 |
+| `db/__init__.py`、`db/connection.py`、`db/users.py`、`db/forum.py`、`db/CLAUDE.md` | 2 |
+| `templates/base.html`、`static/common.css`、`login.css`、`hub.css` | 3 |
+| `blueprints/auth/`（含 `CLAUDE.md`）、`templates/auth/login.html`、`register.html` | 4 |
+| `blueprints/hub/`（含 `CLAUDE.md`）、`templates/hub/home.html` | 5 |
+| `blueprints/profile/`（含 `CLAUDE.md`）、`templates/profile/dashboard.html`、`static/profile.css` | 6 |
+| `blueprints/admin/`（含 `CLAUDE.md`）、`templates/admin/user_list.html`、`user_detail.html`、`static/admin.css` | 7 |
+| `blueprints/forum/`（含 `CLAUDE.md`）、`templates/forum/index.html`、`post_form.html`、`static/forum.css` | 8 |
+| `tests/`（`conftest.py`、`data/users.py`、五個測試檔、`CLAUDE.md`） | 10 |
+| `Dockerfile`、`docker-compose.yml` | 11 |
+| `rules/*.md`、`document/{auth,hub,profile,admin,forum}.md`、`README.md`、`CLAUDE.md` | 12 |
+| `document/system-spec.md`、`document/build-guide.md` | 已完成 |
 
-`requirements.txt` 已存在於專案根目錄，不需搬移。
+`requirements.txt` 已存在於專案根目錄。
 
-### B. 修改後複製（20 個）
+### B. 需要特別留意的三個檔案
 
-| 檔案 | 修改內容 | Phase |
-|------|---------|:--:|
-| `app.py` | Blueprint 6→5（保留 `forum_bp`）；移除 `setup/` 機制與 `import shutil` | 1、4–7 |
-| `db/__init__.py` | 移除 events／equipment 兩組 re-export 與兩個 `_init_*_tables`（**保留 forum**）；users import 加三個新函式 | 2 |
-| `db/users.py` | 新增 `list_users`、`set_user_active`、`set_user_role` | 2 |
-| `db/CLAUDE.md` | 移除 events／equipment；保留並複查 forum；補三個新函式 | 2 |
-| `blueprints/auth/__init__.py` | 刪除 unused 的 `login_required` import | 4 |
-| `templates/auth/login.html` | 修正 `</h1>` → `</h2>`；系統名稱 | 4 |
-| `templates/hub/home.html` | 刪 4 張跨系統卡片（events／equipment 各兩處，**保留 forum**）；加管理員卡片；訪客區補 locked 卡片 | 5 |
-| `blueprints/hub/CLAUDE.md` | 修正「未登入 → redirect /login」的過時描述 | 5 |
-| `templates/profile/dashboard.html` | 抽出內嵌 `<style>`；class 加前綴；加 `<link>` | 6 |
-| `blueprints/profile/CLAUDE.md` | CSS 段落補上 `profile.css` | 6 |
-| **`blueprints/forum/__init__.py`** | **`_current_user()` 加 `_is_usable`；六條寫入路由加 `None` 防護** | **8** |
-| **`blueprints/forum/CLAUDE.md`** | **表名 `forum_masters` → `forum`；補守門說明** | **8** |
-| `tests/data/users.py` | 修正首行註解；`MESSAGES` 加 admin 11 條 | 10 |
-| `tests/test_hub.py` | 刪 1 處舊斷言（保留論壇的）；新增 3 個案例（6→9） | 10 |
-| **`tests/test_forum.py`** | **新增 3 條守門案例（39→42）** | **10** |
-| `tests/CLAUDE.md` | 目錄結構；`other_client` 三種用途；測試原則 | 10 |
-| `rules/flask-blueprint.md` | CSS 前綴表；三段式檢查順序；開放瀏覽子系統一節 | 12 |
-| `rules/database.md` | 兩類 `is_deleted` 例外；新模組判斷準則；transaction 三實例 | 12 |
-| `README.md` | 文件表五列；bcrypt cost 描述；模擬資料說明 | 12 |
-| `document/hub.md` `document/profile.md` **`document/forum.md`** | 見 Phase 12 | 12 |
-| `CLAUDE.md`（根） | 九處逐節改寫 | 已完成 |
+| 檔案 | 為什麼特別 |
+|------|-----------|
+| `blueprints/forum/__init__.py` | `_current_user()` 必須做 `_is_usable`；六條寫入路由各自處理 `user is None` |
+| `blueprints/admin/__init__.py` | 三段式守門的順序不可調換；R1–R3 自我保護規則 |
+| `templates/hub/home.html` | 唯一耦合所有子系統的模板，新增子系統時必然要動它 |
 
-### C. 全新建立（10 個）
 
-| 檔案 | 說明 | Phase |
-|------|------|:--:|
-| `static/profile.css` | 從 dashboard.html 內嵌樣式外提，`profile-` 前綴 | 6 |
-| `blueprints/admin/__init__.py` | 6 條路由，約 130 行 | 7 |
-| `blueprints/admin/CLAUDE.md` | 含「請勿重構守門三行」與自我保護論證 | 7 |
-| `templates/admin/user_list.html` | 清單頁 | 7 |
-| `templates/admin/user_detail.html` | 明細頁 | 7 |
-| `static/admin.css` | `admin-` 前綴，按鈕顏色走 token | 7 |
-| `tests/test_admin.py` | 約 30 個案例 | 10 |
-| `document/admin.md` | 子系統文件 | 12 |
-| `document/system-spec.md` | 系統規格書 | 已完成 |
-| `document/build-guide.md` | 本文件 | 已完成 |
-
-### D. 明確不搬移
-
-`db/events.py`、`db/equipment.py`、`blueprints/events/`、`blueprints/equipment/`、`templates/events/`、`templates/equipment/`、`static/events.css`、`static/equipment.css`、`tests/test_events.py`、`tests/test_equipment.py`、`document/events.md`、`database.db`（範本已產生的資料庫檔）、`.claude/settings.local.json`（本機個人設定）、`setup/` 機制（範本中已不存在該目錄，機制隨 `app.py` 一併移除）。
-
-> `document/equipment.md` 不在清單中——範本本來就沒有這份文件（器材借用是最新加入的子系統，文件尚未補上）。這是範本自身的文件缺口，與本次抽取無關。
-
-### E. 論壇相關檔案總覽（跨階段速查）
+### C. 論壇相關檔案總覽（跨階段速查）
 
 | 檔案 | 動作 | Phase | 行數 |
 |------|------|:--:|:--:|

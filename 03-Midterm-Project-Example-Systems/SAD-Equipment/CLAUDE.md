@@ -16,7 +16,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - SQLite 資料庫整合（主檔／明細結構、狀態機、庫存一致性）
 - 會員帳號與管理（bcrypt 密碼雜湊、圖形驗證碼、角色與帳號狀態）
 
-系統由兩個既有專案整併而成：**會員帳號與管理子系統沿用 `sad-forum`**（auth / hub / profile / admin 四個 Blueprint 與其資料表、權限模型、測試架構），**器材借用的業務邏輯與資料結構取自 `Course-SAD-Sample-System`** 的 equipment 子系統。這兩個名稱在本文件中一律是說明血緣來源，不是本系統的一部分。
+系統分成兩塊：**會員帳號與管理**（auth / hub / profile / admin 四個 Blueprint 與 `users` 資料表、三層權限模型、測試架構），以及**器材借用**（equipment 子系統與其三張資料表、借用單狀態機、庫存扣減邏輯）。
 
 同時作為 Agentic / Harness Engineering 的練習專案。
 
@@ -31,7 +31,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - pytest + pytest-flask
 - Docker / Docker Compose（選用）
 
-套件版本不釘選（`requirements.txt` 只列名稱），與參考專案一致。
+套件版本不釘選（`requirements.txt` 只列名稱）。
 
 ---
 
@@ -61,7 +61,7 @@ pytest -k "test_borrow"                 # 執行特定測試
 ## 專案結構
 
 ```
-sad-equipment/
+SAD-Equipment/
 ├── app.py                        # 主程式：組裝 Blueprint、啟動伺服器
 ├── utils.py                      # 跨 Blueprint 共用 helpers
 ├── requirements.txt
@@ -283,7 +283,7 @@ sad-equipment/
 
 ## 已知技術債
 
-本系統刻意沿用兩個參考專案的既有技術債，**不做強行強化**——這些債本身就是教材。完整清單（含影響、接受理由、修補方向與工作量）見 [`document/system-spec.md`](document/system-spec.md) 第 11 章。
+本系統刻意保留既有的技術債，**不做強行強化**——這些債本身就是教材。完整清單（含影響、接受理由、修補方向與工作量）見 [`document/system-spec.md`](document/system-spec.md) 第 11 章。
 
 修改程式碼時最需要注意的五條：
 

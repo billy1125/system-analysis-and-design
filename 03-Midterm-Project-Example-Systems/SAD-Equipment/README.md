@@ -8,7 +8,7 @@
 
 五個子系統、四張資料表、125 個自動化測試。
 
-系統由兩個既有的課程範例整併而成：會員帳號與管理沿用 **sad-forum**，器材借用的業務邏輯與資料結構取自 **Course-SAD-Sample-System**。
+系統分成兩塊：會員帳號與管理（auth / hub / profile / admin），以及器材借用的業務流程（equipment）。
 
 ---
 

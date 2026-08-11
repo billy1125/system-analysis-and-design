@@ -1,6 +1,6 @@
 /* meal.css — 校園訂餐子系統專用樣式。
  *
- * 骨架取自 sad-forum 的 forum.css 後改前綴。按鍵顏色一律引用 common.css
+ * 按鍵顏色一律引用 common.css
  * 的 token；狀態 badge 的底色硬編碼於此（common.css 未定義狀態語意色，
  * 與 admin.css 同一個限制，見 KI-19）。
  */

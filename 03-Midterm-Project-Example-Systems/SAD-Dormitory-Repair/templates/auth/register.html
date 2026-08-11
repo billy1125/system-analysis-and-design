@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}申請帳號{% endblock %}
+
+{% block body %}
+<div class="login-card">
+  <h1>申請帳號</h1>
+
+  {% if error %}
+    <div class="alert error" style="display:block">{{ error }}</div>
+  {% endif %}
+
+  <form method="POST" action="{{ url_for('auth.register') }}" novalidate class="login-form">
+    <div class="form-group">
+      <label for="email">電子郵件 <span class="required">*</span></label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        value="{{ form_data.get('email', '') }}"
+        placeholder="example@mail.com"
+        autocomplete="email"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="password">密碼 <span class="required">*</span></label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="至少 8 個字元"
+        autocomplete="new-password"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="confirm_password">確認密碼 <span class="required">*</span></label>
+      <input
+        type="password"
+        id="confirm_password"
+        name="confirm_password"
+        placeholder="再次輸入密碼"
+        autocomplete="new-password"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="name">姓名</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value="{{ form_data.get('name', '') }}"
+        placeholder="選填"
+        autocomplete="name"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="dorm_building">宿舍棟別</label>
+      <input
+        type="text"
+        id="dorm_building"
+        name="dorm_building"
+        value="{{ form_data.get('dorm_building', '') }}"
+        placeholder="選填，例如 A 棟"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="room_no">房號</label>
+      <input
+        type="text"
+        id="room_no"
+        name="room_no"
+        value="{{ form_data.get('room_no', '') }}"
+        placeholder="選填，例如 301"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="phone">聯絡電話</label>
+      <input
+        type="text"
+        id="phone"
+        name="phone"
+        value="{{ form_data.get('phone', '') }}"
+        placeholder="選填，維修人員聯繫用"
+        autocomplete="tel"
+      >
+    </div>
+
+    <button type="submit" id="submitBtn">申請帳號</button>
+    <a
+      href="{{ url_for('auth.login_page') }}"
+      class="btn-secondary"
+      style="display:block; text-align:center; padding:11px; margin-top:8px; text-decoration:none"
+    >返回登入</a>
+  </form>
+</div>
+{% endblock %}

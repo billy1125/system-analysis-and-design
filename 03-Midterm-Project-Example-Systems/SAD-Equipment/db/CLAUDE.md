@@ -140,7 +140,7 @@ def _get_conn() -> sqlite3.Connection
 | `is_deleted`      | INTEGER | 邏輯刪除旗標                  |
 
 > 四張表都**沒有宣告外鍵約束、CHECK 約束或額外索引**，關聯與狀態值的正確性由 Python 端負責。
-> 這是沿用參考專案的設計，見 `document/system-spec.md` 第 11 章 KI-06。
+> 這是刻意保留的設計，見 `document/system-spec.md` 第 11 章 KI-06。
 
 ### 公開函式
 

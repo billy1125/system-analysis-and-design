@@ -35,35 +35,16 @@
 - [`rules/database.md`](../rules/database.md) — `db/` 套件使用方式、transaction 寫法、軟刪除模式、回傳值慣例
 - [`tests/CLAUDE.md`](../tests/CLAUDE.md) — 測試命名與覆蓋要求
 
-### 0.3 兩個來源專案
-
-本系統由兩個既有專案組合而來，以下所有「從來源複製」的指示，來源都是它們：
-
-| 代稱 | 目錄 | 提供 |
-|------|------|------|
-| **FORUM** | `sad-forum/` | 骨架、會員登入與管理系統、規範、測試架構、CSS token |
-| **SAMPLE** | `Course-SAD-Sample-System/` | 校園活動報名子系統 |
-
-> **兩者皆為唯讀參考資料，全程不得修改其中任何檔案。**
->
-> 若已從本 repo 移除，可重新取得：
->
-> ```bash
-> git clone https://github.com/billy1125/Course-SAD-Sample-System.git
-> ```
-
 ### 0.4 專案根目錄的現況
 
 開始前，專案根目錄應該有：
 
 ```text
-sad-events/
-├── CLAUDE.md                     # 已改寫為只涵蓋本系統的版本
-├── document/
-│   ├── system-spec.md
-│   └── build-guide.md            # 本文件
-├── sad-forum/                    # FORUM（唯讀）
-└── Course-SAD-Sample-System/     # SAMPLE（唯讀）
+SAD-Events/
+├── CLAUDE.md
+└── document/
+    ├── system-spec.md
+    └── build-guide.md            # 本文件
 ```
 
 ### 0.5 階段總覽
@@ -85,8 +66,8 @@ sad-events/
 | 12 | 文件 | `CLAUDE.md`、`rules/`、`document/`、`README.md` | 10 |
 | 13 | 最終整合驗收 | 無（僅檢查） | 全部 |
 
-> **Phase 8（events）排在 admin 之後**，理由與 FORUM 把論壇排在 admin 之後相同：
-> events 的守門修正必須有「停用帳號」這個來源才驗得起來，而 Phase 7 的會員管理提供了這個能力。
+> **Phase 8（events）排在 admin 之後**，理由是：
+> events 的守門檢查必須有「停用帳號」這個來源才驗得起來，而 Phase 7 的會員管理提供了這個能力。
 > 若只想先看到活動報名跑起來，可以把 Phase 8 提前到 Phase 5 之後，但守門的驗收要延後。
 
 ---
@@ -124,11 +105,6 @@ which docker
 ```
 若無輸出，代表本機未安裝 Docker CLI，Phase 11 只能做靜態檢查
 
-```bash
-ls sad-forum/ Course-SAD-Sample-System/
-```
-預期：兩個來源專案都在，且各自含 `app.py`、`db/`、`blueprints/`、`templates/`
-
 ### 關鍵決策記錄
 
 **Docker CLI 是否可用**要在這個階段就確認。若不可用，Phase 11 只能確認設定檔內容正確，
@@ -149,24 +125,23 @@ ls sad-forum/ Course-SAD-Sample-System/
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `app.py` | FORUM | **修改後複製** |
-| `utils.py` | FORUM | 原樣複製 |
-| `blueprints/__init__.py` | FORUM | 原樣複製（空檔） |
-| `requirements.txt` | FORUM | 原樣複製 |
-| `.gitignore`、`.gitattributes` | FORUM | 原樣複製 |
-| `.dockerignore` | FORUM | **修改後複製**（加入兩個參考目錄，見 Phase 11） |
-| `.claude/settings.json` | FORUM | 原樣複製 |
-| `pytest.ini` | — | **全新建立** |
+| 檔案 | 動作 |
+|------|------|
+| `app.py` | **建立** |
+| `utils.py` | 建立 |
+| `blueprints/__init__.py` | 建立（空檔） |
+| `requirements.txt` | 建立 |
+| `.gitignore`、`.gitattributes` | 建立 |
+| `.dockerignore` | **建立**（加入兩個參考目錄，見 Phase 11） |
+| `.claude/settings.json` | 建立 |
+| `pytest.ini` | **建立** |
 
 ### `app.py` 的修改內容
 
-FORUM 的 `app.py` 註冊五個 Blueprint：`admin`、`auth`、`forum`、`hub`、`profile`。
-把 `forum` 換成 `events`：
+`app.py` 註冊五個 Blueprint：`admin`、`auth`、`events`、`hub`、`profile`。
 
 ```python
-from blueprints.events import events_bp   # 取代 from blueprints.forum import forum_bp
+from blueprints.events import events_bp
 ...
 app.register_blueprint(events_bp)          # 取代 app.register_blueprint(forum_bp)
 ```
@@ -181,14 +156,12 @@ app.register_blueprint(events_bp)          # 取代 app.register_blueprint(forum
 ```ini
 [pytest]
 testpaths = tests
-norecursedirs = sad-forum Course-SAD-Sample-System .git __pycache__
+norecursedirs = .git __pycache__
 ```
 
-**這個檔案是本專案特有的，兩個來源專案都沒有。**
-理由是兩個來源目錄各自帶有 `tests/conftest.py`，若被 pytest 一併收集，
-會產生 `ImportPathMismatchError`，導致**任何測試都無法執行**——包含本專案自己的測試。
-
-移除那兩個目錄之後，這個設定可以留著（無害），也可以刪掉。
+**這個檔案不是可選的。** 它把收集範圍限定在自己的 `tests/`；少了它，pytest 會一路
+往下走進其他目錄，收到別的 `conftest.py` 而產生 `ImportPathMismatchError`，
+導致**任何測試都無法執行**——包含本專案自己的測試。
 
 ### 驗收
 
@@ -228,13 +201,13 @@ python -c "import utils; print(utils._is_usable({'is_active':1,'is_deleted':0}))
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `db/connection.py` | FORUM | 原樣複製 |
-| `db/users.py` | FORUM | 原樣複製 |
-| `db/events.py` | SAMPLE | **修改後複製** |
-| `db/__init__.py` | FORUM | **修改後複製** |
-| `db/CLAUDE.md` | — | **全新建立** |
+| 檔案 | 動作 |
+|------|------|
+| `db/connection.py` | 建立 |
+| `db/users.py` | 建立 |
+| `db/events.py` | **建立** |
+| `db/__init__.py` | **建立** |
+| `db/CLAUDE.md` | **建立** |
 
 ### `db/__init__.py` 的修改內容
 
@@ -253,7 +226,7 @@ from .events import (          # noqa: E402
 ```
 
 **注意 14 個函式中沒有 `admin_set_registration_status`。**
-SAMPLE 定義了它，但沒有任何路由呼叫；搬過來就是死碼。理由記在規格書 §11.5。
+沒有任何路由會呼叫它，寫了就是死碼。理由記在規格書 §11.5。
 
 **2. `init_db()` 的 import 與呼叫改為 events**
 
@@ -269,7 +242,7 @@ _seed_events_if_empty(conn)   # 必須在種子帳號之後
 
 ### `db/events.py` 的修改內容
 
-SAMPLE 的版本有 370 行，改後約 480 行。四處修改：
+`db/events.py` 完成後約 480 行。四個重點：
 
 **1. 移除 `admin_set_registration_status()`**（死碼，見上）
 
@@ -417,15 +390,15 @@ grep -c "with conn:" db/events.py
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `templates/base.html` | FORUM | **修改後複製**（`<title>` 預設值） |
-| `static/common.css` | FORUM | 原樣複製 |
-| `static/login.css` | FORUM | 原樣複製 |
-| `static/hub.css` | FORUM | 原樣複製 |
-| `static/profile.css` | FORUM | 原樣複製 |
-| `static/admin.css` | FORUM | **修改後複製**（一行註解） |
-| `static/events.css` | SAMPLE | **修改後複製** |
+| 檔案 | 動作 |
+|------|------|
+| `templates/base.html` | **建立**（`<title>` 預設值） |
+| `static/common.css` | 建立 |
+| `static/login.css` | 建立 |
+| `static/hub.css` | 建立 |
+| `static/profile.css` | 建立 |
+| `static/admin.css` | **建立**（一行註解） |
+| `static/events.css` | **建立** |
 
 ### `base.html` 的修改內容
 
@@ -503,13 +476,13 @@ grep -n "background-color: #" static/events.css | grep -v badge
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/auth/__init__.py` | FORUM | 原樣複製 |
-| `blueprints/auth/CLAUDE.md` | FORUM | 原樣複製 |
-| `templates/auth/login.html` | FORUM | **修改後複製**（標題文字） |
-| `templates/auth/register.html` | FORUM | 原樣複製 |
-| `document/auth.md` | FORUM | 原樣複製 |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/auth/__init__.py` | 建立 |
+| `blueprints/auth/CLAUDE.md` | 建立 |
+| `templates/auth/login.html` | **建立**（標題文字） |
+| `templates/auth/register.html` | 建立 |
+| `document/auth.md` | 建立 |
 
 ### 修改內容
 
@@ -559,12 +532,12 @@ grep -c "校園活動報名系統" templates/auth/login.html
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/hub/__init__.py` | FORUM | 原樣複製 |
-| `blueprints/hub/CLAUDE.md` | — | **全新建立** |
-| `templates/hub/home.html` | FORUM | **修改後複製** |
-| `document/hub.md` | — | **全新建立** |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/hub/__init__.py` | 建立 |
+| `blueprints/hub/CLAUDE.md` | **建立** |
+| `templates/hub/home.html` | **建立** |
+| `document/hub.md` | **建立** |
 
 ### `blueprints/hub/__init__.py` 為什麼零修改
 
@@ -653,12 +626,12 @@ grep -c "url_for('events" templates/hub/home.html
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/profile/__init__.py` | FORUM | 原樣複製 |
-| `blueprints/profile/CLAUDE.md` | FORUM | 原樣複製 |
-| `templates/profile/dashboard.html` | FORUM | 原樣複製 |
-| `document/profile.md` | FORUM | **修改後複製**（一段對照文字） |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/profile/__init__.py` | 建立 |
+| `blueprints/profile/CLAUDE.md` | 建立 |
+| `templates/profile/dashboard.html` | 建立 |
+| `document/profile.md` | **建立**（一段對照文字） |
 
 ### 全部零修改的理由
 
@@ -713,13 +686,13 @@ grep -c "events" document/profile.md
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/admin/__init__.py` | FORUM | 原樣複製 |
-| `blueprints/admin/CLAUDE.md` | FORUM | **修改後複製**（三處 forum → events） |
-| `templates/admin/user_list.html` | FORUM | **修改後複製**（加一條導覽連結） |
-| `templates/admin/user_detail.html` | FORUM | 原樣複製 |
-| `document/admin.md` | FORUM | 原樣複製 |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/admin/__init__.py` | 建立 |
+| `blueprints/admin/CLAUDE.md` | **建立**（三處 forum → events） |
+| `templates/admin/user_list.html` | **建立**（加一條導覽連結） |
+| `templates/admin/user_detail.html` | 建立 |
+| `document/admin.md` | 建立 |
 
 ### `templates/admin/user_list.html` 的修改內容
 
@@ -781,23 +754,23 @@ grep -c "url_for('events" templates/admin/user_list.html
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `blueprints/events/__init__.py` | SAMPLE | **修改後複製** |
-| `blueprints/events/CLAUDE.md` | — | **全新建立** |
-| `templates/events/index.html` | SAMPLE | **修改後複製** |
-| `templates/events/event_form.html` | SAMPLE | **修改後複製** |
-| `templates/events/registration_form.html` | SAMPLE | **修改後複製** |
-| `templates/events/my_registrations.html` | SAMPLE | **修改後複製** |
-| `document/events.md` | SAMPLE | **修改後複製** |
+| 檔案 | 動作 |
+|------|------|
+| `blueprints/events/__init__.py` | **建立** |
+| `blueprints/events/CLAUDE.md` | **建立** |
+| `templates/events/index.html` | **建立** |
+| `templates/events/event_form.html` | **建立** |
+| `templates/events/registration_form.html` | **建立** |
+| `templates/events/my_registrations.html` | **建立** |
+| `document/events.md` | **建立** |
 
 ### `blueprints/events/__init__.py` 的修改內容
 
-SAMPLE 的版本有 483 行。六處修改：
+`blueprints/events/__init__.py` 完成後約 483 行。六個重點：
 
-**1.（關鍵）`_current_user()` 加上帳號有效性檢查**
+**1.（關鍵）`_current_user()` 必須做帳號有效性檢查**
 
-SAMPLE 的版本：
+只查 id 的寫法是錯的：
 
 ```python
 def _current_user():
@@ -832,9 +805,9 @@ if user is None:
     return redirect(url_for('auth.login_page'))
 ```
 
-SAMPLE 原本在 `new_event` 與 `register` 用的是
-`if not _is_usable(user): flash('帳號已停用...'); redirect(events.index)`，
-**這兩段要整段換掉**。其餘五條路由原本完全沒有這層檢查，要新增。
+**七條寫入路由都要有這層檢查。** 不要用
+`if not _is_usable(user): flash('帳號已停用...'); redirect(events.index)` 草草擋下——
+身分失效的處置是清 session 並導回登入頁。
 
 > 不要把 `session.clear()` 塞進 `_current_user()`：訪客與失效帳號在它眼中都是 `None`，
 > 但只有後者需要清 session。
@@ -843,8 +816,8 @@ SAMPLE 原本在 `new_event` 與 `register` 用的是
 
 **3. 標籤 dict 從模板搬到 Blueprint，並拆成兩份**
 
-SAMPLE 在三個模板中各自用 `{% set status_labels = {...} %}` 定義中文標籤，
-且把活動狀態與報名狀態混在一起。改為在 Blueprint 中定義兩個模組層級常數：
+中文標籤不要寫在模板裡（三個模板各寫一次 `{% set status_labels = {...} %}`，
+還會把活動狀態與報名狀態混在一起）。在 Blueprint 中定義兩個模組層級常數：
 
 ```python
 STATUS_LABELS     = {'available': '可報名', 'full': '名額已滿', ...}      # 活動狀態
@@ -857,8 +830,7 @@ MEAL_LABELS       = {0: '不用餐', 1: '葷食', 2: '素食'}
 
 **4. 表單欄位常數化**
 
-SAMPLE 在 `new_event` 與 `edit_event` 中各自把十個欄位名稱列了一遍（共三處）。
-抽成模組層級常數：
+不要在 `new_event` 與 `edit_event` 中各自把十個欄位名稱列一遍。抽成模組層級常數：
 
 ```python
 _EVENT_FIELDS = ('event_title', 'event_datetime', ..., 'event_notice')
@@ -867,15 +839,14 @@ _REGISTRATION_FIELDS = ('participant_name', ..., 'registration_note')
 
 **5. 抽出 `_parse_dt()`**
 
-SAMPLE 在 `_event_status()` 內部定義了一個巢狀的 `_parse()`，
-而 `_normalize_dt()` 與 `_validate_event_form()` 又各自重寫了一次 try/except。
-統一為模組層級的 `_parse_dt(s)`，回傳 `datetime` 或 `None`。
+日期字串的解析會在三個地方用到（`_event_status()`、`_normalize_dt()`、
+`_validate_event_form()`）。統一為模組層級的 `_parse_dt(s)`，回傳 `datetime` 或 `None`，
+不要各自寫一次 try/except。
 
 **6. 錯誤訊息統一為「活動不存在或已刪除」**
 
-SAMPLE 分成 `活動不存在` 與 `活動已刪除` 兩則。合併為一則，
-與 FORUM 的 `文章不存在或已刪除` 一致。理由是兩者對使用者而言沒有差別，
-而分開會洩漏「這個 id 曾經存在」這個資訊。
+不要分成 `活動不存在` 與 `活動已刪除` 兩則。合併為一則，
+理由是兩者對使用者而言沒有差別，而分開會洩漏「這個 id 曾經存在」這個資訊。
 
 **保留不動的部分：** `_PAGE_SIZE = 5`、八條路由的路徑與方法、
 `_event_status()` 的五段判斷與順序、報名的二次狀態判定、
@@ -883,9 +854,9 @@ SAMPLE 分成 `活動不存在` 與 `活動已刪除` 兩則。合併為一則�
 
 ### 模板的修改內容
 
-**1.（關鍵）`<a href="#" onclick>` 全部改為 `<button type="submit">`**
+**1.（關鍵）用 `<button type="submit">`，不用 `<a href="#" onclick>`**
 
-SAMPLE 的寫法：
+不要這樣寫：
 
 ```html
 <a href="#" class="events-btn-action events-btn-action-danger"
@@ -902,8 +873,8 @@ SAMPLE 的寫法：
 共六處：`index.html` 三處（清單刪除、細節刪除、取消報名）、
 `my_registrations.html` 一處（取消報名），以及對應的兩個 confirm 文案調整。
 
-理由：`<a>` 的語意是導航，這裡是有副作用的 POST。而且原寫法的鍵盤操作與
-螢幕閱讀器行為不正確。FORUM 已採用 `<button>` 寫法，本系統沿用其慣例。
+理由：`<a>` 的語意是導航，這裡是有副作用的 POST。而且那種寫法的鍵盤操作與
+螢幕閱讀器行為不正確。
 
 **2. 標籤 dict 改由 Blueprint 傳入**
 
@@ -928,7 +899,7 @@ SAMPLE 的寫法：
 
 **4. `index.html` 的報名操作區簡化**
 
-SAMPLE 用四個 `{% elif %}` 分別列出 ended / closed / not_open / full 的提示文字。
+不要用四個 `{% elif %}` 分別列出 ended / closed / not_open / full 的提示文字。
 改為一個 `{% else %}` 搭配 `STATUS_LABELS[selected_status]`：
 
 ```html
@@ -939,7 +910,7 @@ SAMPLE 用四個 `{% elif %}` 分別列出 ended / closed / not_open / full 的�
 
 **5. 表單欄位加上 `id` 與 `<label for>` 的配對**
 
-SAMPLE 的 `<label>` 沒有 `for` 屬性。補上，讓點擊標籤能聚焦到對應欄位。
+每個 `<label>` 都要有 `for` 屬性，讓點擊標籤能聚焦到對應欄位。
 
 **6. flash 分類統一**
 
@@ -1182,18 +1153,18 @@ grep -rc "onclick" templates/ | grep -v ":0"
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `tests/__init__.py` | FORUM | 原樣複製（空檔） |
-| `tests/conftest.py` | FORUM | 原樣複製 |
-| `tests/data/__init__.py` | FORUM | 原樣複製（空檔） |
-| `tests/data/users.py` | FORUM | **修改後複製** |
-| `tests/test_auth.py` | FORUM | 原樣複製（23 個） |
-| `tests/test_profile.py` | FORUM | 原樣複製（8 個） |
-| `tests/test_admin.py` | FORUM | 原樣複製（30 個） |
-| `tests/test_hub.py` | FORUM | **改寫**（11 個） |
-| `tests/test_events.py` | SAMPLE | **大幅改寫**（36 → 80 個） |
-| `tests/CLAUDE.md` | — | **全新建立** |
+| 檔案 | 動作 |
+|------|------|
+| `tests/__init__.py` | 建立（空檔） |
+| `tests/conftest.py` | 建立 |
+| `tests/data/__init__.py` | 建立（空檔） |
+| `tests/data/users.py` | **建立** |
+| `tests/test_auth.py` | 建立（23 個） |
+| `tests/test_profile.py` | 建立（8 個） |
+| `tests/test_admin.py` | 建立（30 個） |
+| `tests/test_hub.py` | **建立**（11 個） |
+| `tests/test_events.py` | **大幅改寫**（36 → 80 個） |
+| `tests/CLAUDE.md` | **建立** |
 
 ### `tests/conftest.py` 為什麼零修改
 
@@ -1219,11 +1190,10 @@ SEED_EVENTS = {
 
 **2. `MESSAGES` 新增 28 條 events 訊息**
 
-FORUM 的 `MESSAGES` 有 22 條（auth 11 + admin 11），加上 events 的 28 條共 **50 條**。
+auth 11 條 + admin 11 條 + events 28 條，共 **50 條**。
 
-> **這裡修正了 FORUM 的一個不一致（其 KI-29）。** FORUM 的論壇訊息散落在
-> `test_forum.py` 的斷言字面量中，與集中管理的 auth／admin 訊息不一致。
-> 本系統把 events 的訊息全部集中，不繼承這個問題。
+> **訊息字串一律集中在 `MESSAGES`**，不散落到測試檔的斷言字面量裡。
+> 散落的話，改一句訊息要翻遍測試檔，而且同一句話容易在不同檔案裡寫成兩種。
 
 ### `tests/test_hub.py` 的改寫內容
 
@@ -1240,7 +1210,7 @@ FORUM 的 `MESSAGES` 有 22 條（auth 11 + admin 11），加上 events 的 28 �
 
 ### `tests/test_events.py` 的改寫內容
 
-SAMPLE 有 36 個案例，改寫後 **80 個**。主要工作有五項：
+本檔共 **80 個**案例。主要工作有五項：
 
 **1. 新增三個種子資料測試**
 
@@ -1267,11 +1237,11 @@ def _enable_other(user_id=3):
     db.set_user_active(user_id, 1)
 ```
 
-**這是 Phase 8 的守門修正帶來的連鎖影響**，SAMPLE 的測試沒有這個問題（因為它沒修）。
+**這是 Phase 8 的守門檢查帶來的連鎖影響**：停用帳號的 session 會被清掉，後續請求的身分不同了。
 
 **4. 補齊「資料庫沒有改變」的斷言**
 
-SAMPLE 的 `test_edit_event_non_creator_rejected` 只驗 302。補上：
+`test_edit_event_non_creator_rejected` 不能只驗 302。補上：
 
 ```python
 def test_edit_event_post_by_other_changes_nothing(other_client, event):
@@ -1307,12 +1277,6 @@ python -c "from tests.data.users import MESSAGES, SEED_EVENTS; print(len(MESSAGE
 ```
 預期：`50 5`
 
-```bash
-# 確認參考專案沒有被收集
-pytest --collect-only -q 2>/dev/null | grep -c "sad-forum\|Course-SAD"
-```
-預期：`0`
-
 ### 常見錯誤
 
 - **忘記 `pytest.ini`**——`pytest` 會收集三份 `conftest.py` 並拋
@@ -1331,11 +1295,11 @@ pytest --collect-only -q 2>/dev/null | grep -c "sad-forum\|Course-SAD"
 
 ### 產出檔案
 
-| 檔案 | 來源 | 動作 |
-|------|------|------|
-| `Dockerfile` | FORUM | 原樣複製 |
-| `docker-compose.yml` | FORUM | 原樣複製 |
-| `.dockerignore` | FORUM | **修改後複製**（加入兩個參考目錄） |
+| 檔案 | 動作 |
+|------|------|
+| `Dockerfile` | 建立 |
+| `docker-compose.yml` | 建立 |
+| `.dockerignore` | **建立**（加入兩個參考目錄） |
 
 ### 為什麼 `Dockerfile` 與 `docker-compose.yml` 零修改
 
@@ -1362,12 +1326,7 @@ grep "4000" Dockerfile docker-compose.yml
 ```bash
 cat .dockerignore
 ```
-預期：排除 `__pycache__/`、`*.pyc`、`.git/`、`tests/`，
-**以及 `sad-forum/` 與 `Course-SAD-Sample-System/`**
-
-> 最後兩行是本專案相對於 FORUM 新增的。少了它們，`COPY . .` 會把兩個參考目錄
-> （含各自的 `.git`）一併打包進映像，映像會肥大許多。
-> 若已移除那兩個目錄，這兩行留著無害。
+預期：排除 `__pycache__/`、`*.pyc`、`.git/`、`tests/`
 
 ### 動態驗收（需要 Docker CLI）
 
@@ -1413,7 +1372,7 @@ docker compose down -v   # 這一步才會真的刪掉資料
 | `db/CLAUDE.md` | **全新建立** |
 | `blueprints/events/CLAUDE.md` | **全新建立** |
 | `blueprints/hub/CLAUDE.md` | **全新建立** |
-| `blueprints/{auth,profile}/CLAUDE.md` | 原樣複製自 FORUM |
+| `blueprints/{auth,profile}/CLAUDE.md` | **建立** |
 | `blueprints/admin/CLAUDE.md` | **修改後複製**（Phase 7 已完成） |
 | `tests/CLAUDE.md` | **全新建立** |
 | `rules/flask-blueprint.md` | **修改後複製** |
@@ -1437,7 +1396,7 @@ docker compose down -v   # 這一步才會真的刪掉資料
 | `soft_delete_event` | 主表標記刪除但副表沒標記，會留下孤兒的 `event_details` |
 | `create_or_restore_registration` | 先 SELECT 再決定 INSERT 或 UPDATE，兩步之間必須是原子操作 |
 
-**注意第四個是 FORUM 沒有的形態**——前三個是「多張表同時寫」，
+**注意第四個與前三個性質不同**——前三個是「多張表同時寫」，
 第四個是「同一張表的讀寫必須原子」。
 
 **2. 不過濾 `is_deleted` 的例外從兩類變成三類**
@@ -1457,11 +1416,11 @@ docker compose down -v   # 這一步才會真的刪掉資料
 
 ### `document/events.md` 的修改內容
 
-SAMPLE 的版本描述的是未修正的實作。三處要更新：
+三處最容易與實作對不上：
 
-1. 權限規則加上「`_current_user()` 已包含帳號有效性檢查」與其後果
-2. 錯誤訊息從 `活動不存在` / `活動已刪除` 改為 `活動不存在或已刪除`
-3. 移除 `admin_set_registration_status` 的相關描述
+1. 權限規則要寫出「`_current_user()` 已包含帳號有效性檢查」與其後果
+2. 錯誤訊息是 `活動不存在或已刪除`，不是分開的兩則
+3. 不要出現 `admin_set_registration_status`（系統中沒有這個函式）
 
 ### 驗收
 
@@ -1473,20 +1432,15 @@ ls CLAUDE.md README.md db/CLAUDE.md tests/CLAUDE.md \
 
 ```bash
 # 程式碼與樣板中不應有任何 forum 殘留
-grep -rn "forum\|論壇" --include="*.py" --include="*.html" --include="*.css" . \
-  --exclude-dir=sad-forum --exclude-dir=Course-SAD-Sample-System
+grep -rn "forum\|論壇" --include="*.py" --include="*.html" --include="*.css" .
 ```
 預期：**無輸出**
 
 ```bash
-# Markdown 中的 forum 應只出現在「說明遷移或範圍」的脈絡
-grep -rln "forum\|論壇" --include="*.md" . \
-  --exclude-dir=sad-forum --exclude-dir=Course-SAD-Sample-System
+# Markdown 中也不應有 forum 殘留
+grep -rln "forum\|論壇" --include="*.md" .
 ```
-預期：六個檔案——`README.md`、`CLAUDE.md`（宣告範圍外與血緣）、
-`tests/CLAUDE.md`（引述 FORUM 的 KI-29）、`document/system-spec.md`（血緣與範圍）、
-`document/build-guide.md`（本文件，描述改哪幾行）、`document/hub.md`（一句對照）。
-其他檔案若出現 forum，代表複製時漏改
+預期：**無輸出**。有命中代表撰寫時漏改
 
 ```bash
 # 路由總表的條數與實際一致
@@ -1504,8 +1458,7 @@ pytest -q 2>&1 | tail -1
 
 ### 常見錯誤
 
-- 從 FORUM 複製 `rules/` 卻忘記把 forum 的例子換成 events，
-  讀者會去找一個不存在的 `db/forum.py`
+- `rules/` 裡的例子忘了換成 events，讀者會去找一個不存在的 `db/forum.py`
 - 文件中的路由數、測試數、訊息條數與實際不符——這些數字要從程式碼實際數出來
 - 忘記寫 `document/hub.md`，`CLAUDE.md` 的連結會 404
 
@@ -1635,8 +1588,8 @@ grep -rn --include="*.py" "SELECT \|INSERT INTO\|UPDATE .* SET\|DELETE FROM" blu
 grep -rn --include="*.py" "sqlite3" blueprints/
 ```
 預期：**只有 `blueprints/auth/__init__.py` 兩行**（`import sqlite3` 與
-`except sqlite3.IntegrityError`）。這是沿用 FORUM 的既有洩漏——auth 因此知道
-資料庫是 SQLite。記錄為規格書 KI-36，刻意保留。其他 Blueprint 應為零
+`except sqlite3.IntegrityError`）。這是刻意保留的洩漏——auth 因此知道
+資料庫是 SQLite。記錄為規格書 KI-36。其他 Blueprint 應為零
 
 ```bash
 # Blueprint 之間不得互相 import
@@ -1650,14 +1603,6 @@ grep -c "_is_admin" utils.py
 ```
 預期：`0`
 
-**7. 兩個參考目錄未被修改**
-
-```bash
-cd sad-forum && git status --porcelain && cd ..
-cd Course-SAD-Sample-System && git status --porcelain && cd ..
-```
-預期：**無輸出**（兩個 repo 都是乾淨的）
-
 ### 完工檢查清單
 
 - [ ] `pytest -q` 回報 152 passed
@@ -1669,101 +1614,40 @@ cd Course-SAD-Sample-System && git status --porcelain && cd ..
 - [ ] 管理員可在 `/admin/users` 停用帳號，該帳號隨即無法建立活動或報名
 - [ ] KI-03 仍然存在（停用帳號仍可 POST `/profile/update`）
 - [ ] 16 份文件齊備，數字（22 條路由、152 個測試、50 條訊息）與實際一致
-- [ ] `sad-forum/` 與 `Course-SAD-Sample-System/` 未被修改
 
 ---
 
 ## 附錄：完整檔案清單
 
-### A. 原樣複製（22 個）
+### A. 各檔案建立於哪個階段
 
-**來自 FORUM：**
+| 檔案 | Phase |
+|------|:--:|
+| `app.py`、`utils.py`、`blueprints/__init__.py`、`requirements.txt`、`pytest.ini` | 1 |
+| `.gitignore`、`.gitattributes`、`.dockerignore`、`.claude/settings.json` | 1 |
+| `db/{__init__,connection,users,events}.py`、`db/CLAUDE.md` | 2 |
+| `templates/base.html`、`static/{common,login,hub,profile,admin,events}.css` | 3 |
+| `blueprints/auth/`、`templates/auth/{login,register}.html` | 4 |
+| `blueprints/hub/`、`templates/hub/home.html` | 5 |
+| `blueprints/profile/`、`templates/profile/dashboard.html` | 6 |
+| `blueprints/admin/`、`templates/admin/{user_list,user_detail}.html` | 7 |
+| `blueprints/events/`、`templates/events/*.html`（四個） | 8 |
+| `tests/`（`conftest.py`、`data/users.py`、五個測試檔、`CLAUDE.md`） | 10 |
+| `Dockerfile`、`docker-compose.yml` | 11 |
+| `rules/*.md`、`document/*.md`、`README.md`、`CLAUDE.md` | 12 |
 
-```
-utils.py
-blueprints/__init__.py
-requirements.txt
-.gitignore  .gitattributes
-.claude/settings.json
-Dockerfile  docker-compose.yml
-db/connection.py  db/users.py
-blueprints/auth/__init__.py      blueprints/auth/CLAUDE.md
-blueprints/hub/__init__.py
-blueprints/profile/__init__.py   blueprints/profile/CLAUDE.md
-blueprints/admin/__init__.py
-templates/auth/register.html
-templates/profile/dashboard.html
-templates/admin/user_detail.html
-static/common.css  static/login.css  static/hub.css  static/profile.css
-tests/__init__.py  tests/conftest.py  tests/data/__init__.py
-tests/test_auth.py  tests/test_profile.py  tests/test_admin.py
-document/auth.md  document/admin.md
-```
+### B. events 相關檔案總覽（跨階段速查）
 
-### B. 修改後複製（16 個）
 
-| 檔案 | 來源 | 修改幅度 |
-|------|------|---------|
-| `app.py` | FORUM | 兩行（forum → events） |
-| `.dockerignore` | FORUM | 兩行（排除兩個參考目錄） |
-| `db/__init__.py` | FORUM | 匯出清單 + `init_db()` 三行 |
-| `db/events.py` | SAMPLE | 四處（種子活動、移除死碼、加選欄位、docstring） |
-| `templates/base.html` | FORUM | 一行（`<title>`） |
-| `templates/auth/login.html` | FORUM | 一行（標題文字） |
-| `templates/hub/home.html` | FORUM | 服務卡片全改 |
-| `templates/admin/user_list.html` | FORUM | 一行（導覽連結） |
-| `templates/events/index.html` | SAMPLE | 六處 |
-| `templates/events/event_form.html` | SAMPLE | 三處 |
-| `templates/events/registration_form.html` | SAMPLE | 三處 |
-| `templates/events/my_registrations.html` | SAMPLE | 四處 |
-| `static/admin.css` | FORUM | 一行註解 |
-| `static/events.css` | SAMPLE | 兩個 CSS 屬性 |
-| `blueprints/events/__init__.py` | SAMPLE | 六處（含守門修正） |
-| `blueprints/admin/CLAUDE.md` | FORUM | 三處對照 |
-| `tests/data/users.py` | FORUM | 加 `SEED_EVENTS` + 28 條訊息 |
-| `tests/test_hub.py` | FORUM | 改寫 11 個案例 |
-| `tests/test_events.py` | SAMPLE | 大幅改寫（36 → 80） |
-| `rules/database.md` | FORUM | 三處例子 |
-| `rules/flask-blueprint.md` | FORUM | 一處例子 |
-| `document/profile.md` | FORUM | 一段對照 |
-| `document/events.md` | SAMPLE | 三處 |
-
-### C. 全新建立（10 個）
-
-```
-pytest.ini
-CLAUDE.md
-README.md
-db/CLAUDE.md
-blueprints/events/CLAUDE.md
-blueprints/hub/CLAUDE.md
-tests/CLAUDE.md
-document/system-spec.md
-document/build-guide.md
-document/hub.md
-```
-
-### D. 明確不搬移
-
-| 項目 | 來源 | 為什麼不搬 |
-|------|------|-----------|
-| `blueprints/forum/`、`templates/forum/`、`static/forum.css`、`db/forum.py`、`tests/test_forum.py` | FORUM | 討論區不在範圍內 |
-| `blueprints/equipment/` 及相關檔案 | SAMPLE | 器材借用不在範圍內 |
-| `db.admin_set_registration_status()` | SAMPLE | 沒有任何路由呼叫，搬過來就是死碼 |
-| `setup/` 一次性種子機制 | SAMPLE | 改用與種子帳號同一套的 `_seed_events_if_empty()` |
-| `document/web-system-spec.md`、`web-build-guide.md` | FORUM | 純前端平行實作，本專案沒有對應版本 |
-
-### E. events 相關檔案總覽（跨階段速查）
-
-| 檔案 | 階段 | 動作 |
+| 檔案 | 階段 | 說明 |
 |------|:--:|------|
-| `db/events.py` | 2 | 修改後複製（SAMPLE） |
-| `db/__init__.py` | 2 | 修改後複製（FORUM） |
-| `static/events.css` | 3 | 修改後複製（SAMPLE） |
-| `templates/hub/home.html` | 5 | 修改後複製（FORUM）——掛上活動卡片 |
-| `blueprints/events/__init__.py` | 8 | 修改後複製（SAMPLE）——含守門修正 |
-| `templates/events/*.html` × 4 | 8 | 修改後複製（SAMPLE） |
-| `blueprints/events/CLAUDE.md` | 8 | 全新建立 |
-| `document/events.md` | 8 | 修改後複製（SAMPLE） |
-| `tests/test_events.py` | 10 | 大幅改寫（SAMPLE） |
-| `tests/data/users.py` | 10 | 修改後複製（FORUM）——加 `SEED_EVENTS` |
+| `db/events.py` | 2 | 三張表的 SQL、狀態機、種子活動 |
+| `db/__init__.py` | 2 | 匯出 events 函式、`init_db()` 建三張表 |
+| `static/events.css` | 3 | `events-` 前綴 |
+| `templates/hub/home.html` | 5 | 掛上活動卡片 |
+| `blueprints/events/__init__.py` | 8 | 八條路由，含三層守門 |
+| `templates/events/*.html` × 4 | 8 | 列表、活動表單、報名表單、我的報名 |
+| `blueprints/events/CLAUDE.md` | 8 | 子系統說明 |
+| `document/events.md` | 8 | 子系統文件 |
+| `tests/test_events.py` | 10 | 80 個案例 |
+| `tests/data/users.py` | 10 | 加 `SEED_EVENTS` 與 28 條訊息 |

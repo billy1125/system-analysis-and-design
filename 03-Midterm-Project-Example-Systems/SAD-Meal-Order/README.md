@@ -1,9 +1,8 @@
-# 校園訂餐系統（sad-meal-order）
+# 校園訂餐系統（SAD-Meal-Order）
 
 以學習為目的之校園訂餐系統，用於系統分析與設計課程的教學。
 
-- **會員登入與管理系統**沿用同一個資料夾底下的 [`SAD-Forum`](../SAD-Forum/README.md)
-- **訂餐子系統**的設計模式取自 [`billy1125/Course-SAD-Sample-System`](https://github.com/billy1125/Course-SAD-Sample-System) 的器材借用（equipment）
+系統分成兩塊：**會員登入與管理**（帳號的完整生命週期），以及**訂餐子系統**（主檔／明細、訂單狀態機、份數的一致性維護）。
 
 Python 3.11 + Flask + SQLite，伺服器端渲染，無前端框架、無 ORM。全部程式碼可以在
 一到兩小時內讀完。
@@ -150,17 +149,3 @@ pytest tests/test_meal.py -v
   寫在規格書 §2.2
 
 完整的技術債清單（25 條，含影響、接受理由、修補方向）見規格書第 11 章。
-
----
-
-## 參考專案
-
-會員系統的來源 `SAD-Forum` 就在同一個資料夾底下（`../SAD-Forum/`），要比對「本系統
-改了什麼、為什麼改」直接 diff 兩邊即可。
-
-訂餐子系統的設計模式來源 `Course-SAD-Sample-System` **不在本儲存庫內**，需要對照時
-自行 clone 到專案外：
-
-```bash
-git clone https://github.com/billy1125/Course-SAD-Sample-System.git
-```

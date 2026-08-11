@@ -1,0 +1,326 @@
+{% extends "base.html" %}
+{% block title %}館藏查詢{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='books.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="book-layout">
+
+  <!-- ── Top bar ── -->
+  <div class="book-topbar">
+    <span class="book-topbar-title">館藏查詢</span>
+    <div class="book-topbar-nav">
+      {% if user %}
+        <a href="{{ url_for('hub.home') }}" class="book-nav-link">返回首頁</a>
+        <a href="{{ url_for('loans.my_loans') }}" class="book-nav-link">我的借閱</a>
+        <a href="{{ url_for('reservations.my_reservations') }}" class="book-nav-link">我的預約</a>
+        {% if user['role'] == 0 %}
+          <a href="{{ url_for('loans.admin_loans') }}" class="book-nav-link">借閱管理</a>
+        {% endif %}
+        <span class="book-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+        <a href="{{ url_for('auth.logout') }}" class="book-btn book-btn-danger">登出</a>
+      {% else %}
+        <a href="{{ url_for('auth.login_page') }}" class="book-btn book-btn-primary">登入</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ── Flash messages ── -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="book-flash book-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <!-- ── Two-column content ── -->
+  <div class="book-content">
+
+    <!-- ══ Left: book list ══ -->
+    <div class="book-left">
+      <div class="book-panel-header">
+        <h2>書目清單</h2>
+        <div class="book-panel-actions">
+          <span class="book-total">共 {{ total }} 筆</span>
+          {% if user and user['role'] == 0 %}
+            <a href="{{ url_for('books.new_book') }}"
+               class="book-btn book-btn-primary book-btn-sm">+ 新增書目</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <form method="get" action="{{ url_for('books.index') }}" class="book-search-form">
+        <input type="text" name="q" value="{{ keyword }}" class="book-search-input"
+               placeholder="搜尋書名、作者或 ISBN">
+        <select name="category" class="book-search-select">
+          <option value="all" {{ 'selected' if category == 'all' }}>全部分類</option>
+          {% for key, label in category_labels.items() %}
+            <option value="{{ key }}" {{ 'selected' if category == key }}>{{ label }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="book-btn book-btn-primary book-btn-sm">搜尋</button>
+        <a href="{{ url_for('books.index') }}" class="book-btn book-btn-secondary book-btn-sm">清除</a>
+      </form>
+
+      <div class="book-table-wrap">
+        <div class="book-table-wrap-inner">
+          <table class="book-table">
+            <thead>
+              <tr>
+                <th class="col-id">ID</th>
+                <th>書名</th>
+                <th>作者</th>
+                <th class="col-status">分類</th>
+                <th class="col-qty">在架</th>
+                <th class="col-qty">館藏</th>
+                <th class="col-status">狀態</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for b in books %}
+              <tr class="{{ 'book-row-selected' if selected and selected['id'] == b['id'] else '' }}">
+                <td>{{ b['id'] }}</td>
+                <td>
+                  <a href="{{ url_for('books.index', id=b['id'], page=page, q=keyword or none, category=category) }}"
+                     class="book-title-link">{{ b['title'] }}</a>
+                </td>
+                <td>{{ b['author'] }}</td>
+                <td>{{ category_labels.get(b['category'], b['category']) }}</td>
+                <td class="book-qty-cell">{{ b['available_copies'] }}</td>
+                <td class="book-qty-cell">{{ b['total_copies'] }}</td>
+                <td>
+                  <span class="book-badge book-badge-{{ b['book_status'] }}">
+                    {{ book_status_labels.get(b['book_status'], b['book_status']) }}
+                  </span>
+                </td>
+              </tr>
+              {% else %}
+              <tr><td colspan="7" class="book-empty">查無符合條件的書目</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      {% if total_pages > 1 %}
+      <div class="book-pagination">
+        {% if page > 1 %}
+          <a href="{{ url_for('books.index', page=page-1, q=keyword or none, category=category, id=selected['id'] if selected else none) }}"
+             class="book-page-btn">上一頁</a>
+        {% else %}
+          <span class="book-page-btn book-page-disabled">上一頁</span>
+        {% endif %}
+        <span class="book-page-info">第 {{ page }} / {{ total_pages }} 頁</span>
+        {% if page < total_pages %}
+          <a href="{{ url_for('books.index', page=page+1, q=keyword or none, category=category, id=selected['id'] if selected else none) }}"
+             class="book-page-btn">下一頁</a>
+        {% else %}
+          <span class="book-page-btn book-page-disabled">下一頁</span>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- ══ Right: book detail ══ -->
+    <div class="book-right">
+      {% if selected %}
+        <div class="book-panel-header">
+          <div class="book-detail-title-wrap">
+            <h2>{{ selected['title'] }}</h2>
+            <span class="book-badge book-badge-lg book-badge-{{ selected['book_status'] }}">
+              {{ book_status_labels.get(selected['book_status'], selected['book_status']) }}
+            </span>
+          </div>
+          {% if user and user['role'] == 0 %}
+          <div class="book-panel-actions">
+            <a href="{{ url_for('books.edit_book', book_id=selected['id']) }}"
+               class="book-btn book-btn-secondary book-btn-sm">修改書目</a>
+            <form method="post" action="{{ url_for('books.delete_book', book_id=selected['id']) }}"
+                  class="book-inline-form"
+                  onsubmit="return confirm('確定下架此書目？下架後讀者將無法查詢與借閱。')">
+              <button type="submit" class="book-btn book-btn-danger book-btn-sm">下架書目</button>
+            </form>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="book-detail-scroll">
+          <div class="book-info-grid">
+            <div class="book-info-row">
+              <span class="book-info-label">作者</span>
+              <span class="book-info-value">{{ selected['author'] }}</span>
+            </div>
+            <div class="book-info-row">
+              <span class="book-info-label">ISBN</span>
+              <span class="book-info-value">{{ selected['isbn'] }}</span>
+            </div>
+            <div class="book-info-row">
+              <span class="book-info-label">出版者</span>
+              <span class="book-info-value">{{ selected['publisher'] or '—' }}</span>
+            </div>
+            <div class="book-info-row">
+              <span class="book-info-label">出版年</span>
+              <span class="book-info-value">{{ selected['publish_year'] or '—' }}</span>
+            </div>
+            <div class="book-info-row">
+              <span class="book-info-label">分類</span>
+              <span class="book-info-value">
+                {{ category_labels.get(selected['category'], selected['category']) }}
+              </span>
+            </div>
+            <div class="book-info-row">
+              <span class="book-info-label">館藏 / 在架</span>
+              <span class="book-info-value">
+                {{ selected['total_copies'] }} 冊 / 在架 {{ selected['available_copies'] }} 冊
+              </span>
+            </div>
+            <div class="book-info-row">
+              <span class="book-info-label">預約排隊</span>
+              <span class="book-info-value">{{ waiting }} 人</span>
+            </div>
+            {% if selected['description'] %}
+            <div class="book-info-row">
+              <span class="book-info-label">內容簡介</span>
+              <span class="book-info-value">{{ selected['description'] }}</span>
+            </div>
+            {% endif %}
+          </div>
+
+          <!-- ── 借閱 / 預約動作 ── -->
+          <div class="book-borrow-action">
+            {% if not user %}
+              <span class="book-borrow-hint">
+                請 <a href="{{ url_for('auth.login_page') }}">登入</a> 後借閱或預約
+              </span>
+            {% elif my_loan %}
+              <span class="book-borrow-hint">您已借閱此書</span>
+              <a href="{{ url_for('loans.loan_detail', loan_id=my_loan['id']) }}"
+                 class="book-btn book-btn-secondary">查看借閱紀錄</a>
+            {% elif selected['book_status'] != 'available' %}
+              <span class="book-borrow-hint">此書目前暫停借閱</span>
+            {% elif selected['available_copies'] > 0 %}
+              <form method="post" action="{{ url_for('loans.borrow', book_id=selected['id']) }}"
+                    class="book-inline-form">
+                <button type="submit" class="book-btn book-btn-primary">借閱這本書</button>
+              </form>
+            {% elif my_reserve %}
+              <span class="book-borrow-hint">
+                您已預約此書（{{ '可取書' if my_reserve['reservation_status'] == 'ready' else '等待中' }}）
+              </span>
+              <a href="{{ url_for('reservations.my_reservations') }}"
+                 class="book-btn book-btn-secondary">查看我的預約</a>
+            {% else %}
+              <span class="book-borrow-hint">目前無可借複本</span>
+              <form method="post"
+                    action="{{ url_for('reservations.reserve', book_id=selected['id']) }}"
+                    class="book-inline-form">
+                <button type="submit" class="book-btn book-btn-primary">預約候補</button>
+              </form>
+            {% endif %}
+          </div>
+
+          <!-- ── 複本清單 ── -->
+          <p class="book-section-title">館藏複本</p>
+          <table class="book-table book-table-sm">
+            <thead>
+              <tr>
+                <th>條碼</th>
+                <th class="col-status">狀態</th>
+                {% if user and user['role'] == 0 %}
+                  <th class="col-action">操作</th>
+                {% endif %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for c in copies %}
+              <tr>
+                <td>{{ c['copy_barcode'] }}</td>
+                <td>
+                  <span class="book-badge book-badge-{{ c['copy_status'] }}">
+                    {{ copy_status_labels.get(c['copy_status'], c['copy_status']) }}
+                  </span>
+                </td>
+                {% if user and user['role'] == 0 %}
+                <td class="book-actions-cell">
+                  {% if c['copy_status'] == 'borrowed' %}
+                    <span class="book-field-hint">借出中</span>
+                  {% else %}
+                    <form method="post"
+                          action="{{ url_for('books.update_copy_status', copy_id=c['id']) }}"
+                          class="book-inline-form">
+                      <select name="copy_status" class="book-status-select">
+                        {% for s in assignable_copy_status %}
+                          <option value="{{ s }}" {{ 'selected' if c['copy_status'] == s }}>
+                            {{ copy_status_labels.get(s, s) }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                      <button type="submit" class="book-btn-action">更新</button>
+                    </form>
+                    <form method="post"
+                          action="{{ url_for('books.delete_copy', copy_id=c['id']) }}"
+                          class="book-inline-form"
+                          onsubmit="return confirm('確定刪除此複本？')">
+                      <button type="submit" class="book-btn-action book-btn-action-danger">刪除</button>
+                    </form>
+                  {% endif %}
+                </td>
+                {% endif %}
+              </tr>
+              {% else %}
+              <tr><td colspan="3" class="book-empty">此書目尚無複本</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          {% if user and user['role'] == 0 %}
+            <form method="post" action="{{ url_for('books.add_copy', book_id=selected['id']) }}"
+                  class="book-inline-form">
+              <button type="submit" class="book-btn book-btn-secondary book-btn-sm">+ 新增複本</button>
+            </form>
+
+            <!-- ── 借閱歷程（僅館員可見） ── -->
+            <p class="book-section-title">最近借閱紀錄</p>
+            <table class="book-table book-table-sm">
+              <thead>
+                <tr>
+                  <th>借閱人</th>
+                  <th>借出日</th>
+                  <th>到期日</th>
+                  <th class="col-status">狀態</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for l in loan_history %}
+                <tr>
+                  <td>{{ l['borrower_name'] or l['borrower_display'] or l['borrower_email'] }}</td>
+                  <td class="book-datetime-cell">{{ l['borrowed_at'][:10] }}</td>
+                  <td class="book-datetime-cell">{{ l['due_at'][:10] }}</td>
+                  <td>
+                    {% if l['returned_at'] %}
+                      <span class="book-badge book-badge-lost">已歸還</span>
+                    {% elif l['is_overdue'] %}
+                      <span class="book-badge book-badge-unavailable">逾期未還</span>
+                    {% else %}
+                      <span class="book-badge book-badge-borrowed">借閱中</span>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="4" class="book-empty">尚無借閱紀錄</td></tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endif %}
+        </div>
+
+      {% else %}
+        <div class="book-placeholder">← 點選左側書名以查看詳細資訊</div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}{{ '修改書目' if mode == 'edit' else '新增書目' }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='books.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="book-layout">
+
+  <div class="book-topbar">
+    <span class="book-topbar-title">館藏維護</span>
+    <div class="book-topbar-nav">
+      <a href="{{ url_for('books.index') }}" class="book-nav-link">書目清單</a>
+      <a href="{{ url_for('hub.home') }}" class="book-nav-link">返回首頁</a>
+      <span class="book-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="book-btn book-btn-danger">登出</a>
+    </div>
+  </div>
+
+  <div class="book-form-page">
+    <div class="book-form-card">
+      <h2>{{ '修改書目' if mode == 'edit' else '新增書目' }}</h2>
+
+      {% if error %}
+        <div class="book-alert book-alert-error">{{ error }}</div>
+      {% endif %}
+
+      <form method="post">
+        <div class="book-form-group">
+          <label>書名 <span class="book-required">*</span></label>
+          <input type="text" name="title" value="{{ form['title'] }}" required>
+        </div>
+
+        <div class="book-form-group">
+          <label>作者 <span class="book-required">*</span></label>
+          <input type="text" name="author" value="{{ form['author'] }}" required>
+        </div>
+
+        <div class="book-form-group">
+          <label>ISBN <span class="book-required">*</span></label>
+          <input type="text" name="isbn" value="{{ form['isbn'] }}" required>
+          <span class="book-field-hint">10 碼或 13 碼，可含連字號（儲存時會自動移除）</span>
+        </div>
+
+        <div class="book-form-row">
+          <div class="book-form-group">
+            <label>出版者</label>
+            <input type="text" name="publisher" value="{{ form['publisher'] }}">
+          </div>
+          <div class="book-form-group">
+            <label>出版年</label>
+            <input type="number" name="publish_year" min="1000" max="2100"
+                   value="{{ form['publish_year'] }}">
+          </div>
+        </div>
+
+        <div class="book-form-group">
+          <label>分類 <span class="book-required">*</span></label>
+          <select name="category">
+            {% for key, label in category_labels.items() %}
+              <option value="{{ key }}" {{ 'selected' if form['category'] == key }}>{{ label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="book-form-group">
+          <label>內容簡介</label>
+          <textarea name="description">{{ form['description'] }}</textarea>
+        </div>
+
+        {% if mode == 'new' %}
+          <div class="book-form-divider"></div>
+          <div class="book-form-group">
+            <label>複本數量 <span class="book-required">*</span></label>
+            <input type="number" name="copy_count" min="1" max="50"
+                   value="{{ form['copy_count'] }}" required>
+            <span class="book-field-hint">建立書目時一併產生的實體冊數，條碼由系統自動編號</span>
+          </div>
+        {% else %}
+          <div class="book-form-divider"></div>
+          <div class="book-form-group">
+            <label>書目狀態 <span class="book-required">*</span></label>
+            <select name="book_status">
+              {% for key, label in book_status_labels.items() %}
+                <option value="{{ key }}" {{ 'selected' if form['book_status'] == key }}>{{ label }}</option>
+              {% endfor %}
+            </select>
+            <span class="book-field-hint">設為暫停借閱後，讀者無法借閱或預約此書目</span>
+          </div>
+        {% endif %}
+
+        <div class="book-form-actions">
+          <button type="submit" class="book-btn book-btn-primary">
+            {{ '儲存修改' if mode == 'edit' else '新增書目' }}
+          </button>
+          <a href="{{ url_for('books.index', id=book['id'] if book else none) }}"
+             class="book-btn book-btn-secondary">取消</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -24,17 +24,14 @@
 
 本文件是其他文件的上位依據。當本文件與其他文件衝突時，以本文件為準，並回頭修正衝突的那一份。
 
-### 0.2 本系統的來源
+### 0.2 本系統的組成
 
-本系統由兩個既有教學專案整併而成：
+本系統分成兩塊：
 
-| 來源專案 | 提供的部分 |
-|---------|-----------|
-| `sad-forum` | 會員帳號與管理：`auth`、`hub`、`profile`、`admin` 四個 Blueprint、`users` 資料表、三層權限模型、`utils.py`、`rules/`、測試架構、CSS token 架構 |
-| `Course-SAD-Sample-System` | 器材借用：`equipment` Blueprint、`equipment` / `borrow_orders` / `borrow_order_items` 三張資料表、借用單狀態機、庫存扣減邏輯、七個器材模板與 `equipment.css` |
-
-**這兩個專案僅作為血緣來源，不在本資料夾內。**
-檔案層級的對照見附錄 B。
+| 區塊 | 內容 |
+|------|------|
+| 會員帳號與管理 | `auth`、`hub`、`profile`、`admin` 四個 Blueprint、`users` 資料表、三層權限模型、`utils.py`、`rules/`、測試架構、CSS token 架構 |
+| 器材借用 | `equipment` Blueprint、`equipment` / `borrow_orders` / `borrow_order_items` 三張資料表、借用單狀態機、庫存扣減邏輯、七個器材模板與 `equipment.css` |
 
 ---
 
@@ -726,7 +723,7 @@ CSS 架構、按鍵 token、`.login-form` 限制、`<a>` vs `<button>` 規則、
 既沒有排程作業，也沒有請求時的延遲判定。
 影響：借用單過了 `borrow_end_at` 仍停在 `borrowed`，管理員無法從清單上區分「還在借用期間內」與「已經逾期」。
 逾期本身是器材借用系統最核心的管理需求之一，這個缺口讓系統只能記錄，不能管理。
-為何接受：從參考專案原樣搬移，保留缺口是為了讓它成為課堂練習題——
+為何接受：保留這個缺口是為了讓它成為課堂練習題——
 它同時牽涉「狀態要用存的還是算的」這個典型的設計取捨。
 修補方向：兩種做法。(a) **計算式**：新增 `_order_status(order, now)` helper，
 在渲染時把 `borrowed` 且 `borrow_end_at < now` 的單顯示為逾期，資料庫不動；
@@ -762,7 +759,7 @@ CSS 架構、按鍵 token、`.login-form` 限制、`<a>` vs `<button>` 規則、
 兩次 `conn.execute()` 加一次 `conn.commit()`，而不是 `with conn:`。
 影響：理論上第一次 UPDATE 之後、第二次之前若發生例外，會留下主檔與明細狀態不一致的資料。
 實務上兩次 UPDATE 之間沒有任何可能失敗的操作，風險極低。
-為何接受：從參考專案原樣搬移。與 `mark_order_borrowed` 的對照本身就是教材——
+為何接受：與 `mark_order_borrowed` 的對照本身就是教材——
 讓學生思考「什麼時候真的需要 transaction」。
 修補方向：改用 `with conn:` 包住兩次 UPDATE。工作量 15 分鐘。
 
@@ -823,7 +820,7 @@ WHERE equipment_id = ? AND order_status IN ('approved','borrowed') AND NOT (end 
 **KI-07 — 驗證碼答案在登入成功後未清除**
 描述：`session['captcha']` 寫入後從未 `session.pop()`，只會被下一次 `GET /captcha.png` 覆寫。
 影響：同一組驗證碼可以無限次重放，驗證碼對自動化攻擊的阻擋效果大打折扣。
-為何接受：從參考專案原樣沿用。
+為何接受：刻意保留為教材。
 修補方向：登入成功（或每次比對之後）呼叫 `session.pop('captcha', None)`。**工作量 5 分鐘，是本清單中投資報酬率最高的一項。**
 
 **KI-16 — 全站 POST 表單無 CSRF token**
@@ -877,7 +874,7 @@ WHERE equipment_id = ? AND order_status IN ('approved','borrowed') AND NOT (end 
 **KI-12 — 確認對話框的寫法在兩個子系統中不一致**
 描述：`admin` 寫在 `<button onclick="return confirm(...)">`，`equipment` 寫在 `<form onsubmit="return confirm(...)">`。
 影響：純粹的不一致，兩種寫法功能相同。
-為何接受：兩者各自沿用來源專案的慣例，統一等於改動其中一份的原貌。
+為何接受：兩種寫法都可行，統一等於為了整齊而改動其中一份。
 修補方向：擇一統一。建議統一為 `<form onsubmit>`，因為它同時涵蓋鍵盤送出。工作量 30 分鐘。
 
 **KI-19 — 狀態 badge 的色碼硬編碼**
@@ -891,7 +888,7 @@ WHERE equipment_id = ? AND order_status IN ('approved','borrowed') AND NOT (end 
 描述：核准／拒絕的備註由 `onclick="this.form.review_note.value=prompt(...)"` 收集。
 影響：`prompt()` 無法輸入多行、無法取消區分（取消會得到 `null`，被 `|| ''` 轉成空字串）、
 在部分瀏覽器中可被停用、行動裝置體驗差。
-為何接受：從參考專案原樣搬移，且它是全站唯一需要「送出前補一個欄位」的場景。
+為何接受：它是全站唯一需要「送出前補一個欄位」的場景。
 修補方向：改為在 `admin_orders.html` 中展開一個 `<textarea>`，或做成獨立的審核頁。工作量 1.5 小時。
 
 **KI-24 — 無 flash 區塊的共用 partial**
@@ -950,18 +947,18 @@ WHERE equipment_id = ? AND order_status IN ('approved','borrowed') AND NOT (end 
 為何接受：SQLite 的並行測試需要多執行緒與時序控制，複雜度遠高於本系統其他部分。
 修補方向：以 `threading` 同時發動兩次 `mark_order_borrowed`，斷言最終庫存不為負。工作量 2 小時。
 
-### 11.7 本版相對於參考專案的修正
+### 11.7 幾項刻意做強的地方
 
-以下幾點**不是**本系統的技術債，而是整併時刻意做的修正，記錄於此以免日後被誤認為偏差：
+以下幾點**不是**本系統的技術債，而是刻意做強的設計，記錄於此以免日後被誤認為偏差：
 
-| 項目 | 參考專案的做法 | 本系統的做法 | 理由 |
-|------|--------------|-------------|------|
-| `equipment._current_user()` | 只查 `find_user_by_id`，不檢查帳號有效性 | 加上 `_is_usable` 檢查，失效帳號回傳 `None` | 停用帳號不應能佔用審核流程並扣減共用器材（§11.0） |
-| equipment 管理端路由 | 只檢查 `_is_admin` | 補上第 2 層 `user is None → session.clear()` | 對齊 §4.3 的三層順序；停用中的管理員應被登出而非收到「權限不足」 |
-| `equipment.borrow` | 以 flash「帳號已停用」擋下失效帳號 | 由第 2 層統一處理，清 session 並導回登入 | 同上 |
-| 種子器材 | 無（示範資料只存在於已編譯的 `database.db` 中） | `_seed_equipment_if_empty()` 可重複執行 | 讓 `rm database.db && python app.py` 就能還原完整的可操作環境 |
-| `tests/data/users.py` | equipment 訊息字串散落在測試檔內 | 全部集中到 `MESSAGES` | 對齊 sad-forum 的測試資料慣例 |
-| `pytest.ini` | 無 | 新增，限定 `testpaths = tests` | 兩個參考專案放在本目錄下時，其 `tests/conftest.py` 會與本專案衝突 |
+| 項目 | 本系統的做法 | 理由 |
+|------|-------------|------|
+| `equipment._current_user()` | 加上 `_is_usable` 檢查，失效帳號回傳 `None` | 停用帳號不應能佔用審核流程並扣減共用器材（§11.0） |
+| equipment 管理端路由 | 除了 `_is_admin`，補上第 2 層 `user is None → session.clear()` | 對齊 §4.3 的三層順序；停用中的管理員應被登出而非收到「權限不足」 |
+| `equipment.borrow` | 失效帳號由第 2 層統一處理，清 session 並導回登入 | 同上，不用 flash「帳號已停用」草草擋下 |
+| 種子器材 | `_seed_equipment_if_empty()` 可重複執行 | 讓 `rm database.db && python app.py` 就能還原完整的可操作環境 |
+| `tests/data/users.py` | equipment 訊息字串全部集中到 `MESSAGES` | 與 auth／admin 的測試資料慣例一致 |
+| `pytest.ini` | 限定 `testpaths = tests` | 確保只收集本系統的測試
 
 ---
 
@@ -1035,31 +1032,7 @@ WHERE equipment_id = ? AND order_status IN ('approved','borrowed') AND NOT (end 
 | `/equipment/orders/<id>`、`/edit`、`/cancel` | `借用單不存在`、`無權限查看此借用單`、`無權限修改此借用單`、`只有待審核的借用單可以修改`、`至少需選擇一項器材`、`借用申請已更新`、`借用申請已取消`、`無法取消此借用單` |
 | `/equipment/admin/orders/*` | `無操作權限`、`借用單已核准`、`核准失敗（器材可借數量不足或借用單狀態不符）`、`借用單已拒絕`、`拒絕失敗（借用單狀態不符）`、`已登記借出`、`登記借出失敗（器材可借數量不足或借用單狀態不符）`、`已登記歸還`、`登記歸還失敗（借用單狀態不符）` |
 
-## 附錄 B：與參考專案的檔案對照
-
-| 本系統檔案 | 來源 | 改動 |
-|-----------|------|------|
-| `utils.py`、`requirements.txt`、`Dockerfile`、`docker-compose.yml`、`.dockerignore`、`.gitattributes` | sad-forum | `.dockerignore` 增加排除項 |
-| `db/connection.py`、`db/users.py` | sad-forum | 無 |
-| `db/__init__.py` | sad-forum | 改為匯出 equipment 函式、`init_db()` 改建器材相關表 |
-| `blueprints/auth/`、`blueprints/profile/`、`blueprints/admin/` | sad-forum | 無 |
-| `blueprints/hub/__init__.py` | sad-forum | 無 |
-| `templates/base.html`、`auth/`、`profile/`、`admin/` | sad-forum | `base.html` 與 `login.html` 只改標題文字 |
-| `templates/hub/home.html` | sad-forum | 服務卡片改為器材相關 |
-| `static/common.css`、`login.css`、`hub.css`、`profile.css`、`admin.css` | sad-forum | 無 |
-| `rules/flask-blueprint.md`、`rules/database.md` | sad-forum | 範例改以 equipment 為對象 |
-| `tests/conftest.py`、`tests/data/users.py` | sad-forum | `MESSAGES` 增加 equipment 區塊 |
-| `tests/test_auth.py`、`test_profile.py`、`test_admin.py` | sad-forum | 無 |
-| `tests/test_hub.py` | sad-forum | 論壇相關斷言改為器材相關 |
-| `db/equipment.py` | Course-SAD-Sample-System | 改為相對 import；補 docstring；新增 `_seed_equipment_if_empty` |
-| `blueprints/equipment/__init__.py` | Course-SAD-Sample-System | `_current_user()` 加 `_is_usable`；各寫入路由補第 2 層守門（見 §11.7） |
-| `templates/equipment/*.html` | Course-SAD-Sample-System | topbar 加「返回首頁」連結 |
-| `static/equipment.css` | Course-SAD-Sample-System | 無 |
-| `tests/test_equipment.py` | Course-SAD-Sample-System | 大幅擴充，訊息字串改用 `MESSAGES` |
-| `app.py` | 兩者 | 註冊 admin + equipment，移除 `setup/` 一次性種子機制 |
-| `pytest.ini` | 新增 | 限定測試收集範圍 |
-
-## 附錄 C：詞彙表
+## 附錄 B：詞彙表
 
 | 詞 | 說明 |
 |----|------|

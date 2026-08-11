@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}{{ '修改報修單' if mode == 'edit' else '我要報修' }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='repair.css') }}">
+{% endblock %}
+
+{% block body %}
+{# 新增與修改共用同一個表單樣板，以 mode 區分標題與送出目標。
+   兩者的欄位完全相同——修改就是把同一張表單重新填一次。 #}
+<div class="repair-layout">
+  <div class="repair-topbar">
+    <span class="repair-topbar-title">{{ '修改報修單' if mode == 'edit' else '我要報修' }}</span>
+    <div class="repair-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="repair-nav-link">返回首頁</a>
+      <a href="{{ url_for('repair.index') }}" class="repair-nav-link">我的報修單</a>
+      <span class="repair-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="repair-btn repair-btn-danger">登出</a>
+    </div>
+  </div>
+
+  <div class="repair-form-page">
+    <div class="repair-form-card">
+      <h2>{{ '修改報修單 #%s' % req['id'] if mode == 'edit' else '申報宿舍設施故障' }}</h2>
+
+      {% if error %}
+        <div class="repair-alert repair-alert-error">{{ error }}</div>
+      {% endif %}
+
+      {% if mode == 'edit' %}
+        <div class="repair-alert repair-alert-info">
+          報修單一經派工便無法修改。若要補充資訊，請回到報修單頁面新增回覆。
+        </div>
+      {% endif %}
+
+      <form method="POST"
+            action="{{ url_for('repair.edit_request', request_id=req['id']) if mode == 'edit'
+                       else url_for('repair.new_request') }}"
+            novalidate>
+        <div class="repair-form-group">
+          <label for="title">報修標題 <span class="required">*</span></label>
+          <input type="text" id="title" name="title" value="{{ form['title'] }}"
+                 placeholder="一句話描述問題，例如「浴室水龍頭持續漏水」">
+        </div>
+
+        <div class="repair-form-row">
+          <div class="repair-form-group">
+            <label for="category">維修類別 <span class="required">*</span></label>
+            <select id="category" name="category">
+              {% for key, label in category_labels.items() %}
+                <option value="{{ key }}" {{ 'selected' if form['category'] == key }}>{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="repair-form-group">
+            <label for="priority">優先等級 <span class="required">*</span></label>
+            <select id="priority" name="priority">
+              {% for key, label in priority_labels.items() %}
+                <option value="{{ key }}" {{ 'selected' if form['priority'] == key }}>{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="repair-form-row">
+          <div class="repair-form-group">
+            <label for="dorm_building">宿舍棟別 <span class="required">*</span></label>
+            <input type="text" id="dorm_building" name="dorm_building"
+                   value="{{ form['dorm_building'] }}" placeholder="例如 A 棟">
+          </div>
+
+          <div class="repair-form-group">
+            <label for="room_no">房號／地點 <span class="required">*</span></label>
+            <input type="text" id="room_no" name="room_no"
+                   value="{{ form['room_no'] }}" placeholder="例如 301 或 3 樓走廊">
+          </div>
+        </div>
+
+        <div class="repair-form-group">
+          <label for="contact_phone">聯絡電話</label>
+          <input type="text" id="contact_phone" name="contact_phone"
+                 value="{{ form['contact_phone'] }}" placeholder="選填，維修人員到場前會先聯繫">
+        </div>
+
+        <div class="repair-form-group">
+          <label for="description">故障情形 <span class="required">*</span></label>
+          <textarea id="description" name="description"
+                    placeholder="請描述故障的位置、症狀與發生時間，越具體越能縮短處理時間">{{ form['description'] }}</textarea>
+        </div>
+
+        <div class="repair-form-actions">
+          <button type="submit" class="repair-btn repair-btn-primary">
+            {{ '儲存修改' if mode == 'edit' else '送出報修' }}
+          </button>
+          <a href="{{ url_for('repair.detail', request_id=req['id']) if mode == 'edit'
+                     else url_for('repair.index') }}"
+             class="repair-btn repair-btn-secondary">取消</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

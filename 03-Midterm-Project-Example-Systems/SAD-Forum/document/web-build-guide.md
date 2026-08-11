@@ -16,7 +16,7 @@
 
 1. 讀完 [`document/system-spec.md`](system-spec.md)（Flask 版規格書）——功能需求、驗證規則、訊息字串都在那裡，本版不重複
 2. 讀完 [`document/web-system-spec.md`](web-system-spec.md)——特別是 §1.2（這個版本不能做什麼）與 §4.2（權限檢查是裝飾性的）
-3. 手邊有 Flask 版的原始碼可以對照。本流程書大量出現「照抄 `db/forum.py` 的某個 SQL」這類指示
+3. 手邊有 Flask 版的原始碼可以對照。本流程書大量出現「沿用 `db/forum.py` 的某個 SQL」這類指示
 
 **建議先完成 Flask 版再做本版。** 反過來做也不是不行，但會失去大部分的對照價值。
 

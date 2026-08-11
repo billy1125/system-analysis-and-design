@@ -39,8 +39,8 @@
 `url_for()` 產生的 URL 帶尾斜線（`/events/`、`/events/my`）。
 
 > 路徑形狀有兩種：`/events/edit/<id>`（動詞在前）與 `/events/<id>/register`（id 在前）。
-> 這個不一致是沿用範本的（規格書 KI-25）。可以理解成「動詞在前 = 操作活動本身」、
-> 「id 在前 = 操作活動底下的東西」，但範本並未如此宣告。
+> 這個不一致是刻意保留的（規格書 KI-25）。可以理解成「動詞在前 = 操作活動本身」、
+> 「id 在前 = 操作活動底下的東西」，但系統並未如此宣告。
 
 ## 權限規則
 
@@ -68,9 +68,8 @@ def _current_user():
     return user if _is_usable(user) else None
 ```
 
-**這是相對於教學範本 `Course-SAD-Sample-System` 的修正。**
-範本的版本只查 id 不驗狀態，導致被停用或刪除的帳號只要 session 未清，
-仍能建立公開活動、報名並佔用別人的名額，讓會員管理的停用功能形同虛設。
+**只查 id 不驗狀態是不夠的。** 那會讓被停用或刪除的帳號只要 session 未清，
+仍能建立公開活動、報名並佔用別人的名額，使會員管理的停用功能形同虛設。
 
 修正的判準見規格書 §11.0：缺陷的影響是否會外溢到當事人以外的人。
 
@@ -398,9 +397,8 @@ GET /events/my
 刪除活動與取消報名一律使用 `<button type="submit">` 搭配
 `onclick="return confirm(...)"`，**不使用 `<a href="#" onclick>`**。
 
-> 這是相對於教學範本的修正（規格書 §11.5 第 2 項）。
-> 範本用 `<a href="#" onclick="...this.closest('form').submit()">` 送出 POST，
-> 語意錯誤且鍵盤操作與螢幕閱讀器行為不正確。
+> 理由見規格書 §11.5 第 2 項：用 `<a href="#" onclick="...this.closest('form').submit()">`
+> 送出 POST 是語意錯誤，且鍵盤操作與螢幕閱讀器行為不正確。
 
 ## CSS
 

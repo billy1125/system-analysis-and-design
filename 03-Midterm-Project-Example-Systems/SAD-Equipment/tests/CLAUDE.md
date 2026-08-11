@@ -9,7 +9,7 @@
 - **框架**：pytest + pytest-flask（使用 Flask test client，不啟動實際伺服器）
 - **DB 隔離**：每個測試函式透過 `tmp_path` fixture 建立獨立 SQLite 暫存檔，並植入種子資料，測試結束後自動清除
 - **驗證碼**：直接透過 `client.session_transaction()` 將答案寫入 session，繞過圖形驗證碼產生流程
-- **收集範圍**：根目錄的 `pytest.ini` 指定 `testpaths = tests`，並把兩個參考專案排除在收集範圍外
+- **收集範圍**：根目錄的 `pytest.ini` 指定 `testpaths = tests`，只收集本系統的測試
 
 ---
 

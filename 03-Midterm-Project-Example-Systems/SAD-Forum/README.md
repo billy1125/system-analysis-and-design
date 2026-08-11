@@ -1,4 +1,4 @@
-# 會員管理系統（sad-user-management）
+# 會員管理系統（SAD-Forum）
 
 ## 專案摘要
 

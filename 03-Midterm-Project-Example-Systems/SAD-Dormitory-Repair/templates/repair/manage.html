@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block title %}報修管理{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='repair.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="repair-layout">
+  <div class="repair-topbar">
+    <span class="repair-topbar-title">報修管理</span>
+    <div class="repair-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="repair-nav-link">返回首頁</a>
+      <a href="{{ url_for('repair.index') }}" class="repair-nav-link">我的報修單</a>
+      <a href="{{ url_for('admin.user_list') }}" class="repair-nav-link">會員管理</a>
+      <span class="repair-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="repair-btn repair-btn-danger">登出</a>
+    </div>
+  </div>
+
+  {% for category, message in get_flashed_messages(with_categories=true) %}
+    <div class="repair-flash repair-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+  {% endfor %}
+
+  <div class="repair-main">
+    <div class="repair-summary">
+      {% for key, label in status_labels.items() %}
+        <a href="{{ url_for('repair.manage', status=key, q=keyword or none) }}"
+           class="repair-summary-item {{ 'repair-summary-active' if status == key }}">
+          <span class="repair-summary-count">{{ counts[key] }}</span>
+          <span class="repair-summary-label">{{ label }}</span>
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="repair-filter-bar">
+      <div class="repair-filter-links">
+        <a href="{{ url_for('repair.manage', status='all', q=keyword or none) }}"
+           class="repair-filter-link {{ 'repair-filter-active' if status == 'all' }}">全部</a>
+        {% for key, label in status_labels.items() %}
+          <a href="{{ url_for('repair.manage', status=key, q=keyword or none) }}"
+             class="repair-filter-link {{ 'repair-filter-active' if status == key }}">{{ label }}</a>
+        {% endfor %}
+      </div>
+
+      <form method="get" action="{{ url_for('repair.manage') }}" class="repair-search-form">
+        <input type="hidden" name="status" value="{{ status }}">
+        <input type="text" name="q" value="{{ keyword }}" class="repair-search-input"
+               placeholder="搜尋標題、棟別、房號或申報人">
+        <button type="submit" class="repair-btn repair-btn-primary repair-btn-sm">搜尋</button>
+      </form>
+    </div>
+
+    <div class="repair-panel-header">
+      <span class="repair-panel-title">全部報修單</span>
+      <span class="repair-total">共 {{ total }} 筆</span>
+    </div>
+
+    <div class="repair-table-wrap">
+      <table class="repair-table">
+        <thead>
+          <tr>
+            <th class="col-id">單號</th>
+            <th class="col-title">標題</th>
+            <th class="col-cat">類別</th>
+            <th class="col-loc">地點</th>
+            <th class="col-name">申報人</th>
+            <th class="col-pri">優先</th>
+            <th class="col-status">狀態</th>
+            <th class="col-name">承辦人</th>
+            <th class="col-time">最後異動</th>
+            <th class="col-action">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in requests %}
+            <tr>
+              <td>#{{ r['id'] }}</td>
+              <td>
+                <a href="{{ url_for('repair.detail', request_id=r['id']) }}"
+                   class="repair-title-link">{{ r['title'] }}</a>
+              </td>
+              <td>{{ category_labels[r['category']] }}</td>
+              <td>{{ r['dorm_building'] }} {{ r['room_no'] }}</td>
+              <td>{{ r['requester_display'] }}</td>
+              <td>
+                <span class="repair-badge repair-pri-{{ r['priority'] }}">
+                  {{ priority_labels[r['priority']] }}
+                </span>
+              </td>
+              <td>
+                <span class="repair-badge repair-status-{{ r['request_status'] }}">
+                  {{ status_labels[r['request_status']] }}
+                </span>
+              </td>
+              <td>{{ r['assignee_display'] or '—' }}</td>
+              <td>{{ r['updated_at'] }}</td>
+              <td class="repair-actions-cell">
+                <a href="{{ url_for('repair.detail', request_id=r['id']) }}"
+                   class="repair-btn-action">處理</a>
+                <form method="POST" class="repair-inline-form"
+                      action="{{ url_for('repair.delete', request_id=r['id']) }}">
+                  <button type="submit" class="repair-btn-action-danger"
+                          onclick="return confirm('確定要刪除這張報修單及其所有處理紀錄嗎？')">刪除</button>
+                </form>
+              </td>
+            </tr>
+          {% else %}
+            <tr><td colspan="10" class="repair-empty">查無資料</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="repair-pagination">
+      {% if page > 1 %}
+        <a href="{{ url_for('repair.manage', status=status, q=keyword or none, page=page-1) }}"
+           class="repair-page-btn">上一頁</a>
+      {% else %}
+        <span class="repair-page-btn repair-page-disabled">上一頁</span>
+      {% endif %}
+
+      <span class="repair-page-info">第 {{ page }} / {{ total_pages }} 頁</span>
+
+      {% if page < total_pages %}
+        <a href="{{ url_for('repair.manage', status=status, q=keyword or none, page=page+1) }}"
+           class="repair-page-btn">下一頁</a>
+      {% else %}
+        <span class="repair-page-btn repair-page-disabled">下一頁</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

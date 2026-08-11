@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% block title %}首頁{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='hub.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="hub-layout">
+  <div class="hub-topbar">
+    <span class="hub-topbar-title">校園宿舍報修系統 v1.0</span>
+    <div class="hub-topbar-user">
+      {% if user %}
+        <span>{{ user['name'] or user['display_name'] or user['email'] }}</span>
+        <a href="{{ url_for('auth.logout') }}" class="hub-logout">登出</a>
+      {% else %}
+        <a href="{{ url_for('auth.register') }}" class="hub-register-link">申請帳號</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="hub-main">
+    {% if user %}
+      {# ── 已登入：顯示完整服務卡片 ── #}
+      <div class="hub-greeting">
+        <h1>歡迎回來，{{ user['name'] or user['display_name'] or user['email'] }}！</h1>
+        <p>
+          {% if user['dorm_building'] and user['room_no'] %}
+            住宿位置：{{ user['dorm_building'] }} {{ user['room_no'] }}　|
+          {% endif %}
+          請選擇要使用的服務
+        </p>
+      </div>
+
+      <div class="hub-grid">
+        <a href="{{ url_for('repair.new_request') }}" class="hub-card">
+          <div class="hub-card-icon">&#128295;</div>
+          <div class="hub-card-title">我要報修</div>
+          <div class="hub-card-desc">申報宿舍設施故障</div>
+        </a>
+
+        <a href="{{ url_for('repair.index') }}" class="hub-card">
+          <div class="hub-card-icon">&#128203;</div>
+          <div class="hub-card-title">我的報修單</div>
+          <div class="hub-card-desc">查詢進度與回覆</div>
+          <div class="hub-badge-count">共 {{ my_request_total }} 筆</div>
+        </a>
+
+        <a href="{{ url_for('profile.dashboard') }}" class="hub-card">
+          <div class="hub-card-icon">&#128100;</div>
+          <div class="hub-card-title">個人資料</div>
+          <div class="hub-card-desc">維護房號與聯絡方式</div>
+        </a>
+
+        {% if user['role'] == 0 %}
+          <a href="{{ url_for('repair.manage') }}" class="hub-card">
+            <div class="hub-card-icon">&#128736;&#65039;</div>
+            <div class="hub-card-title">報修管理</div>
+            <div class="hub-card-desc">派工、處理與結案</div>
+            {% if pending_count %}
+              <div class="hub-badge-alert">{{ pending_count }} 筆待受理</div>
+            {% endif %}
+          </a>
+
+          <a href="{{ url_for('admin.user_list') }}" class="hub-card">
+            <div class="hub-card-icon">&#128101;</div>
+            <div class="hub-card-title">會員管理</div>
+            <div class="hub-card-desc">管理所有住宿生帳號</div>
+          </a>
+        {% endif %}
+      </div>
+
+    {% else %}
+      {# ── 未登入：左側服務簡介 + 右側登入表單 ── #}
+      <div class="hub-guest-layout">
+        <div class="hub-guest-content">
+          <div class="hub-greeting">
+            <h1>歡迎使用校園宿舍報修系統</h1>
+            <p>宿舍設施故障請登入後線上申報，系統會記錄從受理、派工到完工的完整歷程</p>
+          </div>
+
+          <div class="hub-grid">
+            <div class="hub-card hub-card-locked">
+              <div class="hub-card-icon">&#128295;</div>
+              <div class="hub-card-title">我要報修</div>
+              <div class="hub-card-desc">申報宿舍設施故障</div>
+              <div class="hub-badge-lock">&#128274; 需登入</div>
+            </div>
+
+            <div class="hub-card hub-card-locked">
+              <div class="hub-card-icon">&#128203;</div>
+              <div class="hub-card-title">我的報修單</div>
+              <div class="hub-card-desc">查詢進度與回覆</div>
+              <div class="hub-badge-lock">&#128274; 需登入</div>
+            </div>
+
+            <div class="hub-card hub-card-locked">
+              <div class="hub-card-icon">&#128100;</div>
+              <div class="hub-card-title">個人資料</div>
+              <div class="hub-card-desc">維護房號與聯絡方式</div>
+              <div class="hub-badge-lock">&#128274; 需登入</div>
+            </div>
+
+            <div class="hub-card hub-card-locked">
+              <div class="hub-card-icon">&#128736;&#65039;</div>
+              <div class="hub-card-title">報修管理</div>
+              <div class="hub-card-desc">派工、處理與結案</div>
+              <div class="hub-badge-lock">&#128274; 需管理員權限</div>
+            </div>
+          </div>
+
+          <p class="hub-guest-note">
+            報修單載有房號與聯絡電話，屬於個人資料，因此本系統沒有開放訪客瀏覽的頁面。
+          </p>
+        </div>
+
+        <div class="hub-login-panel">
+          <div class="hub-login-card">
+            <h2 class="hub-login-title">登入</h2>
+
+            {% if error %}
+              <div class="alert error" style="display:block">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('hub.home') }}" novalidate class="login-form">
+              <div class="form-group">
+                <label for="email">電子郵件</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value="{{ request.form.get('email', '') }}"
+                  placeholder="example@mail.com"
+                  autocomplete="email"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="password">密碼</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="請輸入密碼"
+                  autocomplete="current-password"
+                >
+              </div>
+
+              <div class="form-group">
+                <label>驗證碼</label>
+                <div class="captcha-wrapper">
+                  <img
+                    id="captchaImg"
+                    src="{{ url_for('auth.captcha_image') }}"
+                    width="160"
+                    height="50"
+                    style="border:1px solid #ccc; border-radius:4px; cursor:pointer"
+                    title="點擊刷新"
+                    onclick="this.src='{{ url_for('auth.captcha_image') }}?t='+Date.now()"
+                    alt="驗證碼"
+                  >
+                  <button
+                    type="button"
+                    class="btn-captcha-refresh"
+                    onclick="document.getElementById('captchaImg').src='{{ url_for('auth.captcha_image') }}?t='+Date.now()"
+                  >↻</button>
+                </div>
+                <input
+                  type="text"
+                  name="captcha"
+                  placeholder="請輸入圖中文字（不分大小寫）"
+                  autocomplete="off"
+                  maxlength="6"
+                >
+              </div>
+
+              <button type="submit">登入</button>
+              <a
+                href="{{ url_for('auth.register') }}"
+                class="btn-secondary"
+                style="display:block; text-align:center; padding:11px; margin-top:8px; text-decoration:none"
+              >申請帳號</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

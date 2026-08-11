@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}個人資料{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="profile-dashboard-card">
+  <div class="profile-check-icon">✓</div>
+  <h1>個人資料</h1>
+  <p class="profile-welcome-label">目前登入帳號</p>
+  <p class="profile-user-email">{{ user['email'] }}</p>
+
+  <hr class="profile-divider">
+
+  {% if edit_mode %}
+  <form method="POST" action="{{ url_for('profile.dashboard_update') }}">
+    <div class="profile-section">
+      <div class="profile-row">
+        <span class="profile-label">姓名</span>
+        <input name="name" class="profile-input" type="text"
+               value="{{ user['name'] or '' }}" placeholder="請輸入姓名">
+      </div>
+      <div class="profile-row">
+        <span class="profile-label">顯示名稱</span>
+        <input name="display_name" class="profile-input" type="text"
+               value="{{ user['display_name'] or '' }}" placeholder="請輸入顯示名稱">
+      </div>
+      <div class="profile-row">
+        <span class="profile-label">身份</span>
+        <span class="profile-value">{{ '館員（管理員）' if user['role'] == 0 else '讀者' }}</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-label">建立日期</span>
+        <span class="profile-value">{{ user['created_at'] }}</span>
+      </div>
+      <div class="profile-row">
+        <span class="profile-label">最後登入</span>
+        <span class="profile-value">{{ user['last_login_at'] or '—' }}</span>
+      </div>
+    </div>
+    <div class="profile-actions">
+      <div class="profile-edit-actions">
+        <a href="{{ url_for('profile.dashboard') }}" class="profile-action-btn profile-btn-cancel">放棄</a>
+        <button type="submit" class="profile-action-btn profile-btn-save">儲存</button>
+      </div>
+    </div>
+  </form>
+
+  {% else %}
+  <div class="profile-section">
+    <div class="profile-row">
+      <span class="profile-label">姓名</span>
+      <span class="profile-value">{{ user['name'] or '—' }}</span>
+    </div>
+    <div class="profile-row">
+      <span class="profile-label">顯示名稱</span>
+      <span class="profile-value">{{ user['display_name'] or '—' }}</span>
+    </div>
+    <div class="profile-row">
+      <span class="profile-label">身份</span>
+      <span class="profile-value">{{ '館員（管理員）' if user['role'] == 0 else '讀者' }}</span>
+    </div>
+    <div class="profile-row">
+      <span class="profile-label">建立日期</span>
+      <span class="profile-value">{{ user['created_at'] }}</span>
+    </div>
+    <div class="profile-row">
+      <span class="profile-label">最後登入</span>
+      <span class="profile-value">{{ user['last_login_at'] or '—' }}</span>
+    </div>
+  </div>
+  <div class="profile-actions">
+    <a href="{{ url_for('profile.dashboard', edit=1) }}" class="profile-action-btn profile-btn-edit">修改資料</a>
+  </div>
+  {% endif %}
+
+  <div class="profile-session-box">
+    <p class="profile-session-label">認證方式</p>
+    <p class="profile-session-token">Flask Server-Side Session (HttpOnly Cookie)</p>
+  </div>
+
+  <a href="{{ url_for('hub.home') }}" class="profile-back-btn">返回首頁</a>
+  <a href="{{ url_for('auth.logout') }}" class="profile-logout-btn">登出</a>
+</div>
+{% endblock %}

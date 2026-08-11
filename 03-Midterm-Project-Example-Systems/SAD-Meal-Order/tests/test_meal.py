@@ -520,7 +520,7 @@ def test_cancel_other_users_order_fails(authed_client):
 
 def test_admin_orders_requires_admin(authed_client):
     """第 3 層失敗導回首頁。flash 的「無操作權限」不會顯示——hub/home.html
-    沒有渲染 flash 區塊，這是沿用自母系統的既有缺陷，記錄為 KI-M6。"""
+    沒有渲染 flash 區塊，這是刻意保留的缺陷，記錄為 KI-M6。"""
     resp = authed_client.get('/meal/admin/orders')
     assert resp.status_code == 302
     assert resp.headers['Location'].endswith('/')

@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block title %}預約管理{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='reservations.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="res-layout">
+
+  <div class="res-topbar">
+    <span class="res-topbar-title">預約管理</span>
+    <div class="res-topbar-nav">
+      <a href="{{ url_for('hub.home') }}" class="res-nav-link">返回首頁</a>
+      <a href="{{ url_for('books.index') }}" class="res-nav-link">館藏查詢</a>
+      <a href="{{ url_for('loans.admin_loans') }}" class="res-nav-link">借閱管理</a>
+      <a href="{{ url_for('admin.user_list') }}" class="res-nav-link">會員管理</a>
+      <span class="res-nav-user">{{ user['name'] or user['display_name'] or user['email'] }}</span>
+      <a href="{{ url_for('auth.logout') }}" class="res-btn res-btn-danger">登出</a>
+    </div>
+  </div>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+      <div class="res-flash res-flash-{{ 'error' if category == 'error' else 'success' }}">{{ message }}</div>
+    {% endfor %}
+  {% endwith %}
+
+  <div class="res-my-page">
+    <div class="res-my-card">
+      <div class="res-my-header">
+        <h2>全館預約佇列</h2>
+        <span class="res-total">共 {{ total }} 筆</span>
+      </div>
+
+      <div class="res-filter-links">
+        <a href="{{ url_for('reservations.admin_reservations', status='active') }}"
+           class="res-filter-link {{ 'res-filter-active' if status == 'active' }}">進行中</a>
+        <a href="{{ url_for('reservations.admin_reservations', status='waiting') }}"
+           class="res-filter-link {{ 'res-filter-active' if status == 'waiting' }}">等待中</a>
+        <a href="{{ url_for('reservations.admin_reservations', status='ready') }}"
+           class="res-filter-link {{ 'res-filter-active' if status == 'ready' }}">可取書</a>
+        <a href="{{ url_for('reservations.admin_reservations', status='closed') }}"
+           class="res-filter-link {{ 'res-filter-active' if status == 'closed' }}">已結束</a>
+        <a href="{{ url_for('reservations.admin_reservations', status='all') }}"
+           class="res-filter-link {{ 'res-filter-active' if status == 'all' }}">全部</a>
+      </div>
+
+      <table class="res-table">
+        <thead>
+          <tr>
+            <th class="col-id">ID</th>
+            <th>書名</th>
+            <th>預約人</th>
+            <th>預約時間</th>
+            <th>可取書時間</th>
+            <th class="col-qty">在架</th>
+            <th class="col-status">狀態</th>
+            <th class="col-action">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in reservations %}
+          <tr>
+            <td>{{ r['id'] }}</td>
+            <td>
+              <a href="{{ url_for('books.index', id=r['book_id']) }}"
+                 class="res-title-link">{{ r['title'] }}</a>
+            </td>
+            <td>{{ r['user_name'] or r['user_display'] or r['user_email'] }}</td>
+            <td class="res-datetime-cell">{{ r['reserved_at'][:16] }}</td>
+            <td class="res-datetime-cell">{{ r['ready_at'][:16] if r['ready_at'] else '—' }}</td>
+            <td class="res-qty-cell">{{ r['available_copies'] }}</td>
+            <td>
+              <span class="res-badge res-badge-{{ r['reservation_status'] }}">
+                {{ status_labels.get(r['reservation_status'], r['reservation_status']) }}
+              </span>
+            </td>
+            <td class="res-actions-cell">
+              {% if r['reservation_status'] in ('waiting', 'ready') %}
+                <form method="post" action="{{ url_for('reservations.cancel', reservation_id=r['id']) }}"
+                      class="res-inline-form"
+                      onsubmit="return confirm('確定取消這筆預約？')">
+                  <input type="hidden" name="from" value="admin">
+                  <button type="submit" class="res-btn-action res-btn-action-danger">取消</button>
+                </form>
+              {% else %}
+                <span class="res-field-hint">—</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="8" class="res-empty">沒有符合條件的預約紀錄</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% if total_pages > 1 %}
+      <div class="res-pagination">
+        {% if page > 1 %}
+          <a href="{{ url_for('reservations.admin_reservations', status=status, page=page-1) }}"
+             class="res-page-btn">上一頁</a>
+        {% else %}
+          <span class="res-page-btn res-page-disabled">上一頁</span>
+        {% endif %}
+        <span class="res-page-info">第 {{ page }} / {{ total_pages }} 頁</span>
+        {% if page < total_pages %}
+          <a href="{{ url_for('reservations.admin_reservations', status=status, page=page+1) }}"
+             class="res-page-btn">下一頁</a>
+        {% else %}
+          <span class="res-page-btn res-page-disabled">下一頁</span>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -2,7 +2,7 @@
 
 元智大學工業工程與管理學系「系統分析與設計」（課號 IE226）的課程教材與課程規範，全部以繁體中文撰寫、以 Markdown 格式維護，公開於此供修課同學閱讀。
 
-本課程採 **專題導向（Project-Based Learning）**：不考試，用兩份小組報告、一次個人訪談與一份個人學習與貢獻報告檢核學習成果。這個儲存庫收錄課程介紹、報告與分組規範、評量規準、十三章教材、兩組範例報告，以及期中要分析的四套範例系統，各章投影片陸續產出中。
+本課程採 **專題導向（Project-Based Learning）**：不考試，用兩份小組報告、一次個人訪談與一份個人學習與貢獻報告檢核學習成果。這個儲存庫收錄課程介紹、報告與分組規範、評量規準、十三章教材、兩組範例報告，以及期中要分析的六套範例系統，各章投影片陸續產出中。
 
 ---
 
@@ -91,13 +91,17 @@
 
 ### 期中要分析的範例系統
 
-期中報告分析的是既有系統，所以系統本身要跑得起來、看得到原始碼。系統收在 `03-Midterm-Project-Example-Systems/`，都是 Python + Flask + SQLite 寫成，操作介面與資料表結構相近，難度相當。
+期中報告分析的是既有系統，所以系統本身要跑得起來、看得到原始碼。系統收在 `03-Midterm-Project-Example-Systems/`，都是 Python + Flask + SQLite 寫成，操作介面與資料表結構相近；各組可選的有以下五套。
 
 | 系統 | 資料夾 | 情境 |
 |---|---|---|
 | [器材借用系統](03-Midterm-Project-Example-Systems/SAD-Equipment/README.md) | `SAD-Equipment/` | 器材的借用申請、審核、借出與歸還，含狀態機與庫存數量的一致性 |
 | [活動報名系統](03-Midterm-Project-Example-Systems/SAD-Events/README.md) | `SAD-Events/` | 校園活動的建立與報名，含活動狀態、名額限制與「發起者」這種由資料決定的權限 |
 | [校園訂餐系統](03-Midterm-Project-Example-Systems/SAD-Meal-Order/README.md) | `SAD-Meal-Order/` | 菜單維護、線上訂餐、訂單審核與登記取餐，含訂單狀態機與剩餘份數的佔用和回補 |
+| [校園宿舍報修系統](03-Midterm-Project-Example-Systems/SAD-Dormitory-Repair/README.md) | `SAD-Dormitory-Repair/` | 報修的申報、派工、處理與結案，含六個狀態的流轉、資料範圍權限與處理歷程 |
+| [校園小型圖書借閱系統](03-Midterm-Project-Example-Systems/SAD-Library/README.md) | `SAD-Library/` | 館藏查詢、借書、續借、還書與預約候補，含書目與複本的分層、算出來的在架冊數與逾期 |
+
+前三套的規模與難度相當，宿舍報修的流程最長，圖書借閱的資料結構最複雜——挑題前先看[索引](03-Midterm-Project-Example-Systems/README.md)〈三〉的比較。
 
 同一個資料夾底下還有一套討論區系統（`SAD-Forum/`），**那是上一節的範例報告拿來示範的系統，不是各組可選的題目**。想知道一份分析報告從系統推導到什麼程度，可以拿它和範例報告對著看。每套系統的定位、共通概念與使用步驟，見這個資料夾的[索引](03-Midterm-Project-Example-Systems/README.md)。
 
@@ -198,7 +202,7 @@
 
 | 項目 | 作者 | 授權 | 位置 |
 |---|---|---|---|
-| 期中範例系統的程式碼與系統文件 | Cho-Hsun Lu | MIT | [`03-Midterm-Project-Example-Systems/`](03-Midterm-Project-Example-Systems/)（LICENSE 置於該資料夾內，涵蓋底下四套系統） |
+| 期中範例系統的程式碼與系統文件 | Cho-Hsun Lu | MIT | [`03-Midterm-Project-Example-Systems/`](03-Midterm-Project-Example-Systems/)（LICENSE 置於該資料夾內，涵蓋底下六套系統） |
 | `speak-human-tw` skill | Raymond Hou | MIT | [`.claude/skills/speak-human-tw/`](.claude/skills/speak-human-tw/)（原始 LICENSE 保留於該資料夾內） |
 | 學則截圖 `course-attendance-rule.png` | 元智大學 | 校方公開規章，依著作權法為授課目的引用，著作權仍屬元智大學 | `00-Course-Introduction/images/`（引用於 [SAD 課程介紹](00-Course-Introduction/Course-Introduction.md)〈課堂規範〉） |
 
