@@ -138,21 +138,21 @@
 
 內容是概念說明，和上一節的兩份範例報告說明搭配著看：說明講每一項要交什麼，教材講那件事是怎麼做的。
 
-| # | 文件 | 檔名 | 內容 |
-|---|---|---|---|
-| 1 | [系統分析與設計導論](01-Course-Materials/01-Systems-and-Analysis.md) | `01-Systems-and-Analysis.md` | 整門課的共同語彙：系統與資訊系統的組成、分析與設計的分界、系統開發生命週期、開發方法論、專案角色分工、系統為什麼會失敗 |
-| 2 | [問題定義與現況分析](01-Course-Materials/02-Problem-Definition.md) | `02-Problem-Definition.md` | 從既有系統反推當初要解決的問題：問題定義的四件事、5 Why 與魚骨圖、可驗收的目標與成功指標、問題定義書、現況問題與改善建議 |
-| 3 | [使用者分析](01-Course-Materials/03-User-Analysis.md) | `03-User-Analysis.md` | 分析階段的第一步：利害關係人分析、需求收集方法、使用者分群與人物誌、流程分析與事件表、使用案例圖 |
-| 4 | [系統需求分析](01-Course-Materials/04-System-Requirements-Analysis.md) | `04-System-Requirements-Analysis.md` | 把使用案例展開成需求：需求的五個級別、功能需求與非功能需求的寫法、需求品質判準、優先順序與追溯、系統需求規格 |
-| 5 | [功能分析](01-Course-Materials/05-Functional-Analysis.md) | `05-Functional-Analysis.md` | 把需求整理成系統的功能結構：系統邊界與範圍外清單、情境圖、功能分解、資料流程圖、功能清單與模組劃分、CRUD 矩陣、模組設計 |
-| 6 | [行為建模](01-Course-Materials/06-Behavioral-Modeling.md) | `06-Behavioral-Modeling.md` | 補上系統的動態面：活動圖與泳道、系統循序圖、狀態機圖，以及三張圖在設計階段的深化與交叉檢核 |
-| 7 | [資料建模與資料庫設計](01-Course-Materials/07-Data-Modeling.md) | `07-Data-Modeling.md` | 系統要記住什麼：實體關聯圖與基數、從需求找實體、正規化、資料字典與值域，以及期中反推與期末推導兩種做法 |
-| 8 | [系統環境與架構](01-Course-Materials/08-System-Architecture.md) | `08-System-Architecture.md` | 系統放在哪裡、和誰連：使用者端與應用系統與資料庫的三段結構、外部系統與現場設備、地端與雲端的取捨、非功能需求如何決定架構 |
-| 9 | [可行性、限制與風險分析](01-Course-Materials/09-Feasibility-and-Risk.md) | `09-Feasibility-and-Risk.md` | 設計與現實的對帳：技術／經濟／組織／時程四面向可行性、成本效益估算、六類系統限制、風險辨識與評估、風險如何回頭改動設計 |
-| 10 | [物件建模](01-Course-Materials/10-Object-Modeling.md) | `10-Object-Modeling.md` | 概念類別圖：類別與關係、多重性、只放領域概念的原則，以及它與 ERD 到底差在哪 |
-| 11 | [系統介面與資料交換設計](01-Course-Materials/11-System-Interface-and-Data-Exchange.md) | `11-System-Interface-and-Data-Exchange.md` | 兩套系統之間那條線：資料來源與去向、交換內容與欄位對應、時機與頻率、失敗處理，REST API 列為可選 |
-| 12 | [使用者介面設計](01-Course-Materials/12-UI-Design.md) | `12-UI-Design.md` | 從需求與流程推出畫面：使用性原則、線框圖與保真度、畫面欄位對回資料字典、現場的介面限制 |
-| 13 | [系統設計規格與追溯](01-Course-Materials/13-Design-Specification.md) | `13-Design-Specification.md` | 把各章產出收成一套設計：規格書架構、五段追溯鏈、六種常見的不一致、設計決策紀錄、交件前的檢查清單 |
+| # | 文件 | 檔名 | 投影片 | 內容 |
+|---|---|---|---|---|
+| 1 | [系統分析與設計導論](01-Course-Materials/01-Systems-and-Analysis.md) | `01-Systems-and-Analysis.md` | [投影片](01-Course-Materials/01-Systems-and-Analysis.slides.md) | 整門課的共同語彙：系統與資訊系統的組成、分析與設計的分界、系統開發生命週期、開發方法論、專案角色分工、系統為什麼會失敗 |
+| 2 | [問題定義與現況分析](01-Course-Materials/02-Problem-Definition.md) | `02-Problem-Definition.md` | — | 從既有系統反推當初要解決的問題：問題定義的四件事、5 Why 與魚骨圖、可驗收的目標與成功指標、問題定義書、現況問題與改善建議 |
+| 3 | [使用者分析](01-Course-Materials/03-User-Analysis.md) | `03-User-Analysis.md` | — | 分析階段的第一步：利害關係人分析、需求收集方法、使用者分群與人物誌、流程分析與事件表、使用案例圖 |
+| 4 | [系統需求分析](01-Course-Materials/04-System-Requirements-Analysis.md) | `04-System-Requirements-Analysis.md` | — | 把使用案例展開成需求：需求的五個級別、功能需求與非功能需求的寫法、需求品質判準、優先順序與追溯、系統需求規格 |
+| 5 | [功能分析](01-Course-Materials/05-Functional-Analysis.md) | `05-Functional-Analysis.md` | — | 把需求整理成系統的功能結構：系統邊界與範圍外清單、情境圖、功能分解、資料流程圖、功能清單與模組劃分、CRUD 矩陣、模組設計 |
+| 6 | [行為建模](01-Course-Materials/06-Behavioral-Modeling.md) | `06-Behavioral-Modeling.md` | — | 補上系統的動態面：活動圖與泳道、系統循序圖、狀態機圖，以及三張圖在設計階段的深化與交叉檢核 |
+| 7 | [資料建模與資料庫設計](01-Course-Materials/07-Data-Modeling.md) | `07-Data-Modeling.md` | — | 系統要記住什麼：實體關聯圖與基數、從需求找實體、正規化、資料字典與值域，以及期中反推與期末推導兩種做法 |
+| 8 | [系統環境與架構](01-Course-Materials/08-System-Architecture.md) | `08-System-Architecture.md` | — | 系統放在哪裡、和誰連：使用者端與應用系統與資料庫的三段結構、外部系統與現場設備、地端與雲端的取捨、非功能需求如何決定架構 |
+| 9 | [可行性、限制與風險分析](01-Course-Materials/09-Feasibility-and-Risk.md) | `09-Feasibility-and-Risk.md` | — | 設計與現實的對帳：技術／經濟／組織／時程四面向可行性、成本效益估算、六類系統限制、風險辨識與評估、風險如何回頭改動設計 |
+| 10 | [物件建模](01-Course-Materials/10-Object-Modeling.md) | `10-Object-Modeling.md` | — | 概念類別圖：類別與關係、多重性、只放領域概念的原則，以及它與 ERD 到底差在哪 |
+| 11 | [系統介面與資料交換設計](01-Course-Materials/11-System-Interface-and-Data-Exchange.md) | `11-System-Interface-and-Data-Exchange.md` | — | 兩套系統之間那條線：資料來源與去向、交換內容與欄位對應、時機與頻率、失敗處理，REST API 列為可選 |
+| 12 | [使用者介面設計](01-Course-Materials/12-UI-Design.md) | `12-UI-Design.md` | — | 從需求與流程推出畫面：使用性原則、線框圖與保真度、畫面欄位對回資料字典、現場的介面限制 |
+| 13 | [系統設計規格與追溯](01-Course-Materials/13-Design-Specification.md) | `13-Design-Specification.md` | — | 把各章產出收成一套設計：規格書架構、五段追溯鏈、六種常見的不一致、設計決策紀錄、交件前的檢查清單 |
 
 ---
 
