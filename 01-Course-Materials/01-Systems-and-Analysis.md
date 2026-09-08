@@ -246,6 +246,12 @@ flowchart LR
 
 **[瀑布模型](https://zh.wikipedia.org/wiki/瀑布模型)（Waterfall Model）把五個階段排成一條直線，每個階段完成、文件簽核之後才進入下一階段**，像水往下流不會倒流。
 
+![瀑布模型的五個階段](images/01-Systems-and-Analysis/waterfall-model.png)
+
+*圖片來源：[Wikimedia Commons「Waterfall model revised.svg」](https://commons.wikimedia.org/wiki/File:Waterfall_model_revised.svg)，作者 Beao（初版 Paul Smith），授權 CC BY 3.0*
+
+圖中的階段名稱是軟體工程慣用的切法（需求、設計、實作、驗證、維護），與上一節 SDLC 的五階段不完全對應，但排成直線、不回頭的形狀是一樣的。
+
 這個模型常被當成過時的反面教材，但值得澄清一件事：最早描述它的 Royce 在 1970 年那篇論文裡，其實是把純線性的做法當作 **有問題的示範** 提出來的，他主張要有回頭修正的機制。後人引用時只記得那張圖，忘了他的但書。
 
 瀑布模型適合的情況是：需求明確且不太會變、法規或合約要求每階段簽核、系統與人命或大筆金錢相關。工廠導入既有套裝軟體、政府標案，多半照這個模式走。
@@ -256,7 +262,15 @@ flowchart LR
 
 疊代（Iterative）與增量（Incremental）的做法是：不要一次做完，先做一小塊完整可用的，讓使用者看到、給回饋，再做下一塊。
 
-[螺旋模型](https://zh.wikipedia.org/wiki/螺旋模型)（Spiral Model）是其中的代表，它在每一圈都加入風險評估，適合不確定性高的專案。另一種常見手法是原型法（Prototyping）：先做一個看得到、點得動但沒有真實功能的雛型，拿去給使用者試用。
+[螺旋模型](https://zh.wikipedia.org/wiki/螺旋模型)（Spiral Model）是其中的代表，它在每一圈都加入風險評估，適合不確定性高的專案。
+
+![螺旋模型](images/01-Systems-and-Analysis/spiral-model.png)
+
+*圖片來源：[Wikimedia Commons「Spiral model (Boehm, 1988).svg」](https://commons.wikimedia.org/wiki/File:Spiral_model_%28Boehm,_1988%29.svg)，作者 Conny、Marctroy 與 Conan，公有領域（Public Domain）*
+
+圖上每繞一圈就是一次疊代，四個象限依序是訂目標、找出並解決風險、開發與測試、規劃下一輪。圈子越畫越大，代表累積投入的成本越來越高，所以風險要在圈子還小的時候處理掉。
+
+另一種常見手法是原型法（Prototyping）：先做一個看得到、點得動但沒有真實功能的雛型，拿去給使用者試用。
 
 **對現場使用者而言，看雛型比讀文件有效得多。** 一個沒有資訊背景的作業員讀十頁需求規格說不出什麼意見，但操作三分鐘的雛型畫面，馬上就會說「這裡不對，我們不是這樣做的」。
 
@@ -265,6 +279,12 @@ flowchart LR
 **[敏捷開發](https://zh.wikipedia.org/wiki/敏捷软件开发)（Agile）** 的基本主張寫在 2001 年的敏捷宣言（Agile Manifesto）裡：重視個人與互動勝過流程與工具、可用的軟體勝過詳盡的文件、與客戶協作勝過合約談判、回應變化勝過遵循計畫。
 
 [Scrum](https://zh.wikipedia.org/wiki/Scrum) 是最普及的敏捷框架，把開發切成兩到四週一輪的衝刺（Sprint），每輪結束都要交出可用的成果，並開會檢討。
+
+![Scrum 的流程](images/01-Systems-and-Analysis/scrum-process.png)
+
+*圖片來源：[Wikimedia Commons「Scrum process.svg」](https://commons.wikimedia.org/wiki/File:Scrum_process.svg)，作者 Lakeworks，授權 CC BY-SA 4.0*
+
+流程是從待辦清單（Product Backlog）挑出這一輪要做的項目（Sprint Backlog），衝刺期間每天開一次短會（圖中的 24 小時），結束時交出可以實際使用的成果。圖上標的 30 天是早期 Scrum 的預設長度，現在多數團隊用兩到四週。
 
 這裡要澄清一個常見的誤解：**敏捷不是「不寫文件」，而是「不寫沒人看的文件」**。需求還是要弄清楚，只是不再要求一次寫完幾百頁再開工。對本課程來說，這個區別不影響你要交的東西——不論用哪種方法論，弄清楚使用者要什麼、把它寫成別人看得懂的規格，這件事都免不了。
 

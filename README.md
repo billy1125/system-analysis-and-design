@@ -216,5 +216,8 @@
 | 期中範例系統的程式碼與系統文件 | Cho-Hsun Lu | MIT | [`03-Midterm-Project-Example-Systems/`](03-Midterm-Project-Example-Systems/)（LICENSE 置於該資料夾內，涵蓋底下六套系統） |
 | `speak-human-tw` skill | Raymond Hou | MIT | [`.claude/skills/speak-human-tw/`](.claude/skills/speak-human-tw/)（原始 LICENSE 保留於該資料夾內） |
 | 學則截圖 `course-attendance-rule.png` | 元智大學 | 校方公開規章，依著作權法為授課目的引用，著作權仍屬元智大學 | `00-Course-Introduction/images/`（引用於 [SAD 課程介紹](00-Course-Introduction/Course-Introduction.md)〈課堂規範〉） |
+| 瀑布模型圖 `waterfall-model.png` | Beao（初版 Paul Smith） | CC BY 3.0 | `01-Course-Materials/images/01-Systems-and-Analysis/`（來源 [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Waterfall_model_revised.svg)） |
+| 螺旋模型圖 `spiral-model.png` | Conny、Marctroy 與 Conan | 公有領域（Public Domain） | `01-Course-Materials/images/01-Systems-and-Analysis/`（來源 [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Spiral_model_%28Boehm,_1988%29.svg)） |
+| Scrum 流程圖 `scrum-process.png` | Lakeworks | CC BY-SA 4.0 | `01-Course-Materials/images/01-Systems-and-Analysis/`（來源 [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Scrum_process.svg)） |
 
 課程規範類文件（課程介紹、報告規範、分組規範、評量規準、理解測驗）僅適用於本學期本課程，其他課程如需參考，請自行依實際狀況調整，勿直接沿用日期與扣分規定。
