@@ -240,6 +240,10 @@
 
 同學有疑問，或只是想聊天，不在此限（也請注意同學之間應有的禮節）。
 
+![LINE QRCODE](images/line-qrcode.jpg)
+
+連結：[line.me/ti/g/TPRBF-K8P4](https://line.me/ti/g/TPRBF-K8P4)
+
 ## 課程教材
 
 各章教材正文與投影片會在學期進行中陸續補上，一律放在課程的 GitHub 儲存庫，完整的文件清單見[「SAD 課程教材」](../README.md)。
