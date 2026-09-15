@@ -1,0 +1,34 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor 接待員 as RC
+actor 警衛室領班 as LD
+actor 訪客 as V
+actor 受訪員工 as EM
+actor 人資系統 as HR
+
+rectangle 工廠訪客進出登記系統 {
+  usecase "辦理訪客報到" as UC1
+  usecase "登記訪客離廠" as UC2
+  usecase "查詢在廠訪客" as UC6
+  usecase "驗證接待員身分" as UC3
+  usecase "現場建檔" as UC4
+  usecase "更正報到紀錄" as UC5
+  usecase "提出來訪申請" as UC8
+  usecase "確認來訪申請" as UC9
+  usecase "匯入員工名單" as UC7
+}
+
+RC -- UC1
+RC -- UC2
+RC -- UC6
+LD -- UC5
+V -- UC8
+EM -- UC9
+HR -- UC7
+LD --|> RC
+UC1 ..> UC3 : <<include>>
+UC2 ..> UC3 : <<include>>
+UC4 ..> UC1 : <<extend>>
+@enduml

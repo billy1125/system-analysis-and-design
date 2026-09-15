@@ -142,7 +142,7 @@
 |---|---|---|---|---|
 | 1 | [系統分析與設計導論](01-Course-Materials/01-Systems-and-Analysis.md) | `01-Systems-and-Analysis.md` | [投影片](01-Course-Materials/01-Systems-and-Analysis.slides.md) | 整門課的共同語彙：系統與資訊系統的組成、分析與設計的分界、系統開發生命週期、開發方法論、專案角色分工、系統為什麼會失敗 |
 | 2 | [問題定義與現況分析](01-Course-Materials/02-Problem-Definition.md) | `02-Problem-Definition.md` | [投影片](01-Course-Materials/02-Problem-Definition.slides.md) | 從既有系統反推當初要解決的問題：問題定義的四件事、5 Why 與魚骨圖、可驗收的目標與成功指標、問題定義書、現況問題與改善建議 |
-| 3 | [使用者分析](01-Course-Materials/03-User-Analysis.md) | `03-User-Analysis.md` | — | 分析階段的第一步：利害關係人分析、需求收集方法、使用者分群與人物誌、流程分析與事件表、使用案例圖 |
+| 3 | [使用者分析](01-Course-Materials/03-User-Analysis.md) | `03-User-Analysis.md` | [投影片](01-Course-Materials/03-User-Analysis.slides.md) | 分析階段的第一步：利害關係人分析、需求收集方法、使用者分群與人物誌、使用案例圖、流程分析與事件表 |
 | 4 | [系統需求分析](01-Course-Materials/04-System-Requirements-Analysis.md) | `04-System-Requirements-Analysis.md` | — | 把使用案例展開成需求：需求的五個級別、功能需求與非功能需求的寫法、需求品質判準、優先順序與追溯、系統需求規格 |
 | 5 | [功能分析](01-Course-Materials/05-Functional-Analysis.md) | `05-Functional-Analysis.md` | — | 把需求整理成系統的功能結構：系統邊界與範圍外清單、情境圖、功能分解、資料流程圖、功能清單與模組劃分、CRUD 矩陣、模組設計 |
 | 6 | [行為建模](01-Course-Materials/06-Behavioral-Modeling.md) | `06-Behavioral-Modeling.md` | — | 補上系統的動態面：活動圖與泳道、系統循序圖、狀態機圖，以及三張圖在設計階段的深化與交叉檢核 |
@@ -174,7 +174,7 @@
 |---|---|
 | 使用工具 | Anthropic 的 Claude（透過 Claude Code 使用，Opus 系列模型） |
 | 使用目的 | 章節草稿撰寫、文字整理與潤稿、跨文件的一致性檢查與交叉引用比對 |
-| 使用範圍 | 各章教材正文、兩組範例報告、課程規範文件與本檔的文字；圖表與截圖不在此列 |
+| 使用範圍 | 各章教材正文與投影片、兩組範例報告、課程規範文件與本檔的文字，以及以 PlantUML 繪製的 UML 圖原始碼；其餘圖表與截圖不在此列 |
 | 人工查核與修改 | 課程設定、規則、日期、配分、評分標準與所有教學上的取捨，一律由老師決定；AI 產出的每一段都經老師閱讀、修改或重寫後才提交，未經審閱的內容不會出現在這裡 |
 
 **這也是在示範一件事**：用了 AI 不等於可以不負責。你的報告也一樣——寫得出來、說得出來、改得動，才是你的東西。

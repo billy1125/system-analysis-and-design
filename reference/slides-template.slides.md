@@ -17,6 +17,8 @@ style: |
 
 {授課教師姓名}
 
+本課程教材：[GitHub](https://github.com/billy1125/system-analysis-and-design)
+
 ---
 
 # 一、{章節分隔頁標題}

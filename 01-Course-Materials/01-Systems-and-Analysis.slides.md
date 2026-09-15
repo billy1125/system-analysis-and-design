@@ -17,6 +17,8 @@ style: |
 
 授課教師：呂卓勲
 
+本課程教材：[GitHub](https://github.com/billy1125/system-analysis-and-design)
+
 ---
 
 ## 為什麼工管系要學這個
