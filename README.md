@@ -102,7 +102,7 @@
 
 ### 期中要分析的範例系統
 
-期中報告分析的是既有系統，所以系統本身要跑得起來、看得到原始碼。系統收在 `03-Midterm-Project-Example-Systems/`，都是 Python + Flask + SQLite 寫成，操作介面與資料表結構相近；各組可選的有以下五套。
+期中報告分析的是既有系統，所以系統本身要跑得起來、看得到原始碼。系統收在 `03-Midterm-Project-Example-Systems/`，都是 Python + Flask + SQLite 寫成，操作介面與資料表結構相近；各組分析哪一套，由以下五套當堂公開抽籤決定。
 
 | 系統 | 資料夾 | 情境 |
 |---|---|---|
@@ -112,15 +112,15 @@
 | [校園宿舍報修系統](03-Midterm-Project-Example-Systems/SAD-Dormitory-Repair/README.md) | `SAD-Dormitory-Repair/` | 報修的申報、派工、處理與結案，含六個狀態的流轉、資料範圍權限與處理歷程 |
 | [校園小型圖書借閱系統](03-Midterm-Project-Example-Systems/SAD-Library/README.md) | `SAD-Library/` | 館藏查詢、借書、續借、還書與預約候補，含書目與複本的分層、算出來的在架冊數與逾期 |
 
-前三套的規模與難度相當，宿舍報修的流程最長，圖書借閱的資料結構最複雜——挑題前先看[索引](03-Midterm-Project-Example-Systems/README.md)〈三〉的比較。
+前三套的規模與難度相當，宿舍報修的流程最長，圖書借閱的資料結構最複雜——各套的比較見[索引](03-Midterm-Project-Example-Systems/README.md)〈三〉。
 
-同一個資料夾底下還有一套討論區系統（`SAD-Forum/`），**那是上一節的範例報告拿來示範的系統，不是各組可選的題目**。想知道一份分析報告從系統推導到什麼程度，可以拿它和範例報告對著看。每套系統的定位、共通概念與使用步驟，見這個資料夾的[索引](03-Midterm-Project-Example-Systems/README.md)。
+同一個資料夾底下還有一套討論區系統（`SAD-Forum/`），**那是上一節的範例報告拿來示範的系統，不在抽籤範圍內**。想知道一份分析報告從系統推導到什麼程度，可以拿它和範例報告對著看。每套系統的定位、共通概念與使用步驟，見這個資料夾的[索引](03-Midterm-Project-Example-Systems/README.md)。
 
 每套系統的資料夾內都附有系統規格書與建置流程書（`document/`），**但那是給你對照用的參考，不是你報告的替代品**——分析要自己從畫面、流程與程式碼推導出來。怎麼把系統跑起來，見各系統自己的 `README.md`。
 
 ### 期末報告的題目
 
-期末設計的題目是工廠或製造現場的管理系統，五題選一。每題一份說明書，收在 `05-Final-Project-Topics/`，另有一份[索引](05-Final-Project-Topics/README.md)說明選題判準、使用步驟與不建議做的方向。
+期末設計的題目是工廠或製造現場的管理系統，共五題，各組做哪一題由當堂公開抽籤決定。每題一份說明書，收在 `05-Final-Project-Topics/`，另有一份[索引](05-Final-Project-Topics/README.md)說明五題一覽、使用步驟與不建議做的方向。
 
 | 題目 | 領域 | 難度 | 這一題要想清楚的問題 |
 |---|---|---|---|
@@ -141,7 +141,7 @@
 | # | 文件 | 檔名 | 投影片 | 內容 |
 |---|---|---|---|---|
 | 1 | [系統分析與設計導論](01-Course-Materials/01-Systems-and-Analysis.md) | `01-Systems-and-Analysis.md` | [投影片](01-Course-Materials/01-Systems-and-Analysis.slides.md) | 整門課的共同語彙：系統與資訊系統的組成、分析與設計的分界、系統開發生命週期、開發方法論、專案角色分工、系統為什麼會失敗 |
-| 2 | [問題定義與現況分析](01-Course-Materials/02-Problem-Definition.md) | `02-Problem-Definition.md` | — | 從既有系統反推當初要解決的問題：問題定義的四件事、5 Why 與魚骨圖、可驗收的目標與成功指標、問題定義書、現況問題與改善建議 |
+| 2 | [問題定義與現況分析](01-Course-Materials/02-Problem-Definition.md) | `02-Problem-Definition.md` | [投影片](01-Course-Materials/02-Problem-Definition.slides.md) | 從既有系統反推當初要解決的問題：問題定義的四件事、5 Why 與魚骨圖、可驗收的目標與成功指標、問題定義書、現況問題與改善建議 |
 | 3 | [使用者分析](01-Course-Materials/03-User-Analysis.md) | `03-User-Analysis.md` | — | 分析階段的第一步：利害關係人分析、需求收集方法、使用者分群與人物誌、流程分析與事件表、使用案例圖 |
 | 4 | [系統需求分析](01-Course-Materials/04-System-Requirements-Analysis.md) | `04-System-Requirements-Analysis.md` | — | 把使用案例展開成需求：需求的五個級別、功能需求與非功能需求的寫法、需求品質判準、優先順序與追溯、系統需求規格 |
 | 5 | [功能分析](01-Course-Materials/05-Functional-Analysis.md) | `05-Functional-Analysis.md` | — | 把需求整理成系統的功能結構：系統邊界與範圍外清單、情境圖、功能分解、資料流程圖、功能清單與模組劃分、CRUD 矩陣、模組設計 |
@@ -219,5 +219,6 @@
 | 瀑布模型圖 `waterfall-model.png` | Beao（初版 Paul Smith） | CC BY 3.0 | `01-Course-Materials/images/01-Systems-and-Analysis/`（來源 [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Waterfall_model_revised.svg)） |
 | 螺旋模型圖 `spiral-model.png` | Conny、Marctroy 與 Conan | 公有領域（Public Domain） | `01-Course-Materials/images/01-Systems-and-Analysis/`（來源 [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Spiral_model_%28Boehm,_1988%29.svg)） |
 | Scrum 流程圖 `scrum-process.png` | Lakeworks | CC BY-SA 4.0 | `01-Course-Materials/images/01-Systems-and-Analysis/`（來源 [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Scrum_process.svg)） |
+| 樹鞦韆漫畫 `tree-swing-cartoon.png`（四格合併並加中文圖說） | Redrobsche、Belbury；樹的圖形取自 Mozilla Fxemoji | 合併圖以 CC BY-SA 4.0 釋出（第 1、3 格原為 CC BY-SA 4.0，第 2、4 格原為 CC BY 4.0） | `01-Course-Materials/images/01-Systems-and-Analysis/`（來源 [Wikimedia Commons](https://commons.wikimedia.org/wiki/Category:Tree_swing_cartoon)） |
 
 課程規範類文件（課程介紹、報告規範、分組規範、評量規準、理解測驗）僅適用於本學期本課程，其他課程如需參考，請自行依實際狀況調整，勿直接沿用日期與扣分規定。

@@ -17,7 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `00-Course-Introduction/` | 課程規範與參考文件，採描述性英文檔名 |
 | `01-Course-Materials/` | 教材正文，檔名格式 `編號-主題.md`，兩位數編號即授課順序（規則見 `temp/TEXTBOOK-PLAN.md`〈一〉） |
 | `02-Midterm-Project-Example-Reports/` | 期中的範例報告與說明（`Analysis-Phase-*.md`），只放這兩份 |
-| `03-Midterm-Project-Example-Systems/` | 期中的校園情境系統六套，加一份 `README.md` 當索引。**`SAD-Equipment`（器材借用）、`SAD-Events`（活動報名）、`SAD-Meal-Order`（校園訂餐）、`SAD-Dormitory-Repair`（宿舍報修）與 `SAD-Library`（圖書借閱）是各組可選的分析題目；`SAD-Forum`（討論區）是範例報告的示範對象，不開放各組選**——這條界線與期末「示範題目不在五題之中」是同一個道理。都是 Flask + SQLite 的完整可執行系統，各自附 `README.md`、`CLAUDE.md` 與 `document/` 系統文件。**六套原本是獨立儲存庫，已整份併入本專案**，不再各自帶 `.git`，也不再內含互相參照的唯讀副本（`sad-forum/`、`Course-SAD-Sample-System/` 只作為血緣來源在文件中被提及）；`database.db` 是課程用的種子資料，一併進版控。**這個資料夾採 MIT 授權**（`LICENSE` 置於資料夾內），不適用專案 `README.md` 宣告的 CC BY-NC-SA |
+| `03-Midterm-Project-Example-Systems/` | 期中的校園情境系統六套，加一份 `README.md` 當索引。**`SAD-Equipment`（器材借用）、`SAD-Events`（活動報名）、`SAD-Meal-Order`（校園訂餐）、`SAD-Dormitory-Repair`（宿舍報修）與 `SAD-Library`（圖書借閱）是各組抽籤分配的分析題目；`SAD-Forum`（討論區）是範例報告的示範對象，不列入抽籤**——這條界線與期末「示範題目不在五題之中」是同一個道理。都是 Flask + SQLite 的完整可執行系統，各自附 `README.md`、`CLAUDE.md` 與 `document/` 系統文件。**六套原本是獨立儲存庫，已整份併入本專案**，不再各自帶 `.git`，也不再內含互相參照的唯讀副本（`sad-forum/`、`Course-SAD-Sample-System/` 只作為血緣來源在文件中被提及）；`database.db` 是課程用的種子資料，一併進版控。**這個資料夾採 MIT 授權**（`LICENSE` 置於資料夾內），不適用專案 `README.md` 宣告的 CC BY-NC-SA |
 | `04-Final-Project-Example-Reports/` | 期末的範例報告與說明（`Design-Phase-*.md`），只放這兩份 |
 | `05-Final-Project-Topics/` | 期末設計題目說明書，一題一份，加一份 `README.md` 當索引。**是題目說明不是參考答案**：只給情境、名詞、角色、單據生命週期與設計難點，不給 ERD、資料表、模組清單與畫面線框 |
 | `reference/` | 長期保留的範本與撰寫規範，是全專案的格式基準，會隨慣例調整而更新 |
