@@ -1,0 +1,19 @@
+@startuml
+actor 訪客 as V
+participant 論壇系統 as SYS
+
+V -> SYS : 請求登入頁
+SYS --> V : 回傳登入表單
+V -> SYS : 請求驗證碼圖片
+SYS --> V : 回傳驗證碼圖片
+V -> SYS : 送出登入(email, 密碼, 驗證碼)
+alt 驗證碼未填或錯誤
+  SYS --> V : 顯示驗證碼相關錯誤訊息
+else 帳號或密碼錯誤
+  SYS --> V : 顯示「帳號或密碼錯誤」
+else 帳號已停用
+  SYS --> V : 顯示「帳號已停用」
+else 全部通過
+  SYS --> V : 導向首頁，顯示已登入狀態
+end
+@enduml

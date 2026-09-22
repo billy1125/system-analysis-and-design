@@ -1,0 +1,22 @@
+@startuml
+start
+repeat
+  :輸入 email、密碼、驗證碼;
+  if (驗證碼是否填寫) then (否)
+    :顯示：請輸入驗證碼;
+  elseif (驗證碼是否正確) then (否)
+    :顯示：驗證碼錯誤，請重新輸入;
+  elseif (帳號密碼是否填寫) then (否)
+    :顯示：請輸入帳號與密碼;
+  elseif (帳號存在且密碼正確) then (否)
+    :顯示：帳號或密碼錯誤;
+  elseif (帳號是否啟用) then (否)
+    :顯示：帳號已停用;
+  else (是)
+  endif
+repeat while (是否全部通過) is (否) not (是)
+:更新最後登入時間;
+:建立登入狀態;
+:導向首頁;
+stop
+@enduml

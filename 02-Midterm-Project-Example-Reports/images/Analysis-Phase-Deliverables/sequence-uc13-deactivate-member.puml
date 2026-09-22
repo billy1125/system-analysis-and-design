@@ -1,0 +1,17 @@
+@startuml
+actor 管理員 as A
+participant 論壇系統 as SYS
+
+A -> SYS : 請求會員清單(狀態篩選, 關鍵字, 頁碼)
+SYS --> A : 回傳該頁會員清單與總筆數
+A -> SYS : 送出停用(目標會員編號)
+alt 目標不存在
+  SYS --> A : 顯示「找不到該使用者」
+else 目標是自己
+  SYS --> A : 顯示「不可停用自己的帳號」
+else 目標已被刪除
+  SYS --> A : 顯示「該帳號已刪除，無法操作」
+else 通過
+  SYS --> A : 顯示「帳號已停用」並回到清單
+end
+@enduml
