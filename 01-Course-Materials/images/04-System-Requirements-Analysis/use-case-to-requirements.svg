@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" width="900" height="340" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="340" fill="#ffffff"/>
+
+  <rect x="50" y="40" width="300" height="110" rx="12" fill="#f3f3f3" stroke="#333333" stroke-width="2"/>
+  <text x="200" y="88" text-anchor="middle" font-size="28" fill="#111111">使用案例</text>
+  <text x="200" y="124" text-anchor="middle" font-size="22" fill="#444444">（系統做什麼）</text>
+
+  <rect x="550" y="40" width="300" height="110" rx="12" fill="#f3f3f3" stroke="#333333" stroke-width="2"/>
+  <text x="700" y="88" text-anchor="middle" font-size="28" fill="#111111">功能需求</text>
+  <text x="700" y="124" text-anchor="middle" font-size="22" fill="#444444">（具體規則）</text>
+
+  <line x1="350" y1="95" x2="546" y2="95" stroke="#333333" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <rect x="50" y="190" width="300" height="110" rx="12" fill="#f3f3f3" stroke="#333333" stroke-width="2"/>
+  <text x="200" y="238" text-anchor="middle" font-size="28" fill="#111111">使用者情境</text>
+  <text x="200" y="274" text-anchor="middle" font-size="22" fill="#444444">（誰在哪裡用）</text>
+
+  <rect x="550" y="190" width="300" height="110" rx="12" fill="#f3f3f3" stroke="#333333" stroke-width="2"/>
+  <text x="700" y="238" text-anchor="middle" font-size="28" fill="#111111">非功能需求</text>
+  <text x="700" y="274" text-anchor="middle" font-size="22" fill="#444444">（品質水準與限制）</text>
+
+  <line x1="350" y1="245" x2="546" y2="245" stroke="#333333" stroke-width="2.5" marker-end="url(#arrow)"/>
+</svg>

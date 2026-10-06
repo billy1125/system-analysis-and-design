@@ -1,0 +1,46 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor 訪客 as G
+actor 一般會員 as U
+actor 管理員 as A
+
+rectangle 論壇系統 {
+  usecase "瀏覽首頁" as UC01
+  usecase "申請帳號" as UC02
+  usecase "登入系統" as UC03
+  usecase "登出系統" as UC04
+  usecase "查看個人資料" as UC05
+  usecase "修改個人資料" as UC06
+  usecase "瀏覽論壇" as UC07
+  usecase "發表文章" as UC08
+  usecase "回覆文章" as UC09
+  usecase "修改自己的文章或回覆" as UC10
+  usecase "刪除文章或回覆" as UC11
+  usecase "檢視會員清單" as UC12
+  usecase "啟用或停用會員" as UC13
+  usecase "調整會員角色" as UC14
+  usecase "軟刪除會員" as UC15
+  usecase "取得圖形驗證碼" as UC16
+}
+
+G -- UC01
+G -- UC02
+G -- UC03
+G -- UC07
+U -- UC04
+U -- UC05
+U -- UC06
+U -- UC08
+U -- UC09
+U -- UC10
+A -- UC11
+A -- UC12
+A -- UC13
+A -- UC14
+A -- UC15
+UC03 ..> UC16 : <<include>>
+U --|> G
+A --|> U
+@enduml
