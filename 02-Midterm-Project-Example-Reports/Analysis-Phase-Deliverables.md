@@ -342,7 +342,7 @@
 #### 範例：功能階層圖
 
 ```mermaid
-flowchart TD
+flowchart LR
     S[論壇系統]
     S --> M1[首頁與入口]
     S --> M2[身分驗證]
