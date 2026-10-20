@@ -82,9 +82,22 @@
 
 ## 基本安裝與執行方式
 
+安裝分成三步：開啟終端機、取得專案檔案、選一種方式把系統跑起來。系統跑起來之後，用瀏覽器開啟 <http://localhost:4000> 就能操作。
+
+### 0. 開啟終端機
+
+後面所有指令都在「終端機」裡輸入，每輸入一行就按一次 Enter 執行。
+
+| 作業系統 | 開啟方式 |
+|----------|----------|
+| Windows | 開始功能表搜尋「PowerShell」或「終端機」，點選開啟 |
+| macOS | 按 `Command + 空白鍵` 開啟 Spotlight，輸入「終端機」（Terminal）後按 Enter |
+
+> 指令區塊中以 `#` 開頭的行是說明文字，不用輸入。
+
 ### 1. 取得專案
 
-這套系統收在課程教材儲存庫裡，路徑是 `03-Midterm-Project-Example-Systems/SAD-Forum/`，不是獨立的儲存庫。
+這套系統收在課程教材儲存庫裡，路徑是 `03-Midterm-Project-Example-Systems/SAD-Forum/`，不是獨立的儲存庫。下面兩種方法擇一。
 
 #### 方法 A：使用 Git
 
@@ -100,7 +113,7 @@ cd system-analysis-and-design/03-Midterm-Project-Example-Systems/SAD-Forum
 
 #### 方法 B：下載 ZIP（如果你不會用 Git 的話）
 
-1. 開啟課程教材儲存庫的 GitHub 頁面，點選綠色 **Code** 按鈕 → **Download ZIP**
+1. 開啟課程教材儲存庫的 GitHub 頁面 <https://github.com/billy1125/system-analysis-and-design>，點選綠色 **Code** 按鈕 → **Download ZIP**
 2. 將下載的壓縮檔解壓縮到你想放的位置（例如桌面或 Documents），解壓縮之後資料夾名稱應該是「system-analysis-and-design-main」
 3. 開啟終端機，切換到解壓縮資料夾底下的 `03-Midterm-Project-Example-Systems/SAD-Forum`
 
@@ -109,39 +122,69 @@ cd system-analysis-and-design/03-Midterm-Project-Example-Systems/SAD-Forum
 - **Windows**：在檔案總管中開啟該資料夾，點選上方網址列，即可看到並複製完整路徑。
 - **macOS**：在 Finder 中找到該資料夾，按住 `Option` 鍵並右鍵點選，選擇「複製路徑名稱」。
 
-取得路徑後，開啟終端機輸入：
+取得路徑後，在終端機輸入 `cd`、一個空格，再貼上路徑：
 
 ```bash
-# Windows（PowerShell / 命令提示字元）
-cd C:\Users\billy\Downloads\system-analysis-and-design-main\03-Midterm-Project-Example-Systems\SAD-Forum
+# Windows（PowerShell）
+cd "C:\Users\billy\Downloads\system-analysis-and-design-main\03-Midterm-Project-Example-Systems\SAD-Forum"
 
 # macOS / Linux
-cd /Users/billy/Downloads/system-analysis-and-design-main/03-Midterm-Project-Example-Systems/SAD-Forum
+cd "/Users/billy/Downloads/system-analysis-and-design-main/03-Midterm-Project-Example-Systems/SAD-Forum"
 ```
 
-> 將上方範例路徑替換為你自己複製的完整路徑。
+> 將上方範例路徑替換為你自己複製的完整路徑。路徑前後的雙引號要保留，路徑裡有空格（例如 `My Documents`）時才不會出錯。
 
-### 2. 建置專案
+#### 確認目前的位置
 
-> 這個範例系統提供兩種方式安裝，建議同學使用第一種
+切換之後，先確認終端機真的在系統資料夾裡：
 
-#### 方法 A：以 Docker 建置（需要 clone 此 repository）
+```bash
+# Windows（PowerShell）
+dir
 
-**前置需求**：已安裝 [Docker Desktop](https://www.docker.com/products/docker-desktop/)，Windows、macOS、Linux 均支援。
+# macOS / Linux
+ls
+```
+
+列出的檔案中要看得到 `app.py`、`requirements.txt` 與 `docker-compose.yml`。看不到的話，代表位置不對，後面的指令都會失敗。
+
+**之後每次開新的終端機，都要先 `cd` 回這個資料夾**，再執行下一節的指令。
+
+### 2. 建置與啟動系統
+
+這個範例系統提供兩種方式，擇一即可，建議使用方法 A。
+
+| | 方法 A：Docker | 方法 B：本機 Python |
+|---|---|---|
+| 要先安裝 | Docker Desktop | Python 3.11 |
+| 優點 | 不用處理 Python 版本與套件，每個人的執行環境都一樣 | 不必安裝 Docker |
+| 資料庫檔的位置 | 容器裡（要先複製出來才看得到，見〈直接檢視資料庫〉） | 系統資料夾裡的 `database.db` |
+
+#### 方法 A：以 Docker 建置
+
+**前置需求**：已安裝 Docker Desktop。還沒安裝的話，先照 [Docker Desktop 安裝指南：Windows 與 macOS](../Docker-Desktop-Installation-Guide.md) 完成安裝，並做完該文件〈4. Windows 與 macOS 共用的安裝驗證〉。
+
+**每次使用前，都要先開啟 Docker Desktop 應用程式**，等它顯示引擎已啟動再輸入指令。沒開的話，指令會出現無法連線到 Docker daemon 的錯誤。
 
 ##### 安裝（第一次使用）
 
-第一次啟動需要先建置 Docker 映像：
+確認終端機位在系統資料夾裡（見〈確認目前的位置〉），執行：
 
 ```bash
 docker compose up -d --build
 ```
 
-建置完成後，開啟瀏覽器前往「[http://localhost:4000](http://localhost:4000)」
+第一次執行要下載 Python 映像並安裝套件，需要網路連線，大約要等幾分鐘。完成後確認系統有在執行：
+
+```bash
+docker compose ps
+```
+
+`STATUS` 欄顯示 `Up` 就代表啟動成功。開啟瀏覽器前往「[http://localhost:4000](http://localhost:4000)」。
 
 ##### 日常執行
 
-之後每次要啟動系統，不需要重新建置，直接執行：
+之後每次要啟動系統，先開啟 Docker Desktop，在系統資料夾裡執行（不需要重新建置）：
 
 ```bash
 docker compose up -d
@@ -159,28 +202,106 @@ docker compose up -d
 | `docker compose down --rmi all` | 停止、移除容器，並**刪除映像**（釋放磁碟空間） |
 | `docker compose down -v --rmi all` | 停止、移除容器、**刪除映像**及**所有資料**（完全清除） |
 
-> 系統的資料（帳號、論壇文章）儲存在 Docker 的 named volume 中，`stop` 或 `down` 都不會刪除資料；只有加上 `-v` 才會完全清除並回復為只有三個種子帳號的初始狀態。加上 `--rmi all` 才會同時刪除本機的 Docker 映像。
+> 系統的資料（帳號、論壇文章）儲存在 Docker 的 named volume 中，`stop` 或 `down` 都不會刪除資料；只有加上 `-v` 才會完全清除，下次啟動時回復為三個種子帳號與五篇種子文章的初始狀態。加上 `--rmi all` 才會同時刪除本機的 Docker 映像。
+
+> 六套範例系統都使用 4000 這個連接埠，**同一時間只能啟動一套**。要換另一套之前，先到原本那套的資料夾執行 `docker compose stop`。各套的資料存在各自的 volume，不會互相影響。
 
 ---
 
 #### 方法 B：手動本機安裝（需要 Python 3 環境）
 
-**前置需求**：已安裝 Python 3 與 conda（或其他虛擬環境工具）。
+**前置需求**：已安裝 Python 3.11。Docker 映像用的是 3.11，本機也以 3.11 測試過；其他版本沒有測試過。
+
+##### 步驟 1：確認 Python 已安裝
 
 ```bash
-# 啟用虛擬環境（以 conda 為例）
-conda activate flask
+# Windows（PowerShell）
+python --version
 
-# 安裝相依套件
-pip install -r requirements.txt
-
-# 啟動伺服器
-python app.py
-# 伺服器啟動於 http://localhost:4000
-
-# 重置資料庫
-rm database.db && python app.py
+# macOS / Linux
+python3 --version
 ```
+
+應顯示 `Python 3.11.x`。如果顯示找不到指令，或 Windows 跳出 Microsoft Store，代表還沒安裝 Python：到 <https://www.python.org/downloads/> 下載 3.11 版安裝。Windows 安裝程式的第一個畫面**要勾選「Add python.exe to PATH」**，裝完把終端機關掉重開，再檢查一次。
+
+##### 步驟 2：建立並啟用虛擬環境
+
+虛擬環境（virtual environment）是專屬這個專案的 Python 套件空間，裝進去的套件不會影響電腦上的其他程式。下面兩種工具擇一。
+
+**用 Python 內建的 venv**（不用另外安裝東西）：
+
+```bash
+# Windows（PowerShell）
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+
+# macOS / Linux
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+**已經裝了 Anaconda 或 Miniconda 的話，也可以用 conda**：
+
+```bash
+conda create -n flask python=3.11    # 只有第一次需要
+conda activate flask
+```
+
+啟用成功後，終端機每一行的最前面會出現 `(.venv)` 或 `(flask)`。之後的步驟在這個狀態下執行，macOS 也直接打 `python` 即可。
+
+> Windows 執行 `Activate.ps1` 時，若出現「因為這個系統上已停用指令碼執行」，先執行下面這行，再重新啟用一次：
+>
+> ```powershell
+> Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+> ```
+
+##### 步驟 3：安裝相依套件
+
+```bash
+pip install -r requirements.txt
+```
+
+最後出現 `Successfully installed ...` 就代表安裝完成。已經裝過的套件會顯示 `Requirement already satisfied`，也是正常的。
+
+##### 步驟 4：啟動伺服器
+
+```bash
+python app.py
+```
+
+畫面出現 `Running on http://127.0.0.1:4000` 就代表啟動成功，開啟瀏覽器前往「[http://localhost:4000](http://localhost:4000)」。同一個畫面上的 `WARNING: This is a development server` 是 Flask 的固定提醒，不影響使用。
+
+伺服器執行期間，這個終端機視窗要保持開著。要停止系統，在終端機按 `Ctrl + C`。
+
+##### 之後每次啟動
+
+套件不用重裝，只要做三件事：`cd` 到系統資料夾、啟用虛擬環境（步驟 2 的第二行，或 `conda activate flask`）、執行 `python app.py`。
+
+##### 重置資料庫
+
+先按 `Ctrl + C` 停止伺服器，刪掉資料庫檔後重新啟動。系統找不到資料庫檔時，會重新建立資料表並植入種子資料：
+
+```bash
+# Windows（PowerShell）
+Remove-Item database.db
+python app.py
+
+# macOS / Linux
+rm database.db
+python app.py
+```
+
+### 3. 安裝時常見的問題
+
+| 狀況 | 原因與處理 |
+|------|------------|
+| `docker` 不是可辨識的指令，或 `command not found: docker` | Docker Desktop 沒有安裝，或安裝後還沒啟動過。見 [Docker Desktop 安裝指南：Windows 與 macOS](../Docker-Desktop-Installation-Guide.md)〈5〉 |
+| 出現 `Cannot connect to the Docker daemon` 或 `error during connect` | Docker Desktop 沒有開。開啟應用程式，等引擎啟動後再執行一次 |
+| 出現 `no configuration file provided: not found` | 終端機不在系統資料夾裡，回〈確認目前的位置〉 |
+| Windows 輸入 `python` 後跳出 Microsoft Store | 還沒安裝 Python，見方法 B 步驟 1 |
+| `No module named 'flask'`（或 `bcrypt`、`captcha`） | 虛擬環境沒有啟用，或套件還沒安裝。啟用虛擬環境後重新執行 `pip install -r requirements.txt` |
+| 出現 `port is already allocated`、`Address already in use` 等連接埠被佔用的訊息 | 4000 連接埠已被佔用，通常是另一套範例系統還開著。先停掉它：Docker 用 `docker compose stop`，本機在原本的終端機按 `Ctrl + C` |
+| 瀏覽器顯示「無法連上這個網站」 | 系統沒有在執行。Docker 用 `docker compose ps` 確認；本機確認執行 `python app.py` 的終端機還開著 |
 
 ---
 
@@ -202,11 +323,7 @@ rm database.db && python app.py
 
 五篇種子文章各自對應一個值得觀察的系統行為——例如其中一篇是用「已停用」的帳號發表的，可以直接看到帳號被停用之後，既有內容並不會跟著消失，而且作者欄會因為該帳號沒有填姓名而顯示 email。設計用意見 [document/system-spec.md](document/system-spec.md) §6.4.1。
 
-要回到初始狀態，刪掉資料庫檔重新啟動即可：
-
-```bash
-rm database.db && python app.py
-```
+要回到初始狀態：本機執行的話，照〈重置資料庫〉刪掉資料庫檔後重新啟動；Docker 執行的話，用 `docker compose down -v` 清除資料後再 `docker compose up -d`。
 
 ---
 
@@ -221,7 +338,9 @@ rm database.db && python app.py
 | 本機（`python app.py`） | 專案根目錄的 **`database.db`** |
 | Docker | 容器內的 `/app/data/database.db`，實體存放在 Docker 的 named volume `db_data` |
 
-這個檔案**不在版本控制中**——它由系統在第一次啟動時自動建立，每個人的資料庫都是自己的。你在上面做的任何操作都不會影響別人。
+本機的 `database.db` 隨儲存庫一起提供，內容是種子資料；刪掉之後，系統下次啟動會重新建立。Docker 的資料庫則是容器第一次啟動時另外建立的，和資料夾裡的 `database.db` 是兩個獨立的檔案，在其中一邊做的操作不會出現在另一邊。
+
+每個人的資料庫都是自己電腦上的一份，你在上面做的任何操作都不會影響別人。
 
 ### 如果看到 `-wal` 和 `-shm` 兩個檔案
 
@@ -396,7 +515,7 @@ SELECT id, title, is_deleted FROM forum;
 另外兩點：
 
 - **伺服器執行中不要改資料庫**，容易與正在進行的寫入衝突
-- 改壞了不用緊張，`rm database.db` 之後重新啟動就會回到乾淨的初始狀態
+- 改壞了不用緊張，照〈重置資料庫〉刪掉資料庫檔後重新啟動，就會回到乾淨的初始狀態
 
 如果你的目的是「想知道改了某個欄位系統會怎麼反應」，那正是值得做的實驗——但請在改之前先想好預期會發生什麼，改完再回頭驗證，這樣才有分析的價值。
 

@@ -116,7 +116,7 @@
 
 同一個資料夾底下還有一套討論區系統（`SAD-Forum/`），**那是上一節的範例報告拿來示範的系統，不在抽籤範圍內**。想知道一份分析報告從系統推導到什麼程度，可以拿它和範例報告對著看。每套系統的定位、共通概念與使用步驟，見這個資料夾的[索引](03-Midterm-Project-Example-Systems/README.md)。
 
-每套系統的資料夾內都附有系統規格書與建置流程書（`document/`），**但那是給你對照用的參考，不是你報告的替代品**——分析要自己從畫面、流程與程式碼推導出來。怎麼把系統跑起來，見各系統自己的 `README.md`。
+每套系統的資料夾內都附有系統規格書與建置流程書（`document/`），**但那是給你對照用的參考，不是你報告的替代品**——分析要自己從畫面、流程與程式碼推導出來。怎麼把系統跑起來，見各系統自己的 `README.md`；要用 Docker 建置但電腦還沒裝 Docker Desktop，先看 [Docker Desktop 安裝指南：Windows 與 macOS](03-Midterm-Project-Example-Systems/Docker-Desktop-Installation-Guide.md)。
 
 ### 期末報告的題目
 
