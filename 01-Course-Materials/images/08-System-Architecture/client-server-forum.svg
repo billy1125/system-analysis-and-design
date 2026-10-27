@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 310" width="960" height="310" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="310" fill="#ffffff"/>
+
+  <!-- links -->
+  <g fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="220" y1="65" x2="418" y2="135"/>
+    <line x1="220" y1="155" x2="418" y2="155"/>
+    <line x1="220" y1="245" x2="418" y2="175"/>
+    <line x1="600" y1="155" x2="758" y2="155"/>
+  </g>
+  <g fill="#444444" font-size="13" text-anchor="middle">
+    <text x="350" y="92">HTTP 請求</text>
+    <text x="320" y="147">HTTP 請求</text>
+    <text x="350" y="236">HTTP 請求</text>
+    <text x="680" y="147">讀寫</text>
+  </g>
+
+  <!-- browsers and application server -->
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <rect x="60" y="35" width="160" height="60"/>
+    <rect x="60" y="125" width="160" height="60"/>
+    <rect x="60" y="215" width="160" height="60"/>
+    <rect x="420" y="120" width="180" height="70"/>
+  </g>
+  <g fill="#111111" text-anchor="middle" font-size="15">
+    <text x="140" y="61">訪客</text>
+    <text x="140" y="151">一般會員</text>
+    <text x="140" y="241">管理員</text>
+    <text x="510" y="150">論壇系統</text>
+  </g>
+  <g fill="#444444" text-anchor="middle" font-size="13">
+    <text x="140" y="81">瀏覽器</text>
+    <text x="140" y="171">瀏覽器</text>
+    <text x="140" y="261">瀏覽器</text>
+    <text x="510" y="172">應用伺服器</text>
+  </g>
+
+  <!-- database -->
+  <path d="M760,125 L760,185 A70,14 0 0,0 900,185 L900,125" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <ellipse cx="830" cy="125" rx="70" ry="14" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="830" y="167" fill="#111111" text-anchor="middle" font-size="15">資料庫</text>
+</svg>

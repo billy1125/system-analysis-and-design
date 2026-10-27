@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1184 750" width="1184" height="750" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1184" height="750" fill="#ffffff"/>
+
+  <!-- swimlanes -->
+  <rect x="20" y="10" width="1144" height="40" fill="#f3f3f3"/>
+  <g stroke="#333333" stroke-width="2">
+    <line x1="20" y1="10" x2="20" y2="740"/>
+    <line x1="190" y1="10" x2="190" y2="740"/>
+    <line x1="1014" y1="10" x2="1014" y2="740"/>
+    <line x1="1164" y1="10" x2="1164" y2="740"/>
+    <line x1="20" y1="10" x2="1164" y2="10"/>
+    <line x1="20" y1="50" x2="1164" y2="50"/>
+    <line x1="20" y1="740" x2="1164" y2="740"/>
+  </g>
+  <g fill="#111111" font-size="18" text-anchor="middle">
+    <text x="105" y="37">管理員</text>
+    <text x="602" y="37">系統</text>
+    <text x="1089" y="37">被停用的會員</text>
+  </g>
+
+  <g fill="none" stroke="#333333" stroke-width="1.5">
+    <!-- admin opens list -> system checks -->
+    <line x1="105" y1="90" x2="105" y2="103" marker-end="url(#arrow)"/>
+    <polyline points="105,141 105,155 602,155 602,168" marker-end="url(#arrow)"/>
+    <line x1="602" y1="206" x2="602" y2="224" marker-end="url(#arrow)"/>
+    <line x1="602" y1="262" x2="602" y2="280" marker-end="url(#arrow)"/>
+    <!-- system checks -> admin selects target -->
+    <polyline points="602,318 602,332 105,332 105,348" marker-end="url(#arrow)"/>
+    <line x1="105" y1="386" x2="105" y2="404" marker-end="url(#arrow)"/>
+    <!-- admin clicks deactivate -> decisions -->
+    <polyline points="105,442 105,456 284,456 284,468" marker-end="url(#arrow)"/>
+    <line x1="341" y1="484" x2="412" y2="484" marker-end="url(#arrow)"/>
+    <line x1="542" y1="484" x2="627" y2="484" marker-end="url(#arrow)"/>
+    <polyline points="771,484 914,484 914,528" marker-end="url(#arrow)"/>
+    <!-- rejected branches -->
+    <line x1="284" y1="498" x2="284" y2="528" marker-end="url(#arrow)"/>
+    <line x1="478" y1="498" x2="478" y2="528" marker-end="url(#arrow)"/>
+    <line x1="700" y1="498" x2="700" y2="528" marker-end="url(#arrow)"/>
+    <line x1="284" y1="566" x2="284" y2="597" marker-end="url(#arrow)"/>
+    <line x1="478" y1="566" x2="478" y2="597" marker-end="url(#arrow)"/>
+    <line x1="700" y1="566" x2="700" y2="597" marker-end="url(#arrow)"/>
+    <!-- success branch -->
+    <line x1="914" y1="566" x2="914" y2="584" marker-end="url(#arrow)"/>
+    <polyline points="914,622 914,636 1089,636 1089,648" marker-end="url(#arrow)"/>
+    <line x1="1089" y1="686" x2="1089" y2="707" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- start / end nodes -->
+  <circle cx="105" cy="80" r="10" fill="#222222"/>
+  <g fill="#ffffff" stroke="#222222" stroke-width="1.5">
+    <circle cx="284" cy="611" r="12"/>
+    <circle cx="478" cy="611" r="12"/>
+    <circle cx="700" cy="611" r="12"/>
+    <circle cx="1089" cy="721" r="12"/>
+  </g>
+  <g fill="#222222">
+    <circle cx="284" cy="611" r="7"/>
+    <circle cx="478" cy="611" r="7"/>
+    <circle cx="700" cy="611" r="7"/>
+    <circle cx="1089" cy="721" r="7"/>
+  </g>
+
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <!-- actions -->
+    <rect x="51" y="105" width="108" height="36" rx="10"/>
+    <rect x="541" y="170" width="122" height="36" rx="10"/>
+    <rect x="534" y="226" width="136" height="36" rx="10"/>
+    <rect x="534" y="282" width="136" height="36" rx="10"/>
+    <rect x="30" y="350" width="150" height="36" rx="10"/>
+    <rect x="65" y="406" width="80" height="36" rx="10"/>
+    <rect x="202" y="530" width="164" height="36" rx="10"/>
+    <rect x="382" y="530" width="192" height="36" rx="10"/>
+    <rect x="590" y="530" width="220" height="36" rx="10"/>
+    <rect x="826" y="530" width="176" height="36" rx="10"/>
+    <rect x="846" y="586" width="136" height="36" rx="10"/>
+    <rect x="1028" y="650" width="122" height="36" rx="10"/>
+    <!-- decisions -->
+    <polygon points="227,484 237,470 331,470 341,484 331,498 237,498"/>
+    <polygon points="414,484 424,470 532,470 542,484 532,498 424,498"/>
+    <polygon points="629,484 639,470 761,470 771,484 761,498 639,498"/>
+  </g>
+
+  <g fill="#111111" text-anchor="middle">
+    <text x="105" y="128">開啟會員清單</text>
+    <text x="602" y="193">檢查是否已登入</text>
+    <text x="602" y="249">檢查帳號是否可用</text>
+    <text x="602" y="305">檢查是否為管理員</text>
+    <text x="105" y="373">篩選或搜尋目標會員</text>
+    <text x="105" y="429">點選停用</text>
+    <text x="284" y="489">目標是否存在</text>
+    <text x="478" y="489">目標是否為自己</text>
+    <text x="700" y="489">目標是否已被刪除</text>
+    <text x="284" y="553">顯示：找不到該使用者</text>
+    <text x="478" y="553">顯示：不可停用自己的帳號</text>
+    <text x="700" y="553">顯示：該帳號已刪除，無法操作</text>
+    <text x="914" y="553">將目標的啟用旗標設為 0</text>
+    <text x="914" y="609">顯示：帳號已停用</text>
+    <text x="1089" y="673">下次登入被擋下</text>
+  </g>
+
+  <!-- guard labels -->
+  <g fill="#444444" font-size="13">
+    <text x="290" y="516">否</text>
+    <text x="484" y="516">是</text>
+    <text x="706" y="516">是</text>
+    <text x="779" y="477">否</text>
+  </g>
+</svg>

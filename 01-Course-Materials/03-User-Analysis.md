@@ -460,7 +460,7 @@ UML 並未規定敘述的格式，但歸納各家做法，完整版本應包含�
 
 畫成圖：
 
-![會員登入的活動圖](images/03-User-Analysis/activity-member-login.png)
+![會員登入的活動圖](images/03-User-Analysis/activity-member-login.svg)
 
 *本圖由作者自製*
 
@@ -485,7 +485,7 @@ UML 並未規定敘述的格式，但歸納各家做法，完整版本應包含�
 
 畫成圖：
 
-![管理員停用會員的泳道圖](images/03-User-Analysis/activity-deactivate-member.png)
+![管理員停用會員的泳道圖](images/03-User-Analysis/activity-deactivate-member.svg)
 
 *本圖由作者自製*
 
@@ -533,14 +533,9 @@ UML 並未規定敘述的格式，但歸納各家做法，完整版本應包含�
 
 本章的各項工具並非互不相干的文件，而是一條有明確傳遞關係的鏈：
 
-```mermaid
-flowchart LR
-    S1["利害關係人<br/>（誰）"] --> S2["需求收集<br/>（怎麼問）"]
-    S2 --> S3["使用者輪廓<br/>（什麼樣的人）"]
-    S3 --> S4["使用案例<br/>（系統做什麼）"]
-    S4 --> S5["流程與事件<br/>（現在怎麼做）"]
-    S5 --> S6["需求規格<br/>（做到什麼程度）"]
-```
+![各項分析的傳遞鏈](images/03-User-Analysis/analysis-chain.svg)
+
+*本圖由作者自製*
 
 - 利害關係人清單 **決定要訪談誰**，漏掉一類人，就漏掉一整批流程。
 - 需求收集方法 **決定資訊的品質**，只靠訪談會得到「應該怎麼做」，加上觀察才會得到「實際怎麼做」。

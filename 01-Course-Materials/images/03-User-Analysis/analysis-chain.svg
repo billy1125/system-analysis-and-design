@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 110" width="960" height="110" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="110" fill="#ffffff"/>
+
+  <!-- links -->
+  <g fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="141" y1="55" x2="173" y2="55"/>
+    <line x1="303" y1="55" x2="335" y2="55"/>
+    <line x1="465" y1="55" x2="497" y2="55"/>
+    <line x1="627" y1="55" x2="659" y2="55"/>
+    <line x1="789" y1="55" x2="821" y2="55"/>
+  </g>
+
+  <!-- steps -->
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <rect x="13" y="25" width="128" height="60"/>
+    <rect x="175" y="25" width="128" height="60"/>
+    <rect x="337" y="25" width="128" height="60"/>
+    <rect x="499" y="25" width="128" height="60"/>
+    <rect x="661" y="25" width="128" height="60"/>
+    <rect x="823" y="25" width="128" height="60"/>
+  </g>
+  <g fill="#111111" text-anchor="middle" font-size="15">
+    <text x="77" y="51">利害關係人</text>
+    <text x="239" y="51">需求收集</text>
+    <text x="401" y="51">使用者輪廓</text>
+    <text x="563" y="51">使用案例</text>
+    <text x="725" y="51">流程與事件</text>
+    <text x="887" y="51">需求規格</text>
+  </g>
+  <g fill="#444444" text-anchor="middle" font-size="13">
+    <text x="77" y="71">（誰）</text>
+    <text x="239" y="71">（怎麼問）</text>
+    <text x="401" y="71">（什麼樣的人）</text>
+    <text x="563" y="71">（系統做什麼）</text>
+    <text x="725" y="71">（現在怎麼做）</text>
+    <text x="887" y="71">（做到什麼程度）</text>
+  </g>
+</svg>

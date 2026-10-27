@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="960" height="380" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="380" fill="#ffffff"/>
+
+  <!-- solid links -->
+  <g fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="560" y1="80" x2="560" y2="148"/>
+    <line x1="420" y1="175" x2="468" y2="175"/>
+    <line x1="560" y1="200" x2="560" y2="265"/>
+    <line x1="840" y1="212" x2="840" y2="278"/>
+  </g>
+  <!-- dashed links -->
+  <g fill="none" stroke="#333333" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow)">
+    <line x1="200" y1="175" x2="258" y2="175"/>
+    <line x1="650" y1="175" x2="768" y2="175"/>
+  </g>
+  <g fill="#444444" font-size="13">
+    <text x="572" y="120">員工名單</text>
+    <text x="709" y="165" text-anchor="middle">每 15 分鐘寫出</text>
+  </g>
+
+  <!-- boxes -->
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <rect x="470" y="30" width="180" height="50"/>
+    <rect x="40" y="150" width="160" height="50"/>
+    <rect x="260" y="150" width="160" height="50"/>
+    <rect x="470" y="150" width="180" height="50"/>
+    <rect x="760" y="280" width="160" height="50"/>
+  </g>
+  <g fill="#111111" text-anchor="middle" font-size="15">
+    <text x="560" y="60">人資系統</text>
+    <text x="120" y="180">證件掃描器</text>
+    <text x="340" y="180">櫃台電腦</text>
+    <text x="560" y="180">訪客登記系統</text>
+    <text x="840" y="310">標籤印表機</text>
+  </g>
+
+  <!-- offline list file -->
+  <path d="M770,150 L770,200 A70,12 0 0,0 910,200 L910,150" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <ellipse cx="840" cy="150" rx="70" ry="12" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="840" y="186" fill="#111111" text-anchor="middle" font-size="15">離線名單檔</text>
+
+  <!-- visitor database -->
+  <path d="M480,280 L480,335 A80,13 0 0,0 640,335 L640,280" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <ellipse cx="560" cy="280" rx="80" ry="13" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="560" y="316" fill="#111111" text-anchor="middle" font-size="15">訪客資料庫</text>
+</svg>

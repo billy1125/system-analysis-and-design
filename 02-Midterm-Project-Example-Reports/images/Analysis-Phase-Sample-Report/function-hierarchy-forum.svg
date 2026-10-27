@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 430" width="960" height="430" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <rect x="0" y="0" width="960" height="430" fill="#ffffff"/>
+
+  <!-- links -->
+  <g fill="none" stroke="#333333" stroke-width="1.5">
+    <line x1="480" y1="70" x2="480" y2="100"/>
+    <line x1="100" y1="100" x2="860" y2="100"/>
+    <line x1="100" y1="100" x2="100" y2="120"/>
+    <line x1="290" y1="100" x2="290" y2="120"/>
+    <line x1="480" y1="100" x2="480" y2="120"/>
+    <line x1="670" y1="100" x2="670" y2="120"/>
+    <line x1="860" y1="100" x2="860" y2="120"/>
+    <line x1="30" y1="165" x2="30" y2="251"/>
+    <line x1="30" y1="203" x2="46" y2="203"/>
+    <line x1="30" y1="251" x2="46" y2="251"/>
+    <line x1="220" y1="165" x2="220" y2="347"/>
+    <line x1="220" y1="203" x2="236" y2="203"/>
+    <line x1="220" y1="251" x2="236" y2="251"/>
+    <line x1="220" y1="299" x2="236" y2="299"/>
+    <line x1="220" y1="347" x2="236" y2="347"/>
+    <line x1="410" y1="165" x2="410" y2="251"/>
+    <line x1="410" y1="203" x2="426" y2="203"/>
+    <line x1="410" y1="251" x2="426" y2="251"/>
+    <line x1="600" y1="165" x2="600" y2="395"/>
+    <line x1="600" y1="203" x2="616" y2="203"/>
+    <line x1="600" y1="251" x2="616" y2="251"/>
+    <line x1="600" y1="299" x2="616" y2="299"/>
+    <line x1="600" y1="347" x2="616" y2="347"/>
+    <line x1="600" y1="395" x2="616" y2="395"/>
+    <line x1="790" y1="165" x2="790" y2="395"/>
+    <line x1="790" y1="203" x2="806" y2="203"/>
+    <line x1="790" y1="251" x2="806" y2="251"/>
+    <line x1="790" y1="299" x2="806" y2="299"/>
+    <line x1="790" y1="347" x2="806" y2="347"/>
+    <line x1="790" y1="395" x2="806" y2="395"/>
+  </g>
+
+  <!-- root -->
+  <rect x="400" y="20" width="160" height="50" fill="#e6e6e6" stroke="#333333" stroke-width="1.5"/>
+  <text x="480" y="51" fill="#111111" text-anchor="middle" font-size="16">論壇系統</text>
+
+  <!-- groups -->
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <rect x="14" y="120" width="172" height="45"/>
+    <rect x="204" y="120" width="172" height="45"/>
+    <rect x="394" y="120" width="172" height="45"/>
+    <rect x="584" y="120" width="172" height="45"/>
+    <rect x="774" y="120" width="172" height="45"/>
+  </g>
+  <g fill="#111111" text-anchor="middle" font-size="15">
+    <text x="100" y="148">首頁與入口</text>
+    <text x="290" y="148">身分驗證</text>
+    <text x="480" y="148">個人資料</text>
+    <text x="670" y="148">會員管理</text>
+    <text x="860" y="148">論壇</text>
+  </g>
+
+  <!-- functions -->
+  <g fill="#ffffff" stroke="#333333" stroke-width="1.5">
+    <rect x="46" y="185" width="140" height="36"/>
+    <rect x="46" y="233" width="140" height="36"/>
+    <rect x="236" y="185" width="140" height="36"/>
+    <rect x="236" y="233" width="140" height="36"/>
+    <rect x="236" y="281" width="140" height="36"/>
+    <rect x="236" y="329" width="140" height="36"/>
+    <rect x="426" y="185" width="140" height="36"/>
+    <rect x="426" y="233" width="140" height="36"/>
+    <rect x="616" y="185" width="140" height="36"/>
+    <rect x="616" y="233" width="140" height="36"/>
+    <rect x="616" y="281" width="140" height="36"/>
+    <rect x="616" y="329" width="140" height="36"/>
+    <rect x="616" y="377" width="140" height="36"/>
+    <rect x="806" y="185" width="140" height="36"/>
+    <rect x="806" y="233" width="140" height="36"/>
+    <rect x="806" y="281" width="140" height="36"/>
+    <rect x="806" y="329" width="140" height="36"/>
+    <rect x="806" y="377" width="140" height="36"/>
+  </g>
+  <g fill="#111111" text-anchor="middle" font-size="14">
+    <text x="116" y="208">瀏覽首頁</text>
+    <text x="116" y="256">顯示可用服務入口</text>
+    <text x="306" y="208">申請帳號</text>
+    <text x="306" y="256">登入</text>
+    <text x="306" y="304">登出</text>
+    <text x="306" y="352">產生圖形驗證碼</text>
+    <text x="496" y="208">查看個人資料</text>
+    <text x="496" y="256">修改個人資料</text>
+    <text x="686" y="208">檢視會員清單</text>
+    <text x="686" y="256">篩選與搜尋會員</text>
+    <text x="686" y="304">啟用或停用會員</text>
+    <text x="686" y="352">調整會員角色</text>
+    <text x="686" y="400">軟刪除會員</text>
+    <text x="876" y="208">瀏覽文章與回覆</text>
+    <text x="876" y="256">發表文章</text>
+    <text x="876" y="304">回覆文章</text>
+    <text x="876" y="352">修改文章或回覆</text>
+    <text x="876" y="400">刪除文章或回覆</text>
+  </g>
+</svg>

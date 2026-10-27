@@ -647,7 +647,7 @@ table {
 
 ## 範例報告：會員登入（活動圖）
 
-![h:500](images/03-User-Analysis/activity-member-login.png)
+![h:500](images/03-User-Analysis/activity-member-login.svg)
 
 ---
 
@@ -676,7 +676,7 @@ table {
 
 ## 範例報告：管理員停用會員（泳道圖）
 
-![h:500](images/03-User-Analysis/activity-deactivate-member.png)
+![h:500](images/03-User-Analysis/activity-deactivate-member.svg)
 
 ---
 
