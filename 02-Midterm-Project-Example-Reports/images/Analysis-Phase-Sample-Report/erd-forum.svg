@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" width="1100" height="420" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <rect x="0" y="0" width="1100" height="420" fill="#ffffff"/>
+
+  <g fill="none" stroke="#333333" stroke-width="1.5">
+    <!-- users to forum -->
+    <line x1="300" y1="200" x2="420" y2="200"/>
+    <line x1="312" y1="190" x2="312" y2="210"/>
+    <line x1="320" y1="190" x2="320" y2="210"/>
+    <line x1="406" y1="200" x2="420" y2="188"/>
+    <line x1="406" y1="200" x2="420" y2="212"/>
+    <!-- forum to forum_details -->
+    <line x1="680" y1="200" x2="800" y2="200"/>
+    <line x1="692" y1="190" x2="692" y2="210"/>
+    <line x1="700" y1="190" x2="700" y2="210"/>
+    <line x1="786" y1="200" x2="800" y2="188"/>
+    <line x1="786" y1="200" x2="800" y2="212"/>
+    <!-- users to forum_details -->
+    <polyline points="170,80 170,40 930,40 930,80"/>
+    <line x1="160" y1="68" x2="180" y2="68"/>
+    <line x1="160" y1="62" x2="180" y2="62"/>
+    <line x1="930" y1="66" x2="918" y2="80"/>
+    <line x1="930" y1="66" x2="942" y2="80"/>
+  </g>
+  <g fill="#ffffff" stroke="#333333" stroke-width="1.5">
+    <circle cx="398" cy="200" r="6"/>
+    <circle cx="778" cy="200" r="6"/>
+    <circle cx="930" cy="58" r="6"/>
+  </g>
+
+  <!-- relationship labels -->
+  <g fill="#444444" font-size="13" text-anchor="middle">
+    <text x="360" y="188">發表</text>
+    <text x="740" y="188">包含</text>
+    <text x="550" y="32">撰寫</text>
+  </g>
+
+  <!-- users -->
+  <rect x="40" y="80" width="260" height="292" fill="#ffffff"/>
+  <rect x="40" y="112" width="260" height="26" fill="#fff2c2"/>
+  <g stroke="#cccccc" stroke-width="1">
+    <line x1="40" y1="138" x2="300" y2="138"/>
+    <line x1="40" y1="164" x2="300" y2="164"/>
+    <line x1="40" y1="190" x2="300" y2="190"/>
+    <line x1="40" y1="216" x2="300" y2="216"/>
+    <line x1="40" y1="242" x2="300" y2="242"/>
+    <line x1="40" y1="268" x2="300" y2="268"/>
+    <line x1="40" y1="294" x2="300" y2="294"/>
+    <line x1="40" y1="320" x2="300" y2="320"/>
+    <line x1="40" y1="346" x2="300" y2="346"/>
+  </g>
+  <rect x="40" y="80" width="260" height="292" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <rect x="40" y="80" width="260" height="32" fill="#e6e6e6" stroke="#333333" stroke-width="1.5"/>
+  <text x="170" y="101" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="15" font-weight="bold" fill="#111111">users</text>
+  <g fill="#111111" font-family="Consolas, 'Courier New', monospace" font-size="13">
+    <text x="50" y="130" fill="#666666">INTEGER</text>
+    <text x="130" y="130">id</text>
+    <text x="290" y="130" text-anchor="end" font-weight="bold">PK</text>
+    <text x="50" y="156" fill="#666666">TEXT</text>
+    <text x="130" y="156">email</text>
+    <text x="290" y="156" text-anchor="end" font-weight="bold">UK</text>
+    <text x="50" y="182" fill="#666666">TEXT</text>
+    <text x="130" y="182">hash</text>
+    <text x="50" y="208" fill="#666666">INTEGER</text>
+    <text x="130" y="208">role</text>
+    <text x="50" y="234" fill="#666666">TEXT</text>
+    <text x="130" y="234">name</text>
+    <text x="50" y="260" fill="#666666">TEXT</text>
+    <text x="130" y="260">display_name</text>
+    <text x="50" y="286" fill="#666666">INTEGER</text>
+    <text x="130" y="286">is_active</text>
+    <text x="50" y="312" fill="#666666">INTEGER</text>
+    <text x="130" y="312">is_deleted</text>
+    <text x="50" y="338" fill="#666666">TEXT</text>
+    <text x="130" y="338">created_at</text>
+    <text x="50" y="364" fill="#666666">TEXT</text>
+    <text x="130" y="364">last_login_at</text>
+  </g>
+
+  <!-- forum -->
+  <rect x="420" y="80" width="260" height="188" fill="#ffffff"/>
+  <rect x="420" y="112" width="260" height="26" fill="#fff2c2"/>
+  <rect x="420" y="164" width="260" height="26" fill="#dde9f7"/>
+  <g stroke="#cccccc" stroke-width="1">
+    <line x1="420" y1="138" x2="680" y2="138"/>
+    <line x1="420" y1="164" x2="680" y2="164"/>
+    <line x1="420" y1="190" x2="680" y2="190"/>
+    <line x1="420" y1="216" x2="680" y2="216"/>
+    <line x1="420" y1="242" x2="680" y2="242"/>
+  </g>
+  <rect x="420" y="80" width="260" height="188" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <rect x="420" y="80" width="260" height="32" fill="#e6e6e6" stroke="#333333" stroke-width="1.5"/>
+  <text x="550" y="101" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="15" font-weight="bold" fill="#111111">forum</text>
+  <g fill="#111111" font-family="Consolas, 'Courier New', monospace" font-size="13">
+    <text x="430" y="130" fill="#666666">INTEGER</text>
+    <text x="510" y="130">id</text>
+    <text x="670" y="130" text-anchor="end" font-weight="bold">PK</text>
+    <text x="430" y="156" fill="#666666">TEXT</text>
+    <text x="510" y="156">title</text>
+    <text x="430" y="182" fill="#666666">INTEGER</text>
+    <text x="510" y="182">user_id</text>
+    <text x="670" y="182" text-anchor="end" font-weight="bold">FK</text>
+    <text x="430" y="208" fill="#666666">TEXT</text>
+    <text x="510" y="208">created_at</text>
+    <text x="430" y="234" fill="#666666">TEXT</text>
+    <text x="510" y="234">updated_at</text>
+    <text x="430" y="260" fill="#666666">INTEGER</text>
+    <text x="510" y="260">is_deleted</text>
+  </g>
+
+  <!-- forum_details -->
+  <rect x="800" y="80" width="260" height="240" fill="#ffffff"/>
+  <rect x="800" y="112" width="260" height="26" fill="#fff2c2"/>
+  <rect x="800" y="138" width="260" height="26" fill="#dde9f7"/>
+  <rect x="800" y="164" width="260" height="26" fill="#dde9f7"/>
+  <g stroke="#cccccc" stroke-width="1">
+    <line x1="800" y1="138" x2="1060" y2="138"/>
+    <line x1="800" y1="164" x2="1060" y2="164"/>
+    <line x1="800" y1="190" x2="1060" y2="190"/>
+    <line x1="800" y1="216" x2="1060" y2="216"/>
+    <line x1="800" y1="242" x2="1060" y2="242"/>
+    <line x1="800" y1="268" x2="1060" y2="268"/>
+    <line x1="800" y1="294" x2="1060" y2="294"/>
+  </g>
+  <rect x="800" y="80" width="260" height="240" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <rect x="800" y="80" width="260" height="32" fill="#e6e6e6" stroke="#333333" stroke-width="1.5"/>
+  <text x="930" y="101" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="15" font-weight="bold" fill="#111111">forum_details</text>
+  <g fill="#111111" font-family="Consolas, 'Courier New', monospace" font-size="13">
+    <text x="810" y="130" fill="#666666">INTEGER</text>
+    <text x="890" y="130">id</text>
+    <text x="1050" y="130" text-anchor="end" font-weight="bold">PK</text>
+    <text x="810" y="156" fill="#666666">INTEGER</text>
+    <text x="890" y="156">master_id</text>
+    <text x="1050" y="156" text-anchor="end" font-weight="bold">FK</text>
+    <text x="810" y="182" fill="#666666">INTEGER</text>
+    <text x="890" y="182">user_id</text>
+    <text x="1050" y="182" text-anchor="end" font-weight="bold">FK</text>
+    <text x="810" y="208" fill="#666666">TEXT</text>
+    <text x="890" y="208">content</text>
+    <text x="810" y="234" fill="#666666">INTEGER</text>
+    <text x="890" y="234">is_original_post</text>
+    <text x="810" y="260" fill="#666666">TEXT</text>
+    <text x="890" y="260">created_at</text>
+    <text x="810" y="286" fill="#666666">TEXT</text>
+    <text x="890" y="286">updated_at</text>
+    <text x="810" y="312" fill="#666666">INTEGER</text>
+    <text x="890" y="312">is_deleted</text>
+  </g>
+
+  <!-- legend -->
+  <g font-size="13" fill="#444444">
+    <rect x="40" y="392" width="16" height="16" fill="#fff2c2" stroke="#999999"/>
+    <text x="64" y="405">主鍵（PK）</text>
+    <rect x="170" y="392" width="16" height="16" fill="#dde9f7" stroke="#999999"/>
+    <text x="194" y="405">外鍵（FK）</text>
+  </g>
+</svg>

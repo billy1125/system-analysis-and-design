@@ -338,43 +338,9 @@ flowchart LR
 
 ### 7.1 實體關聯圖
 
-```mermaid
-erDiagram
-    users ||--o{ forum : "發表"
-    users ||--o{ forum_details : "撰寫"
-    forum ||--o{ forum_details : "包含"
+![論壇系統的 ERD](images/Analysis-Phase-Sample-Report/erd-forum.svg)
 
-    users {
-        INTEGER id PK
-        TEXT email UK
-        TEXT hash
-        INTEGER role
-        TEXT name
-        TEXT display_name
-        INTEGER is_active
-        INTEGER is_deleted
-        TEXT created_at
-        TEXT last_login_at
-    }
-    forum {
-        INTEGER id PK
-        TEXT title
-        INTEGER user_id FK
-        TEXT created_at
-        TEXT updated_at
-        INTEGER is_deleted
-    }
-    forum_details {
-        INTEGER id PK
-        INTEGER master_id FK
-        INTEGER user_id FK
-        TEXT content
-        INTEGER is_original_post
-        TEXT created_at
-        TEXT updated_at
-        INTEGER is_deleted
-    }
-```
+*本圖由作者自製*
 
 `forum` 與 `forum_details` 為主檔／明細結構：標題屬於一篇文章，內容屬於一則發言。同一篇文章的首篇內文與後續回覆都存在明細表，以 `is_original_post` 區分。
 
@@ -396,8 +362,8 @@ erDiagram
 | `email` | 電子郵件 | TEXT | 是 | 唯一；須含 `@` 與一個點 | 使用者輸入 |
 | `hash` | 密碼雜湊 | TEXT | 是 | 雜湊字串，非明文 | 系統產生 |
 | `role` | 角色 | INTEGER | 是 | `0` 管理員、`1` 一般會員；預設 1 | 系統預設或管理員指定 |
-| `name` | 姓名 | TEXT | 否 | 無長度限制；空白存為 NULL | 使用者輸入 |
-| `display_name` | 顯示名稱 | TEXT | 否 | 無長度限制；空白存為 NULL | 使用者輸入 |
+| `name` | 姓名 | TEXT | 否 | 空白存為 NULL | 使用者輸入 |
+| `display_name` | 顯示名稱 | TEXT | 否 | 空白存為 NULL | 使用者輸入 |
 | `is_active` | 是否啟用 | INTEGER | 是 | `1` 啟用、`0` 停用；預設 1 | 系統預設或管理員切換 |
 | `is_deleted` | 是否已刪除 | INTEGER | 是 | `1` 已刪除、`0` 未刪除；預設 0 | 管理員執行刪除 |
 | `created_at` | 建立時間 | TEXT | 是 | `YYYY-MM-DD HH:MM:SS`，UTC | 系統產生 |

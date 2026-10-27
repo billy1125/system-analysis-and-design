@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 140" width="840" height="140" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <rect x="0" y="0" width="840" height="140" fill="#ffffff"/>
+
+  <g fill="none" stroke="#333333" stroke-width="1.5">
+    <!-- users to forum_details -->
+    <polyline points="120,62 120,30 720,30 720,62"/>
+    <line x1="110" y1="50" x2="130" y2="50"/>
+    <line x1="110" y1="44" x2="130" y2="44"/>
+    <line x1="720" y1="48" x2="708" y2="62"/>
+    <line x1="720" y1="48" x2="732" y2="62"/>
+    <!-- users to forum -->
+    <line x1="200" y1="90" x2="340" y2="90"/>
+    <line x1="212" y1="80" x2="212" y2="100"/>
+    <line x1="220" y1="80" x2="220" y2="100"/>
+    <line x1="326" y1="90" x2="340" y2="78"/>
+    <line x1="326" y1="90" x2="340" y2="102"/>
+    <!-- forum to forum_details -->
+    <line x1="500" y1="90" x2="640" y2="90"/>
+    <line x1="512" y1="80" x2="512" y2="100"/>
+    <line x1="520" y1="80" x2="520" y2="100"/>
+    <line x1="626" y1="90" x2="640" y2="78"/>
+    <line x1="626" y1="90" x2="640" y2="102"/>
+  </g>
+  <g fill="#ffffff" stroke="#333333" stroke-width="1.5">
+    <circle cx="720" cy="40" r="6"/>
+    <circle cx="618" cy="90" r="6"/>
+    <circle cx="318" cy="90" r="6"/>
+  </g>
+
+  <!-- entities -->
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <rect x="40" y="62" width="160" height="56"/>
+    <rect x="340" y="62" width="160" height="56"/>
+    <rect x="640" y="62" width="160" height="56"/>
+  </g>
+  <g fill="#111111" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="15">
+    <text x="120" y="95">users</text>
+    <text x="420" y="95">forum</text>
+    <text x="720" y="95">forum_details</text>
+  </g>
+
+  <!-- relationship labels -->
+  <g fill="#444444" font-size="13" text-anchor="middle">
+    <text x="420" y="22">撰寫</text>
+    <text x="570" y="78">包含</text>
+    <text x="270" y="78">發表</text>
+  </g>
+</svg>

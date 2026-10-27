@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 990 240" width="990" height="240" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="990" height="240" fill="#ffffff"/>
+
+  <!-- 文章 -->
+  <text x="40" y="44" font-size="15" font-weight="bold" fill="#111111">文章</text>
+  <rect x="40" y="56" width="410" height="122" fill="#ffffff"/>
+  <rect x="390" y="88" width="60" height="90" fill="#dde9f7"/>
+  <rect x="40" y="56" width="410" height="32" fill="#e6e6e6"/>
+  <g stroke="#cccccc" stroke-width="1">
+    <line x1="40" y1="118" x2="450" y2="118"/>
+    <line x1="40" y1="148" x2="450" y2="148"/>
+    <line x1="100" y1="56" x2="100" y2="178"/>
+    <line x1="280" y1="56" x2="280" y2="178"/>
+    <line x1="390" y1="56" x2="390" y2="178"/>
+  </g>
+  <line x1="40" y1="88" x2="450" y2="88" stroke="#333333" stroke-width="1"/>
+  <rect x="40" y="56" width="410" height="122" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <g fill="#111111" text-anchor="middle">
+    <text x="70" y="77" font-weight="bold">編號</text>
+    <text x="190" y="77" font-weight="bold">標題</text>
+    <text x="335" y="77" font-weight="bold">建立時間</text>
+    <text x="420" y="77" font-weight="bold">作者</text>
+    <text x="70" y="108">10</text>
+    <text x="190" y="108">換線作業流程請教</text>
+    <text x="335" y="108">2026-03-02</text>
+    <text x="420" y="108">1</text>
+    <text x="70" y="138">11</text>
+    <text x="190" y="138">期中報告分組</text>
+    <text x="335" y="138">2026-03-05</text>
+    <text x="420" y="138">1</text>
+    <text x="70" y="168">12</text>
+    <text x="190" y="168">實習心得分享</text>
+    <text x="335" y="168">2026-03-09</text>
+    <text x="420" y="168">2</text>
+  </g>
+
+  <!-- 會員 -->
+  <text x="620" y="44" font-size="15" font-weight="bold" fill="#111111">會員</text>
+  <rect x="620" y="56" width="330" height="122" fill="#ffffff"/>
+  <rect x="620" y="88" width="60" height="90" fill="#fff2c2"/>
+  <rect x="620" y="56" width="330" height="32" fill="#e6e6e6"/>
+  <g stroke="#cccccc" stroke-width="1">
+    <line x1="620" y1="118" x2="950" y2="118"/>
+    <line x1="620" y1="148" x2="950" y2="148"/>
+    <line x1="680" y1="56" x2="680" y2="178"/>
+    <line x1="860" y1="56" x2="860" y2="178"/>
+  </g>
+  <line x1="620" y1="88" x2="950" y2="88" stroke="#333333" stroke-width="1"/>
+  <rect x="620" y="56" width="330" height="122" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <g fill="#111111" text-anchor="middle">
+    <text x="650" y="77" font-weight="bold">編號</text>
+    <text x="770" y="77" font-weight="bold">電子郵件</text>
+    <text x="905" y="77" font-weight="bold">姓名</text>
+    <text x="650" y="108">1</text>
+    <text x="770" y="108">wang@example.com</text>
+    <text x="905" y="108">王小明</text>
+    <text x="650" y="138">2</text>
+    <text x="770" y="138">lee@example.com</text>
+    <text x="905" y="138">李小華</text>
+    <text x="650" y="168">3</text>
+    <text x="770" y="168">chen@example.com</text>
+    <text x="905" y="168">陳大文</text>
+  </g>
+
+  <!-- links -->
+  <g fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="452" y1="103" x2="618" y2="103"/>
+    <line x1="452" y1="133" x2="618" y2="105"/>
+    <line x1="452" y1="163" x2="618" y2="133"/>
+  </g>
+
+  <text x="495" y="218" text-anchor="middle" font-size="13" fill="#444444">文章的「作者」欄記的是會員的「編號」，順著這個編號就找得到發文的人</text>
+</svg>

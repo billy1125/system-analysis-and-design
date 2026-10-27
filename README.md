@@ -144,8 +144,8 @@
 | 3 | [使用者分析](01-Course-Materials/03-User-Analysis.md) | `03-User-Analysis.md` | [投影片](01-Course-Materials/03-User-Analysis.slides.md) | 分析階段的第一步：利害關係人分析、需求收集方法、使用者分群與人物誌、使用案例圖、流程分析與事件表 |
 | 4 | [系統需求分析](01-Course-Materials/04-System-Requirements-Analysis.md) | `04-System-Requirements-Analysis.md` | [投影片](01-Course-Materials/04-System-Requirements-Analysis.slides.md) | 把使用案例展開成需求：需求的五個級別、功能需求與非功能需求的寫法、需求品質判準、優先順序與追溯、系統需求規格 |
 | 5 | [功能分析](01-Course-Materials/05-Functional-Analysis.md) | `05-Functional-Analysis.md` | [投影片](01-Course-Materials/05-Functional-Analysis.slides.md) | 把需求整理成系統的功能結構：系統邊界與範圍外清單、情境圖、功能分解、功能清單與模組劃分、CRUD 矩陣、模組設計 |
-| 6 | [行為建模](01-Course-Materials/06-Behavioral-Modeling.md) | `06-Behavioral-Modeling.md` | — | 補上系統的動態面：活動圖與泳道、循序圖、狀態機圖，以及三張圖在設計階段的深化與交叉檢核 |
-| 7 | [資料建模與資料庫設計](01-Course-Materials/07-Data-Modeling.md) | `07-Data-Modeling.md` | — | 系統要記住什麼：實體關聯圖與基數、從需求找實體、正規化、資料字典與值域，以及期中反推與期末推導兩種做法 |
+| 6 | [行為建模](01-Course-Materials/06-Behavioral-Modeling.md) | `06-Behavioral-Modeling.md` | [投影片](01-Course-Materials/06-Behavioral-Modeling.slides.md) | 補上系統的動態面：活動圖與泳道、循序圖、狀態機圖，以及三張圖在設計階段的深化與交叉檢核 |
+| 7 | [資料建模與資料庫設計](01-Course-Materials/07-Data-Modeling.md) | `07-Data-Modeling.md` | [投影片](01-Course-Materials/07-Data-Modeling.slides.md) | 系統要記住什麼：實體關聯圖與基數、從需求找實體、正規化、資料字典與值域，以及期中反推與期末推導兩種做法 |
 | 8 | [系統環境與架構](01-Course-Materials/08-System-Architecture.md) | `08-System-Architecture.md` | — | 系統放在哪裡、和誰連：使用者端與應用系統與資料庫的三段結構、外部系統與現場設備、地端與雲端的取捨、非功能需求如何決定架構 |
 | 9 | [可行性、限制與風險分析](01-Course-Materials/09-Feasibility-and-Risk.md) | `09-Feasibility-and-Risk.md` | — | 設計與現實的對帳：技術／經濟／組織／時程四面向可行性、成本效益估算、六類系統限制、風險辨識與評估、風險如何回頭改動設計 |
 | 10 | [物件建模](01-Course-Materials/10-Object-Modeling.md) | `10-Object-Modeling.md` | — | 概念類別圖：類別與關係、多重性、只放領域概念的原則，以及它與 ERD 到底差在哪 |
