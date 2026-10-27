@@ -1,78 +1,138 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 990 240" width="990" height="240" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1210 320" width="1210" height="320" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
       <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
     </marker>
   </defs>
-  <rect x="0" y="0" width="990" height="240" fill="#ffffff"/>
+  <rect x="0" y="0" width="1210" height="320" fill="#ffffff"/>
+
+  <!-- 內容 -->
+  <text x="30" y="44" font-size="15" font-weight="bold" fill="#111111">內容（首篇內文與回覆）</text>
+  <rect x="30" y="56" width="350" height="182" fill="#ffffff"/>
+  <rect x="280" y="88" width="100" height="150" fill="#dde9f7"/>
+  <rect x="30" y="56" width="350" height="32" fill="#e6e6e6"/>
+  <g stroke="#cccccc" stroke-width="1">
+    <line x1="30" y1="118" x2="380" y2="118"/>
+    <line x1="30" y1="148" x2="380" y2="148"/>
+    <line x1="30" y1="178" x2="380" y2="178"/>
+    <line x1="30" y1="208" x2="380" y2="208"/>
+    <line x1="80" y1="56" x2="80" y2="238"/>
+    <line x1="230" y1="56" x2="230" y2="238"/>
+    <line x1="280" y1="56" x2="280" y2="238"/>
+    <line x1="330" y1="56" x2="330" y2="238"/>
+  </g>
+  <line x1="30" y1="88" x2="380" y2="88" stroke="#333333" stroke-width="1"/>
+  <rect x="30" y="56" width="350" height="182" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <g fill="#111111" text-anchor="middle">
+    <text x="55" y="77" font-weight="bold">編號</text>
+    <text x="155" y="77" font-weight="bold">內文</text>
+    <text x="255" y="77" font-weight="bold">首篇</text>
+    <text x="305" y="77" font-weight="bold">作者</text>
+    <text x="355" y="77" font-weight="bold">文章</text>
+    <text x="55" y="108">101</text>
+    <text x="155" y="108">換線前要確認哪些？</text>
+    <text x="255" y="108">是</text>
+    <text x="305" y="108">1</text>
+    <text x="355" y="108">10</text>
+    <text x="55" y="138">102</text>
+    <text x="155" y="138">先確認模具與物料</text>
+    <text x="255" y="138">否</text>
+    <text x="305" y="138">2</text>
+    <text x="355" y="138">10</text>
+    <text x="55" y="168">103</text>
+    <text x="155" y="168">還要核對作業標準書</text>
+    <text x="255" y="168">否</text>
+    <text x="305" y="168">3</text>
+    <text x="355" y="168">10</text>
+    <text x="55" y="198">104</text>
+    <text x="155" y="198">我們這組還缺一位</text>
+    <text x="255" y="198">是</text>
+    <text x="305" y="198">1</text>
+    <text x="355" y="198">11</text>
+    <text x="55" y="228">105</text>
+    <text x="155" y="228">暑假在工廠實習…</text>
+    <text x="255" y="228">是</text>
+    <text x="305" y="228">2</text>
+    <text x="355" y="228">12</text>
+  </g>
 
   <!-- 文章 -->
-  <text x="40" y="44" font-size="15" font-weight="bold" fill="#111111">文章</text>
-  <rect x="40" y="56" width="410" height="122" fill="#ffffff"/>
-  <rect x="390" y="88" width="60" height="90" fill="#dde9f7"/>
-  <rect x="40" y="56" width="410" height="32" fill="#e6e6e6"/>
+  <text x="460" y="44" font-size="15" font-weight="bold" fill="#111111">文章</text>
+  <rect x="460" y="56" width="350" height="122" fill="#ffffff"/>
+  <rect x="460" y="88" width="50" height="90" fill="#fff2c2"/>
+  <rect x="760" y="88" width="50" height="90" fill="#dde9f7"/>
+  <rect x="460" y="56" width="350" height="32" fill="#e6e6e6"/>
   <g stroke="#cccccc" stroke-width="1">
-    <line x1="40" y1="118" x2="450" y2="118"/>
-    <line x1="40" y1="148" x2="450" y2="148"/>
-    <line x1="100" y1="56" x2="100" y2="178"/>
-    <line x1="280" y1="56" x2="280" y2="178"/>
-    <line x1="390" y1="56" x2="390" y2="178"/>
+    <line x1="460" y1="118" x2="810" y2="118"/>
+    <line x1="460" y1="148" x2="810" y2="148"/>
+    <line x1="510" y1="56" x2="510" y2="178"/>
+    <line x1="660" y1="56" x2="660" y2="178"/>
+    <line x1="760" y1="56" x2="760" y2="178"/>
   </g>
-  <line x1="40" y1="88" x2="450" y2="88" stroke="#333333" stroke-width="1"/>
-  <rect x="40" y="56" width="410" height="122" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <line x1="460" y1="88" x2="810" y2="88" stroke="#333333" stroke-width="1"/>
+  <rect x="460" y="56" width="350" height="122" fill="none" stroke="#333333" stroke-width="1.5"/>
   <g fill="#111111" text-anchor="middle">
-    <text x="70" y="77" font-weight="bold">編號</text>
-    <text x="190" y="77" font-weight="bold">標題</text>
-    <text x="335" y="77" font-weight="bold">建立時間</text>
-    <text x="420" y="77" font-weight="bold">作者</text>
-    <text x="70" y="108">10</text>
-    <text x="190" y="108">換線作業流程請教</text>
-    <text x="335" y="108">2026-03-02</text>
-    <text x="420" y="108">1</text>
-    <text x="70" y="138">11</text>
-    <text x="190" y="138">期中報告分組</text>
-    <text x="335" y="138">2026-03-05</text>
-    <text x="420" y="138">1</text>
-    <text x="70" y="168">12</text>
-    <text x="190" y="168">實習心得分享</text>
-    <text x="335" y="168">2026-03-09</text>
-    <text x="420" y="168">2</text>
+    <text x="485" y="77" font-weight="bold">編號</text>
+    <text x="585" y="77" font-weight="bold">標題</text>
+    <text x="710" y="77" font-weight="bold">建立時間</text>
+    <text x="785" y="77" font-weight="bold">作者</text>
+    <text x="485" y="108">10</text>
+    <text x="585" y="108">換線作業流程請教</text>
+    <text x="710" y="108">2026-03-02</text>
+    <text x="785" y="108">1</text>
+    <text x="485" y="138">11</text>
+    <text x="585" y="138">期中報告分組</text>
+    <text x="710" y="138">2026-03-05</text>
+    <text x="785" y="138">1</text>
+    <text x="485" y="168">12</text>
+    <text x="585" y="168">實習心得分享</text>
+    <text x="710" y="168">2026-03-09</text>
+    <text x="785" y="168">2</text>
   </g>
 
   <!-- 會員 -->
-  <text x="620" y="44" font-size="15" font-weight="bold" fill="#111111">會員</text>
-  <rect x="620" y="56" width="330" height="122" fill="#ffffff"/>
-  <rect x="620" y="88" width="60" height="90" fill="#fff2c2"/>
-  <rect x="620" y="56" width="330" height="32" fill="#e6e6e6"/>
+  <text x="890" y="44" font-size="15" font-weight="bold" fill="#111111">會員</text>
+  <rect x="890" y="56" width="290" height="122" fill="#ffffff"/>
+  <rect x="890" y="88" width="50" height="90" fill="#fff2c2"/>
+  <rect x="890" y="56" width="290" height="32" fill="#e6e6e6"/>
   <g stroke="#cccccc" stroke-width="1">
-    <line x1="620" y1="118" x2="950" y2="118"/>
-    <line x1="620" y1="148" x2="950" y2="148"/>
-    <line x1="680" y1="56" x2="680" y2="178"/>
-    <line x1="860" y1="56" x2="860" y2="178"/>
+    <line x1="890" y1="118" x2="1180" y2="118"/>
+    <line x1="890" y1="148" x2="1180" y2="148"/>
+    <line x1="940" y1="56" x2="940" y2="178"/>
+    <line x1="1110" y1="56" x2="1110" y2="178"/>
   </g>
-  <line x1="620" y1="88" x2="950" y2="88" stroke="#333333" stroke-width="1"/>
-  <rect x="620" y="56" width="330" height="122" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <line x1="890" y1="88" x2="1180" y2="88" stroke="#333333" stroke-width="1"/>
+  <rect x="890" y="56" width="290" height="122" fill="none" stroke="#333333" stroke-width="1.5"/>
   <g fill="#111111" text-anchor="middle">
-    <text x="650" y="77" font-weight="bold">編號</text>
-    <text x="770" y="77" font-weight="bold">電子郵件</text>
-    <text x="905" y="77" font-weight="bold">姓名</text>
-    <text x="650" y="108">1</text>
-    <text x="770" y="108">wang@example.com</text>
-    <text x="905" y="108">王小明</text>
-    <text x="650" y="138">2</text>
-    <text x="770" y="138">lee@example.com</text>
-    <text x="905" y="138">李小華</text>
-    <text x="650" y="168">3</text>
-    <text x="770" y="168">chen@example.com</text>
-    <text x="905" y="168">陳大文</text>
+    <text x="915" y="77" font-weight="bold">編號</text>
+    <text x="1025" y="77" font-weight="bold">電子郵件</text>
+    <text x="1145" y="77" font-weight="bold">姓名</text>
+    <text x="915" y="108">1</text>
+    <text x="1025" y="108">wang@example.com</text>
+    <text x="1145" y="108">王小明</text>
+    <text x="915" y="138">2</text>
+    <text x="1025" y="138">lee@example.com</text>
+    <text x="1145" y="138">李小華</text>
+    <text x="915" y="168">3</text>
+    <text x="1025" y="168">chen@example.com</text>
+    <text x="1145" y="168">陳大文</text>
   </g>
 
   <!-- links -->
   <g fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)">
-    <line x1="452" y1="103" x2="618" y2="103"/>
-    <line x1="452" y1="133" x2="618" y2="105"/>
-    <line x1="452" y1="163" x2="618" y2="133"/>
+    <!-- 內容.文章 to 文章.編號 -->
+    <line x1="382" y1="103" x2="458" y2="99"/>
+    <line x1="382" y1="133" x2="458" y2="103"/>
+    <line x1="382" y1="163" x2="458" y2="107"/>
+    <line x1="382" y1="193" x2="458" y2="133"/>
+    <line x1="382" y1="223" x2="458" y2="163"/>
+    <!-- 文章.作者 to 會員.編號 -->
+    <line x1="812" y1="103" x2="888" y2="103"/>
+    <line x1="812" y1="133" x2="888" y2="105"/>
+    <line x1="812" y1="163" x2="888" y2="133"/>
+    <!-- 內容.作者 to 會員.編號 -->
+    <polyline points="305,240 305,262 915,262 915,182"/>
   </g>
 
-  <text x="495" y="218" text-anchor="middle" font-size="13" fill="#444444">文章的「作者」欄記的是會員的「編號」，順著這個編號就找得到發文的人</text>
+  <text x="605" y="300" text-anchor="middle" font-size="13" fill="#444444">「作者」欄記的是會員的「編號」，「文章」欄記的是文章的「編號」，順著編號就找得到對應的那一筆</text>
 </svg>

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 350" width="1100" height="350" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <rect x="0" y="0" width="1100" height="350" fill="#ffffff"/>
+
+  <!-- window -->
+  <rect x="20" y="20" width="1060" height="270" fill="#fafafa" stroke="#333333" stroke-width="1.5"/>
+  <rect x="20" y="20" width="1060" height="40" fill="#3b4a5e"/>
+  <text x="40" y="46" font-size="16" font-weight="bold" fill="#ffffff">論壇系統</text>
+  <text x="1060" y="46" font-size="13" fill="#ffffff" text-anchor="end">王小明　登出</text>
+
+  <!-- left panel: article list -->
+  <text x="40" y="92" font-size="15" font-weight="bold" fill="#111111">文章列表</text>
+  <rect x="40" y="106" width="400" height="122" fill="#ffffff"/>
+  <rect x="40" y="138" width="400" height="30" fill="#e8f0fb"/>
+  <rect x="40" y="106" width="400" height="32" fill="#e6e6e6"/>
+  <g stroke="#cccccc" stroke-width="1">
+    <line x1="40" y1="168" x2="440" y2="168"/>
+    <line x1="40" y1="198" x2="440" y2="198"/>
+    <line x1="90" y1="106" x2="90" y2="228"/>
+    <line x1="310" y1="106" x2="310" y2="228"/>
+  </g>
+  <line x1="40" y1="138" x2="440" y2="138" stroke="#333333" stroke-width="1"/>
+  <rect x="40" y="106" width="400" height="122" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <g fill="#111111" text-anchor="middle">
+    <text x="65" y="127" font-weight="bold">ID</text>
+    <text x="200" y="127" font-weight="bold">標題</text>
+    <text x="375" y="127" font-weight="bold">發文者</text>
+    <text x="65" y="158">10</text>
+    <text x="200" y="158" fill="#1f5fa8" text-decoration="underline">換線作業流程請教</text>
+    <text x="375" y="158">王小明</text>
+    <text x="65" y="188">11</text>
+    <text x="200" y="188" fill="#1f5fa8" text-decoration="underline">期中報告分組</text>
+    <text x="375" y="188">王小明</text>
+    <text x="65" y="218">12</text>
+    <text x="200" y="218" fill="#1f5fa8" text-decoration="underline">實習心得分享</text>
+    <text x="375" y="218">李小華</text>
+  </g>
+
+  <!-- right panel: article 10 -->
+  <text x="470" y="92" font-size="16" font-weight="bold" fill="#111111">換線作業流程請教</text>
+  <rect x="990" y="76" width="70" height="24" rx="4" fill="#1f5fa8"/>
+  <text x="1025" y="93" font-size="13" fill="#ffffff" text-anchor="middle">+ 回覆</text>
+  <rect x="470" y="106" width="590" height="122" fill="#ffffff"/>
+  <rect x="470" y="138" width="590" height="30" fill="#fff2c2"/>
+  <rect x="470" y="106" width="590" height="32" fill="#e6e6e6"/>
+  <g stroke="#cccccc" stroke-width="1">
+    <line x1="470" y1="168" x2="1060" y2="168"/>
+    <line x1="470" y1="198" x2="1060" y2="198"/>
+    <line x1="520" y1="106" x2="520" y2="228"/>
+    <line x1="800" y1="106" x2="800" y2="228"/>
+    <line x1="900" y1="106" x2="900" y2="228"/>
+  </g>
+  <line x1="470" y1="138" x2="1060" y2="138" stroke="#333333" stroke-width="1"/>
+  <rect x="470" y="106" width="590" height="122" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <g fill="#111111" text-anchor="middle">
+    <text x="495" y="127" font-weight="bold">ID</text>
+    <text x="660" y="127" font-weight="bold">內文</text>
+    <text x="850" y="127" font-weight="bold">發文者</text>
+    <text x="980" y="127" font-weight="bold">登記時間</text>
+    <text x="495" y="158">101</text>
+    <text x="660" y="158">換線前要確認哪些？</text>
+    <text x="850" y="158">王小明</text>
+    <text x="980" y="158">2026-03-02</text>
+    <text x="495" y="188">102</text>
+    <text x="660" y="188">先確認模具與物料</text>
+    <text x="850" y="188">李小華</text>
+    <text x="980" y="188">2026-03-03</text>
+    <text x="495" y="218">103</text>
+    <text x="660" y="218">還要核對作業標準書</text>
+    <text x="850" y="218">陳大文</text>
+    <text x="980" y="218">2026-03-04</text>
+  </g>
+
+  <!-- legend inside window -->
+  <rect x="470" y="246" width="30" height="18" fill="#fff2c2" stroke="#999999" stroke-width="1"/>
+  <text x="508" y="260" font-size="13" fill="#444444">首篇內文</text>
+  <rect x="600" y="246" width="30" height="18" fill="#e8f0fb" stroke="#999999" stroke-width="1"/>
+  <text x="638" y="260" font-size="13" fill="#444444">目前點選的文章</text>
+
+  <!-- notes -->
+  <g fill="#444444" font-size="13">
+    <text x="20" y="316">左邊列表與右邊標題來自文章表；右邊每一列來自內容表中「文章」欄等於 10 的那幾筆。</text>
+    <text x="20" y="340">畫面上的「發文者」不是資料表裡存的值：資料表只存會員編號，畫面再用這個編號到會員表查出姓名。</text>
+  </g>
+</svg>

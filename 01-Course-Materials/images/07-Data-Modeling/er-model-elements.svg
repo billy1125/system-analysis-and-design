@@ -1,58 +1,78 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260" width="800" height="260" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
-  <rect x="0" y="0" width="800" height="260" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 350" width="960" height="350" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <rect x="0" y="0" width="960" height="350" fill="#ffffff"/>
 
   <g fill="none" stroke="#333333" stroke-width="1.5">
     <!-- attribute links -->
-    <line x1="100" y1="70" x2="140" y2="110"/>
-    <line x1="220" y1="70" x2="180" y2="110"/>
-    <line x1="580" y1="70" x2="620" y2="110"/>
-    <line x1="700" y1="70" x2="660" y2="110"/>
+    <line x1="70" y1="80" x2="100" y2="130"/>
+    <line x1="170" y1="80" x2="140" y2="130"/>
+    <line x1="430" y1="80" x2="460" y2="130"/>
+    <line x1="530" y1="80" x2="500" y2="130"/>
+    <line x1="790" y1="80" x2="820" y2="130"/>
+    <line x1="890" y1="80" x2="860" y2="130"/>
     <!-- relationship links -->
-    <line x1="220" y1="135" x2="340" y2="135"/>
-    <line x1="460" y1="135" x2="580" y2="135"/>
+    <line x1="180" y1="155" x2="240" y2="155"/>
+    <line x1="360" y1="155" x2="420" y2="155"/>
+    <line x1="540" y1="155" x2="600" y2="155"/>
+    <line x1="720" y1="155" x2="780" y2="155"/>
+    <polyline points="120,180 120,250 420,250"/>
+    <polyline points="540,250 840,250 840,180"/>
   </g>
 
   <!-- attributes -->
   <g fill="#ffffff" stroke="#333333" stroke-width="1.5">
-    <ellipse cx="100" cy="50" rx="52" ry="20"/>
-    <ellipse cx="220" cy="50" rx="52" ry="20"/>
-    <ellipse cx="580" cy="50" rx="52" ry="20"/>
-    <ellipse cx="700" cy="50" rx="52" ry="20"/>
+    <ellipse cx="70" cy="60" rx="46" ry="20"/>
+    <ellipse cx="170" cy="60" rx="46" ry="20"/>
+    <ellipse cx="430" cy="60" rx="46" ry="20"/>
+    <ellipse cx="530" cy="60" rx="46" ry="20"/>
+    <ellipse cx="790" cy="60" rx="46" ry="20"/>
+    <ellipse cx="890" cy="60" rx="46" ry="20"/>
   </g>
   <g fill="#111111" text-anchor="middle">
-    <text x="100" y="55">電子郵件</text>
-    <text x="220" y="55">姓名</text>
-    <text x="580" y="55">標題</text>
-    <text x="700" y="55">建立時間</text>
+    <text x="70" y="65">內文</text>
+    <text x="170" y="65">是否首篇</text>
+    <text x="430" y="65">標題</text>
+    <text x="530" y="65">建立時間</text>
+    <text x="790" y="65">電子郵件</text>
+    <text x="890" y="65">姓名</text>
   </g>
 
-  <!-- entities and relationship -->
+  <!-- entities and relationships -->
   <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
-    <rect x="100" y="110" width="120" height="50"/>
-    <rect x="580" y="110" width="120" height="50"/>
-    <polygon points="340,135 400,101 460,135 400,169"/>
+    <rect x="60" y="130" width="120" height="50"/>
+    <rect x="420" y="130" width="120" height="50"/>
+    <rect x="780" y="130" width="120" height="50"/>
+    <polygon points="240,155 300,121 360,155 300,189"/>
+    <polygon points="600,155 660,121 720,155 660,189"/>
+    <polygon points="420,250 480,216 540,250 480,284"/>
   </g>
   <g fill="#111111" text-anchor="middle" font-size="15">
-    <text x="160" y="140">會員</text>
-    <text x="640" y="140">文章</text>
-    <text x="400" y="140">發表</text>
+    <text x="120" y="160">內容</text>
+    <text x="480" y="160">文章</text>
+    <text x="840" y="160">會員</text>
+    <text x="300" y="160">包含</text>
+    <text x="660" y="160">發表</text>
+    <text x="480" y="255">撰寫</text>
   </g>
 
   <!-- cardinality -->
   <g fill="#444444" font-size="13" text-anchor="middle">
-    <text x="236" y="127">1</text>
-    <text x="564" y="127">N</text>
+    <text x="196" y="147">N</text>
+    <text x="404" y="147">1</text>
+    <text x="556" y="147">N</text>
+    <text x="764" y="147">1</text>
+    <text x="132" y="202">N</text>
+    <text x="852" y="202">1</text>
   </g>
 
   <!-- legend -->
   <g fill="#f3f3f3" stroke="#999999" stroke-width="1">
-    <rect x="100" y="216" width="30" height="20"/>
-    <polygon points="340,226 356,216 372,226 356,236"/>
+    <rect x="60" y="310" width="30" height="20"/>
+    <polygon points="300,320 316,310 332,320 316,330"/>
   </g>
-  <ellipse cx="235" cy="226" rx="17" ry="10" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+  <ellipse cx="195" cy="320" rx="17" ry="10" fill="#ffffff" stroke="#999999" stroke-width="1"/>
   <g fill="#444444" font-size="13">
-    <text x="138" y="231">實體</text>
-    <text x="260" y="231">屬性</text>
-    <text x="380" y="231">關係</text>
+    <text x="98" y="325">實體</text>
+    <text x="220" y="325">屬性</text>
+    <text x="340" y="325">關係</text>
   </g>
 </svg>
