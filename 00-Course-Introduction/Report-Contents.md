@@ -91,7 +91,7 @@
    - **可選**：若系統與其他系統或設備有資料往來，標出交界在哪一段。
 
 6. **使用案例與系統互動分析**
-   - 從重要使用案例中選擇 **1–2 個核心流程**，繪製系統循序圖（System Sequence Diagram, SSD）。
+   - 從重要使用案例中選擇 **1–2 個核心流程**，繪製循序圖（System Sequence Diagram, SSD）。
    - SSD 只把系統視為黑箱，重點是使用者與系統之間的訊息往返。
    - **可選**：程式物件、Controller、Service 或 Repository 等技術類別。
    - 能說明同一個使用案例在「文字敘述、活動圖、SSD」三者之間如何對應。
@@ -123,7 +123,7 @@
 
 - **使用案例圖（Use Case Diagram）**：回答「誰要做什麼」。
 - **活動圖（Activity Diagram）**：回答「事情怎麼做」。
-- **系統循序圖（System Sequence Diagram）**：回答「使用者與系統怎麼互動」。
+- **循序圖（System Sequence Diagram）**：回答「使用者與系統怎麼互動」。
 
 **可選**：概念類別圖（Conceptual Class Diagram）。對工管初學者而言，期中先把需求、流程與 ERD 串接一致，比再增加一張與 ERD 容易混淆的圖更重要。這張圖到 **期末是必做**，等你畫過一輪 ERD 之後再學，兩者的差別會清楚很多。
 

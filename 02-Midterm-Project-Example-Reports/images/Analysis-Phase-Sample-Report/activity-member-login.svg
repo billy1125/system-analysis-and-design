@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" width="1000" height="580" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1000" height="580" fill="#ffffff"/>
+
+  <g fill="none" stroke="#333333" stroke-width="1.5">
+    <!-- start -> loop merge -> input -->
+    <line x1="505" y1="38" x2="505" y2="56" marker-end="url(#arrow)"/>
+    <line x1="505" y1="82" x2="505" y2="98" marker-end="url(#arrow)"/>
+    <!-- input -> first decision -->
+    <polyline points="505,136 505,150 95,150 95,164" marker-end="url(#arrow)"/>
+    <!-- decision chain (yes) -->
+    <line x1="159" y1="180" x2="224" y2="180" marker-end="url(#arrow)"/>
+    <line x1="354" y1="180" x2="432" y2="180" marker-end="url(#arrow)"/>
+    <line x1="576" y1="180" x2="615" y2="180" marker-end="url(#arrow)"/>
+    <line x1="773" y1="180" x2="811" y2="180" marker-end="url(#arrow)"/>
+    <!-- decision (no) -> error message -->
+    <line x1="95" y1="194" x2="95" y2="218" marker-end="url(#arrow)"/>
+    <line x1="290" y1="194" x2="290" y2="218" marker-end="url(#arrow)"/>
+    <line x1="505" y1="194" x2="505" y2="218" marker-end="url(#arrow)"/>
+    <line x1="695" y1="194" x2="695" y2="218" marker-end="url(#arrow)"/>
+    <line x1="870" y1="194" x2="870" y2="218" marker-end="url(#arrow)"/>
+    <!-- error message -> merge bar -->
+    <line x1="95" y1="256" x2="95" y2="298" marker-end="url(#arrow)"/>
+    <line x1="290" y1="256" x2="290" y2="298" marker-end="url(#arrow)"/>
+    <line x1="505" y1="256" x2="505" y2="298" marker-end="url(#arrow)"/>
+    <line x1="695" y1="256" x2="695" y2="298" marker-end="url(#arrow)"/>
+    <line x1="870" y1="256" x2="870" y2="298" marker-end="url(#arrow)"/>
+    <!-- last decision (yes) -> merge bar -->
+    <polyline points="927,180 950,180 950,298" marker-end="url(#arrow)"/>
+    <line x1="95" y1="300" x2="950" y2="300"/>
+    <!-- merge bar -> loop check -->
+    <line x1="505" y1="300" x2="505" y2="314" marker-end="url(#arrow)"/>
+    <!-- loop check (no) -> back to loop merge -->
+    <polyline points="562,330 975,330 975,70 521,70" marker-end="url(#arrow)"/>
+    <!-- loop check (yes) -> success steps -->
+    <line x1="505" y1="344" x2="505" y2="368" marker-end="url(#arrow)"/>
+    <line x1="505" y1="406" x2="505" y2="424" marker-end="url(#arrow)"/>
+    <line x1="505" y1="462" x2="505" y2="480" marker-end="url(#arrow)"/>
+    <line x1="505" y1="518" x2="505" y2="534" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- start / end nodes -->
+  <circle cx="505" cy="28" r="10" fill="#222222"/>
+  <circle cx="505" cy="548" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/>
+  <circle cx="505" cy="548" r="7" fill="#222222"/>
+
+  <!-- loop merge diamond -->
+  <polygon points="505,58 519,70 505,82 491,70" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <!-- actions -->
+    <rect x="405" y="100" width="200" height="36" rx="10"/>
+    <rect x="20" y="220" width="150" height="36" rx="10"/>
+    <rect x="180" y="220" width="220" height="36" rx="10"/>
+    <rect x="416" y="220" width="178" height="36" rx="10"/>
+    <rect x="613" y="220" width="164" height="36" rx="10"/>
+    <rect x="806" y="220" width="128" height="36" rx="10"/>
+    <rect x="433" y="370" width="144" height="36" rx="10"/>
+    <rect x="449" y="426" width="112" height="36" rx="10"/>
+    <rect x="463" y="482" width="84" height="36" rx="10"/>
+    <!-- decisions -->
+    <polygon points="31,180 41,166 149,166 159,180 149,194 41,194"/>
+    <polygon points="226,180 236,166 344,166 354,180 344,194 236,194"/>
+    <polygon points="434,180 444,166 566,166 576,180 566,194 444,194"/>
+    <polygon points="617,180 627,166 763,166 773,180 763,194 627,194"/>
+    <polygon points="813,180 823,166 917,166 927,180 917,194 823,194"/>
+    <polygon points="448,330 458,316 552,316 562,330 552,344 458,344"/>
+  </g>
+
+  <g fill="#111111" text-anchor="middle">
+    <text x="505" y="123">輸入 email、密碼、驗證碼</text>
+    <text x="95" y="185">驗證碼是否填寫</text>
+    <text x="290" y="185">驗證碼是否正確</text>
+    <text x="505" y="185">帳號密碼是否填寫</text>
+    <text x="695" y="185">帳號存在且密碼正確</text>
+    <text x="870" y="185">帳號是否啟用</text>
+    <text x="95" y="243">顯示：請輸入驗證碼</text>
+    <text x="290" y="243">顯示：驗證碼錯誤，請重新輸入</text>
+    <text x="505" y="243">顯示：請輸入帳號與密碼</text>
+    <text x="695" y="243">顯示：帳號或密碼錯誤</text>
+    <text x="870" y="243">顯示：帳號已停用</text>
+    <text x="505" y="335">是否全部通過</text>
+    <text x="505" y="393">更新最後登入時間</text>
+    <text x="505" y="449">建立登入狀態</text>
+    <text x="505" y="505">導向首頁</text>
+  </g>
+
+  <!-- guard labels -->
+  <g fill="#444444" font-size="13">
+    <text x="101" y="210">否</text>
+    <text x="296" y="210">否</text>
+    <text x="511" y="210">否</text>
+    <text x="701" y="210">否</text>
+    <text x="876" y="210">否</text>
+    <text x="933" y="174">是</text>
+    <text x="570" y="324">否</text>
+    <text x="511" y="360">是</text>
+  </g>
+</svg>

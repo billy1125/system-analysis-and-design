@@ -207,7 +207,7 @@
 
 **這是期中三張必做 UML 的第一張**，回答「誰要做什麼」。圖上每一個參與者，都要能在上面兩張表裡找得到。
 
-![論壇系統使用案例圖](images/Analysis-Phase-Deliverables/use-case-diagram.png)
+![論壇系統使用案例圖](images/Analysis-Phase-Deliverables/use-case-diagram.svg)
 
 *本圖由作者自製*
 
@@ -254,7 +254,7 @@
 > **例外情況**：驗證碼未填或錯誤、帳密未填、帳號或密碼錯誤、帳號已停用
 > **完成後狀態**：系統記住登入者身分，並更新該會員的最後登入時間
 
-![會員登入活動圖](images/Analysis-Phase-Deliverables/activity-member-login.png)
+![會員登入活動圖](images/Analysis-Phase-Deliverables/activity-member-login.svg)
 
 *本圖由作者自製*
 
@@ -273,7 +273,7 @@
 > **例外情況**：目標不存在、目標為自己、目標已被刪除
 > **完成後狀態**：目標帳號的啟用旗標為 0，其後無法登入
 
-![管理員停用會員活動圖](images/Analysis-Phase-Deliverables/activity-deactivate-member.png)
+![管理員停用會員活動圖](images/Analysis-Phase-Deliverables/activity-deactivate-member.svg)
 
 *本圖由作者自製*
 
@@ -419,7 +419,7 @@ flowchart LR
 
 #### 該交代什麼
 
-- 從重要使用案例中選 **1 到 2 個核心流程**，畫系統循序圖（System Sequence Diagram, SSD）。
+- 從重要使用案例中選 **1 到 2 個核心流程**，畫循序圖（System Sequence Diagram, SSD）。
 - SSD 把整套系統當成一個黑箱，只畫使用者與系統之間的訊息往返。
 - 能說明同一個使用案例在「文字敘述、活動圖、SSD」三者之間怎麼對應。
 
@@ -448,13 +448,13 @@ SSD 不是憑空畫的，來源是使用案例敘述。先把敘述寫出來：
 
 #### 範例一：UC-03 登入系統
 
-![UC-03 登入系統的系統循序圖](images/Analysis-Phase-Deliverables/sequence-uc03-login.png)
+![UC-03 登入系統的循序圖](images/Analysis-Phase-Deliverables/sequence-uc03-login.svg)
 
 *本圖由作者自製*
 
 #### 範例二：UC-13 停用會員
 
-![UC-13 停用會員的系統循序圖](images/Analysis-Phase-Deliverables/sequence-uc13-deactivate-member.png)
+![UC-13 停用會員的循序圖](images/Analysis-Phase-Deliverables/sequence-uc13-deactivate-member.svg)
 
 *本圖由作者自製*
 
@@ -764,7 +764,7 @@ flowchart TB
 | 第 3 項 現況流程分析、兩張活動圖 | 阿宏 | 第 4–5 週 | 報告第 3 章；圖 3-1、圖 3-2 兩張活動圖 |
 | 第 4 項 系統需求分析 | 小美 | 第 5 週 | 報告第 4 章；需求編號對照表 |
 | 第 5 項 功能分析與系統邊界 | 小美 | 第 5 週 | 報告第 5 章；功能階層圖、系統邊界表 |
-| 第 6 項 使用案例與系統互動分析、兩張 SSD | 阿宏 | 第 6 週 | 報告第 6 章；圖 6-1、圖 6-2 兩張系統循序圖 |
+| 第 6 項 使用案例與系統互動分析、兩張 SSD | 阿宏 | 第 6 週 | 報告第 6 章；圖 6-1、圖 6-2 兩張循序圖 |
 | 第 7 項 資料需求分析、ERD 與三份資料字典 | 小美、小明 | 第 6–7 週 | 報告第 7 章；圖 7-1 實體關聯圖 |
 | 第 8 項 系統環境與整體架構理解 | 阿花 | 第 7 週 | 報告第 8 章；圖 8-1 架構圖 |
 | 第 9 項 現況問題與改善建議 | 小明、阿花 | 第 7–8 週 | 報告第 9 章；問題清單 I-01～I-06 的討論紀錄 |
@@ -791,7 +791,7 @@ flowchart TB
 |---|---|---|---|
 | 使用案例圖 | 誰要做什麼 | 第 2 項 | 至少 1 張，涵蓋所有角色 |
 | 活動圖 | 事情怎麼做 | 第 3 項 | 至少 2 張，含例外分支；跨角色時用泳道 |
-| 系統循序圖 | 使用者與系統怎麼互動 | 第 6 項 | 1 至 2 張核心流程 |
+| 循序圖 | 使用者與系統怎麼互動 | 第 6 項 | 1 至 2 張核心流程 |
 
 **可選**：概念類別圖。期中先把需求、流程與 ERD 串接一致，比再多一張與 ERD 容易混淆的圖更重要。這張圖 **期末是必做**，等你畫過一輪 ERD 之後再學，兩者的差別會清楚很多。
 
@@ -817,7 +817,7 @@ flowchart TB
 | 9 現況問題與改善建議 | 是 | 每條建議都指得出來自哪一份分析 |
 | 使用案例圖 | 是 | — |
 | 活動圖 | 是 | — |
-| 系統循序圖 | 是 | — |
+| 循序圖 | 是 | — |
 | 概念類別圖 | 可選 | 做了要登記在額外項目對照表 |
 | 額外項目對照表 | 有做可選項目時必備 | 放在書面最前面 |
 | 附錄：分工紀錄 | 是 | 每一章、每一張圖都找得到負責人；每位組員都出現；放在書面最後 |

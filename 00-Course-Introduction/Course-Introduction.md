@@ -22,7 +22,7 @@
 | 3 | 9/23 | 問題定義與現況分析<br>Problem Definition and Current-State Analysis | 從既有系統反推當初要解決的問題；5 Why 與魚骨圖；可驗收的目標與成功指標；改善建議的三個層次 | 期中第 1、9 項；教材：[問題定義與現況分析](../01-Course-Materials/02-Problem-Definition.md)；**分組名單確定期限**；**當堂公開抽籤決定各組期中題目** |
 | 4 | 9/30 | 使用者分析與使用案例<br>User Analysis and Use Cases | 利害關係人辨識與 RACI；使用者分群與人物誌；使用案例圖、使用案例敘述與例外流程；現況流程（As-Is）盤點與事件表 | 期中第 2 項，並為第 3、6 項鋪路；教材：[使用者分析](../01-Course-Materials/03-User-Analysis.md) |
 | 5 | 10/7 | 系統需求分析；功能分析與系統邊界<br>Requirements Analysis; Functional Analysis and System Scope | 功能與非功能需求、FURPS+、需求品質判準、MoSCoW 與追溯矩陣；系統邊界與情境圖、範圍外清單；功能分解與功能清單 | 期中第 4、5 項；教材：[系統需求分析](../01-Course-Materials/04-System-Requirements-Analysis.md)、[功能分析](../01-Course-Materials/05-Functional-Analysis.md)（模組劃分留到第 10 週） |
-| 6 | 10/14 | 行為建模：活動圖與系統循序圖<br>Behavioral Modeling: Activity and System Sequence Diagrams | 活動圖與泳道、分岔與會合、例外分支；系統循序圖（SSD）把系統當黑箱；三張圖之間怎麼對得起來 | 期中第 3、6 項；教材：[行為建模](../01-Course-Materials/06-Behavioral-Modeling.md) |
+| 6 | 10/14 | 行為建模：活動圖與循序圖<br>Behavioral Modeling: Activity and System Sequence Diagrams | 活動圖與泳道、分岔與會合、例外分支；循序圖（SSD）把系統當黑箱；三張圖之間怎麼對得起來 | 期中第 3、6 項；教材：[行為建模](../01-Course-Materials/06-Behavioral-Modeling.md) |
 | 7 | 10/21 | 資料建模：ERD、正規化與資料字典<br>Data Modeling: ERD, Normalization, and Data Dictionary | 名詞分析法找實體；主鍵、外鍵與多對多拆解；1NF–3NF；Schema 與資料字典的欄位定義 | 期中第 7 項；教材：[資料建模與資料庫設計](../01-Course-Materials/07-Data-Modeling.md) |
 | 8 | 10/28 | 系統環境與整體架構；期中整合演練<br>System Environment and Architecture; Midterm Integration | 使用者端、應用系統、資料庫與外部系統的整體關係；主從式與分層式架構；九項書面文件的一致性自我檢查與口頭報告演練 | 期中第 8 項與全部九項整合；教材：[系統環境與架構](../01-Course-Materials/08-System-Architecture.md) |
 | 9 | 11/4 | **期中小組報告：系統分析**<br>**Midterm Team Presentation: Systems Analysis** | 各組口頭報告 12–15 分鐘，另加 5–8 分鐘問答 | **書面最晚 10/30（五）23:59:59、投影片最晚 11/6（五）23:59:59 前上傳 Portal** |
@@ -90,7 +90,7 @@
 
 | 報告 | 階段 | 題目來源 | 產出項目 |
 |---|---|---|---|
-| **期中小組報告** | 系統分析（Analysis） | 既有系統案例 | **九項**：1 問題與系統背景、2 使用者與利害關係人分析、3 現況流程分析、4 系統需求分析、5 功能分析與系統邊界、6 使用案例與系統互動分析、7 資料需求分析、8 系統環境與整體架構理解、9 現況問題與改善建議。必做的 UML 為使用案例圖、活動圖、系統循序圖三種 |
+| **期中小組報告** | 系統分析（Analysis） | 既有系統案例 | **九項**：1 問題與系統背景、2 使用者與利害關係人分析、3 現況流程分析、4 系統需求分析、5 功能分析與系統邊界、6 使用案例與系統互動分析、7 資料需求分析、8 系統環境與整體架構理解、9 現況問題與改善建議。必做的 UML 為使用案例圖、活動圖、循序圖三種 |
 | **期末小組報告** | 系統設計（Design） | 製造現場的新專題需求 | **八項**：1 設計基礎與需求摘要、2 功能與模組設計、3 主要流程與互動設計、4 資料設計、5 系統環境、架構與資料交換設計、6 使用者介面原型、7 可行性、限制與風險分析、8 整體設計規格與追溯。必做的圖為活動圖、循序圖、概念類別圖、ERD、架構圖、模組相依關係圖與介面原型 |
 
 兩份書面報告的最後都要再附一份 **分工紀錄**，欄位見[「報告內容」](Report-Contents.md)的「附錄：分工紀錄」，組內怎麼維護見[「分組規範」](Group-Rules.md)。

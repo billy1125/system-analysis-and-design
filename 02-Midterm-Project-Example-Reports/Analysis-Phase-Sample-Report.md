@@ -122,7 +122,7 @@
 
 ### 2.3 使用案例圖
 
-![使用案例圖](images/Analysis-Phase-Sample-Report/use-case-diagram.png)
+![使用案例圖](images/Analysis-Phase-Sample-Report/use-case-diagram.svg)
 
 *本圖由作者自製*
 
@@ -141,7 +141,7 @@
 > **例外情況**：驗證碼未填或錯誤、帳密未填、帳號或密碼錯誤、帳號已停用
 > **完成後狀態**：系統記住登入者身分，並更新該會員的最後登入時間
 
-![會員登入活動圖](images/Analysis-Phase-Sample-Report/activity-member-login.png)
+![會員登入活動圖](images/Analysis-Phase-Sample-Report/activity-member-login.svg)
 
 *本圖由作者自製*
 
@@ -157,7 +157,7 @@
 > **例外情況**：目標不存在、目標為自己、目標已被刪除
 > **完成後狀態**：目標帳號的啟用旗標為 0，其後無法登入
 
-![管理員停用會員活動圖](images/Analysis-Phase-Sample-Report/activity-deactivate-member.png)
+![管理員停用會員活動圖](images/Analysis-Phase-Sample-Report/activity-deactivate-member.svg)
 
 *本圖由作者自製*
 
@@ -302,7 +302,7 @@ flowchart LR
 | 後置條件 | 系統記住登入者身分；該會員的最後登入時間被更新 |
 | 對應需求 | FR-02、FR-06、FR-07、NFR-02、NFR-03 |
 
-![UC-03 登入系統的系統循序圖](images/Analysis-Phase-Sample-Report/sequence-uc03-login.png)
+![UC-03 登入系統的循序圖](images/Analysis-Phase-Sample-Report/sequence-uc03-login.svg)
 
 *本圖由作者自製*
 
@@ -320,7 +320,7 @@ flowchart LR
 | 後置條件 | 目標帳號的啟用旗標為 0，其後無法登入 |
 | 對應需求 | FR-19、FR-21、NFR-05 |
 
-![UC-13 停用會員的系統循序圖](images/Analysis-Phase-Sample-Report/sequence-uc13-deactivate-member.png)
+![UC-13 停用會員的循序圖](images/Analysis-Phase-Sample-Report/sequence-uc13-deactivate-member.svg)
 
 *本圖由作者自製*
 
@@ -558,7 +558,7 @@ flowchart TB
 | 第 3 項 現況流程分析、兩張活動圖 | 阿宏 | 第 4–5 週 | 報告第 3 章；圖 3-1、圖 3-2 兩張活動圖 |
 | 第 4 項 系統需求分析 | 小美 | 第 5 週 | 報告第 4 章；需求編號對照表 |
 | 第 5 項 功能分析與系統邊界 | 小美 | 第 5 週 | 報告第 5 章；功能階層圖、系統邊界表 |
-| 第 6 項 使用案例與系統互動分析、兩張 SSD | 阿宏 | 第 6 週 | 報告第 6 章；圖 6-1、圖 6-2 兩張系統循序圖 |
+| 第 6 項 使用案例與系統互動分析、兩張 SSD | 阿宏 | 第 6 週 | 報告第 6 章；圖 6-1、圖 6-2 兩張循序圖 |
 | 第 7 項 資料需求分析、ERD 與三份資料字典 | 小美、小明 | 第 6–7 週 | 報告第 7 章；圖 7-1 實體關聯圖 |
 | 第 8 項 系統環境與整體架構理解 | 阿花 | 第 7 週 | 報告第 8 章；圖 8-1 架構圖 |
 | 第 9 項 現況問題與改善建議 | 小明、阿花 | 第 7–8 週 | 報告第 9 章；問題清單 I-01～I-06 的討論紀錄 |

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 985" width="780" height="985" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="include" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#333333" stroke-width="1.5"/>
+    </marker>
+    <marker id="generalize" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#ffffff" stroke="#333333" stroke-width="1.2"/>
+    </marker>
+    <g id="actor" fill="none" stroke="#333333" stroke-width="1.5">
+      <circle cx="0" cy="-30" r="9" fill="#f3f3f3"/>
+      <line x1="0" y1="-21" x2="0" y2="2"/>
+      <line x1="-15" y1="-13" x2="15" y2="-13"/>
+      <polyline points="-13,20 0,2 13,20"/>
+    </g>
+  </defs>
+  <rect x="0" y="0" width="780" height="985" fill="#ffffff"/>
+
+  <!-- system boundary -->
+  <rect x="300" y="10" width="460" height="955" rx="4" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <text x="530" y="32" text-anchor="middle" font-weight="bold" fill="#111111">論壇系統</text>
+
+  <!-- associations -->
+  <g stroke="#333333" stroke-width="1.3">
+    <line x1="256" y1="137" x2="404" y2="55"/>
+    <line x1="256" y1="137" x2="404" y2="115"/>
+    <line x1="256" y1="137" x2="404" y2="175"/>
+    <line x1="256" y1="137" x2="404" y2="235"/>
+    <line x1="156" y1="447" x2="404" y2="305"/>
+    <line x1="156" y1="447" x2="390" y2="365"/>
+    <line x1="156" y1="447" x2="390" y2="425"/>
+    <line x1="156" y1="447" x2="404" y2="485"/>
+    <line x1="156" y1="447" x2="404" y2="545"/>
+    <line x1="156" y1="447" x2="362" y2="605"/>
+    <line x1="66" y1="797" x2="383" y2="685"/>
+    <line x1="66" y1="797" x2="390" y2="745"/>
+    <line x1="66" y1="797" x2="383" y2="805"/>
+    <line x1="66" y1="797" x2="390" y2="865"/>
+    <line x1="66" y1="797" x2="397" y2="925"/>
+  </g>
+
+  <!-- actor generalization -->
+  <g stroke="#333333" stroke-width="1.3">
+    <line x1="140" y1="414" x2="238" y2="194" marker-end="url(#generalize)"/>
+    <line x1="50" y1="764" x2="138" y2="504" marker-end="url(#generalize)"/>
+  </g>
+
+  <!-- include -->
+  <line x1="496" y1="175" x2="601" y2="175" stroke="#333333" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#include)"/>
+  <text x="548" y="166" text-anchor="middle" font-size="13" fill="#333333">«include»</text>
+
+  <!-- actors -->
+  <use href="#actor" x="240" y="145"/>
+  <use href="#actor" x="140" y="455"/>
+  <use href="#actor" x="50" y="805"/>
+  <g fill="#111111" text-anchor="middle">
+    <text x="240" y="183">訪客</text>
+    <text x="140" y="493">一般會員</text>
+    <text x="50" y="843">管理員</text>
+  </g>
+
+  <!-- use cases -->
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <ellipse cx="450" cy="55" rx="46" ry="18"/>
+    <ellipse cx="450" cy="115" rx="46" ry="18"/>
+    <ellipse cx="450" cy="175" rx="46" ry="18"/>
+    <ellipse cx="450" cy="235" rx="46" ry="18"/>
+    <ellipse cx="450" cy="305" rx="46" ry="18"/>
+    <ellipse cx="450" cy="365" rx="60" ry="18"/>
+    <ellipse cx="450" cy="425" rx="60" ry="18"/>
+    <ellipse cx="450" cy="485" rx="46" ry="18"/>
+    <ellipse cx="450" cy="545" rx="46" ry="18"/>
+    <ellipse cx="450" cy="605" rx="88" ry="18"/>
+    <ellipse cx="450" cy="685" rx="67" ry="18"/>
+    <ellipse cx="450" cy="745" rx="60" ry="18"/>
+    <ellipse cx="450" cy="805" rx="67" ry="18"/>
+    <ellipse cx="450" cy="865" rx="60" ry="18"/>
+    <ellipse cx="450" cy="925" rx="53" ry="18"/>
+    <ellipse cx="670" cy="175" rx="67" ry="18"/>
+  </g>
+  <g fill="#111111" text-anchor="middle">
+    <text x="450" y="60">瀏覽首頁</text>
+    <text x="450" y="120">申請帳號</text>
+    <text x="450" y="180">登入系統</text>
+    <text x="450" y="240">瀏覽論壇</text>
+    <text x="450" y="310">登出系統</text>
+    <text x="450" y="370">查看個人資料</text>
+    <text x="450" y="430">修改個人資料</text>
+    <text x="450" y="490">發表文章</text>
+    <text x="450" y="550">回覆文章</text>
+    <text x="450" y="610">修改自己的文章或回覆</text>
+    <text x="450" y="690">刪除文章或回覆</text>
+    <text x="450" y="750">檢視會員清單</text>
+    <text x="450" y="810">啟用或停用會員</text>
+    <text x="450" y="870">調整會員角色</text>
+    <text x="450" y="930">軟刪除會員</text>
+    <text x="670" y="180">取得圖形驗證碼</text>
+  </g>
+</svg>
