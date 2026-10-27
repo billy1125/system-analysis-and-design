@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 570" width="760" height="570" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="760" height="570" fill="#ffffff"/>
+
+  <!-- swimlanes -->
+  <rect x="20" y="10" width="720" height="40" fill="#f3f3f3"/>
+  <g stroke="#333333" stroke-width="2">
+    <line x1="20" y1="10" x2="20" y2="560"/>
+    <line x1="260" y1="10" x2="260" y2="560"/>
+    <line x1="500" y1="10" x2="500" y2="560"/>
+    <line x1="740" y1="10" x2="740" y2="560"/>
+    <line x1="20" y1="10" x2="740" y2="10"/>
+    <line x1="20" y1="50" x2="740" y2="50"/>
+    <line x1="20" y1="560" x2="740" y2="560"/>
+  </g>
+  <g fill="#111111" font-size="18" text-anchor="middle">
+    <text x="140" y="37">訪客</text>
+    <text x="380" y="37">接待員</text>
+    <text x="620" y="37">受訪員工</text>
+  </g>
+
+  <g fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="140" y1="90" x2="140" y2="103"/>
+    <line x1="140" y1="141" x2="140" y2="163"/>
+    <polyline points="140,201 140,213 380,213 380,223"/>
+    <polyline points="380,261 380,273 620,273 620,283"/>
+    <polyline points="620,321 620,333 380,333 380,343"/>
+    <polyline points="380,381 380,393 140,393 140,403"/>
+    <polyline points="140,441 140,453 380,453 380,463"/>
+    <line x1="380" y1="501" x2="380" y2="521"/>
+  </g>
+
+  <!-- start and end -->
+  <circle cx="140" cy="80" r="10" fill="#222222"/>
+  <circle cx="380" cy="535" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/>
+  <circle cx="380" cy="535" r="7" fill="#222222"/>
+
+  <!-- actions -->
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <rect x="100" y="105" width="80" height="36" rx="10"/>
+    <rect x="92" y="165" width="96" height="36" rx="10"/>
+    <rect x="332" y="225" width="96" height="36" rx="10"/>
+    <rect x="552" y="285" width="136" height="36" rx="10"/>
+    <rect x="332" y="345" width="96" height="36" rx="10"/>
+    <rect x="79" y="405" width="122" height="36" rx="10"/>
+    <rect x="326" y="465" width="108" height="36" rx="10"/>
+  </g>
+  <g fill="#111111" text-anchor="middle">
+    <text x="140" y="128">抵達大門</text>
+    <text x="140" y="188">填寫登記簿</text>
+    <text x="380" y="248">打電話確認</text>
+    <text x="620" y="308">確認是否認識此人</text>
+    <text x="380" y="368">發放訪客證</text>
+    <text x="140" y="428">離廠交回訪客證</text>
+    <text x="380" y="488">補登離開時間</text>
+  </g>
+</svg>

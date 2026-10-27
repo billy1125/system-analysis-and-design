@@ -277,7 +277,7 @@ UML 是一套畫系統圖的標準符號，由 Object Management Group（OMG）�
 
 ### 5.4 訪客登記系統的使用案例圖 🔴 期中必讀
 
-![工廠訪客進出登記系統的使用案例圖](images/03-User-Analysis/visitor-system-use-case-diagram.png)
+![工廠訪客進出登記系統的使用案例圖](images/03-User-Analysis/visitor-system-use-case-diagram.svg)
 
 *本圖由作者自製*
 
@@ -435,7 +435,7 @@ UML 並未規定敘述的格式，但歸納各家做法，完整版本應包含�
 
 當流程牽涉多個角色時，適合用 **[泳道圖](https://zh.wikipedia.org/wiki/泳道圖)（Swimlane Diagram）** ——把圖面切成數條並排的「泳道」，每條代表一個角色，活動畫在執行者的泳道內，跨泳道的箭頭就代表工作的移交。泳道圖不是另一種圖，而是加上泳道的活動圖。
 
-![訪客進出的現況流程泳道圖](images/03-User-Analysis/visitor-swimlane-as-is.png)
+![訪客進出的現況流程泳道圖](images/03-User-Analysis/visitor-swimlane-as-is.svg)
 
 *本圖由作者自製*
 
