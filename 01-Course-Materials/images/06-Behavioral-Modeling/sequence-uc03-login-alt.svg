@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 440" width="520" height="440" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="call" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+    <marker id="reply" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#333333" stroke-width="1.5"/>
+    </marker>
+    <g id="actor" fill="none" stroke="#333333" stroke-width="1.5">
+      <circle cx="0" cy="0" r="9" fill="#f3f3f3"/>
+      <line x1="0" y1="9" x2="0" y2="32"/>
+      <line x1="-15" y1="17" x2="15" y2="17"/>
+      <polyline points="-13,50 0,32 13,50"/>
+    </g>
+  </defs>
+  <rect x="0" y="0" width="520" height="440" fill="#ffffff"/>
+
+  <!-- lifelines (excerpt of sequence-uc03-login.svg, from the submit message on) -->
+  <g stroke="#888888" stroke-width="1.2" stroke-dasharray="6,4">
+    <line x1="90" y1="104" x2="90" y2="425"/>
+    <line x1="430" y1="98" x2="430" y2="425"/>
+  </g>
+
+  <!-- participants -->
+  <use href="#actor" x="90" y="22"/>
+  <text x="90" y="94" text-anchor="middle" fill="#111111">訪客</text>
+  <rect x="380" y="62" width="100" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="430" y="85" text-anchor="middle" fill="#111111">論壇系統</text>
+
+  <!-- messages -->
+  <g stroke="#333333" stroke-width="1.5">
+    <line x1="90" y1="140" x2="429" y2="140" marker-end="url(#call)"/>
+    <line x1="430" y1="204" x2="91" y2="204" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+    <line x1="430" y1="264" x2="91" y2="264" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+    <line x1="430" y1="324" x2="91" y2="324" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+    <line x1="430" y1="384" x2="91" y2="384" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+  </g>
+  <g fill="#111111">
+    <text x="100" y="133">送出登入(email, 密碼, 驗證碼)</text>
+    <text x="110" y="197">顯示驗證碼相關錯誤訊息</text>
+    <text x="110" y="257">顯示「帳號或密碼錯誤」</text>
+    <text x="110" y="317">顯示「帳號已停用」</text>
+    <text x="110" y="377">導向首頁，顯示已登入狀態</text>
+  </g>
+
+  <!-- alt fragment -->
+  <rect x="60" y="158" width="410" height="242" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <path d="M60,158 L112,158 L112,170 L104,178 L60,178 z" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="84" y="173" text-anchor="middle" font-weight="bold" fill="#111111">alt</text>
+  <g stroke="#333333" stroke-width="1.2" stroke-dasharray="5,4">
+    <line x1="60" y1="220" x2="470" y2="220"/>
+    <line x1="60" y1="280" x2="470" y2="280"/>
+    <line x1="60" y1="340" x2="470" y2="340"/>
+  </g>
+  <g fill="#333333" font-size="13" font-weight="bold">
+    <text x="122" y="173">[驗證碼未填或錯誤]</text>
+    <text x="66" y="237">[帳號或密碼錯誤]</text>
+    <text x="66" y="297">[帳號已停用]</text>
+    <text x="66" y="357">[全部通過]</text>
+  </g>
+</svg>

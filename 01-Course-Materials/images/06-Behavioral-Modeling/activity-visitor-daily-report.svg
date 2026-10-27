@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 395" width="720" height="395" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="720" height="395" fill="#ffffff"/>
+
+  <g fill="none" stroke="#333333" stroke-width="1.5">
+    <line x1="360" y1="40" x2="360" y2="58" marker-end="url(#arrow)"/>
+    <line x1="360" y1="96" x2="360" y2="118" marker-end="url(#arrow)"/>
+    <!-- fork -> parallel actions -->
+    <line x1="180" y1="126" x2="180" y2="148" marker-end="url(#arrow)"/>
+    <line x1="360" y1="126" x2="360" y2="148" marker-end="url(#arrow)"/>
+    <line x1="540" y1="126" x2="540" y2="148" marker-end="url(#arrow)"/>
+    <!-- parallel actions -> join -->
+    <line x1="180" y1="186" x2="180" y2="208" marker-end="url(#arrow)"/>
+    <line x1="360" y1="186" x2="360" y2="208" marker-end="url(#arrow)"/>
+    <line x1="540" y1="186" x2="540" y2="208" marker-end="url(#arrow)"/>
+    <line x1="360" y1="216" x2="360" y2="238" marker-end="url(#arrow)"/>
+    <line x1="360" y1="276" x2="360" y2="298" marker-end="url(#arrow)"/>
+    <line x1="360" y1="336" x2="360" y2="357" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- start / end nodes -->
+  <circle cx="360" cy="30" r="10" fill="#222222"/>
+  <circle cx="360" cy="371" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/>
+  <circle cx="360" cy="371" r="7" fill="#222222"/>
+
+  <!-- fork / join bars -->
+  <g fill="#222222">
+    <rect x="110" y="120" width="500" height="6"/>
+    <rect x="110" y="210" width="500" height="6"/>
+  </g>
+
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <rect x="292" y="60" width="136" height="36" rx="10"/>
+    <rect x="112" y="150" width="136" height="36" rx="10"/>
+    <rect x="299" y="150" width="122" height="36" rx="10"/>
+    <rect x="465" y="150" width="150" height="36" rx="10"/>
+    <rect x="292" y="240" width="136" height="36" rx="10"/>
+    <rect x="299" y="300" width="122" height="36" rx="10"/>
+  </g>
+
+  <g fill="#111111" text-anchor="middle">
+    <text x="360" y="83">收到每日結算指令</text>
+    <text x="180" y="173">彙整當日來訪筆數</text>
+    <text x="360" y="173">彙整未到訪申請</text>
+    <text x="540" y="173">彙整逾時未離廠紀錄</text>
+    <text x="360" y="263">產生當日訪客日報</text>
+    <text x="360" y="323">發送給廠務人員</text>
+  </g>
+
+  <!-- annotations -->
+  <g fill="#444444" font-size="13">
+    <text x="620" y="128">分岔（fork）</text>
+    <text x="620" y="218">會合（join）</text>
+  </g>
+</svg>

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 400" width="1180" height="400" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1180" height="400" fill="#ffffff"/>
+
+  <g fill="none" stroke="#333333" stroke-width="1.5">
+    <!-- main line -->
+    <line x1="50" y1="200" x2="148" y2="200" marker-end="url(#arrow)"/>
+    <line x1="250" y1="200" x2="448" y2="200" marker-end="url(#arrow)"/>
+    <line x1="550" y1="200" x2="748" y2="200" marker-end="url(#arrow)"/>
+    <line x1="850" y1="200" x2="1048" y2="200" marker-end="url(#arrow)"/>
+    <!-- to no-show -->
+    <line x1="230" y1="180" x2="319" y2="81" marker-end="url(#arrow)"/>
+    <line x1="470" y1="180" x2="381" y2="81" marker-end="url(#arrow)"/>
+    <!-- to cancelled -->
+    <line x1="230" y1="220" x2="319" y2="319" marker-end="url(#arrow)"/>
+    <line x1="470" y1="220" x2="381" y2="319" marker-end="url(#arrow)"/>
+    <!-- to declined -->
+    <line x1="170" y1="220" x2="170" y2="318" marker-end="url(#arrow)"/>
+    <!-- to final states -->
+    <line x1="400" y1="60" x2="444" y2="60" marker-end="url(#arrow)"/>
+    <line x1="400" y1="340" x2="444" y2="340" marker-end="url(#arrow)"/>
+    <line x1="120" y1="340" x2="76" y2="340" marker-end="url(#arrow)"/>
+    <line x1="1100" y1="220" x2="1100" y2="266" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- initial / final nodes -->
+  <circle cx="40" cy="200" r="10" fill="#222222"/>
+  <g fill="#ffffff" stroke="#222222" stroke-width="1.5">
+    <circle cx="460" cy="60" r="12"/>
+    <circle cx="460" cy="340" r="12"/>
+    <circle cx="60" cy="340" r="12"/>
+    <circle cx="1100" cy="282" r="12"/>
+  </g>
+  <g fill="#222222">
+    <circle cx="460" cy="60" r="7"/>
+    <circle cx="460" cy="340" r="7"/>
+    <circle cx="60" cy="340" r="7"/>
+    <circle cx="1100" cy="282" r="7"/>
+  </g>
+
+  <!-- states -->
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <rect x="150" y="180" width="100" height="40" rx="12"/>
+    <rect x="450" y="180" width="100" height="40" rx="12"/>
+    <rect x="750" y="180" width="100" height="40" rx="12"/>
+    <rect x="1050" y="180" width="100" height="40" rx="12"/>
+    <rect x="300" y="40" width="100" height="40" rx="12"/>
+    <rect x="300" y="320" width="100" height="40" rx="12"/>
+    <rect x="120" y="320" width="100" height="40" rx="12"/>
+  </g>
+  <g fill="#111111" text-anchor="middle">
+    <text x="200" y="205">待確認</text>
+    <text x="500" y="205">已確認</text>
+    <text x="800" y="205">已報到</text>
+    <text x="1100" y="205">已離廠</text>
+    <text x="350" y="65">未到訪</text>
+    <text x="350" y="345">已取消</text>
+    <text x="170" y="345">已婉拒</text>
+  </g>
+
+  <!-- transition labels -->
+  <g fill="#444444" font-size="13">
+    <text x="99" y="190" text-anchor="middle">訪客送出申請</text>
+    <text x="350" y="190" text-anchor="middle">受訪員工確認</text>
+    <text x="650" y="190" text-anchor="middle">接待員報到並發證</text>
+    <text x="950" y="190" text-anchor="middle">接待員登記離廠並收證</text>
+    <text x="266" y="122" text-anchor="end">預定日已過，每日批次</text>
+    <text x="436" y="122">預定日已過仍未報到</text>
+    <text x="266" y="288" text-anchor="end">訪客取消</text>
+    <text x="436" y="288">訪客或受訪員工取消</text>
+    <text x="162" y="275" text-anchor="end">受訪員工婉拒</text>
+  </g>
+</svg>

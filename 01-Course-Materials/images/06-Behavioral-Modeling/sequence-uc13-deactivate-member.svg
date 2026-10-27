@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 612" width="520" height="612" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="call" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+    <marker id="reply" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#333333" stroke-width="1.5"/>
+    </marker>
+    <g id="actor" fill="none" stroke="#333333" stroke-width="1.5">
+      <circle cx="0" cy="0" r="9" fill="#f3f3f3"/>
+      <line x1="0" y1="9" x2="0" y2="32"/>
+      <line x1="-15" y1="17" x2="15" y2="17"/>
+      <polyline points="-13,50 0,32 13,50"/>
+    </g>
+  </defs>
+  <rect x="0" y="0" width="520" height="612" fill="#ffffff"/>
+
+  <!-- lifelines -->
+  <g stroke="#888888" stroke-width="1.2" stroke-dasharray="6,4">
+    <line x1="90" y1="104" x2="90" y2="502"/>
+    <line x1="430" y1="98" x2="430" y2="502"/>
+  </g>
+
+  <!-- participants (top) -->
+  <use href="#actor" x="90" y="22"/>
+  <text x="90" y="94" text-anchor="middle" fill="#111111">管理員</text>
+  <rect x="380" y="62" width="100" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="430" y="85" text-anchor="middle" fill="#111111">論壇系統</text>
+
+  <!-- participants (bottom) -->
+  <text x="90" y="522" text-anchor="middle" fill="#111111">管理員</text>
+  <use href="#actor" x="90" y="542"/>
+  <rect x="380" y="502" width="100" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="430" y="525" text-anchor="middle" fill="#111111">論壇系統</text>
+
+  <!-- messages -->
+  <g stroke="#333333" stroke-width="1.5">
+    <line x1="90" y1="140" x2="429" y2="140" marker-end="url(#call)"/>
+    <line x1="430" y1="174" x2="91" y2="174" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+    <line x1="90" y1="208" x2="429" y2="208" marker-end="url(#call)"/>
+    <line x1="430" y1="272" x2="91" y2="272" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+    <line x1="430" y1="332" x2="91" y2="332" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+    <line x1="430" y1="392" x2="91" y2="392" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+    <line x1="430" y1="452" x2="91" y2="452" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+  </g>
+  <g fill="#111111">
+    <text x="100" y="133">請求會員清單(狀態篩選, 關鍵字, 頁碼)</text>
+    <text x="110" y="167">回傳該頁會員清單與總筆數</text>
+    <text x="100" y="201">送出停用(目標會員編號)</text>
+    <text x="110" y="265">顯示「找不到該使用者」</text>
+    <text x="110" y="325">顯示「不可停用自己的帳號」</text>
+    <text x="110" y="385">顯示「該帳號已刪除，無法操作」</text>
+    <text x="110" y="445">顯示「帳號已停用」並回到清單</text>
+  </g>
+
+  <!-- alt fragment -->
+  <rect x="60" y="226" width="410" height="242" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <path d="M60,226 L112,226 L112,238 L104,246 L60,246 z" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="84" y="241" text-anchor="middle" font-weight="bold" fill="#111111">alt</text>
+  <g stroke="#333333" stroke-width="1.2" stroke-dasharray="5,4">
+    <line x1="60" y1="288" x2="470" y2="288"/>
+    <line x1="60" y1="348" x2="470" y2="348"/>
+    <line x1="60" y1="408" x2="470" y2="408"/>
+  </g>
+  <g fill="#333333" font-size="13" font-weight="bold">
+    <text x="122" y="241">[目標不存在]</text>
+    <text x="66" y="305">[目標是自己]</text>
+    <text x="66" y="365">[目標已被刪除]</text>
+    <text x="66" y="425">[通過]</text>
+  </g>
+</svg>

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 690" width="1000" height="690" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="call" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+    <marker id="reply" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="none" stroke="#333333" stroke-width="1.5"/>
+    </marker>
+    <g id="actor" fill="none" stroke="#333333" stroke-width="1.5">
+      <circle cx="0" cy="0" r="9" fill="#f3f3f3"/>
+      <line x1="0" y1="9" x2="0" y2="32"/>
+      <line x1="-15" y1="17" x2="15" y2="17"/>
+      <polyline points="-13,50 0,32 13,50"/>
+    </g>
+  </defs>
+  <rect x="0" y="0" width="1000" height="690" fill="#ffffff"/>
+
+  <!-- lifelines -->
+  <g stroke="#888888" stroke-width="1.2" stroke-dasharray="6,4">
+    <line x1="70" y1="104" x2="70" y2="670"/>
+    <line x1="240" y1="98" x2="240" y2="670"/>
+    <line x1="410" y1="98" x2="410" y2="670"/>
+    <line x1="580" y1="98" x2="580" y2="670"/>
+    <line x1="750" y1="98" x2="750" y2="670"/>
+    <line x1="920" y1="98" x2="920" y2="670"/>
+  </g>
+
+  <!-- participants -->
+  <use href="#actor" x="70" y="22"/>
+  <text x="70" y="94" text-anchor="middle" fill="#111111">接待員</text>
+  <rect x="170" y="62" width="140" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="240" y="85" text-anchor="middle" fill="#111111">櫃台報到畫面</text>
+  <rect x="340" y="62" width="140" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="410" y="85" text-anchor="middle" fill="#111111">M2 大門報到與離廠</text>
+  <rect x="510" y="62" width="140" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="580" y="85" text-anchor="middle" fill="#111111">M5 基本資料與權限</text>
+  <rect x="680" y="62" width="140" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="750" y="85" text-anchor="middle" fill="#111111">M1 來訪申請管理</text>
+  <rect x="850" y="62" width="140" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="920" y="85" text-anchor="middle" fill="#111111">資料庫</text>
+
+  <!-- messages -->
+  <g stroke="#333333" stroke-width="1.5">
+    <line x1="70" y1="140" x2="239" y2="140" marker-end="url(#call)"/>
+    <line x1="240" y1="174" x2="409" y2="174" marker-end="url(#call)"/>
+    <line x1="410" y1="208" x2="579" y2="208" marker-end="url(#call)"/>
+    <line x1="580" y1="242" x2="411" y2="242" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+    <line x1="410" y1="276" x2="749" y2="276" marker-end="url(#call)"/>
+    <line x1="750" y1="310" x2="919" y2="310" marker-end="url(#call)"/>
+    <line x1="920" y1="344" x2="751" y2="344" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+    <line x1="750" y1="378" x2="411" y2="378" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+    <line x1="410" y1="412" x2="579" y2="412" marker-end="url(#call)"/>
+    <line x1="580" y1="446" x2="411" y2="446" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+    <line x1="410" y1="480" x2="919" y2="480" marker-end="url(#call)"/>
+    <line x1="920" y1="514" x2="411" y2="514" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+    <line x1="410" y1="548" x2="749" y2="548" marker-end="url(#call)"/>
+    <line x1="750" y1="582" x2="919" y2="582" marker-end="url(#call)"/>
+    <line x1="410" y1="616" x2="241" y2="616" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+    <line x1="240" y1="650" x2="71" y2="650" stroke-dasharray="6,4" marker-end="url(#reply)"/>
+  </g>
+  <g fill="#111111" text-anchor="middle">
+    <text x="155" y="133">輸入訪客證編號</text>
+    <text x="325" y="167">送出報到(來訪編號, 訪客證編號)</text>
+    <text x="495" y="201">驗證操作權限(工號)</text>
+    <text x="495" y="235">通過</text>
+    <text x="580" y="269">查詢來訪申請(來訪編號)</text>
+    <text x="835" y="303">讀取來訪紀錄</text>
+    <text x="835" y="337">來訪與訪客資料</text>
+    <text x="580" y="371">狀態、來訪日期、訪客資料</text>
+    <text x="495" y="405">檢核訪客證可用性(訪客證編號)</text>
+    <text x="495" y="439">可用</text>
+    <text x="665" y="473">寫入報到時間與訪客證</text>
+    <text x="665" y="507">寫入結果</text>
+    <text x="580" y="541">更新訪客的最後來訪日</text>
+    <text x="835" y="575">更新訪客主檔</text>
+    <text x="325" y="609">報到成功與更新後的在廠人數</text>
+    <text x="155" y="643">顯示報到結果與訪客證編號</text>
+  </g>
+</svg>
