@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>工單查詢｜工單分派管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-04 work order search -->
+  <main>
+    <h1>工單查詢</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="filter-form" class="panel">
+      <div class="row">
+        <label>交期起<input name="from" type="date"></label>
+        <label>交期迄<input name="to" type="date"></label>
+        <label>產品<select name="product_id"></select></label>
+        <label>工作中心<select name="work_center_id"></select></label>
+      </div>
+      <div class="row">
+        <label>狀態
+          <select name="status">
+            <option value="">全部</option>
+            <option>待派工</option><option>已派工</option><option>生產中</option><option>已完工</option><option>已取消</option>
+          </select>
+        </label>
+        <label>號碼<input name="keyword" placeholder="比對工單號與訂單號"></label>
+        <button type="submit">查詢</button>
+      </div>
+    </form>
+    <div class="summary" id="summary"></div>
+    <table>
+      <thead>
+        <tr>
+          <th>工單號</th><th>訂單號</th><th>產品</th><th>數量</th><th>交期</th><th>狀態</th>
+          <th>工作中心</th><th>良品數</th><th>不良數</th><th>完工時間</th><th>交期狀態</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/orders.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>工作中心管理｜工單分派管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-07 work centers (production control only) -->
+  <main>
+    <h1>工作中心管理</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="wc-form" class="panel">
+      <h2 id="form-title">新增工作中心</h2>
+      <div class="row">
+        <label>名稱<input name="name" maxlength="20"></label>
+        <button type="submit">儲存</button>
+        <button type="button" class="secondary" id="reset">清除</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr><th>名稱</th><th>組長</th><th>未完工件數</th><th>狀態</th><th>操作</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/work-centers.js"></script>
+</body>
+</html>
