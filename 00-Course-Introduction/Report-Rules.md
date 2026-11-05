@@ -13,7 +13,7 @@
 | 報告要交出哪些內容 | [報告內容](Report-Contents.md) |
 | 分數怎麼算、遲交與缺交扣多少 | [成績計算規範](Grading-Rules.md) |
 | 老師評分時看哪些面向 | [報告評量 Rubrics](Rubrics.md) |
-| 有沒有範例可以參考 | [系統分析範例報告說明](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)、[系統設計範例報告說明](../04-Final-Project-Example-Reports/Design-Phase-Deliverables.md)，各配一份寫完的[系統分析範例報告](../02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md)、[系統設計範例報告](../04-Final-Project-Example-Reports/Design-Phase-Sample-Report.md) |
+| 有沒有範例可以參考 | [系統分析範例報告說明](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)、[系統設計範例報告說明](../04-Final-Project-Example-Reports/Design-Phase-Deliverables.md)，各配一份寫完的[系統分析範例報告](../02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md)、[系統修改範例報告](../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md) |
 | 口頭報告與訪談會問什麼方向的題目 | [參考題庫](Question-Bank.md) |
 | 做得比要求更多能不能加分 | [額外投入加分](Bonus-Rules.md) |
 
@@ -35,11 +35,11 @@
 ```mermaid
 flowchart LR
     M["期中小組報告（30%）<br/>系統分析"] -->|提供素材| G["個人兩項<br/>期末個人訪談（20%）<br/>個人學習與貢獻報告（15%）"]
-    F["期末小組報告（30%）<br/>系統設計"] -->|提供素材| G
+    F["期末小組報告（30%）<br/>系統分析與修改建議"] -->|提供素材| G
     G --> R(["訪談問的、個人報告寫的<br/>都是你在小組報告裡實際做過的事"])
 ```
 
-期中與期末的題目可能完全不同，但用的是同一套分析與設計方法。訪談的題目由老師從你們那兩份報告裡隨機抽取，個人報告要寫的也是你自己負責的那幾段。**沒有做過的事，訪談問不出來，個人報告也寫不出來**。
+期中與期末用的是同一套分析與設計方法。訪談的題目由老師從你們那兩份報告裡隨機抽取，個人報告要寫的也是你自己負責的那幾段。**沒有做過的事，訪談問不出來，個人報告也寫不出來**。
 
 ## 評分標準是什麼？
 
@@ -49,7 +49,7 @@ flowchart LR
 
 老師評口頭報告與訪談時，會做這四件事：
 
-- **對照文件聽你報告**：投影片上的流程圖、ERD、設計規格，跟書面寫的對不對得起來。
+- **對照文件聽你報告**：投影片上的流程圖、ERD、修改規格，跟書面寫的對不對得起來。
 - **追問細節**：請你指出這個決策寫在文件哪一段、當初依據什麼判斷。
 - **從文件抽題**：訪談的題目，是從你們的書面文件與你的個人報告中隨機抽出來的。
 - **判斷個人貢獻**：把你講的內容，對回文件與分工紀錄。
