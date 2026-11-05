@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>訪客證管理｜工廠訪客進出登記系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-08 visitor pass management (admin only) -->
+  <main>
+    <h1>訪客證管理</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="pass-form" class="panel">
+      <h2>新增訪客證</h2>
+      <div class="row">
+        <label>訪客證編號<input name="pass_no" maxlength="4" placeholder="V-21"></label>
+        <label>備註<input name="note"></label>
+        <button type="submit">新增</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr><th>訪客證編號</th><th>狀態</th><th>備註</th><th>操作</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/passes.js"></script>
+</body>
+</html>

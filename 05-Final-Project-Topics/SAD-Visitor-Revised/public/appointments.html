@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>預約清單｜工廠訪客進出登記系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-10 appointment list for the front desk (CR-01-2, CR-01-4) -->
+  <main>
+    <h1>預約清單</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="date-form" class="panel">
+      <div class="row">
+        <label>日期<input name="date" type="date"></label>
+        <button type="submit">查詢</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>預計到達</th><th>訪客</th><th>公司</th><th>手機</th><th>受訪員工</th><th>分機</th>
+          <th>事由</th><th>備註</th><th>狀態</th><th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/appointments.js"></script>
+</body>
+</html>

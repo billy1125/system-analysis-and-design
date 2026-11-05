@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>帳號管理｜工廠訪客進出登記系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-09 account management (admin only) -->
+  <main>
+    <h1>帳號管理</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="user-form" class="panel">
+      <h2>新增帳號</h2>
+      <div class="row">
+        <label>帳號<input name="username" maxlength="20"></label>
+        <label>密碼<input name="password" type="password" autocomplete="new-password"></label>
+        <label>姓名<input name="name" maxlength="20"></label>
+        <label>角色
+          <select name="role">
+            <option value="1">接待員</option>
+            <option value="0">管理員</option>
+          </select>
+        </label>
+        <button type="submit">新增</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr><th>帳號</th><th>姓名</th><th>角色</th><th>狀態</th><th>建立時間</th><th>操作</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/users.js"></script>
+</body>
+</html>
