@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>保養紀錄明細｜設備保養紀錄管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-05 record detail and edit -->
+  <main>
+    <h1>保養紀錄明細</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="record-form">
+      <section class="panel">
+        <dl class="detail" id="detail"></dl>
+      </section>
+      <table>
+        <thead>
+          <tr><th>項次</th><th>保養項目</th><th>結果</th><th>說明</th></tr>
+        </thead>
+        <tbody id="items"></tbody>
+      </table>
+      <div class="row" style="margin-top: 12px;" id="actions"></div>
+    </form>
+    <p><a href="records.html">回保養紀錄</a></p>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/record.js"></script>
+</body>
+</html>

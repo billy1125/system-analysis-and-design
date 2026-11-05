@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>設備清單｜設備保養紀錄管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-06 equipment list -->
+  <main>
+    <h1>設備清單</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="equip-form" class="panel" hidden>
+      <h2 id="form-title">新增設備</h2>
+      <div class="row">
+        <label>設備編號<input name="equip_no" maxlength="6" placeholder="EQ-000"></label>
+        <label>設備名稱<input name="name" maxlength="30"></label>
+        <label>型號<input name="model" maxlength="30"></label>
+        <label>廠牌<input name="maker" maxlength="30"></label>
+      </div>
+      <div class="row">
+        <label>產線<input name="line" maxlength="20"></label>
+        <label>位置<input name="location" maxlength="30"></label>
+        <button type="submit">儲存</button>
+        <button type="button" class="secondary" id="reset">清除</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>設備編號</th><th>名稱</th><th>型號</th><th>廠牌</th><th>產線</th><th>位置</th>
+          <th>保養計畫數</th><th>狀態</th><th class="manager-col">操作</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/equipment.js"></script>
+</body>
+</html>

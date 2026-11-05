@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>保養紀錄查詢｜設備保養紀錄管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-04 record search -->
+  <main>
+    <h1>保養紀錄查詢</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="filter-form" class="panel">
+      <div class="row">
+        <label>保養日期起<input name="from" type="date"></label>
+        <label>保養日期迄<input name="to" type="date"></label>
+        <label>設備<select name="equipment_id"></select></label>
+        <label>執行人<select name="done_by"></select></label>
+        <label>紀錄結果
+          <select name="result">
+            <option value="">全部</option>
+            <option>正常</option><option>有異常</option><option>部分未執行</option>
+          </select>
+        </label>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr><th>保養日期</th><th>設備編號</th><th>設備名稱</th><th>保養類別</th><th>執行人</th><th>紀錄結果</th><th>備註</th><th>登錄時間</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/records.js"></script>
+</body>
+</html>
