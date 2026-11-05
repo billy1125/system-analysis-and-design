@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>帳號管理｜工單分派管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-08 user accounts (production control only) -->
+  <main>
+    <h1>帳號管理</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="user-form" class="panel">
+      <h2 id="form-title">新增帳號</h2>
+      <div class="row">
+        <label>員工編號<input name="emp_no" maxlength="5" placeholder="E0000"></label>
+        <label>姓名<input name="name" maxlength="20"></label>
+        <label>職稱<input name="title" maxlength="20"></label>
+        <label>角色
+          <select name="role">
+            <option value="">請選擇</option>
+            <option value="1">組長</option>
+            <option value="0">生管人員</option>
+          </select>
+        </label>
+      </div>
+      <div class="row">
+        <label>所屬工作中心<select name="work_center_id"></select></label>
+        <label><span id="pw-label">密碼</span><input name="password" type="password" autocomplete="new-password"></label>
+        <button type="submit">儲存</button>
+        <button type="button" class="secondary" id="reset">清除</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr><th>員工編號</th><th>姓名</th><th>職稱</th><th>角色</th><th>所屬工作中心</th><th>狀態</th><th>操作</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/users.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>未完工工單｜工單分派管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-02 open work orders (home page) -->
+  <main>
+    <h1>未完工工單</h1>
+    <div id="msg" class="msg" hidden></div>
+    <div class="summary" id="summary"></div>
+    <section class="panel">
+      <div class="row">
+        <label>狀態<select id="f-status"></select></label>
+        <label>交期狀態
+          <select id="f-due">
+            <option value="">全部</option>
+            <option value="overdue">已逾期</option>
+          </select>
+        </label>
+        <label id="f-wc-label" hidden>工作中心<select id="f-wc"></select></label>
+        <button type="button" id="new-order" hidden>開立工單</button>
+      </div>
+    </section>
+    <table>
+      <thead>
+        <tr>
+          <th>工單號</th><th>訂單號</th><th>產品</th><th>數量</th><th>交期</th><th>交期狀態</th>
+          <th>狀態</th><th>工作中心</th><th>預定生產日</th><th>開工時間</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

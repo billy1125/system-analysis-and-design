@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>產品管理｜工單分派管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-06 products (production control only) -->
+  <main>
+    <h1>產品管理</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="product-form" class="panel">
+      <h2 id="form-title">新增產品</h2>
+      <div class="row">
+        <label>料號<input name="part_no" maxlength="7" placeholder="BP-0000"></label>
+        <label>品名<input name="name" maxlength="30"></label>
+        <button type="submit">儲存</button>
+        <button type="button" class="secondary" id="reset">清除</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr><th>料號</th><th>品名</th><th>工單數</th><th>狀態</th><th>操作</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/products.js"></script>
+</body>
+</html>
