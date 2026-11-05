@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>梯次明細｜員工教育訓練紀錄系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-05 session detail and roster -->
+  <main>
+    <h1>梯次明細</h1>
+    <div id="msg" class="msg" hidden></div>
+    <section class="panel">
+      <form id="session-form">
+        <dl class="detail" id="detail"></dl>
+        <div class="row" style="margin-top: 16px;" id="actions"></div>
+      </form>
+    </section>
+    <h2>報名名單</h2>
+    <div class="row" id="enroll-box" hidden>
+      <label>代為報名<select id="enroll-employee"></select></label>
+      <button type="button" id="enroll-btn">代為報名</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>員工編號</th><th>姓名</th><th>部門</th><th>報名時間</th><th>報名方式</th>
+          <th>結訓結果</th><th>備註</th><th>結果登錄人</th><th>登錄時間</th><th id="op-head">操作</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="row" style="margin-top: 12px;" id="result-box" hidden>
+      <button type="button" id="save-results">儲存結訓結果</button>
+    </div>
+    <p><a href="sessions.html">回梯次管理</a></p>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/session.js"></script>
+</body>
+</html>

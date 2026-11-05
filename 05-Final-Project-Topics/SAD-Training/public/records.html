@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>訓練紀錄查詢｜員工教育訓練紀錄系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-06 training record search -->
+  <main>
+    <h1>訓練紀錄查詢</h1>
+    <div id="msg" class="msg" hidden></div>
+    <div class="tabs">
+      <button type="button" class="secondary active" data-tab="by-employee">依員工查詢</button>
+      <button type="button" class="secondary" data-tab="by-course">依課程查詢</button>
+    </div>
+    <section id="by-employee">
+      <form id="emp-form" class="panel">
+        <div class="row">
+          <label>員工編號或姓名<input name="q"></label>
+          <button type="submit">查詢</button>
+        </div>
+        <div id="emp-matches"></div>
+      </form>
+      <div id="emp-result" hidden>
+        <div class="summary" id="emp-summary"></div>
+        <table>
+          <thead>
+            <tr><th>梯次日期</th><th>課程名稱</th><th>類別</th><th>時數</th><th>梯次狀態</th><th>結訓結果</th><th>備註</th></tr>
+          </thead>
+          <tbody id="emp-rows"></tbody>
+        </table>
+      </div>
+    </section>
+    <section id="by-course" hidden>
+      <section class="panel">
+        <div class="row"><label>課程<select id="course-select"></select></label></div>
+      </section>
+      <table>
+        <thead>
+          <tr><th>員工編號</th><th>姓名</th><th>部門</th><th>職稱</th><th>在職狀態</th><th>完成日期</th></tr>
+        </thead>
+        <tbody id="course-rows"></tbody>
+      </table>
+    </section>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/records.js"></script>
+</body>
+</html>

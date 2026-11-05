@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>課程管理｜員工教育訓練紀錄系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-07 course management (HR only) -->
+  <main>
+    <h1>課程管理</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="course-form" class="panel">
+      <h2 id="form-title">新增課程</h2>
+      <div class="row">
+        <label>課程編號<input name="course_no" maxlength="6" placeholder="TR-000"></label>
+        <label>課程名稱<input name="name" maxlength="40"></label>
+        <label>類別<select name="category"></select></label>
+        <label>時數<input name="hours" type="number" min="0.5" max="40" step="0.5"></label>
+      </div>
+      <div class="row">
+        <label>說明<textarea name="description" maxlength="200"></textarea></label>
+        <button type="submit">儲存</button>
+        <button type="button" class="secondary" id="reset">清除</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr><th>課程編號</th><th>課程名稱</th><th>類別</th><th>時數</th><th>說明</th><th>已開梯次</th><th>狀態</th><th>操作</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/courses.js"></script>
+</body>
+</html>
