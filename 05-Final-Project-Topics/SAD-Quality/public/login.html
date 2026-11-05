@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>登入｜品質異常回報管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- UI-01 login -->
+  <div class="login-box panel">
+    <h1>品質異常回報管理系統</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="login-form">
+      <label>員工編號<input name="emp_no" autocomplete="username" autofocus></label>
+      <label>密碼<input name="password" type="password" autocomplete="current-password"></label>
+      <button type="submit">登入</button>
+    </form>
+  </div>
+  <script src="js/common.js"></script>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      try {
+        await api('POST', '/api/login', {
+          emp_no: form.emp_no.value,
+          password: form.password.value,
+        });
+        // FR-AUTH-03: everyone starts at the open list
+        location.href = 'index.html';
+      } catch (err) {
+        showMessage(err.message, 'error');
+      }
+    });
+  </script>
+</body>
+</html>

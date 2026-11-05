@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>異常單明細｜品質異常回報管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-05 issue detail and actions -->
+  <main>
+    <h1 id="title">異常單明細</h1>
+    <div id="msg" class="msg" hidden></div>
+    <section class="panel">
+      <h2>登記資料</h2>
+      <dl class="detail" id="report"></dl>
+    </section>
+    <section class="panel">
+      <h2>處理狀況</h2>
+      <dl class="detail" id="handling"></dl>
+    </section>
+    <div class="row" id="actions"></div>
+    <form id="action-form" class="panel" hidden>
+      <h2 id="form-title"></h2>
+      <div id="form-fields"></div>
+      <div class="row">
+        <button type="submit">送出</button>
+        <button type="button" class="secondary" id="cancel">取消</button>
+      </div>
+    </form>
+    <p><a href="index.html">回未結案清單</a>　<a href="issues.html">回異常單查詢</a></p>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/issue.js"></script>
+</body>
+</html>

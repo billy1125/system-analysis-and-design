@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>異常單查詢｜品質異常回報管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-04 issue search -->
+  <main>
+    <h1>異常單查詢</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="filter-form" class="panel">
+      <div class="row">
+        <label>發現日期起<input name="from" type="date"></label>
+        <label>發現日期迄<input name="to" type="date"></label>
+        <label>產品<select name="product_id"></select></label>
+        <label>異常類別<select name="defect_type_id"></select></label>
+      </div>
+      <div class="row">
+        <label>責任單位<select name="dept_id"></select></label>
+        <label>狀態
+          <select name="status">
+            <option value="">全部</option>
+            <option>待處理</option><option>處理中</option><option>已結案</option><option>不成立</option>
+          </select>
+        </label>
+        <label>關鍵字<input name="keyword" placeholder="比對異常描述"></label>
+        <button type="submit">查詢</button>
+      </div>
+    </form>
+    <div class="summary" id="summary"></div>
+    <table>
+      <thead>
+        <tr>
+          <th>異常單號</th><th>發現時間</th><th>產品</th><th>異常類別</th><th>異常描述</th>
+          <th>狀態</th><th>責任單位</th><th>經過天數</th><th>結案時間</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/issues.js"></script>
+</body>
+</html>
