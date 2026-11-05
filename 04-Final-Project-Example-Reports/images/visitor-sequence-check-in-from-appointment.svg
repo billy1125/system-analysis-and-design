@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 744" width="640" height="744" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+    <marker id="open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#333333" stroke-width="1.5"/></marker>
+    <g id="actor" fill="none" stroke="#333333" stroke-width="1.5"><circle cx="0" cy="0" r="9" fill="#f3f3f3"/><line x1="0" y1="9" x2="0" y2="32"/><line x1="-15" y1="17" x2="15" y2="17"/><polyline points="-13,50 0,32 13,50"/></g>
+  </defs>
+  <rect x="0" y="0" width="640" height="744" fill="#ffffff"/>
+  <g stroke="#888888" stroke-width="1.2" stroke-dasharray="6,4">
+    <line x1="90" y1="104" x2="90" y2="642"/>
+    <line x1="520" y1="98" x2="520" y2="642"/>
+  </g>
+  <use href="#actor" x="90" y="22"/>
+  <text x="90" y="94" text-anchor="middle" fill="#111111">接待員</text>
+  <rect x="464" y="62" width="112" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="520" y="85" text-anchor="middle" fill="#111111">訪客登記系統</text>
+  <text x="90" y="662" text-anchor="middle" fill="#111111">接待員</text>
+  <use href="#actor" x="90" y="682"/>
+  <rect x="464" y="642" width="112" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="520" y="665" text-anchor="middle" fill="#111111">訪客登記系統</text>
+  <rect x="60" y="310" width="500" height="62" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <path d="M60,310 L112,310 L112,322 L104,330 L60,330 z" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="84" y="325" text-anchor="middle" font-weight="bold" fill="#111111">opt</text>
+  <rect x="60" y="426" width="500" height="186" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <path d="M60,426 L112,426 L112,438 L104,446 L60,446 z" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="84" y="441" text-anchor="middle" font-weight="bold" fill="#111111">alt</text>
+  <line x1="60" y1="488" x2="560" y2="488" stroke="#333333" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <line x1="60" y1="550" x2="560" y2="550" stroke="#333333" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <g stroke="#333333" stroke-width="1.5">
+    <line x1="90" y1="154" x2="519" y2="154" marker-end="url(#arrow)"/>
+    <line x1="520" y1="188" x2="91" y2="188" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="90" y1="222" x2="519" y2="222" marker-end="url(#arrow)"/>
+    <line x1="520" y1="256" x2="91" y2="256" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="520" y1="290" x2="91" y2="290" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="520" y1="350" x2="91" y2="350" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="90" y1="406" x2="519" y2="406" marker-end="url(#arrow)"/>
+    <line x1="520" y1="466" x2="91" y2="466" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="520" y1="528" x2="91" y2="528" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="520" y1="590" x2="91" y2="590" stroke-dasharray="6,4" marker-end="url(#open)"/>
+  </g>
+  <g>
+    <text x="100" y="147" fill="#111111">請求今日預約清單</text>
+    <text x="110" y="181" fill="#111111">今日預約與狀態</text>
+    <text x="100" y="215" fill="#111111">選擇報到(預約編號)</text>
+    <text x="110" y="249" fill="#111111">來訪登記頁，帶入受訪員工、事由</text>
+    <text x="110" y="283" fill="#111111">以預約手機查詢訪客的結果</text>
+    <text x="120" y="325" font-size="13" font-weight="bold" fill="#333333">[查無訪客]</text>
+    <text x="110" y="343" fill="#111111">新訪客表單，帶入預約的姓名、公司、手機</text>
+    <text x="100" y="399" fill="#111111">送出登記(訪客資料, 隨行人員姓名, 訪客證, 預約編號)</text>
+    <text x="120" y="441" font-size="13" font-weight="bold" fill="#333333">[預約不是今天的「已預約」]</text>
+    <text x="110" y="459" fill="#111111">此預約無法報到（已報到、已取消或不是今天）</text>
+    <text x="66" y="505" font-size="13" font-weight="bold" fill="#333333">[其他欄位或訪客證錯誤]</text>
+    <text x="110" y="521" fill="#111111">對應的錯誤訊息</text>
+    <text x="66" y="567" font-size="13" font-weight="bold" fill="#333333">[通過]</text>
+    <text x="110" y="583" fill="#111111">登記完成：訪客證 V-xx（預約改為已報到）</text>
+  </g>
+
+</svg>

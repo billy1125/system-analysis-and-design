@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 1020" width="980" height="1020" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+  </defs>
+  <rect x="0" y="0" width="980" height="1020" fill="#ffffff"/>
+  <g>
+    <polyline points="480,40 480,67" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="480,103 480,131" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="404,145 250,145 250,188" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="330" y="138" text-anchor="middle" font-size="13" fill="#333333">[查無]</text>
+    <polyline points="556,145 760,145 760,182" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="640" y="138" text-anchor="middle" font-size="13" fill="#333333">[多筆]</text>
+    <polyline points="480,159 480,243" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="488" y="205" font-size="13" fill="#333333">[一筆]</text>
+    <polyline points="760,218 760,255 494,255" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="250,212 250,237" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="250,273 250,306" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="188,320 150,320" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="168" y="313" text-anchor="middle" font-size="13" fill="#333333">[否]</text>
+    <polyline points="80,302 80,200 236,200" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="250,334 250,380 466,380" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="258" y="360" font-size="13" fill="#333333">[是]</text>
+    <polyline points="480,267 480,292" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="480,328 480,368" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="480,392 480,417" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="480,453 480,478" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="480,502 480,527" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="480,563 480,596" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="622,610 733,610" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="690" y="603" text-anchor="middle" font-size="13" fill="#333333">[否]</text>
+    <polyline points="810,592 810,490 494,490" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="480,624 480,666" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="488" y="650" font-size="13" fill="#333333">[是]</text>
+    <polyline points="397,680 303,680" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="350" y="673" text-anchor="middle" font-size="13" fill="#333333">[否]</text>
+    <polyline points="170,662 170,490 466,490" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="480,694 480,736" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="488" y="720" font-size="13" fill="#333333">[是]</text>
+    <polyline points="563,750 639,750" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="610" y="743" text-anchor="middle" font-size="13" fill="#333333">[否]</text>
+    <polyline points="800,768 800,803" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="480,764 480,797" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="488" y="790" font-size="13" fill="#333333">[是]</text>
+    <polyline points="480,833 480,857" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="480,893 480,917" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="480,953 480,980" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  </g>
+  <g>
+    <circle cx="480" cy="30" r="10" fill="#222222"/>
+    <rect x="389" y="67" width="182" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="480" y="90" text-anchor="middle" fill="#111111">接待員輸入訪客手機號碼</text>
+    <polygon points="404,145 414,131 546,131 556,145 546,159 414,159" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="480" y="150" text-anchor="middle" fill="#111111">是否查到訪客資料</text>
+    <polygon points="250,188 264,200 250,212 236,200" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+    <rect x="676" y="182" width="168" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="760" y="205" text-anchor="middle" fill="#111111">接待員從清單中選一筆</text>
+    <rect x="103" y="237" width="294" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="250" y="260" text-anchor="middle" fill="#111111">接待員輸入姓名、公司、手機、身分證字號</text>
+    <polygon points="480,243 494,255 480,267 466,255" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+    <rect x="375" y="292" width="210" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="480" y="315" text-anchor="middle" fill="#111111">帶出姓名、公司、身分證字號</text>
+    <polygon points="188,320 198,306 302,306 312,320 302,334 198,334" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="250" y="325" text-anchor="middle" fill="#111111">格式是否正確</text>
+    <rect x="10" y="302" width="140" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="80" y="325" text-anchor="middle" fill="#111111">顯示格式錯誤訊息</text>
+    <polygon points="480,368 494,380 480,392 466,380" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+    <rect x="382" y="417" width="196" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="480" y="440" text-anchor="middle" fill="#111111">接待員打分機通知受訪員工</text>
+    <polygon points="480,478 494,490 480,502 466,490" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+    <rect x="340" y="527" width="280" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="480" y="550" text-anchor="middle" fill="#111111">選擇受訪員工、事由、隨行人數、訪客證</text>
+    <polygon points="338,610 348,596 612,596 622,610 612,624 348,624" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="480" y="615" text-anchor="middle" fill="#111111">必填是否齊全、隨行人數是否 0 到 20</text>
+    <rect x="733" y="592" width="154" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="810" y="615" text-anchor="middle" fill="#111111">顯示對應的錯誤訊息</text>
+    <polygon points="397,680 407,666 553,666 563,680 553,694 407,694" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="480" y="685" text-anchor="middle" fill="#111111">訪客證是否未被使用</text>
+    <rect x="37" y="662" width="266" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="170" y="685" text-anchor="middle" fill="#111111">顯示：訪客證已在使用中，請重新選擇</text>
+    <polygon points="397,750 407,736 553,736 563,750 553,764 407,764" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="480" y="755" text-anchor="middle" fill="#111111">該訪客是否不在廠內</text>
+    <rect x="639" y="732" width="322" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="800" y="755" text-anchor="middle" fill="#111111">顯示：此訪客目前仍在廠內，請先完成離廠登記</text>
+    <circle cx="800" cy="815" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/><circle cx="800" cy="815" r="7" fill="#222222"/>
+    <rect x="389" y="797" width="182" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="480" y="820" text-anchor="middle" fill="#111111">寫入來訪紀錄與報到時間</text>
+    <rect x="382" y="857" width="196" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="480" y="880" text-anchor="middle" fill="#111111">顯示登記完成與訪客證編號</text>
+    <rect x="410" y="917" width="140" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="480" y="940" text-anchor="middle" fill="#111111">接待員交付訪客證</text>
+    <circle cx="480" cy="992" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/><circle cx="480" cy="992" r="7" fill="#222222"/>
+  </g>
+</svg>

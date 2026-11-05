@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1090 700" width="1090" height="700" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1090" height="700" fill="#ffffff"/>
+  <g>
+    <polyline points="400,40 400,66" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="352,80 170,80 170,122" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="270" y="73" text-anchor="middle" font-size="13" fill="#333333">[訪客交回訪客證]</text>
+    <polyline points="448,80 640,80 640,122" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="530" y="73" text-anchor="middle" font-size="13" fill="#333333">[【新增】交班]</text>
+    <polyline points="170,158 170,182" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="170,218 170,608" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="640,158 640,183" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="640,207 640,236" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="543,250 330,250 330,282" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="500" y="243" text-anchor="middle" font-size="13" fill="#333333">[否]</text>
+    <polyline points="330,318 330,620 184,620" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="640,264 640,292" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="648" y="285" font-size="13" fill="#333333">[是]</text>
+    <polyline points="640,328 640,353" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="640,377 640,402" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="640,438 640,466" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="807,480 873,480" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="840" y="473" text-anchor="middle" font-size="13" fill="#333333">[否]</text>
+    <polyline points="950,462 950,365 654,365" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="640,494 640,527" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="648" y="515" font-size="13" fill="#333333">[是]</text>
+    <polyline points="640,563 640,585 1060,585 1060,195 654,195" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="170,632 170,658" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  </g>
+  <g>
+    <circle cx="400" cy="30" r="10" fill="#222222"/>
+    <polygon points="352,80 362,66 438,66 448,80 438,94 362,94" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="400" y="85" text-anchor="middle" fill="#111111">觸發事件</text>
+    <rect x="79" y="122" width="182" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="170" y="145" text-anchor="middle" fill="#111111">接待員在在廠清單按離廠</text>
+    <rect x="37" y="182" width="266" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="170" y="205" text-anchor="middle" fill="#111111">寫入離廠時間、離廠登記人與登記時間</text>
+    <rect x="486" y="122" width="308" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="640" y="145" text-anchor="middle" fill="#111111">【新增】接班接待員檢視「非今日報到」區塊</text>
+    <polygon points="640,183 654,195 640,207 626,195" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+    <polygon points="543,250 553,236 727,236 737,250 727,264 553,264" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="640" y="255" text-anchor="middle" fill="#111111">是否有非今日報到的紀錄</text>
+    <rect x="212" y="282" width="236" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="305" text-anchor="middle" fill="#111111">【新增】匯出在廠名單 CSV 留存</text>
+    <rect x="486" y="292" width="308" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="640" y="315" text-anchor="middle" fill="#111111">【新增】打分機向受訪員工確認訪客何時離開</text>
+    <polygon points="640,353 654,365 640,377 626,365" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+    <rect x="479" y="402" width="322" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="640" y="425" text-anchor="middle" fill="#111111">【新增】按補登離廠，輸入實際離廠時間與原因</text>
+    <polygon points="473,480 483,466 797,466 807,480 797,494 483,494" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="640" y="485" text-anchor="middle" fill="#111111">時間是否晚於報到、不晚於現在，原因是否已填</text>
+    <rect x="873" y="462" width="154" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="950" y="485" text-anchor="middle" fill="#111111">顯示對應的錯誤訊息</text>
+    <rect x="458" y="527" width="364" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="640" y="550" text-anchor="middle" fill="#111111">【新增】寫入離廠時間、補登原因、補登人與補登時間</text>
+    <polygon points="170,608 184,620 170,632 156,620" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+    <circle cx="170" cy="670" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/><circle cx="170" cy="670" r="7" fill="#222222"/>
+  </g>
+</svg>
