@@ -120,16 +120,17 @@
 
 ### 期末報告的題目
 
-期末的題目是四套已經在工廠使用的管理系統，各組做哪一題由當堂公開抽籤決定。每一題有一套可執行的既有系統（`05-Final-Project-Topics/SAD-<名稱>/`）與一份老師提供的修改需求提案書（`05-Final-Project-Topics/Change-Proposals/`）：先分析系統現在怎麼運作，再依提案書提出修改建議。另有一份[索引](05-Final-Project-Topics/README.md)說明每一題給你什麼、使用步驟、怎麼找答案與不建議做的方向。
+期末的題目是五套已經在工廠使用的管理系統，各組做哪一題由當堂公開抽籤決定。每一題有一套可執行的既有系統（`05-Final-Project-Topics/SAD-<名稱>/`）與一份老師提供的修改需求提案書（`05-Final-Project-Topics/Change-Proposals/`）：先分析系統現在怎麼運作，再依提案書提出修改建議。另有一份[索引](05-Final-Project-Topics/README.md)說明每一題給你什麼、使用步驟、怎麼找答案與不建議做的方向。
 
 期末原本規劃從零設計一套新系統，期中報告之後調整成修改既有系統，**期末的分量也因此比原本規劃的輕**：系統已經存在，只要交代改到的地方。調整的原因與前後對照，見 [SAD 課程介紹](00-Course-Introduction/Course-Introduction.md)〈期末為什麼改成修改既有系統〉。
 
 | 題目 | 領域 | 既有系統 | 修改需求提案書 |
 |---|---|---|---|
-| 品質異常回報管理系統 | 品質管理 | 尚未完成 | 尚未完成 |
-| 倉庫盤點管理系統 | 物料與倉儲 | 尚未完成 | 尚未完成 |
-| 設備保養紀錄管理系統 | 設備維護 | 尚未完成 | 尚未完成 |
+| 品質異常回報管理系統 | 品質管理 | [SAD-Quality](05-Final-Project-Topics/SAD-Quality/README.md) | [修改需求提案書](05-Final-Project-Topics/Change-Proposals/Quality-System-Change-Proposal.md) |
+| 倉庫盤點管理系統 | 物料與倉儲 | [SAD-Inventory](05-Final-Project-Topics/SAD-Inventory/README.md) | [修改需求提案書](05-Final-Project-Topics/Change-Proposals/Inventory-System-Change-Proposal.md) |
+| 設備保養紀錄管理系統 | 設備維護 | [SAD-Maintenance](05-Final-Project-Topics/SAD-Maintenance/README.md) | [修改需求提案書](05-Final-Project-Topics/Change-Proposals/Maintenance-System-Change-Proposal.md) |
 | 員工教育訓練紀錄系統 | 人力資源與工安 | [SAD-Training](05-Final-Project-Topics/SAD-Training/README.md) | [修改需求提案書](05-Final-Project-Topics/Change-Proposals/Training-System-Change-Proposal.md) |
+| 工單分派管理系統 | 生產管理 | [SAD-Work-Order](05-Final-Project-Topics/SAD-Work-Order/README.md) | [修改需求提案書](05-Final-Project-Topics/Change-Proposals/Work-Order-System-Change-Proposal.md) |
 
 同一個資料夾底下還有一套工廠訪客進出登記系統（`SAD-Visitor/`），**那是期末範例報告拿來示範的系統，不在抽籤範圍內**。
 
