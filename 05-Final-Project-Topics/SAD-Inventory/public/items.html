@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>料號｜倉庫盤點管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-05 items -->
+  <main>
+    <h1>料號</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="item-form" class="panel" hidden>
+      <h2 id="form-title">新增料號</h2>
+      <div class="row">
+        <label>料號<input name="item_no" maxlength="7" placeholder="TB-0000"></label>
+        <label>品名<input name="name" maxlength="30"></label>
+        <label>規格<input name="spec" maxlength="30"></label>
+        <label>單位<input name="unit" maxlength="4" placeholder="支、片、盒"></label>
+        <label>儲位<input name="location" maxlength="10" placeholder="A-01-01"></label>
+      </div>
+      <div class="row">
+        <button type="submit">儲存</button>
+        <button type="button" class="secondary" id="reset">清除</button>
+      </div>
+    </form>
+    <form id="search-form" class="panel">
+      <div class="row">
+        <label>關鍵字<input name="keyword" placeholder="比對料號與品名"></label>
+        <button type="submit">查詢</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr><th>料號</th><th>品名</th><th>規格</th><th>單位</th><th>儲位</th><th>帳面數量</th><th>狀態</th><th>操作</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/items.js"></script>
+</body>
+</html>

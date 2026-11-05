@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>盤點單明細｜倉庫盤點管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-04 count detail and entry -->
+  <main>
+    <h1 id="title">盤點單明細</h1>
+    <div id="msg" class="msg" hidden></div>
+    <section class="panel">
+      <h2>盤點單資訊</h2>
+      <dl class="detail" id="info"></dl>
+    </section>
+    <div class="row" id="actions"></div>
+    <table>
+      <thead>
+        <tr>
+          <th>儲位</th><th>料號</th><th>品名</th><th>規格</th><th>單位</th><th>帳面數量</th>
+          <th>實盤數量</th><th>盤差</th><th>差異說明</th><th>盤點人</th><th>盤點時間</th><th id="op-head" hidden></th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p><a href="index.html">回盤點單清單</a></p>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/count.js"></script>
+</body>
+</html>

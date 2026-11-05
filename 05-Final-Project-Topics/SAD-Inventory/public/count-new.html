@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>建立盤點單｜倉庫盤點管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-03 create a count (managers only) -->
+  <main>
+    <h1>建立盤點單</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="count-form" class="panel">
+      <div class="row">
+        <label>名稱<input name="name" maxlength="30" placeholder="例如：十一月抽盤（板材與包材）"></label>
+        <label>類別
+          <select name="count_type">
+            <option value="">請選擇</option>
+            <option>全盤</option><option>抽盤</option>
+          </select>
+        </label>
+        <label>盤點人員<select name="counter_id"></select></label>
+      </div>
+      <div id="item-box" hidden>
+        <h2>選擇料號</h2>
+        <table>
+          <thead>
+            <tr><th></th><th>料號</th><th>品名</th><th>規格</th><th>儲位</th><th>帳面數量</th><th>備註</th></tr>
+          </thead>
+          <tbody id="items"></tbody>
+        </table>
+      </div>
+      <div class="row" style="margin-top: 12px">
+        <button type="submit">建立</button>
+      </div>
+    </form>
+    <p><a href="index.html">回盤點單清單</a></p>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/count-new.js"></script>
+</body>
+</html>
