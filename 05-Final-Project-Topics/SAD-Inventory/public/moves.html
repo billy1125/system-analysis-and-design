@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>庫存異動｜倉庫盤點管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-06 stock moves -->
+  <main>
+    <h1>庫存異動</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="move-form" class="panel">
+      <h2>登錄入庫或出庫</h2>
+      <div class="row">
+        <label>料號<select name="item_id"></select></label>
+        <label>類別
+          <select name="move_type">
+            <option value="">請選擇</option>
+            <option>入庫</option><option>出庫</option>
+          </select>
+        </label>
+        <label>數量<input name="qty" type="number" min="1" max="99999"></label>
+        <label>說明<input name="note" maxlength="50" placeholder="例如：採購單號、領料單號"></label>
+        <button type="submit">登錄</button>
+      </div>
+    </form>
+    <form id="filter-form" class="panel">
+      <div class="row">
+        <label>料號<select name="item_id"></select></label>
+        <label>異動日期起<input name="from" type="date"></label>
+        <label>異動日期迄<input name="to" type="date"></label>
+        <label>類別
+          <select name="move_type">
+            <option value="">全部</option>
+            <option>入庫</option><option>出庫</option><option>盤點調整</option>
+          </select>
+        </label>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr><th>異動時間</th><th>料號</th><th>品名</th><th>類別</th><th>數量變化</th><th>說明</th><th>登錄人</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/moves.js"></script>
+</body>
+</html>

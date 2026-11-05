@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>盤點單｜倉庫盤點管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-02 count list (home page) -->
+  <main>
+    <h1>盤點單</h1>
+    <div id="msg" class="msg" hidden></div>
+    <section class="panel">
+      <div class="row">
+        <label>狀態
+          <select id="f-status">
+            <option value="">全部</option>
+            <option>盤點中</option><option>已結案</option>
+          </select>
+        </label>
+        <button type="button" id="new-count" hidden>建立盤點單</button>
+      </div>
+    </section>
+    <table>
+      <thead>
+        <tr>
+          <th>盤點單號</th><th>名稱</th><th>類別</th><th>盤點人員</th><th>建立時間</th>
+          <th>進度</th><th>狀態</th><th>結案時間</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
