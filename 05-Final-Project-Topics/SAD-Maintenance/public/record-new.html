@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>保養登錄｜設備保養紀錄管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-03 record maintenance -->
+  <main>
+    <h1>保養登錄</h1>
+    <div id="msg" class="msg" hidden></div>
+    <section class="panel">
+      <dl class="detail" id="detail"></dl>
+    </section>
+    <form id="record-form" hidden>
+      <section class="panel">
+        <div class="row">
+          <label>保養日期<input name="done_date" type="date"></label>
+          <label>備註<textarea name="note" maxlength="200"></textarea></label>
+        </div>
+      </section>
+      <div class="row">
+        <button type="button" class="secondary" id="all-normal">全部設為正常</button>
+      </div>
+      <table>
+        <thead>
+          <tr><th>項次</th><th>保養項目</th><th>結果</th><th>說明（異常或未執行時必填）</th></tr>
+        </thead>
+        <tbody id="items"></tbody>
+      </table>
+      <div class="row" style="margin-top: 12px;">
+        <button type="submit">登錄</button>
+      </div>
+    </form>
+    <p><a href="index.html">回待保養清單</a></p>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/record-new.js"></script>
+</body>
+</html>

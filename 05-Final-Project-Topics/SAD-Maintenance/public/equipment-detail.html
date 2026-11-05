@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>設備明細｜設備保養紀錄管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-07 equipment detail and maintenance plans -->
+  <main>
+    <h1>設備明細</h1>
+    <div id="msg" class="msg" hidden></div>
+    <section class="panel">
+      <dl class="detail" id="detail"></dl>
+    </section>
+
+    <h2>保養計畫</h2>
+    <form id="plan-form" class="panel" hidden>
+      <h2 id="form-title">新增保養計畫</h2>
+      <div class="row">
+        <label>保養類別<select name="plan_type"></select></label>
+        <label>週期（天）<input name="cycle_days" type="number" min="1" max="730"></label>
+        <label>負責人<select name="owner_id"></select></label>
+        <label>起始應保養日<input name="first_due_date" type="date"></label>
+      </div>
+      <div class="row">
+        <label>保養項目（一行一項，最多 10 項）<textarea name="items" rows="5"></textarea></label>
+        <button type="submit">儲存</button>
+        <button type="button" class="secondary" id="reset">清除</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>保養類別</th><th>週期</th><th>保養項目</th><th>負責人</th><th>起始應保養日</th>
+          <th>上次保養日</th><th>下次應保養日</th><th>保養狀態</th><th>啟用</th><th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="plans"></tbody>
+    </table>
+
+    <h2>保養履歷</h2>
+    <table>
+      <thead>
+        <tr><th>保養日期</th><th>保養類別</th><th>執行人</th><th>紀錄結果</th><th>備註</th></tr>
+      </thead>
+      <tbody id="records"></tbody>
+    </table>
+    <p><a href="equipment.html">回設備清單</a></p>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/equipment-detail.js"></script>
+</body>
+</html>

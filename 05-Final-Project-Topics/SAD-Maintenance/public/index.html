@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>待保養清單｜設備保養紀錄管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-02 due list (home page) -->
+  <main>
+    <h1>待保養清單</h1>
+    <div id="msg" class="msg" hidden></div>
+    <div class="summary" id="summary"></div>
+    <section class="panel">
+      <div class="row">
+        <label>負責人<select id="f-owner"></select></label>
+        <label>產線<select id="f-line"></select></label>
+        <label>保養狀態
+          <select id="f-status">
+            <option value="">全部</option>
+            <option>逾期</option><option>即將到期</option><option>未到期</option>
+          </select>
+        </label>
+      </div>
+    </section>
+    <table>
+      <thead>
+        <tr>
+          <th>設備編號</th><th>設備名稱</th><th>產線</th><th>保養類別</th><th>週期</th><th>上次保養日</th>
+          <th>下次應保養日</th><th>剩餘天數</th><th>保養狀態</th><th>負責人</th><th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
