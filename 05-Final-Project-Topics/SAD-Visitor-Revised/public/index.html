@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>在廠訪客｜工廠訪客進出登記系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-02 on-site visitor list (home page), revised for CR-02 -->
+  <main>
+    <div class="title-row">
+      <h1>在廠訪客</h1>
+      <button type="button" id="export">匯出在廠名單 CSV</button>
+    </div>
+    <div id="msg" class="msg" hidden></div>
+    <div class="summary" id="summary"></div>
+
+    <form id="late-form" class="panel" hidden>
+      <h2 id="late-title">補登離廠</h2>
+      <div class="row">
+        <label>實際離廠時間<input name="check_out_at" type="datetime-local"></label>
+        <label>補登原因<input name="reason" maxlength="100" size="40" placeholder="例如：受訪人確認當日 17:30 已離開"></label>
+        <button type="submit">確定</button>
+        <button type="button" class="secondary" id="late-cancel">取消</button>
+      </div>
+    </form>
+
+    <h2 class="warn">非今日報到（交班時請核對）</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>報到時間</th><th>訪客姓名</th><th>公司</th><th>受訪員工</th><th>分機</th>
+          <th>訪客證</th><th>隨行人數</th><th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="earlier-rows"></tbody>
+    </table>
+
+    <h2>今日報到</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>報到時間</th><th>訪客姓名</th><th>公司</th><th>受訪員工</th><th>分機</th>
+          <th>訪客證</th><th>隨行人數</th><th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="today-rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

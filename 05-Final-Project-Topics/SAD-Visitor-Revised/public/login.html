@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>登入｜工廠訪客進出登記系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- UI-01 login -->
+  <div class="login-box panel">
+    <h1>工廠訪客進出登記系統</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="login-form">
+      <label>帳號<input name="username" autocomplete="username" autofocus></label>
+      <label>密碼<input name="password" type="password" autocomplete="current-password"></label>
+      <button type="submit">登入</button>
+    </form>
+  </div>
+  <script src="js/common.js"></script>
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      try {
+        const { user } = await api('POST', '/api/login', {
+          username: form.username.value,
+          password: form.password.value,
+        });
+        location.href = homePage(user.role);
+      } catch (err) {
+        showMessage(err.message, 'error');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>來訪紀錄｜工廠訪客進出登記系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-04 visit record search -->
+  <main>
+    <h1>來訪紀錄</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="search-form" class="panel">
+      <div class="row">
+        <label>報到日期（起）<input name="from" type="date"></label>
+        <label>報到日期（訖）<input name="to" type="date"></label>
+        <label>關鍵字<input name="q" placeholder="訪客姓名、公司、受訪員工"></label>
+        <button type="submit">查詢</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>報到時間</th><th>離廠時間</th><th>訪客姓名</th><th>公司</th><th>身分證字號</th>
+          <th>受訪員工</th><th>事由</th><th>訪客證</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/visits.js"></script>
+</body>
+</html>

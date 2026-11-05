@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>我的預約｜工廠訪客進出登記系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-11 my appointments for host employees (CR-01-1, CR-01-4) -->
+  <main>
+    <h1>我的預約</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="appt-form" class="panel">
+      <h2 id="form-title">新增預約</h2>
+      <div class="row">
+        <label>訪客姓名<input name="visitor_name" maxlength="20"></label>
+        <label>公司<input name="visitor_company" maxlength="40"></label>
+        <label>手機<input name="visitor_phone" maxlength="10" placeholder="09xxxxxxxx"></label>
+      </div>
+      <div class="row">
+        <label>預約日期<input name="visit_date" type="date"></label>
+        <label>預計到達時間<input name="expected_time" type="time" min="07:00" max="18:00" value="10:00"></label>
+        <label>事由<select name="purpose"></select></label>
+        <label>備註<input name="note" maxlength="200" size="30"></label>
+      </div>
+      <div class="row">
+        <button type="submit" id="submit">新增</button>
+        <button type="button" class="secondary" id="cancel-edit" hidden>取消修改</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr><th>日期</th><th>時間</th><th>訪客</th><th>公司</th><th>手機</th><th>事由</th><th>備註</th><th>狀態</th><th>操作</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/my-appointments.js"></script>
+</body>
+</html>

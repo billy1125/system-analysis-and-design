@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>訪客資料｜工廠訪客進出登記系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-06 visitor records -->
+  <main>
+    <h1>訪客資料</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="search-form" class="panel">
+      <div class="row">
+        <label>關鍵字<input name="q" placeholder="姓名、公司或手機"></label>
+        <button type="submit">查詢</button>
+      </div>
+    </form>
+    <form id="edit-form" class="panel" hidden>
+      <h2 id="edit-title">修改訪客資料</h2>
+      <div class="row">
+        <label>姓名<input name="name" maxlength="20"></label>
+        <label>公司<input name="company" maxlength="40"></label>
+        <label>手機<input name="phone" maxlength="10"></label>
+        <label>身分證字號<input name="id_number" maxlength="10"></label>
+        <button type="submit">儲存</button>
+        <button type="button" class="secondary" id="cancel">取消</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr><th>訪客編號</th><th>姓名</th><th>公司</th><th>手機</th><th>身分證字號</th><th>最後修改時間</th><th>操作</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/visitors.js"></script>
+</body>
+</html>
