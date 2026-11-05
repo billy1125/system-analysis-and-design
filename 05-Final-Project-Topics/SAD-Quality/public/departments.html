@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>責任單位管理｜品質異常回報管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-07 departments (managers only) -->
+  <main>
+    <h1>責任單位管理</h1>
+    <div id="msg" class="msg" hidden></div>
+    <form id="dept-form" class="panel">
+      <h2 id="form-title">新增責任單位</h2>
+      <div class="row">
+        <label>單位名稱<input name="name" maxlength="20"></label>
+        <label>窗口<input name="contact" maxlength="20"></label>
+        <label>分機<input name="ext" maxlength="4" placeholder="0000"></label>
+        <button type="submit">儲存</button>
+        <button type="button" class="secondary" id="reset">清除</button>
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr><th>單位名稱</th><th>窗口</th><th>分機</th><th>處理中件數</th><th>狀態</th><th>操作</th></tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/departments.js"></script>
+</body>
+</html>
