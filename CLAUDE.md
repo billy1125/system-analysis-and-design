@@ -19,7 +19,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `02-Midterm-Project-Example-Reports/` | 期中的範例報告與說明（`Analysis-Phase-*.md`），只放這兩份 |
 | `03-Midterm-Project-Example-Systems/` | 期中的校園情境系統六套，加一份 `README.md` 當索引。**`SAD-Equipment`（器材借用）、`SAD-Events`（活動報名）、`SAD-Meal-Order`（校園訂餐）、`SAD-Dormitory-Repair`（宿舍報修）與 `SAD-Library`（圖書借閱）是各組抽籤分配的分析題目；`SAD-Forum`（討論區）是範例報告的示範對象，不列入抽籤**——這條界線與期末「示範題目不在五題之中」是同一個道理。都是 Flask + SQLite 的完整可執行系統，各自附 `README.md`、`CLAUDE.md` 與 `document/` 系統文件。`database.db` 是課程用的種子資料，一併進版控。**這個資料夾採 MIT 授權**（`LICENSE` 置於資料夾內），不適用專案 `README.md` 宣告的 CC BY-NC-SA |
 | `04-Final-Project-Example-Reports/` | 期末的範例報告與說明：`Design-Phase-Deliverables.md`（範例報告說明，依新格式改寫中）、`Final-Phase-Sample-Report.md`（範例報告），加上 `Visitor-System-Full-Analysis.md`（同一套示範系統依期中九項寫的完整分析，供對照第一部分省略了什麼）。舊格式的 `Design-Phase-Sample-Report.md` 尚未移除 |
-| `05-Final-Project-Topics/` | 期末題目：既有的工廠管理系統四套，每題一個可執行系統（`SAD-<名稱>/`，HTML + CSS + JS 畫面、Node.js 小程式讀寫 SQLite，本機端執行，每套最多 5 張表、2–3 個角色）與一份修改需求提案書（收在 `Change-Proposals/`，寫老師的修改方向，該題的名詞解釋放在最後一節），加一份 `README.md` 當索引；`System-Specs/` 是開發用的系統規格書，不進版控。`SAD-Visitor`（工廠訪客進出登記，現行版）是期末示範系統，不列入抽籤；`SAD-Visitor-Revised` 是它依修改方向改完的版本，示範系統修改實作加分。`database.db` 是種子資料，一併進版控，學生玩壞就重新下載。**是題目說明不是參考答案**：不給既有系統的分析結果，也不給修改後的資料表、畫面與測試案例 |
+| `05-Final-Project-Topics/` | 期末題目：既有的工廠管理系統五套（`SAD-Quality` 品質異常回報、`SAD-Inventory` 倉庫盤點、`SAD-Maintenance` 設備保養、`SAD-Training` 員工教育訓練、`SAD-Work-Order` 工單分派），每題一個可執行系統（`SAD-<名稱>/`，HTML + CSS + JS 畫面、Node.js 小程式讀寫 SQLite，本機端執行，每套最多 5 張表、2–3 個角色）與一份修改需求提案書（收在 `Change-Proposals/`，寫老師的修改方向，該題的名詞解釋放在最後一節），加一份 `README.md` 當索引；`System-Specs/` 是開發用的系統規格書，不進版控。`SAD-Visitor`（工廠訪客進出登記，現行版）是期末示範系統，不列入抽籤；`SAD-Visitor-Revised` 是它依修改方向改完的版本，示範系統修改實作加分。`database.db` 是種子資料，一併進版控，學生玩壞就重新下載。**是題目說明不是參考答案**：不給既有系統的分析結果，也不給修改後的資料表、畫面與測試案例 |
 | `reference/` | 長期保留的範本與撰寫規範，是全專案的格式基準，會隨慣例調整而更新 |
 | `.claude/skills/` | Claude Code 技能，一個技能一個資料夾 |
 
@@ -51,7 +51,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 新增或更名課程規範文件 | `README.md`〈📚 這裡有哪些文件〉底下的〈基本規範〉〈規範細節說明〉〈參考文件〉三張表格之一，以及本檔〈文件連結慣例〉的連結標題對照表 |
 | 新增或更名範例報告 | `README.md`〈📚 這裡有哪些文件〉底下的〈範例報告〉表格 |
 | 新增、更名或移除期中範例系統 | `README.md`〈📚 這裡有哪些文件〉底下的〈期中要分析的範例系統〉表格，以及本檔〈資料夾架構〉表中 `03-Midterm-Project-Example-Systems/` 那一列的系統清單 |
-| 新增、更名或抽換期末題目 | `README.md`〈📚 這裡有哪些文件〉底下的〈期末報告的題目〉表格，以及 `05-Final-Project-Topics/README.md`〈三〉的四題一覽；題目的系統資料夾與 `Change-Proposals/` 的修改需求提案書要一併新增或抽換 |
+| 新增、更名或抽換期末題目 | `README.md`〈📚 這裡有哪些文件〉底下的〈期末報告的題目〉表格，以及 `05-Final-Project-Topics/README.md`〈三〉的五題一覽與本檔〈資料夾架構〉表中 `05-Final-Project-Topics/` 那一列的系統清單；題目的系統資料夾與 `Change-Proposals/` 的修改需求提案書要一併新增或抽換 |
 | 改動配分、關鍵日期、繳交方式或扣分數字 | `README.md`〈⚡ 重點速覽〉——那張表是基本規範與規範細節說明的摘要，條文改了它不會自己跟著改 |
 | 收錄外部來源圖片 | `README.md`〈📄 授權與使用聲明〉的授權例外表，註明來源、作者與授權條款（依 `reference/chapter-writing-guide.md`〈六〉） |
 | 移植外部技能到 `.claude/skills/` | 同上授權例外表，並將原始 `LICENSE` 保留在技能資料夾內 |
@@ -80,7 +80,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **兩個階段刻意用不同的示範系統，改動時不要把它們統一：** 分析階段（`Analysis-Phase-*.md`）用課堂範例系統 `sad-forum`（原始碼在 `03-Midterm-Project-Example-Systems/SAD-Forum/`），因為分析要對照既有系統的原始碼才驗證得出有沒有看懂；期末階段（`Design-Phase-Deliverables.md` 與 `Final-Phase-Sample-Report.md`）用**工廠訪客進出登記系統**（原始碼在 `05-Final-Project-Topics/SAD-Visitor/`），因為期末題目全在工廠，校園系統示範不出法規對資料的限制與現場環境條件。**期末階段的文件不得再出現論壇系統的內容。**
 
-**期末的示範系統刻意不在 `05-Final-Project-Topics/` 的四題之中**，學生才抄得到結構、抄不到答案。這條界線在改題目或改範例時都要維持：四題換了要確認訪客系統仍然不重疊，範例換了要確認新題目也不在四題裡。
+**期末的示範系統刻意不在 `05-Final-Project-Topics/` 的五題之中**，學生才抄得到結構、抄不到答案。這條界線在改題目或改範例時都要維持：五題換了要確認訪客系統仍然不重疊，範例換了要確認新題目也不在五題裡。
 
 ## 本專案自訂慣例
 
