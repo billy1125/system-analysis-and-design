@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 460" width="760" height="460" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+  </defs>
+  <rect x="0" y="0" width="760" height="460" fill="#ffffff"/>
+  <g>
+    <polyline points="330,40 330,67" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,103 330,128" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,152 330,177" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,213 330,241" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="462,255 553,255" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="507.5" y="248" text-anchor="middle" font-size="13" fill="#333333">[否]</text>
+    <polyline points="630,237 630,140 344,140" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,269 330,297" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="338" y="290" font-size="13" fill="#333333">[是]</text>
+    <polyline points="330,333 330,357" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,393 330,418" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  </g>
+  <g>
+    <circle cx="330" cy="30" r="10" fill="#222222"/>
+    <rect x="204" y="67" width="252" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="90" text-anchor="middle" fill="#111111">【新增】受訪員工在座位上登入系統</text>
+    <polygon points="330,128 344,140 330,152 316,140" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+    <rect x="99" y="177" width="462" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="200" text-anchor="middle" fill="#111111">【新增】填寫訪客姓名、公司、手機、預約日期、預計到達時間、事由</text>
+    <polygon points="198,255 208,241 452,241 462,255 452,269 208,269" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="260" text-anchor="middle" fill="#111111">欄位是否正確、預約日期不早於今天</text>
+    <rect x="553" y="237" width="154" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="630" y="260" text-anchor="middle" fill="#111111">顯示對應的錯誤訊息</text>
+    <rect x="211" y="297" width="238" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="320" text-anchor="middle" fill="#111111">【新增】寫入預約，狀態為已預約</text>
+    <rect x="232" y="357" width="196" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="380" text-anchor="middle" fill="#111111">受訪員工通知訪客到廠時間</text>
+    <circle cx="330" cy="430" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/><circle cx="330" cy="430" r="7" fill="#222222"/>
+  </g>
+</svg>

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 340" width="1060" height="340" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    
+  </defs>
+  <rect x="0" y="0" width="1060" height="340" fill="#ffffff"/>
+  <g fill="none" stroke="#333333" stroke-width="1.5">
+    <line x1="530" y1="70" x2="530" y2="100"/>
+    <line x1="100" y1="100" x2="960" y2="100"/>
+    <line x1="100" y1="100" x2="100" y2="120"/>
+    <line x1="34" y1="165" x2="34" y2="251"/>
+    <line x1="34" y1="203" x2="46" y2="203"/>
+    <line x1="34" y1="251" x2="46" y2="251"/>
+    <line x1="272" y1="100" x2="272" y2="120"/>
+    <line x1="206" y1="165" x2="206" y2="299"/>
+    <line x1="206" y1="203" x2="218" y2="203"/>
+    <line x1="206" y1="251" x2="218" y2="251"/>
+    <line x1="206" y1="299" x2="218" y2="299"/>
+    <line x1="444" y1="100" x2="444" y2="120"/>
+    <line x1="378" y1="165" x2="378" y2="251"/>
+    <line x1="378" y1="203" x2="390" y2="203"/>
+    <line x1="378" y1="251" x2="390" y2="251"/>
+    <line x1="616" y1="100" x2="616" y2="120"/>
+    <line x1="550" y1="165" x2="550" y2="299"/>
+    <line x1="550" y1="203" x2="562" y2="203"/>
+    <line x1="550" y1="251" x2="562" y2="251"/>
+    <line x1="550" y1="299" x2="562" y2="299"/>
+    <line x1="788" y1="100" x2="788" y2="120"/>
+    <line x1="722" y1="165" x2="722" y2="251"/>
+    <line x1="722" y1="203" x2="734" y2="203"/>
+    <line x1="722" y1="251" x2="734" y2="251"/>
+    <line x1="960" y1="100" x2="960" y2="120"/>
+    <line x1="894" y1="165" x2="894" y2="299"/>
+    <line x1="894" y1="203" x2="906" y2="203"/>
+    <line x1="894" y1="251" x2="906" y2="251"/>
+    <line x1="894" y1="299" x2="906" y2="299"/>
+  </g>
+  <rect x="420" y="20" width="220" height="50" fill="#e6e6e6" stroke="#333333" stroke-width="1.5"/>
+  <text x="530" y="51" text-anchor="middle" font-size="16" fill="#111111">工廠訪客進出登記系統</text>
+  <g stroke="#333333" stroke-width="1.5">
+    <rect x="20" y="120" width="160" height="45" fill="#f3f3f3"/>
+    <rect x="46" y="185" width="134" height="36" fill="#ffffff"/>
+    <rect x="46" y="233" width="134" height="36" fill="#ffffff"/>
+    <rect x="192" y="120" width="160" height="45" fill="#f3f3f3"/>
+    <rect x="218" y="185" width="134" height="36" fill="#ffffff"/>
+    <rect x="218" y="233" width="134" height="36" fill="#ffffff"/>
+    <rect x="218" y="281" width="134" height="36" fill="#ffffff"/>
+    <rect x="364" y="120" width="160" height="45" fill="#f3f3f3"/>
+    <rect x="390" y="185" width="134" height="36" fill="#ffffff"/>
+    <rect x="390" y="233" width="134" height="36" fill="#ffffff"/>
+    <rect x="536" y="120" width="160" height="45" fill="#f3f3f3"/>
+    <rect x="562" y="185" width="134" height="36" fill="#ffffff"/>
+    <rect x="562" y="233" width="134" height="36" fill="#ffffff"/>
+    <rect x="562" y="281" width="134" height="36" fill="#ffffff"/>
+    <rect x="708" y="120" width="160" height="45" fill="#f3f3f3"/>
+    <rect x="734" y="185" width="134" height="36" fill="#ffffff"/>
+    <rect x="734" y="233" width="134" height="36" fill="#ffffff"/>
+    <rect x="880" y="120" width="160" height="45" fill="#f3f3f3"/>
+    <rect x="906" y="185" width="134" height="36" fill="#ffffff"/>
+    <rect x="906" y="233" width="134" height="36" fill="#ffffff"/>
+    <rect x="906" y="281" width="134" height="36" fill="#ffffff"/>
+  </g>
+  <g>
+    <text x="100" y="148" text-anchor="middle" font-size="15" fill="#111111">1 身分驗證</text>
+    <text x="113" y="208" text-anchor="middle" font-size="13" fill="#111111">F-11 登入</text>
+    <text x="113" y="256" text-anchor="middle" font-size="13" fill="#111111">F-12 登出</text>
+    <text x="272" y="148" text-anchor="middle" font-size="15" fill="#111111">2 來訪登記</text>
+    <text x="285" y="208" text-anchor="middle" font-size="13" fill="#111111">F-21 查詢訪客</text>
+    <text x="285" y="256" text-anchor="middle" font-size="13" fill="#111111">F-22 建立訪客資料</text>
+    <text x="285" y="304" text-anchor="middle" font-size="13" fill="#111111">F-23 登記來訪與發證</text>
+    <text x="444" y="148" text-anchor="middle" font-size="15" fill="#111111">3 在廠與離廠</text>
+    <text x="457" y="208" text-anchor="middle" font-size="13" fill="#111111">F-31 檢視在廠訪客</text>
+    <text x="457" y="256" text-anchor="middle" font-size="13" fill="#111111">F-32 登記離廠</text>
+    <text x="616" y="148" text-anchor="middle" font-size="15" fill="#111111">4 來訪紀錄</text>
+    <text x="629" y="208" text-anchor="middle" font-size="13" fill="#111111">F-41 查詢來訪紀錄</text>
+    <text x="629" y="256" text-anchor="middle" font-size="13" fill="#111111">F-42 檢視來訪明細</text>
+    <text x="629" y="304" text-anchor="middle" font-size="13" fill="#111111">F-43 修改來訪紀錄</text>
+    <text x="788" y="148" text-anchor="middle" font-size="15" fill="#111111">5 訪客資料</text>
+    <text x="801" y="208" text-anchor="middle" font-size="13" fill="#111111">F-51 查詢訪客資料</text>
+    <text x="801" y="256" text-anchor="middle" font-size="13" fill="#111111">F-52 修改訪客資料</text>
+    <text x="960" y="148" text-anchor="middle" font-size="15" fill="#111111">6 系統管理</text>
+    <text x="973" y="208" text-anchor="middle" font-size="13" fill="#111111">F-61 維護員工名單</text>
+    <text x="973" y="256" text-anchor="middle" font-size="13" fill="#111111">F-62 維護訪客證</text>
+    <text x="973" y="304" text-anchor="middle" font-size="13" fill="#111111">F-63 管理帳號</text>
+  </g>
+
+</svg>

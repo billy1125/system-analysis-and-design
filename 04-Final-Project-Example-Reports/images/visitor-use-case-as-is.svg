@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 890 695" width="890" height="695" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#333333" stroke-width="1.5"/></marker>
+    <marker id="generalize" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#ffffff" stroke="#333333" stroke-width="1.2"/></marker>
+    <g id="actor" fill="none" stroke="#333333" stroke-width="1.5"><circle cx="0" cy="0" r="9" fill="#f3f3f3"/><line x1="0" y1="9" x2="0" y2="32"/><line x1="-15" y1="17" x2="15" y2="17"/><polyline points="-13,50 0,32 13,50"/></g>
+  </defs>
+  <rect x="0" y="0" width="890" height="695" fill="#ffffff"/>
+  <rect x="290" y="12" width="580" height="668" rx="4" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <text x="580" y="34" text-anchor="middle" font-weight="bold" fill="#111111">工廠訪客進出登記系統</text>
+  <g stroke="#333333" stroke-width="1.3">
+    <line x1="156" y1="250" x2="413.6" y2="76.4"/>
+    <line x1="156" y1="250" x2="433.8" y2="129.8"/>
+    <line x1="156" y1="250" x2="433.6" y2="182.7"/>
+    <line x1="156" y1="250" x2="412.2" y2="231.1"/>
+    <line x1="156" y1="250" x2="425.5" y2="273.8"/>
+    <line x1="156" y1="250" x2="430.4" y2="320.9"/>
+    <line x1="156" y1="250" x2="429.7" y2="373.6"/>
+    <line x1="156" y1="250" x2="410.3" y2="427.7"/>
+    <line x1="156" y1="580" x2="382.3" y2="541.5"/>
+    <line x1="156" y1="580" x2="369.2" y2="583.6"/>
+    <line x1="156" y1="580" x2="393.3" y2="628.4"/>
+  </g>
+  <line x1="140" y1="546" x2="140" y2="312" stroke="#333333" stroke-width="1.3" marker-end="url(#generalize)"/>
+  <line x1="560" y1="170" x2="665" y2="170" stroke="#333333" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+  <text x="613" y="161" text-anchor="middle" font-size="13" fill="#333333">«include»</text>
+  <line x1="705" y1="273.5" x2="519.9" y2="186" stroke="#333333" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+  <text x="628" y="222" text-anchor="middle" font-size="13" fill="#333333">«extend»</text>
+  <path d="M640,330 L780,330 L790,340 L790,372 L640,372 z" fill="#fbfbe6" stroke="#333333" stroke-width="1.2"/>
+  <path d="M780,330 L780,340 L790,340" fill="none" stroke="#333333" stroke-width="1.2"/>
+  <text x="650" y="349" font-size="13" fill="#111111">條件：手機號碼</text>
+  <text x="650" y="366" font-size="13" fill="#111111">查無訪客時</text>
+  <line x1="700" y1="330" x2="612.5" y2="229.7" stroke="#333333" stroke-width="1" stroke-dasharray="3,3"/>
+  <use href="#actor" x="140" y="230"/>
+  <use href="#actor" x="140" y="560"/>
+  <text x="140" y="300" text-anchor="middle" fill="#111111">接待員</text>
+  <text x="140" y="630" text-anchor="middle" fill="#111111">管理員</text>
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <ellipse cx="438" cy="60" rx="60" ry="18"/>
+    <ellipse cx="468" cy="115" rx="60" ry="18"/>
+    <ellipse cx="486" cy="170" rx="74" ry="18"/>
+    <ellipse cx="495" cy="225" rx="88" ry="18"/>
+    <ellipse cx="495" cy="280" rx="74" ry="18"/>
+    <ellipse cx="485" cy="335" rx="88" ry="18"/>
+    <ellipse cx="466" cy="390" rx="88" ry="18"/>
+    <ellipse cx="435" cy="445" rx="88" ry="18"/>
+    <ellipse cx="450" cy="530" rx="88" ry="18"/>
+    <ellipse cx="450" cy="585" rx="81" ry="18"/>
+    <ellipse cx="450" cy="640" rx="74" ry="18"/>
+    <ellipse cx="740" cy="170" rx="74" ry="18"/>
+    <ellipse cx="740" cy="290" rx="88" ry="18"/>
+  </g>
+  <text x="438" y="65" text-anchor="middle" fill="#111111">UC-01 登入</text>
+  <text x="468" y="120" text-anchor="middle" fill="#111111">UC-02 登出</text>
+  <text x="486" y="175" text-anchor="middle" fill="#111111">UC-05 登記來訪</text>
+  <text x="495" y="230" text-anchor="middle" fill="#111111">UC-06 檢視在廠訪客</text>
+  <text x="495" y="285" text-anchor="middle" fill="#111111">UC-07 登記離廠</text>
+  <text x="485" y="340" text-anchor="middle" fill="#111111">UC-08 查詢來訪紀錄</text>
+  <text x="466" y="395" text-anchor="middle" fill="#111111">UC-09 修改來訪紀錄</text>
+  <text x="435" y="450" text-anchor="middle" fill="#111111">UC-10 修改訪客資料</text>
+  <text x="450" y="535" text-anchor="middle" fill="#111111">UC-11 維護員工名單</text>
+  <text x="450" y="590" text-anchor="middle" fill="#111111">UC-12 維護訪客證</text>
+  <text x="450" y="645" text-anchor="middle" fill="#111111">UC-13 管理帳號</text>
+  <text x="740" y="175" text-anchor="middle" fill="#111111">UC-03 查詢訪客</text>
+  <text x="740" y="295" text-anchor="middle" fill="#111111">UC-04 建立訪客資料</text>
+
+</svg>

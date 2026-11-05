@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 622" width="600" height="622" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+    <marker id="open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#333333" stroke-width="1.5"/></marker>
+    <g id="actor" fill="none" stroke="#333333" stroke-width="1.5"><circle cx="0" cy="0" r="9" fill="#f3f3f3"/><line x1="0" y1="9" x2="0" y2="32"/><line x1="-15" y1="17" x2="15" y2="17"/><polyline points="-13,50 0,32 13,50"/></g>
+  </defs>
+  <rect x="0" y="0" width="600" height="622" fill="#ffffff"/>
+  <g stroke="#888888" stroke-width="1.2" stroke-dasharray="6,4">
+    <line x1="90" y1="104" x2="90" y2="520"/>
+    <line x1="480" y1="98" x2="480" y2="520"/>
+  </g>
+  <use href="#actor" x="90" y="22"/>
+  <text x="90" y="94" text-anchor="middle" fill="#111111">接待員</text>
+  <rect x="424" y="62" width="112" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="480" y="85" text-anchor="middle" fill="#111111">訪客登記系統</text>
+  <text x="90" y="540" text-anchor="middle" fill="#111111">接待員</text>
+  <use href="#actor" x="90" y="560"/>
+  <rect x="424" y="520" width="112" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="480" y="543" text-anchor="middle" fill="#111111">訪客登記系統</text>
+  <rect x="60" y="242" width="460" height="248" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <path d="M60,242 L112,242 L112,254 L104,262 L60,262 z" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="84" y="257" text-anchor="middle" font-weight="bold" fill="#111111">alt</text>
+  <line x1="60" y1="304" x2="520" y2="304" stroke="#333333" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <line x1="60" y1="366" x2="520" y2="366" stroke="#333333" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <line x1="60" y1="428" x2="520" y2="428" stroke="#333333" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <g stroke="#333333" stroke-width="1.5">
+    <line x1="90" y1="154" x2="479" y2="154" marker-end="url(#arrow)"/>
+    <line x1="480" y1="188" x2="91" y2="188" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="90" y1="222" x2="479" y2="222" marker-end="url(#arrow)"/>
+    <line x1="480" y1="282" x2="91" y2="282" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="480" y1="344" x2="91" y2="344" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="480" y1="406" x2="91" y2="406" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="480" y1="468" x2="91" y2="468" stroke-dasharray="6,4" marker-end="url(#open)"/>
+  </g>
+  <g>
+    <text x="100" y="147" fill="#111111">請求在廠訪客清單</text>
+    <text x="110" y="181" fill="#111111">今日報到與非今日報到兩區</text>
+    <text x="100" y="215" fill="#111111">送出補登離廠(來訪編號, 實際離廠時間, 原因)</text>
+    <text x="120" y="257" font-size="13" font-weight="bold" fill="#333333">[已登記離廠]</text>
+    <text x="110" y="275" fill="#111111">此筆來訪已登記離廠</text>
+    <text x="66" y="321" font-size="13" font-weight="bold" fill="#333333">[時間早於報到或晚於現在]</text>
+    <text x="110" y="337" fill="#111111">離廠時間須晚於報到時間，且不得晚於現在</text>
+    <text x="66" y="383" font-size="13" font-weight="bold" fill="#333333">[原因未填]</text>
+    <text x="110" y="399" fill="#111111">請輸入補登原因</text>
+    <text x="66" y="445" font-size="13" font-weight="bold" fill="#333333">[通過]</text>
+    <text x="110" y="461" fill="#111111">已補登 XXX 離廠，更新後的清單</text>
+  </g>
+
+</svg>
