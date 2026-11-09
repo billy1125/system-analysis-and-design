@@ -50,9 +50,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 你做了什麼 | 還要一併更新 |
 |---|---|
 | 新增或更名課程規範文件 | `README.md`〈📚 這裡有哪些文件〉底下的〈基本規範〉〈期中期末報告說明〉〈參考文件〉三張表格之一，以及本檔〈文件連結慣例〉的連結標題對照表 |
-| 新增或更名範例報告 | 期中改 `03-Midterm-Project-Example-Systems/README.md`〈一〉的文件表，期末改 `05-Final-Project-Topics/README.md`〈一〉的文件表。`README.md` 只放〈期中與期末報告〉一張導引表，指向這兩份索引 |
+| 新增或更名範例報告 | 期中改 `03-Midterm-Project-Example-Systems/README.md`〈一〉的文件表，期末改 `00-Course-Introduction/Report-Contents.md`〈二〉的〈範例報告參考〉。`README.md` 只放〈期中與期末報告〉一張導引表，指向這兩份索引 |
 | 新增、更名或移除期中範例系統 | `03-Midterm-Project-Example-Systems/README.md`〈三〉的系統一覽，以及本檔〈資料夾架構〉表中 `03-Midterm-Project-Example-Systems/` 那一列的系統清單 |
-| 新增、更名或抽換期末題目 | `05-Final-Project-Topics/README.md`〈三〉的五題一覽與本檔〈資料夾架構〉表中 `05-Final-Project-Topics/` 那一列的系統清單；題目的系統資料夾與 `Change-Proposals/` 的修改需求提案書要一併新增或抽換 |
+| 新增、更名或抽換期末題目 | `05-Final-Project-Topics/README.md`〈二〉的五題一覽與本檔〈資料夾架構〉表中 `05-Final-Project-Topics/` 那一列的系統清單；題目的系統資料夾與 `Change-Proposals/` 的修改需求提案書要一併新增或抽換 |
 | 收錄外部來源圖片 | `README.md`〈📄 授權與使用聲明〉的授權例外表，註明來源、作者與授權條款（依 `reference/chapter-writing-guide.md`〈六〉） |
 | 移植外部技能到 `.claude/skills/` | 同上授權例外表，並將原始 `LICENSE` 保留在技能資料夾內 |
 | 改動範例報告說明或範例報告（`02-Midterm-Project-Example-Reports/` 與 `04-Final-Project-Example-Reports/`） | 回頭核對 `01-Course-Materials/` 對應階段的必讀標記（分析階段對 `🔴 期中必讀`，期末的系統分析與修改建議階段對 `🔵 期末必讀`）是否仍然成立——標記的判準就是這些文件，它們改了標記不會自己跟著改 |
