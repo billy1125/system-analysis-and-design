@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 640" width="780" height="640" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+  </defs>
+  <rect x="0" y="0" width="780" height="640" fill="#ffffff"/>
+  <g>
+    <polyline points="330,40 330,67" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,103 330,128" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,164 330,189" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,225 330,253" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,281 330,309" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="338" y="302" font-size="13" fill="#333333">[是]</text>
+    <polyline points="330,345 330,373" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,401 330,429" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="338" y="422" font-size="13" fill="#333333">[成功]</text>
+    <polyline points="330,465 330,490" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="392,387 486,387" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="439" y="380" text-anchor="middle" font-size="13" fill="#333333">[失敗]</text>
+    <polyline points="570,405 570,502 344,502" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,514 330,539" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="420,267 740,267 740,551 344,551" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="580" y="260" text-anchor="middle" font-size="13" fill="#333333">[否]</text>
+    <polyline points="330,563 330,588" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  </g>
+  <g>
+    <circle cx="330" cy="30" r="10" fill="#222222"/>
+    <rect x="211" y="67" width="238" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="90" text-anchor="middle" fill="#111111">【新增】管理員開啟當日訪客總覽</text>
+    <rect x="148" y="128" width="364" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="151" text-anchor="middle" fill="#111111">【新增】系統依 BR-08 列出今天所有外來人員與狀態</text>
+    <rect x="218" y="189" width="224" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="212" text-anchor="middle" fill="#111111">【新增】隨行人員逐一列出姓名</text>
+    <polygon points="240,267 250,253 410,253 420,267 410,281 250,281" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="272" text-anchor="middle" fill="#111111">是否要留存或交給主管</text>
+    <rect x="251" y="309" width="158" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="332" text-anchor="middle" fill="#111111">【新增】按匯出 CSV</text>
+    <polygon points="268,387 278,373 382,373 392,387 382,401 278,401" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="392" text-anchor="middle" fill="#111111">匯出是否成功</text>
+    <rect x="205" y="429" width="250" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="452" text-anchor="middle" fill="#111111">【新增】下載當日訪客總覽 CSV 檔</text>
+    <polygon points="330,490 344,502 330,514 316,502" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+    <rect x="486" y="369" width="168" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="570" y="392" text-anchor="middle" fill="#111111">改用瀏覽器列印總覽頁</text>
+    <polygon points="330,539 344,551 330,563 316,551" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+    <circle cx="330" cy="600" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/><circle cx="330" cy="600" r="7" fill="#222222"/>
+  </g>
+</svg>

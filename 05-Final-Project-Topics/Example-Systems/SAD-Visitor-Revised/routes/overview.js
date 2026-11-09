@@ -100,7 +100,7 @@ function csvCell(value) {
   return '"' + s.replace(/"/g, '""') + '"';
 }
 
-// FR-26: one row per person, visitor first and then each companion (report 11.8)
+// FR-26: one row per person, visitor first and then each companion (report 11.3)
 function exportOverview() {
   const { rows } = buildOverview();
   const header = ['狀態', '類別', '姓名', '公司', '手機', '受訪員工', '部門', '分機',
