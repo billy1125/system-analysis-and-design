@@ -29,6 +29,7 @@ const routes = [
   ...require('./routes/visits'),
   ...require('./routes/visitors'),
   ...require('./routes/appointments'),
+  ...require('./routes/overview'),
   ...require('./routes/admin'),
 ];
 

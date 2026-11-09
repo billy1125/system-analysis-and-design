@@ -1,5 +1,5 @@
 // FR-REG: visitor lookup and check-in (one page, no page change).
-// Revised: check-in from an appointment (CR-01-2), companion names (CR-02-4).
+// Revised: check-in from an appointment (CR-01-2), companion names (CR-03-3).
 
 const { getDb, transaction, now, today } = require('../lib/db');
 const { PURPOSES, text, fail, checkVisitorFields, checkVisitInfo, toId } = require('../lib/validate');

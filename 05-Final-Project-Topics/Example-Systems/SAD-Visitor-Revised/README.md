@@ -2,12 +2,13 @@
 
 ## 這是什麼系統
 
-這是[工廠訪客進出登記系統（現行版）](../SAD-Visitor/README.md)依兩項修改需求改完的版本：
+這是[工廠訪客進出登記系統（現行版）](../SAD-Visitor/README.md)依三項修改需求改完的版本：
 
 | 修改需求 | 改了什麼 |
 |---|---|
 | CR-01 事前來訪預約與受訪員工確認 | 受訪員工可以登入系統，事先登錄訪客預約；接待員從「預約清單」直接報到；過了日期沒來的預約顯示「未到」 |
-| CR-02 未離廠追蹤與疏散名單匯出 | 在廠清單分出「非今日報到」；可以補登實際離廠時間與原因；在廠名單可匯出 CSV；登記時記錄隨行人員姓名 |
+| CR-02 未離廠追蹤 | 在廠清單分出「非今日報到」；可以補登實際離廠時間與原因 |
+| CR-03 當日訪客總覽與匯出 | 管理員可以在「當日總覽」看到今天所有外來人員的狀態（預約中、已取消、在廠、在廠（非今日報到）、已離廠），並匯出 CSV；登記時記錄隨行人員姓名 |
 
 | 項目 | 內容 |
 |---|---|
@@ -120,7 +121,7 @@ node server.js
 | `e1002` | 黃美玲 | 受訪員工 | 啟用 |
 | `e1005` | 鄭大偉 | 受訪員工 | 啟用 |
 
-用 `guard01` 登入會看到五個選單，用 `admin` 登入會多出員工名單、訪客證、帳號三個選單，用 `e1001` 登入只會看到「我的預約」。
+用 `guard01` 登入會看到五個選單，用 `admin` 登入會多出當日總覽、員工名單、訪客證、帳號四個選單，用 `e1001` 登入只會看到「我的預約」。
 
 ### 5. 試一次從預約報到
 
@@ -191,14 +192,15 @@ SAD-Visitor-Revised/
 │   └── validate.js      #   欄位檢查與錯誤訊息
 ├── routes/              # API，一個檔案對應規格書的一組功能需求
 │   ├── auth.js          #   FR-AUTH 登入、登出
-│   ├── onsite.js        #   FR-OUT  在廠清單、離廠、補登離廠、匯出 CSV
+│   ├── onsite.js        #   FR-OUT  在廠清單、離廠、補登離廠
 │   ├── register.js      #   FR-REG  查詢訪客、來訪登記
 │   ├── visits.js        #   FR-QRY  來訪紀錄查詢、明細、修改
 │   ├── visitors.js      #   FR-VIS  訪客資料
 │   ├── appointments.js  #   CR-01   我的預約、預約清單
+│   ├── overview.js      #   CR-03   當日訪客總覽、匯出 CSV
 │   └── admin.js         #   FR-ADM  員工名單、訪客證、帳號
 ├── public/              # 畫面（瀏覽器端）
-│   ├── *.html           #   11 個畫面，對應規格書 UI-01～UI-11
+│   ├── *.html           #   12 個畫面，對應規格書 UI-01～UI-12
 │   ├── css/style.css
 │   └── js/              #   每個畫面一支程式，加上共用的 common.js
 ├── db/schema.sql        # 建立 7 張資料表的 SQL
@@ -220,6 +222,7 @@ SAD-Visitor-Revised/
 | UI-09 | 帳號管理頁 | `public/users.html` | `routes/admin.js` |
 | UI-10 | 預約清單（新增） | `public/appointments.html` | `routes/appointments.js` |
 | UI-11 | 我的預約（新增） | `public/my-appointments.html` | `routes/appointments.js` |
+| UI-12 | 當日訪客總覽（新增） | `public/overview.html` | `routes/overview.js` |
 
 ### 給維護者：重新產生種子資料庫
 

@@ -11,8 +11,7 @@
     <polyline points="170,218 170,608" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
     <polyline points="640,158 640,183" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
     <polyline points="640,207 640,236" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
-    <polyline points="543,250 330,250 330,282" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="500" y="243" text-anchor="middle" font-size="13" fill="#333333">[否]</text>
-    <polyline points="330,318 330,620 184,620" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="543,250 330,250 330,620 184,620" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="500" y="243" text-anchor="middle" font-size="13" fill="#333333">[否]</text>
     <polyline points="640,264 640,292" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="648" y="285" font-size="13" fill="#333333">[是]</text>
     <polyline points="640,328 640,353" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
     <polyline points="640,377 640,402" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
@@ -31,7 +30,6 @@
     <rect x="486" y="122" width="308" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="640" y="145" text-anchor="middle" fill="#111111">【新增】接班接待員檢視「非今日報到」區塊</text>
     <polygon points="640,183 654,195 640,207 626,195" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
     <polygon points="543,250 553,236 727,236 737,250 727,264 553,264" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="640" y="255" text-anchor="middle" fill="#111111">是否有非今日報到的紀錄</text>
-    <rect x="212" y="282" width="236" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="305" text-anchor="middle" fill="#111111">【新增】匯出在廠名單 CSV 留存</text>
     <rect x="486" y="292" width="308" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="640" y="315" text-anchor="middle" fill="#111111">【新增】打分機向受訪員工確認訪客何時離開</text>
     <polygon points="640,353 654,365 640,377 626,365" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
     <rect x="479" y="402" width="322" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="640" y="425" text-anchor="middle" fill="#111111">【新增】按補登離廠，輸入實際離廠時間與原因</text>
