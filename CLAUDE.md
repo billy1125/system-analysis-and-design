@@ -18,7 +18,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `01-Course-Materials/` | 教材正文，檔名格式 `編號-主題.md`，兩位數編號即授課順序 |
 | `02-Midterm-Project-Example-Reports/` | 期中的範例報告與說明（`Analysis-Phase-*.md`），只放這兩份 |
 | `03-Midterm-Project-Example-Systems/` | 期中的校園情境系統六套，加一份 `README.md` 當索引。**`SAD-Equipment`（器材借用）、`SAD-Events`（活動報名）、`SAD-Meal-Order`（校園訂餐）、`SAD-Dormitory-Repair`（宿舍報修）與 `SAD-Library`（圖書借閱）是各組抽籤分配的分析題目；`SAD-Forum`（討論區）是範例報告的示範對象，不列入抽籤**——這條界線與期末「示範題目不在五題之中」是同一個道理。都是 Flask + SQLite 的完整可執行系統，各自附 `README.md`、`CLAUDE.md` 與 `document/` 系統文件。`database.db` 是課程用的種子資料，一併進版控。**這個資料夾採 MIT 授權**（`LICENSE` 置於資料夾內），不適用專案 `README.md` 宣告的 CC BY-NC-SA |
-| `04-Final-Project-Example-Reports/` | 期末的範例報告：`Final-Phase-Sample-Report.md`，加上 `Visitor-System-Full-Analysis.md`（同一套示範系統依期中九項寫的完整分析，供對照第一部分省略了什麼） |
+| `04-Final-Project-Example-Reports/` | 期末的範例報告：`Final-Phase-Sample-Report.md`，加上 `Visitor-System-Full-Analysis.md`（同一套示範系統依期中九項寫的完整分析，供對照第一部分省略了什麼）與 `Final-Phase-Report-Template.md`（五題通用的章節骨架，每節只有一段引言與欄位佔位，不放任何題目的內容；各題的待決問題表放在各自提案書的〈五、你要交出什麼〉） |
 | `05-Final-Project-Topics/` | 期末題目：既有的工廠管理系統五套（`SAD-Quality` 品質異常回報、`SAD-Inventory` 倉庫盤點、`SAD-Maintenance` 設備保養、`SAD-Training` 員工教育訓練、`SAD-Work-Order` 工單分派），每題一個可執行系統（`SAD-<名稱>/`，HTML + CSS + JS 畫面、Node.js 小程式讀寫 SQLite，本機端執行，每套最多 5 張表、2–3 個角色）與一份修改需求提案書（收在 `Change-Proposals/`，寫老師的修改方向，該題的名詞解釋放在最後一節），加一份 `README.md` 當索引；`System-Specs/` 是開發用的系統規格書，不進版控。`SAD-Visitor`（工廠訪客進出登記，現行版）是期末示範系統，不列入抽籤；`SAD-Visitor-Revised` 是它依修改方向改完的版本，示範系統修改實作加分。`database.db` 是種子資料，一併進版控，學生玩壞就重新下載。**是題目說明不是參考答案**：不給既有系統的分析結果，也不給修改後的資料表、畫面與測試案例 |
 | `reference/` | 長期保留的範本與撰寫規範，是全專案的格式基準，會隨慣例調整而更新 |
 | `.claude/skills/` | Claude Code 技能，一個技能一個資料夾 |
