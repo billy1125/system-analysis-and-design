@@ -38,7 +38,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `Group-Rules.md` | 組隊、分工紀錄與組員變動 | 扣分指向 `Grading-Rules.md`、繳交方式指向 `Report-Rules.md` |
 | `Rubrics.md` | 四個評分項目的評量規準，只處理「內容分數」；每套 Rubric 的各面向配分加總必須為 100 | 評量面向必須對得上 `Course-Introduction.md` 的產出清單與 `Report-Contents.md` 的內容清單，不評課程沒教也沒要求的東西 |
 | `Report-Contents.md` | 各項報告要交出什麼內容。**列出的項目都是必做**，章節名稱可自訂；本身不含任何扣分規定 | 產出清單本身以 `Course-Introduction.md` 為準，這份是把它展開；評分標準指向 `Rubrics.md`。**不要把內容清單複製回 `Rubrics.md` 或 `Report-Rules.md`** |
-| `Bonus-Rules.md` | **唯一的加分機制**，上限 3 分加在學期成績上 | 加分額度與 `Grading-Rules.md` 公式中的 $B_i$ 一致；「清單以外」的判準以 `Report-Contents.md` 為準 |
+| `Bonus-Rules.md` | **唯一的加分機制**，上限 3 分加在學期成績上 | 加分額度與 `Grading-Rules.md` 公式中的 $B_i$ 一致；只有系統修改實作一項，認定以期末小組報告為基準 |
 | `Question-Bank.md` | 口頭報告與個人訪談的提問方向，**是方向不是考古題** | 題型分類須與 `Report-Contents.md` 的四類題型一致 |
 | `Course-Rules-Quiz.md` | 自我檢核用的是非題，不計分不繳交 | 前面各份規範的衍生物，只複述不新增規則；解答須標明出處文件與章節 |
 | `Course-Introduction.slides.md` | 第一週上課用的 Marp 投影片，只放會扣分或錯過補不回來的規則 | 完整條文一律以規範文件為準 |
