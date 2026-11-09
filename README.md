@@ -2,7 +2,7 @@
 
 元智大學工業工程與管理學系「系統分析與設計」（課號 IE226，115-1）的課程規範與教材，以繁體中文撰寫、以 Markdown 維護。課程採專題導向，不考試，用兩份小組報告、一次個人訪談與一份個人報告檢核學習成果。授課老師、上課時間與聯絡方式見[SAD 課程介紹](00-Course-Introduction/Course-Introduction.md)。
 
-> **建議在第二週（9/16）上課前，把〈基本規範〉與〈期中期末報告說明〉讀過一遍。**
+> **建議在第二週上課前，把〈基本規範〉與〈期中期末報告說明〉讀過一遍。**
 
 ---
 
@@ -18,8 +18,6 @@
 | [分組規範](00-Course-Introduction/Group-Rules.md) | 組隊、分工紀錄與組員變動 |
 
 ### 期中期末報告說明
-
-每一份在自己的範圍內是唯一的事實來源，查某件事時直接翻對應的那一份。
 
 | 文件 | 內容 |
 |---|---|
@@ -42,7 +40,7 @@
 | 階段 | 從這裡開始 | 內容 |
 |---|---|---|
 | 期中（系統分析） | [期中分析範例系統](03-Midterm-Project-Example-Systems/README.md) | 要分析的系統、範例報告與說明 |
-| 期末（系統分析與修改建議） | [期末題目](05-Final-Project-Topics/README.md) | 題目的既有系統與修改需求提案書、範例報告 |
+| 期末（系統分析與修改建議） | [期末題目](05-Final-Project-Topics/README.md) | 五題的既有系統與修改需求提案書；要交什麼與範例報告見[報告內容](00-Course-Introduction/Report-Contents.md)〈二〉 |
 
 ### 教材正文
 
@@ -84,8 +82,6 @@
 
 ## 🤖 這份教材是怎麼做出來的
 
-**這個儲存庫裡的文字，是老師與 AI 協作的成果，全部經過老師逐份審閱之後才放上來。內容正確與否的責任在老師，不在工具。**
-
 | 項目 | 說明 |
 |---|---|
 | 使用工具 | Anthropic 的 Claude（透過 Claude Code 使用，Opus 系列模型） |
@@ -112,11 +108,5 @@
 | 項目 | 作者 | 授權 | 位置 |
 |---|---|---|---|
 | 期中範例系統的程式碼與系統文件 | Cho-Hsun Lu | MIT | [`03-Midterm-Project-Example-Systems/`](03-Midterm-Project-Example-Systems/)（LICENSE 置於該資料夾內，涵蓋底下六套系統） |
+| 期中範例系統的程式碼與系統文件 | Cho-Hsun Lu | MIT | [`05-Final-Project-Topics/Example-Systems`](05-Final-Project-Topics/Example-Systems)（LICENSE 置於該資料夾內，涵蓋底下六套系統） |
 | `speak-human-tw` skill | Raymond Hou | MIT | [`.claude/skills/speak-human-tw/`](.claude/skills/speak-human-tw/)（原始 LICENSE 保留於該資料夾內） |
-| 學則截圖 `course-attendance-rule.png` | 元智大學 | 校方公開規章，依著作權法為授課目的引用，著作權仍屬元智大學 | `00-Course-Introduction/images/`（引用於 [SAD 課程介紹](00-Course-Introduction/Course-Introduction.md)〈課堂規範〉） |
-| 瀑布模型圖 `waterfall-model.png` | Beao（初版 Paul Smith） | CC BY 3.0 | `01-Course-Materials/images/01-Systems-and-Analysis/`（來源 [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Waterfall_model_revised.svg)） |
-| 螺旋模型圖 `spiral-model.png` | Conny、Marctroy 與 Conan | 公有領域（Public Domain） | `01-Course-Materials/images/01-Systems-and-Analysis/`（來源 [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Spiral_model_%28Boehm,_1988%29.svg)） |
-| Scrum 流程圖 `scrum-process.png` | Lakeworks | CC BY-SA 4.0 | `01-Course-Materials/images/01-Systems-and-Analysis/`（來源 [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Scrum_process.svg)） |
-| 樹鞦韆漫畫 `tree-swing-cartoon.png`（四格合併並加中文圖說） | Redrobsche、Belbury；樹的圖形取自 Mozilla Fxemoji | 合併圖以 CC BY-SA 4.0 釋出（第 1、3 格原為 CC BY-SA 4.0，第 2、4 格原為 CC BY 4.0） | `01-Course-Materials/images/01-Systems-and-Analysis/`（來源 [Wikimedia Commons](https://commons.wikimedia.org/wiki/Category:Tree_swing_cartoon)） |
-
-課程規範類文件（課程介紹、報告規範、分組規範、評量規準、理解測驗）僅適用於本學期本課程，其他課程如需參考，請自行依實際狀況調整，勿直接沿用日期與扣分規定。
