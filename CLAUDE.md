@@ -27,12 +27,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 文件清單
 
-`00-Course-Introduction/` 的課程文件是同一套規則的不同切面。每份文件在自己的範圍內是事實來源，**其他文件一律引用而不重述**。`README.md` 把它們分成三類：`Course-Introduction.md` 與 `Report-Rules.md` 是「基本規範」，接著的 `Grading-Rules.md`、`Group-Rules.md`、`Rubrics.md`、`Report-Contents.md`、`Bonus-Rules.md` 是「規範細節說明」，其餘是「參考文件」。
+`00-Course-Introduction/` 的課程文件是同一套規則的不同切面。每份文件在自己的範圍內是事實來源，**其他文件一律引用而不重述**。`README.md` 把它們分成三類：`Course-Introduction.md`（含投影片）、`Course-Schedule.md` 與 `Group-Rules.md` 是「基本規範」，`Report-Contents.md`（含投影片）、`Report-Rules.md`、`Rubrics.md`、`Grading-Rules.md`、`Bonus-Rules.md` 是「期中期末報告說明」，其餘是「參考文件」。
 
 | 檔案 | 角色 | 密切關係 |
 |---|---|---|
-| `Course-Introduction.md` | **課程設定的事實來源**：基本資訊、18 週進度與日期、配分、產出清單 | 產出清單由 `Report-Contents.md` 展開、由 `Rubrics.md` 評分；日期與配分要同步到 `Course-Introduction.slides.md` 與 `README.md`〈⚡ 重點速覽〉 |
-| `Report-Rules.md` | **繳交規則的事實來源** | 遇到分數一律指向 `Grading-Rules.md`；期限日期須與 `Course-Introduction.md` 一致 |
+| `Course-Introduction.md` | **課程設定的事實來源**：基本資訊、配分、產出清單 | 產出清單由 `Report-Contents.md` 展開、由 `Rubrics.md` 評分；配分要同步到 `Course-Introduction.slides.md` |
+| `Course-Schedule.md` | **18 週進度與日期的事實來源** | 日期要同步到 `Course-Introduction.slides.md`；期限日期須與 `Report-Rules.md` 一致 |
+| `Report-Rules.md` | **繳交規則的事實來源** | 遇到分數一律指向 `Grading-Rules.md`；期限日期須與 `Course-Schedule.md` 一致 |
 | `Grading-Rules.md` | **所有分數與扣分規定的事實來源** | **不要把分數散回其他文件** |
 | `Group-Rules.md` | 組隊、分工紀錄與組員變動 | 扣分指向 `Grading-Rules.md`、繳交方式指向 `Report-Rules.md` |
 | `Rubrics.md` | 四個評分項目的評量規準，只處理「內容分數」；每套 Rubric 的各面向配分加總必須為 100 | 評量面向必須對得上 `Course-Introduction.md` 的產出清單與 `Report-Contents.md` 的內容清單，不評課程沒教也沒要求的東西 |
@@ -48,11 +49,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 | 你做了什麼 | 還要一併更新 |
 |---|---|
-| 新增或更名課程規範文件 | `README.md`〈📚 這裡有哪些文件〉底下的〈基本規範〉〈規範細節說明〉〈參考文件〉三張表格之一，以及本檔〈文件連結慣例〉的連結標題對照表 |
-| 新增或更名範例報告 | `README.md`〈📚 這裡有哪些文件〉底下的〈範例報告〉表格 |
-| 新增、更名或移除期中範例系統 | `README.md`〈📚 這裡有哪些文件〉底下的〈期中要分析的範例系統〉表格，以及本檔〈資料夾架構〉表中 `03-Midterm-Project-Example-Systems/` 那一列的系統清單 |
-| 新增、更名或抽換期末題目 | `README.md`〈📚 這裡有哪些文件〉底下的〈期末報告的題目〉表格，以及 `05-Final-Project-Topics/README.md`〈三〉的五題一覽與本檔〈資料夾架構〉表中 `05-Final-Project-Topics/` 那一列的系統清單；題目的系統資料夾與 `Change-Proposals/` 的修改需求提案書要一併新增或抽換 |
-| 改動配分、關鍵日期、繳交方式或扣分數字 | `README.md`〈⚡ 重點速覽〉——那張表是基本規範與規範細節說明的摘要，條文改了它不會自己跟著改 |
+| 新增或更名課程規範文件 | `README.md`〈📚 這裡有哪些文件〉底下的〈基本規範〉〈期中期末報告說明〉〈參考文件〉三張表格之一，以及本檔〈文件連結慣例〉的連結標題對照表 |
+| 新增或更名範例報告 | 期中改 `03-Midterm-Project-Example-Systems/README.md`〈一〉的文件表，期末改 `05-Final-Project-Topics/README.md`〈一〉的文件表。`README.md` 只放〈期中與期末報告〉一張導引表，指向這兩份索引 |
+| 新增、更名或移除期中範例系統 | `03-Midterm-Project-Example-Systems/README.md`〈三〉的系統一覽，以及本檔〈資料夾架構〉表中 `03-Midterm-Project-Example-Systems/` 那一列的系統清單 |
+| 新增、更名或抽換期末題目 | `05-Final-Project-Topics/README.md`〈三〉的五題一覽與本檔〈資料夾架構〉表中 `05-Final-Project-Topics/` 那一列的系統清單；題目的系統資料夾與 `Change-Proposals/` 的修改需求提案書要一併新增或抽換 |
 | 收錄外部來源圖片 | `README.md`〈📄 授權與使用聲明〉的授權例外表，註明來源、作者與授權條款（依 `reference/chapter-writing-guide.md`〈六〉） |
 | 移植外部技能到 `.claude/skills/` | 同上授權例外表，並將原始 `LICENSE` 保留在技能資料夾內 |
 | 改動範例報告說明或範例報告（`02-Midterm-Project-Example-Reports/` 與 `04-Final-Project-Example-Reports/`） | 回頭核對 `01-Course-Materials/` 對應階段的必讀標記（分析階段對 `🔴 期中必讀`，期末的系統分析與修改建議階段對 `🔵 期末必讀`）是否仍然成立——標記的判準就是那兩份文件，它們改了標記不會自己跟著改 |
@@ -94,11 +94,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 |---|---|---|
 | `Course-Introduction.md` | SAD 課程介紹 | 大標題含課程全名，太長 |
 | `Course-Introduction.slides.md` | 課程介紹投影片 | Marp 投影片沒有 `#` 大標 |
+| `Report-Contents.slides.md` | 報告內容投影片 | 同上 |
 | `Rubrics.md` | 報告評量 Rubrics | 大標題的「規準（Rubrics）」重複 |
 | `Course-Rules-Quiz.md` | 課程規範理解測驗 | 省略大標題的「（自我檢核）」 |
 | `Analysis-Phase-Sample-Report.md` | 系統分析範例報告 | 大標題含範例系統名稱，會看起來像是在講那套系統而非示範文件 |
 | `Design-Phase-Sample-Report.md` | 系統設計範例報告 | 同上 |
-| `Final-Phase-Sample-Report.md` | 系統修改範例報告 | 同上 |
+| `Final-Phase-Sample-Report.md` | 期末範例報告 | 同上 |
 | `README.md` | SAD 課程教材 | 大標題只有課程名，看不出是什麼文件 |
 
 新增文件時，只有在大標題不適合直接當連結文字時才登記到上表。

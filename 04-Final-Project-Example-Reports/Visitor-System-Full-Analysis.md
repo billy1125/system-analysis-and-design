@@ -2,7 +2,7 @@
 
 > 這是一份依期中報告規格寫成的完整系統分析報告，分析對象是期末示範用的既有系統「工廠訪客進出登記系統」，系統規格見[工廠訪客進出登記系統：系統規格書](Visitor-System-Spec.md)。
 >
-> 內容依[報告內容](../00-Course-Introduction/Report-Contents.md)〈一、期中小組報告〉的九項排列。期末報告第一部分是這份報告的簡要版，見[系統修改報告：工廠訪客進出登記系統](Final-Phase-Sample-Report.md)，兩份對照看，可以看出簡要版保留了什麼、省略了什麼。
+> 內容依[報告內容](../00-Course-Introduction/Report-Contents.md)〈一、期中小組報告〉的九項排列。期末報告第一部分是這份報告的簡要版，見[期末範例報告](Final-Phase-Sample-Report.md)，兩份對照看，可以看出簡要版保留了什麼、省略了什麼。
 
 ---
 

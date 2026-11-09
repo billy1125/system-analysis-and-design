@@ -1,6 +1,6 @@
 # 期中分析範例系統
 
-這個資料夾收錄六套可以實際跑起來的校園情境系統，供期中小組報告（系統分析）分析使用。
+這個資料夾收錄六套可以實際跑起來的校園情境系統，供期中小組報告（系統分析）分析使用。六套都是 Python + Flask + SQLite 寫成，操作介面與資料表結構相近。
 
 ## 一、這些系統在回答什麼
 
@@ -65,6 +65,8 @@
 | 5 | 回頭讀[系統分析範例報告說明](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)開始寫 |
 
 第 1 步不要跳過。多數人一拿到就去看程式碼，結果連系統在做什麼都還沒搞清楚。**先當使用者，再當分析師。**
+
+要用 Docker 建置但電腦還沒裝 Docker Desktop，先看 [Docker Desktop 安裝指南：Windows 與 macOS](Docker-Desktop-Installation-Guide.md)。
 
 ## 五、各套系統共通的概念
 

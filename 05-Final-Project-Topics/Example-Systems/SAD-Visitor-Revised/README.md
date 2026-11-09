@@ -16,7 +16,7 @@
 | 技術 | 與現行版相同：HTML + CSS + JavaScript、SQLite 資料庫檔 `database.db`、Node.js 小程式 `server.js` |
 | 執行位置 | 你自己的電腦（本機端）。也可以裝在廠內伺服器，讓其他電腦連線（見〈讓其他電腦連線〉） |
 
-這是期末範例報告第二部分「修改建議書」的實作示範，對應期末的**加分項目**（用 AI 開發工具依修改需求實際修改既有系統），不是必做。修改的理由與規格見[系統修改報告](../../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md)第二部分。
+這是期末範例報告第二部分「修改建議書」的實作示範，對應期末的**加分項目**（用 AI 開發工具依修改需求實際修改既有系統），不是必做。修改的理由與規格見[期末範例報告](../../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md)第二部分。
 
 ---
 
