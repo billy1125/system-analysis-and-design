@@ -13,7 +13,6 @@ else ([【新增】交班])
     repeat while (時間是否晚於報到、不晚於現在，原因是否已填) is ([否]) not ([是])
     :【新增】寫入離廠時間、補登原因、補登人與補登時間;
   endwhile ([否])
-  :【新增】匯出在廠名單 CSV 留存;
 endif
 stop
 @enduml
