@@ -19,7 +19,7 @@
 
 > **延伸閱讀**：需求清單在各組報告中的繳交格式與最低標準，見[「系統分析範例報告說明」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)〈三、4〉。
 
-> **對應範例報告**：本章講的是[「系統分析範例報告」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md)〈4.1 功能需求〉與〈4.2 非功能需求〉怎麼寫，分別對應本章〈二〉與〈三〉。這兩節的需求編號還會被〈5.2 功能清單〉與〈6.1〉〈6.2〉使用案例敘述的「對應需求」欄引用，對應本章〈5.2〉與〈1.3〉。[「期末範例報告」](../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md)的〈5. 變更申請〉與〈9.1 功能需求〉〈9.3 非功能需求〉，對應本章〈七〉。
+> **對應範例報告**：本章講的是[「系統分析範例報告」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md)〈4.1 功能需求〉與〈4.2 非功能需求〉怎麼寫，分別對應本章〈二〉與〈三〉。這兩節的需求編號還會被〈5.2 功能清單〉與〈6.1〉〈6.2〉使用案例敘述的「對應需求」欄引用，對應本章〈5.2〉與〈1.3〉。[「期末範例報告」](../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md)的〈5. 修改需求整理〉與〈9.1 功能需求〉〈9.3 非功能需求〉，對應本章〈七〉。
 
 > **必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容；加註 🔵 期末必讀 的，是期末報告直接會用到的。判準與成品的樣子，期中見[「系統分析範例報告說明」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)與[「系統分析範例報告」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md)，期末見[「期末範例報告」](../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是報告不會直接產出。
 
@@ -355,13 +355,13 @@ SRS 完成並經確認後，系統分析階段的最後一項工作是擬定可�
 
 系統上線之後，需求還會再變：作業方式改了，主管希望系統多做一件當初沒規劃的事。這時不必重寫一份 SRS，而是在原有的需求清單上交代 **哪些要新增、哪些要修改、哪些要刪除**，讓〈6.2〉說的每一次變更都被記錄、被評估、被決定。
 
-期末的修改建議書有兩項直接用到本節：第 5 項「變更申請」把修改需求提案書的修改方向寫成正式的變更需求，第 9 項「修改後的需求與功能規格」再把變更需求落回需求清單。兩項都沿用本章前面的需求寫法，本節只補變更多出來的部分。例子取自[「期末範例報告」](../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md)，它依據的是[「工廠訪客進出登記系統：修改需求提案書」](../05-Final-Project-Topics/Change-Proposals/Visitor-System-Change-Proposal.md)。
+期末的修改建議書有兩項直接用到本節：第 5 項「修改需求整理」把修改需求提案書的修改方向寫成正式的變更需求，第 9 項「修改後的需求與功能規格」再把變更需求落回需求清單。兩項都沿用本章前面的需求寫法，本節只補變更多出來的部分。例子取自[「期末範例報告」](../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md)，它依據的是[「工廠訪客進出登記系統：修改需求提案書」](../05-Final-Project-Topics/Change-Proposals/Visitor-System-Change-Proposal.md)。
 
 > **延伸閱讀**：兩項的繳交內容見[「報告內容」](../00-Course-Introduction/Report-Contents.md)〈2.1 書面應包含的內容〉的第 5 項與第 9 項。
 
 ### 7.1 變更需求的寫法 🔵 期末必讀
 
-修改需求提案書寫的是方向，例如 CR-01「事前來訪預約與受訪員工確認」。這一句話還不能驗收：誰來預約、預約後接待員怎麼用、沒有預約的訪客怎麼辦，都沒有說。變更申請要做的，是把一項方向拆成幾條 **變更需求**，每一條寫四個欄位：
+修改需求提案書寫的是方向，例如 CR-01「事前來訪預約與受訪員工確認」。這一句話還不能驗收：誰來預約、預約後接待員怎麼用、沒有預約的訪客怎麼辦，都沒有說。修改需求整理要做的，是把一項方向拆成幾條 **變更需求**，每一條寫四個欄位：
 
 | 欄位 | 寫什麼 |
 |---|---|
