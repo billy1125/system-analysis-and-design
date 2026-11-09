@@ -1,7 +1,7 @@
-// FR-OUT: on-site visitor list, check-out, late check-out (CR-02-2), CSV export (CR-02-3)
+// FR-OUT: on-site visitor list, check-out, late check-out (CR-02-2)
 
 const { getDb, transaction, now, today } = require('../lib/db');
-const { UserError, FileResponse } = require('../lib/http');
+const { UserError } = require('../lib/http');
 const { text, fail, toId } = require('../lib/validate');
 
 // "On site" is not a column: it means check_out_at IS NULL.
@@ -78,39 +78,8 @@ function lateCheckOut({ params, body, user }) {
   });
 }
 
-function csvCell(value) {
-  const s = value === null || value === undefined ? '' : String(value);
-  return '"' + s.replace(/"/g, '""') + '"';
-}
-
-// FR-25: one row per person, visitor first and then each companion (report 11.6)
-function exportOnsite() {
-  const db = getDb();
-  const rows = db.prepare(ONSITE_SQL).all(today());
-  const namesOf = db.prepare('SELECT name FROM visit_companions WHERE visit_id = ? ORDER BY id');
-
-  const header = ['類別', '姓名', '公司', '手機', '受訪員工', '部門', '分機', '訪客證', '報到時間', '今日報到'];
-  const lines = [header];
-  for (const r of rows) {
-    const shared = [r.employee_name, r.department, r.extension, r.pass_no, r.check_in_at, r.is_today ? '是' : '否'];
-    lines.push(['訪客', r.visitor_name, r.company, r.phone, ...shared]);
-    const names = namesOf.all(r.id).map((c) => c.name);
-    for (const name of names) lines.push(['隨行', name, r.company, '', ...shared]);
-    // Old records only have a number (data conversion rule)
-    if (names.length === 0 && r.companions > 0) {
-      lines.push(['隨行', `（未記錄姓名，共 ${r.companions} 人）`, r.company, '', ...shared]);
-    }
-  }
-
-  // '2026-11-05 09:21:12' -> '20261105_0921'
-  const stamp = now().replace(/-/g, '').replace(' ', '_').slice(0, 14).replace(':', '');
-  const body = '﻿' + lines.map((l) => l.map(csvCell).join(',')).join('\r\n') + '\r\n'; // BOM for Excel (NFR-08)
-  return new FileResponse(`在廠名單_${stamp}.csv`, 'text/csv; charset=utf-8', body);
-}
-
 module.exports = [
   { method: 'GET', path: '/api/onsite', access: 'staff', handler: listOnsite },
-  { method: 'GET', path: '/api/onsite/export', access: 'staff', handler: exportOnsite },
   { method: 'POST', path: '/api/visits/:id/checkout', access: 'staff', handler: checkOut },
   { method: 'POST', path: '/api/visits/:id/late-checkout', access: 'staff', handler: lateCheckOut },
 ];

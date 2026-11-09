@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 專案說明
 
-工廠訪客進出登記系統（修改版）。課程「系統分析與設計」期末範例報告第二部分的實作示範：以現行版 `../SAD-Visitor/` 為基礎，依 CR-01（事前來訪預約與受訪員工確認）與 CR-02（未離廠追蹤與疏散名單匯出）修改。
+工廠訪客進出登記系統（修改版）。課程「系統分析與設計」期末範例報告第二部分的實作示範：以現行版 `../SAD-Visitor/` 為基礎，依 CR-01（事前來訪預約與受訪員工確認）、CR-02（未離廠追蹤）與 CR-03（當日訪客總覽與匯出）修改。
 
 事實來源有三份，改動行為前先讀：
 
@@ -12,7 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 |---|---|
 | [`../System-Specs/SAD-Visitor-Revised-system-spec.md`](../System-Specs/SAD-Visitor-Revised-system-spec.md) | 修改版與現行版的差異、實作細節、新增訊息 |
 | [`../System-Specs/SAD-Visitor-system-spec.md`](../System-Specs/SAD-Visitor-system-spec.md) | 沒有改動的部分，以現行版為準 |
-| [`../../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md`](../../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md) 第二部分 | 需求編號（FR-19～FR-25、BR-01～BR-07、NFR-07、NFR-08）、欄位字典、畫面設計圖、測試案例 TC-01～TC-15 |
+| [`../../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md`](../../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md) 第二部分 | 需求編號（FR-19～FR-26、BR-01～BR-08、NFR-07、NFR-08）、欄位字典、畫面設計圖、測試案例 TC-01～TC-17 |
 
 **修改版不可以改動現行版 `../SAD-Visitor/` 的任何檔案。** 兩者是給學生對照用的兩個版本。
 
@@ -31,7 +31,7 @@ PORT=4001 node server.js          # 換連接埠
 node scripts/create-db.js         # 產生種子資料庫；database.db 已存在時拒絕執行
 ```
 
-沒有自動化測試。驗證方式是啟動後用瀏覽器操作，或用 `fetch` 打 API，以範例報告〈12〉的 TC-01～TC-15 為準。**測試前先把整個資料夾複製到別處再跑**，不要在原地操作，否則會改到進版控的 `database.db`。
+沒有自動化測試。驗證方式是啟動後用瀏覽器操作，或用 `fetch` 打 API，以範例報告〈12〉的 TC-01～TC-17 為準。**測試前先把整個資料夾複製到別處再跑**，不要在原地操作，否則會改到進版控的 `database.db`。
 
 ## 架構
 
@@ -55,7 +55,7 @@ database.db
 | handler | 收到 `{ req, user, params, query, body, setHeader }`；回傳物件即 200 JSON，回傳 `FileResponse`（`lib/http.js`）即檔案下載 |
 | 錯誤 | 要顯示給使用者的錯誤丟 `UserError`，或用 `lib/validate.js` 的 `fail()`；回應為 `{ error: 訊息 }` |
 | 驗證順序 | 來訪登記：第 0 步檢查預約，第 1～10 步照現行版規格書〈7.1〉，`routes/register.js` 的註解標了步驟編號 |
-| 推導值 | 「在廠」「訪客證使用中」「今日報到」「未到」「可報到」都不存欄位，見修改版規格書〈5.1〉 |
+| 推導值 | 「在廠」「訪客證使用中」「今日報到」「未到」「可報到」，以及當日總覽的狀態（BR-08）都不存欄位，見修改版規格書〈5.1〉 |
 | 受訪員工的資料範圍 | `routes/appointments.js` 的 `/api/my/...` 一律以 `user.employee_id` 過濾；別人的預約回 404，不回 403 |
 | 隨行人數 | `visits.companions` 寫入 `visit_companions` 的筆數；舊紀錄只有人數沒有姓名，修改時不填姓名就保留原人數 |
 | 時間 | 一律用 `lib/db.js` 的 `now()`、`today()`，本機時間；不要用 SQLite 的 `CURRENT_TIMESTAMP`（那是 UTC） |
@@ -64,7 +64,7 @@ database.db
 
 ## 刻意保留的問題，不要順手修
 
-CR-01、CR-02 以外的問題，這一版刻意不處理（修改版規格書〈8〉）。除非使用者明確要求，否則**不要修正**：
+CR-01、CR-02、CR-03 以外的問題，這一版刻意不處理（修改版規格書〈8〉）。除非使用者明確要求，否則**不要修正**：
 
 - 訪客以手機查詢；`phone` 與 `id_number` 都不唯一，同一人可能有兩筆訪客資料
 - 存完整身分證字號，並顯示在來訪紀錄查詢結果
@@ -73,7 +73,7 @@ CR-01、CR-02 以外的問題，這一版刻意不處理（修改版規格書〈
 - 部門是自由文字
 - `visits` 不存公司名稱，改訪客公司會連帶改變歷史紀錄的顯示
 - 管理員可以停用使用中的訪客證，系統不提示
-- 來訪紀錄不能刪除；除了在廠名單 CSV，沒有其他報表匯出
+- 來訪紀錄不能刪除；除了當日訪客總覽 CSV，沒有其他報表匯出
 
 ## 改動時要同步的地方
 

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>當日總覽｜工廠訪客進出登記系統</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+  <!-- UI-12 daily visitor overview for the admin (CR-03) -->
+  <main>
+    <div class="title-row">
+      <h1>當日訪客總覽</h1>
+      <button type="button" id="export">匯出 CSV</button>
+    </div>
+    <div id="msg" class="msg" hidden></div>
+    <div class="summary" id="summary"></div>
+    <table>
+      <thead>
+        <tr>
+          <th>狀態</th><th>訪客</th><th>公司</th><th>隨行人員</th><th>受訪員工</th><th>分機</th>
+          <th>預計到達</th><th>報到時間</th><th>離廠時間</th><th>訪客證</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script src="js/common.js"></script>
+  <script src="js/overview.js"></script>
+</body>
+</html>

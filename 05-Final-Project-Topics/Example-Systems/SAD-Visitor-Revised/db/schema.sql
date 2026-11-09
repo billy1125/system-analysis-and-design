@@ -1,4 +1,4 @@
--- Factory visitor check-in system, revised (CR-01, CR-02): schema (7 tables)
+-- Factory visitor check-in system, revised (CR-01, CR-02, CR-03): schema (7 tables)
 
 CREATE TABLE employees (
     id         INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -73,7 +73,7 @@ CREATE TABLE visits (
     updated_at           TEXT                        -- last edit time, NULL if never edited
 );
 
--- CR-02: names of people who came with the visitor
+-- CR-03: names of people who came with the visitor
 CREATE TABLE visit_companions (
     id       INTEGER PRIMARY KEY AUTOINCREMENT,
     visit_id INTEGER NOT NULL REFERENCES visits(id),

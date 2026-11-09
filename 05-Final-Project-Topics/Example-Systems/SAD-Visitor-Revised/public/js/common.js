@@ -67,6 +67,7 @@ const MENU = [
   { href: 'appointments.html', label: '預約清單', roles: STAFF },
   { href: 'visits.html', label: '來訪紀錄', roles: STAFF },
   { href: 'visitors.html', label: '訪客資料', roles: STAFF },
+  { href: 'overview.html', label: '當日總覽', roles: [ROLE_ADMIN] }, // CR-03
   { href: 'employees.html', label: '員工名單', roles: [ROLE_ADMIN] },
   { href: 'passes.html', label: '訪客證', roles: [ROLE_ADMIN] },
   { href: 'users.html', label: '帳號', roles: [ROLE_ADMIN] },

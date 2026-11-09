@@ -1,5 +1,5 @@
 // UI-02 on-site visitor list: check-out (FR-12), today / earlier split (FR-11),
-// late check-out (FR-24), CSV export (FR-25)
+// late check-out (FR-24)
 
 const lateForm = document.getElementById('late-form');
 let rowsById = {};
@@ -82,30 +82,6 @@ lateForm.addEventListener('submit', async (e) => {
 
 document.getElementById('late-cancel').addEventListener('click', () => {
   lateForm.hidden = true;
-});
-
-// Download the CSV through fetch so an error can be shown on this page
-document.getElementById('export').addEventListener('click', async () => {
-  clearMessage();
-  try {
-    const res = await fetch('/api/onsite/export');
-    if (!res.ok) {
-      const data = await res.json().catch(() => ({}));
-      throw new Error(data.error || '匯出失敗');
-    }
-    const disposition = res.headers.get('Content-Disposition') || '';
-    const match = disposition.match(/filename\*=UTF-8''([^;]+)/);
-    const filename = match ? decodeURIComponent(match[1]) : '在廠名單.csv';
-    const url = URL.createObjectURL(await res.blob());
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(url);
-    showMessage(`已匯出 ${filename}`, 'ok');
-  } catch (err) {
-    showMessage(`${err.message}。請改用瀏覽器列印這一頁（Ctrl + P）。`, 'error');
-  }
 });
 
 initPage().then(loadOnsite).catch((err) => showMessage(err.message, 'error'));

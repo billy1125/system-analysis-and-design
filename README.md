@@ -56,11 +56,11 @@
 | 6 | [行為建模](01-Course-Materials/06-Behavioral-Modeling.md) | [投影片](01-Course-Materials/06-Behavioral-Modeling.slides.md) | 活動圖、循序圖、狀態機圖 |
 | 7 | [資料建模與資料庫設計](01-Course-Materials/07-Data-Modeling.md) | [投影片](01-Course-Materials/07-Data-Modeling.slides.md) | ERD、正規化、資料字典 |
 | 8 | [系統環境與架構](01-Course-Materials/08-System-Architecture.md) | — | 系統放在哪裡、和誰連 |
-| 9 | [可行性、限制與風險分析](01-Course-Materials/09-Feasibility-and-Risk.md) | — | 可行性、系統限制與風險 |
+| 9 | [可行性、限制與風險分析](01-Course-Materials/09-Feasibility-and-Risk.md) | — | 效益評估、作業衝擊、資料轉換與上線切換 |
 | 10 | [物件建模](01-Course-Materials/10-Object-Modeling.md) | — | 概念類別圖，以及它和 ERD 的差別 |
 | 11 | [系統介面與資料交換設計](01-Course-Materials/11-System-Interface-and-Data-Exchange.md) | — | 系統之間的資料交換 |
 | 12 | [使用者介面設計](01-Course-Materials/12-UI-Design.md) | — | 從需求與流程推出畫面 |
-| 13 | [系統設計規格與追溯](01-Course-Materials/13-Design-Specification.md) | — | 規格書與追溯鏈 |
+| 13 | [系統設計規格與追溯](01-Course-Materials/13-Design-Specification.md) | — | 修改建議書的結構、追溯鏈與測試案例 |
 
 ---
 

@@ -36,7 +36,7 @@ function checkVisitorFields(input) {
   return v;
 }
 
-// Companion names (CR-02-4, BR-05). Empty lines are dropped.
+// Companion names (CR-03-3, BR-05). Empty lines are dropped.
 function checkCompanionNames(input) {
   const list = Array.isArray(input) ? input : [];
   const names = list.map(text).filter((n) => n !== '');
