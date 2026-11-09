@@ -228,6 +228,7 @@
 | 文件 | 是什麼 | 說明 | 你們要交的對應項目 |
 |---|---|---|---|
 | [期末範例報告](../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md) | 寫好的期末報告成品，16 項都有，只有內容、沒有解說 | 想知道交出去的東西長什麼樣、每一項要寫多細時看 | **必交**：期末書面報告 |
+| [期末報告範本](../04-Final-Project-Example-Reports/Final-Phase-Report-Template.md) | 五題通用的章節骨架，每節一段引言與欄位佔位 | 開始寫報告時複製一份，把 `{}` 換成自己的內容；〈5.3〉的待決問題表在各題提案書的〈五、你要交出什麼〉 | **必交**：期末書面報告 |
 | [系統分析完整報告](../04-Final-Project-Example-Reports/Visitor-System-Full-Analysis.md) | 同一套系統依期中報告標準的完整分析 | 和期末範例報告的第一部分對照，看簡要版留了什麼、省了什麼 |  |
 | [修改需求提案書](../05-Final-Project-Topics/Change-Proposals/Visitor-System-Change-Proposal.md) | 範例報告依據的修改需求，格式和各組的提案書相同 | 相當於範例的題目。逐項對照範例報告，看提案書的需求細項怎麼寫進報告 |  |
 | [專案檔（SAD-Visitor）](../05-Final-Project-Topics/Example-Systems/SAD-Visitor/README.md) | 範例報告分析的既有系統，可在自己電腦上執行 | 範例系統修改前的樣子 |  |
