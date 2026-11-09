@@ -8,9 +8,9 @@
 
 > **前情提要**：本章假設你已完成[「使用者分析」](03-User-Analysis.md)的使用案例分析、[「系統需求分析」](04-System-Requirements-Analysis.md)的需求條列，以及[「功能分析」](05-Functional-Analysis.md)的系統邊界與功能結構。本章的例子以課堂範例系統 `SAD-Forum`（論壇系統）與它的[「系統分析範例報告」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md)〈3. 現況流程分析〉〈6. 使用案例與系統互動分析〉為主，編號沿用該報告（FR-01、NFR-01、UC-01、F-11 起）；範例報告沒有對應內容的部分——〈二、2.4〉的平行工作、〈五〉狀態機圖（期末）與〈六〉設計階段的深化——沿用前幾章的工廠訪客進出登記系統。
 
-> **延伸閱讀**：這三張圖在各組報告中的繳交格式與最低標準，見[「系統分析範例報告說明」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)〈四、期中的 UML 最低要求〉與[「系統設計範例報告說明」](../04-Final-Project-Example-Reports/Design-Phase-Deliverables.md)。
+> **延伸閱讀**：這三張圖在各組報告中的繳交格式與最低標準，見[「系統分析範例報告說明」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)〈四、期中的 UML 最低要求〉。
 
-> **必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容；加註 🔵 期末必讀 的，是期末八項產出直接會用到的。判準與成品的樣子，期中見[「系統分析範例報告說明」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)與[「系統分析範例報告」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md)，期末見[「系統設計範例報告說明」](../04-Final-Project-Example-Reports/Design-Phase-Deliverables.md)與[「系統設計範例報告」](../04-Final-Project-Example-Reports/Design-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是報告不會直接產出。
+> **必讀標記**：標題後加註 🔴 期中必讀 的小節，是期中小組報告九項產出直接會用到的內容；加註 🔵 期末必讀 的，是期末報告直接會用到的。判準與成品的樣子，期中見[「系統分析範例報告說明」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)與[「系統分析範例報告」](../02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md)，期末見[「期末範例報告」](../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md)。未標記的小節仍屬課程範圍，只是報告不會直接產出。
 
 ## 一、結構之外還要描述行為 🔵 期末必讀
 
