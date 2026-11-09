@@ -2,6 +2,10 @@
 
 這個資料夾收錄期末小組報告（系統分析與修改建議）的題目。期末共五題，每一題是一套已經在工廠使用的管理系統，加上一份老師提供的修改需求提案書。各組做哪一題由當堂公開抽籤決定，方式見[SAD 課程介紹](../00-Course-Introduction/Course-Introduction.md)〈題目怎麼分配〉。
 
+期末的情境是這樣的：一間工廠幾年前委託你們公司開發了一套管理系統，現在主管依維護合約提出新功能需求。你們是公司派去工廠的系統分析師，要先重新看懂這套系統，再把需求寫成修改建議書：要改哪裡、怎麼改、改完怎麼驗收。建議書經工廠簽核後，工程師才照著改程式，使用者也照著驗收，所以建議書寫錯或寫得含糊，後面每一步都會跟著錯。這份工作要同時懂現場流程與製造程序，正是工管系同學最適合的工作。完整情境見[報告內容](../00-Course-Introduction/Report-Contents.md)〈二、撰寫要點〉。
+
+期末原本規劃從零設計一套新系統，期中報告之後調整成修改既有系統，**期末的分量也因此比原本規劃的輕**：系統已經存在，只要交代改到的地方。調整的原因與前後對照，見[報告內容](../00-Course-Introduction/Report-Contents.md)〈期末為什麼改成修改既有系統〉。
+
 ## 一、每一題給你什麼
 
 期末不是從零設計一套新系統，而是先看懂一套既有系統，再依提案書提出修改建議。每一題有兩樣東西，加上兩份全班共用的文件：
@@ -11,7 +15,7 @@
 | 既有系統（`SAD-<名稱>/`） | 系統現在怎麼運作：怎麼安裝啟動、有哪些帳號與畫面、資料存在哪裡 | 抽到題目後，先裝起來操作 |
 | 修改需求提案書（`Change-Proposals/`） | 工廠要改什麼、為什麼要改、改完要解決什麼問題、有哪些要你想清楚 | 操作過系統之後 |
 | [報告內容](../00-Course-Introduction/Report-Contents.md)〈二〉 | 兩大部分 16 項要交什麼（規定的事實來源） | 確認要交什麼 |
-| [系統修改範例報告](../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md) | 交出去的成品長什麼樣 | 想知道整份的長相與詳細程度時 |
+| [期末範例報告](../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md) | 交出去的成品長什麼樣 | 想知道整份的長相與詳細程度時 |
 
 範例報告的示範對象是**工廠訪客進出登記系統**，那是上課帶著大家做的題目，**刻意不在下面五題之中**。它的既有系統在 [`SAD-Visitor/`](SAD-Visitor/README.md)，修改方向見[修改需求提案書](Change-Proposals/Visitor-System-Change-Proposal.md)，依提案書改完的版本在 [`SAD-Visitor-Revised/`](SAD-Visitor-Revised/README.md)（這是加分項目的示範，不是必做）。你可以照抄它的結構與寫法，但抄不到答案。
 
@@ -29,11 +33,11 @@
 
 | 題目 | 領域 | 既有系統 | 修改需求提案書 | 修改需求 |
 |---|---|---|---|---|
-| 品質異常回報管理系統 | 品質管理 | [SAD-Quality](SAD-Quality/README.md) | [修改需求提案書](Change-Proposals/Quality-System-Change-Proposal.md) | CR-01 對策確認與退回、CR-02 現場直接回報與照片 |
-| 倉庫盤點管理系統 | 物料與倉儲 | [SAD-Inventory](SAD-Inventory/README.md) | [修改需求提案書](Change-Proposals/Inventory-System-Change-Proposal.md) | CR-01 帳面快照與盤點期間異動、CR-02 覆盤與差異核准 |
-| 設備保養紀錄管理系統 | 設備維護 | [SAD-Maintenance](SAD-Maintenance/README.md) | [修改需求提案書](Change-Proposals/Maintenance-System-Change-Proposal.md) | CR-01 年度保養計畫與逾期紀錄、CR-02 保養異常追蹤 |
-| 員工教育訓練紀錄系統 | 人力資源與工安 | [SAD-Training](SAD-Training/README.md) | [修改需求提案書](Change-Proposals/Training-System-Change-Proposal.md) | CR-01 應受訓與到期追蹤、CR-02 上課簽到與出席時數 |
-| 工單分派管理系統 | 生產管理 | [SAD-Work-Order](SAD-Work-Order/README.md) | [修改需求提案書](Change-Proposals/Work-Order-System-Change-Proposal.md) | CR-01 停工與恢復紀錄、CR-02 分批報工與工時 |
+| 品質異常回報管理系統 | 品質管理 | [SAD-Quality](SAD-Quality/README.md) | [修改需求提案書](Change-Proposals/Quality-System-Change-Proposal.md) | CR-01 對策確認與退回 |
+| 倉庫盤點管理系統 | 物料與倉儲 | [SAD-Inventory](SAD-Inventory/README.md) | [修改需求提案書](Change-Proposals/Inventory-System-Change-Proposal.md) | CR-01 覆盤與差異核准 |
+| 設備保養紀錄管理系統 | 設備維護 | [SAD-Maintenance](SAD-Maintenance/README.md) | [修改需求提案書](Change-Proposals/Maintenance-System-Change-Proposal.md) | CR-01 年度保養計畫與逾期紀錄 |
+| 員工教育訓練紀錄系統 | 人力資源與工安 | [SAD-Training](SAD-Training/README.md) | [修改需求提案書](Change-Proposals/Training-System-Change-Proposal.md) | CR-01 應受訓與到期追蹤 |
+| 工單分派管理系統 | 生產管理 | [SAD-Work-Order](SAD-Work-Order/README.md) | [修改需求提案書](Change-Proposals/Work-Order-System-Change-Proposal.md) | CR-01 分批報工與工時 |
 
 五題的領域各不相同，修改需求也刻意錯開，因此不會有兩組交出結構相同的報告。
 
@@ -43,7 +47,7 @@
 
 | 步驟 | 做什麼 |
 |:--:|---|
-| 1 | 抽籤前，先讀各題提案書的〈一、系統現況〉與〈二、兩項修改需求〉，知道五題各在做什麼 |
+| 1 | 抽籤前，先讀各題提案書的〈一、系統現況〉與〈二、修改需求〉，知道五題各在做什麼 |
 | 2 | 抽到題目後，照該題系統的 `README.md` 安裝啟動，每一種角色都登入操作一遍 |
 | 3 | 從系統整理出角色、流程、功能需求與資料，寫第一部分 |
 | 4 | 讀提案書的每一項修改需求。提案書會指出在系統上怎麼看到「原有系統的缺點」，先照著操作，確認自己看到的是同一個問題 |

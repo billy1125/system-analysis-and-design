@@ -13,7 +13,7 @@
 | 報告要交出哪些內容 | [報告內容](Report-Contents.md) |
 | 分數怎麼算、遲交與缺交扣多少 | [成績計算規範](Grading-Rules.md) |
 | 老師評分時看哪些面向 | [報告評量 Rubrics](Rubrics.md) |
-| 有沒有範例可以參考 | [系統分析範例報告說明](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)、[系統設計範例報告說明](../04-Final-Project-Example-Reports/Design-Phase-Deliverables.md)，各配一份寫完的[系統分析範例報告](../02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md)、[系統修改範例報告](../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md) |
+| 有沒有範例可以參考 | [系統分析範例報告說明](../02-Midterm-Project-Example-Reports/Analysis-Phase-Deliverables.md)、[系統設計範例報告說明](../04-Final-Project-Example-Reports/Design-Phase-Deliverables.md)，各配一份寫完的[系統分析範例報告](../02-Midterm-Project-Example-Reports/Analysis-Phase-Sample-Report.md)、[期末範例報告](../04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md) |
 | 口頭報告與訪談會問什麼方向的題目 | [參考題庫](Question-Bank.md) |
 | 做得比要求更多能不能加分 | [額外投入加分](Bonus-Rules.md) |
 
@@ -126,7 +126,7 @@ flowchart LR
 請注意：
 
 - 投影片上傳的必須是當天實際報告的版本，報告後不得增補內容。
-- 口頭報告若因當週報告不完而順延（見[SAD 課程介紹](Course-Introduction.md)的「課程預計進度表」），書面期限不隨之延後，仍以原定的星期五為準；投影片期限則以實際上台那一週的星期五為準，也就是期中順延組為 **11/13（五）**、期末順延組為 **2027/1/1（五）**。
+- 口頭報告若因當週報告不完而順延（見[課程進度表](Course-Schedule.md)），書面期限不隨之延後，仍以原定的星期五為準；投影片期限則以實際上台那一週的星期五為準，也就是期中順延組為 **11/13（五）**、期末順延組為 **2027/1/1（五）**。
 - 老師於星期六早上統計書面的繳交狀況，以當下 Portal 上的檔案為準。
 
 > 建議各組指定一位組員負責上傳，其他人在期限前自己上 Portal 確認檔案在不在。書面沒交是由 **全組** 一起承擔的：全組書面 0 分，口頭也會跟著失分，後果見[「成績計算規範」](Grading-Rules.md)。
