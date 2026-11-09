@@ -186,12 +186,11 @@ CRUD 矩陣不列必做。
 | 第 13 週（12/2）前 | `Final-Phase-Sample-Report.md` | 兩大部分 16 項與分工紀錄都已有章節；維持兩項需求（2026-11-09 決定） |
 | 第 13 週（12/2）前 | `SAD-Visitor-Revised` | 依兩項需求改完；範例報告維持兩項，系統不必改 |
 | 第 13 週（12/2）前 | `Visitor-System-Full-Analysis.md` | 完成初稿；開頭引用的 `Visitor-System-Spec.md` 不在 `04-Final-Project-Example-Reports/`，連結失效 |
-| 第 13 週（12/2）前 | `Design-Phase-Deliverables.md` | 尚未改寫，內容仍是設計階段八項，只把題目數改成五題 |
-| 第 13 週（12/2）前 | `Design-Phase-Sample-Report.md` | 已由 `Final-Phase-Sample-Report.md` 取代，舊檔尚未移除 |
+| 第 13 週（12/2）前 | `Design-Phase-Deliverables.md`、`Design-Phase-Sample-Report.md` | 已移除，不再使用（2026-11-09）；引用兩份的連結改指 `Final-Phase-Sample-Report.md` |
 | 第 13 週（12/2）前 | `Rubrics.md`、`Bonus-Rules.md`、`Question-Bank.md`、`Course-Rules-Quiz.md`、`Course-Introduction.slides.md` | 都已改動，也出現新格式的用語；還沒逐項核對是否改完 |
 | 隨授課進度 | 教材第 4–13 章 | 尚未開始，更動建議見〈七〉 |
 | 隨授課進度 | 第 2–13 章引用訪客系統的段落 | 尚未開始：逐章確認是否寫成「從零設計」，需要時改寫 |
-| 隨授課進度 | 🔵 期末必讀標記 | 等 `Design-Phase-Deliverables.md` 改寫完成後重新判定 |
+| 隨授課進度 | 🔵 期末必讀標記 | 以 `Final-Phase-Sample-Report.md` 為判準重新判定 |
 
 ## 六、待決事項
 
@@ -199,13 +198,13 @@ CRUD 矩陣不列必做。
 |:--:|---|---|
 | 1 | 第 10–15 週進度表的主題與內容 | 建議見〈七〉7.1；第 10 週就是 11/11 |
 | 2 | 第 12、13、14 項的教材放在哪裡 | 兩種放法見〈七〉7.3 |
-| 3 | `Design-Phase-Sample-Report.md` 何時移除 | 尚未決定 |
+| 3 | `Design-Phase-Sample-Report.md` 何時移除 | 2026-11-09 已移除，`Design-Phase-Deliverables.md` 一併移除 |
 | 4 | 修改需求改成一項後，每題與範例各保留哪一項 | 2026-11-09 已決定，見〈三〉〈修改需求的數量〉 |
 | 5 | 修改需求改成一項後，口頭報告的主題怎麼分 | 2026-11-09 已決定，見〈三〉〈口頭報告〉 |
 
 ## 七、期中報告後的教材更動建議
 
-> 本節是建議，尚未決定。各章 🔵 期末必讀標記的判準是 `Design-Phase-Deliverables.md` 與 `Final-Phase-Sample-Report.md`，前者還在依新格式改寫，標記要等它定稿後再逐節重判。
+> 本節是建議，尚未決定。各章 🔵 期末必讀標記的判準是 `Final-Phase-Sample-Report.md`（`Design-Phase-Deliverables.md` 已移除），標記要逐節重判。
 
 ### 7.1 第 10–15 週進度表
 

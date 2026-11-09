@@ -43,7 +43,7 @@
 | `04-Final-Project-Example-Reports/Visitor-System-Full-Analysis.md` | 依期中規格寫的完整九項分析 | 已 commit，完成初稿 |
 | `00-Course-Introduction/Report-Contents.md`〈二〉 | 期末報告要交什麼 | 已 commit（`97de57d`、`ca0b523`）：〈撰寫要點〉加工廠情境與 16 項總覽表；新增〈老師會提供的東西〉；〈範例報告參考〉改成對照表，加「你們要交的對應項目」欄（範例報告對應必交的書面，修改版系統對應可選的加分）；〈2.2〉改成三個主題；全節簡化去重 |
 | `README.md`〈期末報告的題目〉、`Course-Introduction.md`〈期中與期末小組報告〉 | 期末的工廠情境 | 已 commit（`ca0b523`） |
-| `04-Final-Project-Example-Reports/Design-Phase-Deliverables.md` | 範例報告說明 | 已 commit，內容仍是設計階段八項，只改了題目數 |
+| `04-Final-Project-Example-Reports/Design-Phase-Deliverables.md` | 範例報告說明 | 已移除，不再使用（2026-11-09） |
 
 ## 四、示範系統的設計要點
 
@@ -76,8 +76,6 @@
 | 項目 | 說明 |
 |---|---|
 | `Course-Schedule.md` 第 10–15 週進度表（2026-11-09 由 `Course-Introduction.md` 獨立出來） | 仍是設計階段的主題，第 10 週還寫「期末題目說明書發放」。11/11 前要先改第 10 週，建議見規劃〈七〉7.1 |
-| `Design-Phase-Deliverables.md` | 要依新格式改寫；改完才能重判 🔵 期末必讀標記 |
-| `Design-Phase-Sample-Report.md` | 已由 `Final-Phase-Sample-Report.md` 取代，何時移除尚未決定 |
 | 規範文件的核對 | `Rubrics.md`、`Bonus-Rules.md`、`Question-Bank.md`、`Course-Rules-Quiz.md`、`Course-Introduction.slides.md` 已改動，還沒逐項核對是否改完 |
 | 第 2–13 章的訪客系統段落 | 逐章確認是否寫成「從零設計」，需要時改寫 |
 | 系統搬移後的失效連結 | `0b6d413` 把系統搬到 `Example-Systems/` 後，`README.md`、`CLAUDE.md`、`05-Final-Project-Topics/README.md`、六份提案書與 `Final-Phase-Sample-Report.md` 仍引用舊路徑 |
