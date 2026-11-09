@@ -172,7 +172,7 @@ SAD-Inventory/
 │   ├── css/style.css
 │   └── js/              #   每個畫面一支程式，加上共用的 common.js
 ├── db/schema.sql        # 建立 5 張資料表的 SQL
-└── scripts/create-db.js # 產生種子資料庫（維護者用，見下方說明）
+└── scripts/create-db.js # 產生種子資料庫（維護者用）
 ```
 
 畫面與程式的對應：
@@ -186,13 +186,3 @@ SAD-Inventory/
 | UI-05 | 料號清單 | `public/items.html` | `routes/stock.js` |
 | UI-06 | 庫存異動 | `public/moves.html` | `routes/stock.js` |
 | UI-07 | 帳號管理 | `public/users.html` | `routes/admin.js` |
-
-### 給維護者：重新產生種子資料庫
-
-`scripts/create-db.js` 會依 `db/schema.sql` 與程式裡寫好的種子資料建立 `database.db`。`database.db` 已存在時程式會拒絕執行，要重建得先自己刪掉舊檔：
-
-```bash
-node scripts/create-db.js
-```
-
-修課同學不需要用這支程式，資料玩壞時照〈資料玩壞了怎麼辦〉重新下載即可。
