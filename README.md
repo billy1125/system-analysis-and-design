@@ -108,5 +108,5 @@
 | 項目 | 作者 | 授權 | 位置 |
 |---|---|---|---|
 | 期中範例系統的程式碼與系統文件 | Cho-Hsun Lu | MIT | [`03-Midterm-Project-Example-Systems/`](03-Midterm-Project-Example-Systems/)（LICENSE 置於該資料夾內，涵蓋底下六套系統） |
-| 期中範例系統的程式碼與系統文件 | Cho-Hsun Lu | MIT | [`05-Final-Project-Topics/Example-Systems`](05-Final-Project-Topics/Example-Systems)（LICENSE 置於該資料夾內，涵蓋底下六套系統） |
+| 期末題目系統的程式碼與系統文件 | Cho-Hsun Lu | MIT | [`05-Final-Project-Topics/Example-Systems/`](05-Final-Project-Topics/Example-Systems/)（LICENSE 置於該資料夾內，涵蓋底下七套系統） |
 | `speak-human-tw` skill | Raymond Hou | MIT | [`.claude/skills/speak-human-tw/`](.claude/skills/speak-human-tw/)（原始 LICENSE 保留於該資料夾內） |
