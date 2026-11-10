@@ -19,7 +19,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `02-Midterm-Project-Example-Reports/` | 期中的範例報告與說明（`Analysis-Phase-*.md`），只放這兩份 |
 | `03-Midterm-Project-Example-Systems/` | 期中的校園情境系統六套，加一份 `README.md` 當索引。**`SAD-Equipment`（器材借用）、`SAD-Events`（活動報名）、`SAD-Meal-Order`（校園訂餐）、`SAD-Dormitory-Repair`（宿舍報修）與 `SAD-Library`（圖書借閱）是各組抽籤分配的分析題目；`SAD-Forum`（討論區）是範例報告的示範對象，不列入抽籤**——這條界線與期末「示範題目不在五題之中」是同一個道理。都是 Flask + SQLite 的完整可執行系統，各自附 `README.md`、`CLAUDE.md` 與 `document/` 系統文件。`database.db` 是課程用的種子資料，一併進版控。**這個資料夾採 MIT 授權**（`LICENSE` 置於資料夾內），不適用專案 `README.md` 宣告的 CC BY-NC-SA |
 | `04-Final-Project-Example-Reports/` | 期末的範例報告：`Final-Phase-Sample-Report.md`，加上 `Visitor-System-Full-Analysis.md`（同一套示範系統依期中九項寫的完整分析，供對照第一部分省略了什麼）與 `Final-Phase-Report-Template.md`（五題通用的章節骨架，每節只有一段引言與欄位佔位，不放任何題目的內容；各題的待決問題表放在各自提案書的〈五、你要交出什麼〉） |
-| `05-Final-Project-Topics/` | 期末題目：既有的工廠管理系統五套（`SAD-Quality` 品質異常回報、`SAD-Inventory` 倉庫盤點、`SAD-Maintenance` 設備保養、`SAD-Training` 員工教育訓練、`SAD-Work-Order` 工單分派），每題一個可執行系統（`SAD-<名稱>/`，HTML + CSS + JS 畫面、Node.js 小程式讀寫 SQLite，本機端執行，每套最多 5 張表、2–3 個角色）與一份修改需求提案書（收在 `Change-Proposals/`，寫老師的修改方向，該題的名詞解釋放在最後一節），加一份 `README.md` 當索引；`System-Specs/` 是開發用的系統規格書，不進版控。`SAD-Visitor`（工廠訪客進出登記，現行版）是期末示範系統，不列入抽籤；`SAD-Visitor-Revised` 是它依修改方向改完的版本，示範系統修改實作加分。`database.db` 是種子資料，一併進版控，學生玩壞就重新下載。**是題目說明不是參考答案**：不給既有系統的分析結果，也不給修改後的資料表、畫面與測試案例 |
+| `05-Final-Project-Topics/` | 期末題目：既有的工廠管理系統五套（`SAD-Quality` 品質異常回報、`SAD-Inventory` 倉庫盤點、`SAD-Maintenance` 設備保養、`SAD-Training` 員工教育訓練、`SAD-Work-Order` 工單分派），每題一個可執行系統（收在 `Example-Systems/SAD-<名稱>/`，HTML + CSS + JS 畫面、Node.js 小程式讀寫 SQLite，本機端執行，每套最多 5 張表、2–3 個角色）與一份修改需求提案書（收在 `Change-Proposals/`，寫老師的修改方向，該題的名詞解釋放在最後一節），加一份 `README.md` 當索引；`System-Specs/` 是開發用的系統規格書，不進版控。`SAD-Visitor`（工廠訪客進出登記，現行版）是期末示範系統，不列入抽籤；`SAD-Visitor-Revised` 是它依修改方向改完的版本，示範系統修改實作加分。`database.db` 是種子資料，一併進版控，學生玩壞就重新下載。**是題目說明不是參考答案**：不給既有系統的分析結果，也不給修改後的資料表、畫面與測試案例 |
 | `reference/` | 長期保留的範本與撰寫規範，是全專案的格式基準，會隨慣例調整而更新 |
 | `.claude/skills/` | Claude Code 技能，一個技能一個資料夾 |
 
@@ -39,7 +39,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `Rubrics.md` | 四個評分項目的評量規準，只處理「內容分數」；每套 Rubric 的各面向配分加總必須為 100 | 評量面向必須對得上 `Course-Introduction.md` 的產出清單與 `Report-Contents.md` 的內容清單，不評課程沒教也沒要求的東西 |
 | `Report-Contents.md` | 各項報告要交出什麼內容。**列出的項目都是必做**，章節名稱可自訂；本身不含任何扣分規定 | 產出清單本身以 `Course-Introduction.md` 為準，這份是把它展開；評分標準指向 `Rubrics.md`。**不要把內容清單複製回 `Rubrics.md` 或 `Report-Rules.md`** |
 | `Bonus-Rules.md` | **唯一的加分機制**，上限 3 分加在學期成績上 | 加分額度與 `Grading-Rules.md` 公式中的 $B_i$ 一致；只有系統修改實作一項，認定以期末小組報告為基準 |
-| `Question-Bank.md` | 口頭報告與個人訪談的提問方向，**是方向不是考古題** | 題型分類須與 `Report-Contents.md` 的四類題型一致 |
+| `Question-Bank.md` | 口頭報告與個人訪談的提問方向，**是方向不是考古題** | 訪談的出題來源以 `Report-Contents.md`〈四〉為準 |
 | `Course-Rules-Quiz.md` | 自我檢核用的是非題，不計分不繳交 | 前面各份規範的衍生物，只複述不新增規則；解答須標明出處文件與章節 |
 | `Course-Introduction.slides.md` | 第一週上課用的 Marp 投影片，只放會扣分或錯過補不回來的規則 | 完整條文一律以規範文件為準 |
 
@@ -78,7 +78,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 `Analysis-Phase-Deliverables.md`（在 `02-Midterm-Project-Example-Reports/`）是範例報告說明，不是教材正文：說明講「要交什麼」，教材講「怎麼做」。同一主題在兩邊都出現時，概念說明留在教材，繳交欄位與最低標準留在說明，彼此以連結互指。它配一份 `Analysis-Phase-Sample-Report.md`，是照說明寫完的成品，只放內容不放解說。期末沒有範例報告說明，只有 `Final-Phase-Sample-Report.md` 一份成品，要交什麼以 `Report-Contents.md`〈二〉為準。
 
-**兩個階段刻意用不同的示範系統，改動時不要把它們統一：** 分析階段（`Analysis-Phase-*.md`）用課堂範例系統 `sad-forum`（原始碼在 `03-Midterm-Project-Example-Systems/SAD-Forum/`），因為分析要對照既有系統的原始碼才驗證得出有沒有看懂；期末階段（`Final-Phase-Sample-Report.md`）用**工廠訪客進出登記系統**（原始碼在 `05-Final-Project-Topics/SAD-Visitor/`），因為期末題目全在工廠，校園系統示範不出法規對資料的限制與現場環境條件。**期末階段的文件不得再出現論壇系統的內容。**
+**兩個階段刻意用不同的示範系統，改動時不要把它們統一：** 分析階段（`Analysis-Phase-*.md`）用課堂範例系統 `sad-forum`（原始碼在 `03-Midterm-Project-Example-Systems/SAD-Forum/`），因為分析要對照既有系統的原始碼才驗證得出有沒有看懂；期末階段（`Final-Phase-Sample-Report.md`）用**工廠訪客進出登記系統**（原始碼在 `05-Final-Project-Topics/Example-Systems/SAD-Visitor/`），因為期末題目全在工廠，校園系統示範不出法規對資料的限制與現場環境條件。**期末階段的文件不得再出現論壇系統的內容。**
 
 **期末的示範系統刻意不在 `05-Final-Project-Topics/` 的五題之中**，學生才抄得到結構、抄不到答案。這條界線在改題目或改範例時都要維持：五題換了要確認訪客系統仍然不重疊，範例換了要確認新題目也不在五題裡。
 
