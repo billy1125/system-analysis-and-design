@@ -1493,12 +1493,12 @@ tests/
 ```bash
 grep -E "^(FROM|EXPOSE|CMD)" Dockerfile
 ```
-預期：`FROM python:3.11-slim`、`EXPOSE 4000`、`CMD ["python", "app.py"]`
+預期：`FROM python:3.11-slim`、`EXPOSE 8080`、`CMD ["python", "app.py"]`
 
 ```bash
-grep -E "DB_PATH|4000|db_data" docker-compose.yml
+grep -E "DB_PATH|8080|db_data" docker-compose.yml
 ```
-預期：`DB_PATH=/app/data/database.db`、`"4000:4000"`、`db_data:/app/data`
+預期：`DB_PATH=/app/data/database.db`、`"8080:8080"`、`db_data:/app/data`
 
 **關鍵一致性檢查**：`docker-compose.yml` 的 `DB_PATH` 必須指向 volume 掛載點之內，
 否則容器重建時資料會遺失。
@@ -1518,8 +1518,8 @@ print(db_path, mount, '-> 一致:', db_path.startswith(mount))
 
 ```bash
 docker compose up -d --build
-curl -s localhost:4000/health          # 預期：OK
-curl -s localhost:4000/meal/ | head -5 # 預期：HTML
+curl -s localhost:8080/health          # 預期：OK
+curl -s localhost:8080/meal/ | head -5 # 預期：HTML
 ```
 
 **持久化驗收**：
@@ -1594,9 +1594,9 @@ pytest -q
 rm -f database.db database.db-wal database.db-shm
 python app.py &
 sleep 2
-curl -s localhost:4000/health
-curl -s -o /dev/null -w "%{http_code}\n" localhost:4000/
-curl -s -o /dev/null -w "%{http_code}\n" localhost:4000/meal/
+curl -s localhost:8080/health
+curl -s -o /dev/null -w "%{http_code}\n" localhost:8080/
+curl -s -o /dev/null -w "%{http_code}\n" localhost:8080/meal/
 kill %1
 ```
 預期：`OK`、`200`、`200`

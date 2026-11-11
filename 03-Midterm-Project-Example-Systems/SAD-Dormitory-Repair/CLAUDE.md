@@ -39,7 +39,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # 本機開發
 conda activate flask                    # 啟用虛擬環境
 pip install -r requirements.txt         # 安裝相依套件
-python app.py                           # 啟動開發伺服器（http://localhost:4000）
+python app.py                           # 啟動開發伺服器（http://localhost:8080）
 rm database.db && python app.py         # 重置資料庫
 
 # Docker

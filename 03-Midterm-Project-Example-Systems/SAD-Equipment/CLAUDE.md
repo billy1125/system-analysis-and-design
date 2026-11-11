@@ -41,7 +41,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # 本機開發
 conda activate flask                    # 啟用虛擬環境
 pip install -r requirements.txt         # 安裝相依套件
-python app.py                           # 啟動開發伺服器（http://localhost:4000）
+python app.py                           # 啟動開發伺服器（http://localhost:8080）
 rm database.db && python app.py         # 重置資料庫
 
 # Docker
@@ -67,7 +67,7 @@ SAD-Equipment/
 ├── requirements.txt
 ├── pytest.ini                    # 限定測試收集範圍
 ├── Dockerfile                    # Docker 映像建置設定
-├── docker-compose.yml            # Compose 服務定義（port 4000、named volume）
+├── docker-compose.yml            # Compose 服務定義（port 8080、named volume）
 ├── .dockerignore
 ├── database.db                   # SQLite（git 忽略，首次啟動自動建立）
 │

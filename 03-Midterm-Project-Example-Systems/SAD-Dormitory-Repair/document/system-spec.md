@@ -95,7 +95,7 @@
 | 密碼雜湊 | bcrypt | 註冊 cost=10，種子帳號 cost=4 |
 | 圖形驗證碼 | captcha（`ImageCaptcha`） | 伺服器端產生 PNG |
 | 測試 | pytest + pytest-flask | Flask test client，不啟動實際伺服器 |
-| 部署 | Docker + Docker Compose | port 4000，named volume 持久化 |
+| 部署 | Docker + Docker Compose | port 8080，named volume 持久化 |
 
 `requirements.txt` 僅五個套件：`flask`、`bcrypt`、`captcha`、`pytest`、`pytest-flask`。
 
@@ -117,7 +117,7 @@
 # 本機開發
 conda activate flask
 pip install -r requirements.txt
-python app.py                       # http://localhost:4000
+python app.py                       # http://localhost:8080
 rm database.db && python app.py     # 重置資料庫（含重新植入種子資料）
 
 # Docker
@@ -1111,7 +1111,7 @@ if not row:
 
 ### 11.6 部署
 
-- Docker + Docker Compose，port 4000，named volume 持久化 `/app/data`
+- Docker + Docker Compose，port 8080，named volume 持久化 `/app/data`
 - `DB_PATH` 指向 volume，容器重建不影響資料
 - `/health` 端點供 health check 使用
 - **未使用生產級 WSGI 伺服器**（KI-09）
@@ -1188,7 +1188,7 @@ if not row:
 修補方向：登入成功時先 `session.clear()` 再寫入。10 分鐘。
 
 **KI-09 — `debug=True` 且綁定 `0.0.0.0`**
-描述：`app.run(host='0.0.0.0', port=4000, debug=True)`，而 `Dockerfile` 的 `CMD` 直接走這條路徑。未使用 gunicorn 等生產級 WSGI 伺服器。
+描述：`app.run(host='0.0.0.0', port=8080, debug=True)`，而 `Dockerfile` 的 `CMD` 直接走這條路徑。未使用 gunicorn 等生產級 WSGI 伺服器。
 影響：**這是本系統最嚴重的單一問題。** Werkzeug 的互動式 debugger 暴露在網路上，任何能觸發例外的人都可以執行任意 Python 程式碼。
 修補方向：以環境變數控制 debug；Dockerfile 改用 `gunicorn`。1 小時。
 > **本系統不得部署到公開網際網路。** 若有此需求，KI-09 必須先修補。

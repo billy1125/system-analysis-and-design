@@ -25,9 +25,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 常用指令
 
 ```bash
-node server.js                    # 啟動，http://localhost:4000（只聽 127.0.0.1）
+node server.js                    # 啟動，http://localhost:8080（只聽 127.0.0.1）
 HOST=0.0.0.0 node server.js       # 開放廠內其他電腦連線（NFR-02）
-PORT=4001 node server.js          # 換連接埠
+PORT=8081 node server.js          # 換連接埠
 node scripts/create-db.js         # 產生種子資料庫；database.db 已存在時拒絕執行
 ```
 

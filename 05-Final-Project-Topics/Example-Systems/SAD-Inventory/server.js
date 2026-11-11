@@ -1,6 +1,6 @@
 // Warehouse stocktaking system: local server.
 // Serves the pages in public/ and a JSON API that reads and writes database.db.
-// Start: node server.js, then open http://localhost:4000
+// Start: node server.js, then open http://localhost:8080
 // HOST=0.0.0.0 node server.js lets other computers connect.
 
 const http = require('node:http');
@@ -9,7 +9,7 @@ const { getDb } = require('./lib/db');
 const { getCurrentUser } = require('./lib/auth');
 const { UserError, sendJson, readBody, serveStatic } = require('./lib/http');
 
-const PORT = Number(process.env.PORT) || 4000;
+const PORT = Number(process.env.PORT) || 8080;
 const HOST = process.env.HOST || '127.0.0.1';
 const PUBLIC_DIR = path.join(__dirname, 'public');
 

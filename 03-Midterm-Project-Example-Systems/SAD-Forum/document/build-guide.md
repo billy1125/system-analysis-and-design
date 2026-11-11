@@ -151,7 +151,7 @@ which docker
 ```python
 if __name__ == '__main__':
     db.init_db()
-    app.run(host='0.0.0.0', port=4000, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
 ```
 
 **保留不動的部分：** `app.secret_key` 那一行、`GET /health` 路由、`app.run` 的參數。這三項都帶有已知技術債（KI-05、KI-16、KI-24），依「保留既有技術債作為教材」的原則不動。
@@ -551,29 +551,29 @@ sleep 2
 ```
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}\n" localhost:4000/login
-curl -s -o /dev/null -w "%{http_code}\n" localhost:4000/register
+curl -s -o /dev/null -w "%{http_code}\n" localhost:8080/login
+curl -s -o /dev/null -w "%{http_code}\n" localhost:8080/register
 ```
 預期：兩個都是 `200`
 
 ```bash
-curl -sI localhost:4000/captcha.png | grep -i "content-type"
+curl -sI localhost:8080/captcha.png | grep -i "content-type"
 ```
 預期：`Content-Type: image/png`
 
 ```bash
-curl -s localhost:4000/health
+curl -s localhost:8080/health
 ```
 預期：`OK`
 
 ```bash
-curl -s localhost:4000/login | grep -c 'class="login-form"'
-curl -s localhost:4000/register | grep -c 'class="login-form"'
+curl -s localhost:8080/login | grep -c 'class="login-form"'
+curl -s localhost:8080/register | grep -c 'class="login-form"'
 ```
 預期：兩個都是 `1`。**這是本階段最重要的一條驗收**——缺了這個 class，送出按鈕不會有任何樣式
 
 ```bash
-curl -s localhost:4000/login | grep -c "</h1>"
+curl -s localhost:8080/login | grep -c "</h1>"
 ```
 預期：`0`（標籤不匹配已修正）
 
@@ -685,10 +685,10 @@ grep -c "url_for('forum.index')" templates/hub/home.html
 ```bash
 python app.py &
 sleep 2
-curl -s localhost:4000/ | grep -c "個人資料"
-curl -s localhost:4000/ | grep -c "論壇"
-curl -s localhost:4000/ | grep -c 'class="login-form"'
-curl -s localhost:4000/ | grep -c "會員管理"
+curl -s localhost:8080/ | grep -c "個人資料"
+curl -s localhost:8080/ | grep -c "論壇"
+curl -s localhost:8080/ | grep -c 'class="login-form"'
+curl -s localhost:8080/ | grep -c "會員管理"
 kill %1
 ```
 預期：分別是 `1`、`1`、`1`、`1`（訪客視圖：locked 個人資料卡、可點的論壇卡、登入表單、locked 會員管理卡）
@@ -1164,10 +1164,10 @@ if user is None:
 ```bash
 python app.py &
 sleep 2
-curl -s -o /dev/null -w "%{http_code}\n" localhost:4000/forum
-curl -s -o /dev/null -w "%{http_code}\n" localhost:4000/forum/
-curl -s localhost:4000/forum | grep -c "登入"
-curl -s localhost:4000/forum | grep -c "發表文章"
+curl -s -o /dev/null -w "%{http_code}\n" localhost:8080/forum
+curl -s -o /dev/null -w "%{http_code}\n" localhost:8080/forum/
+curl -s localhost:8080/forum | grep -c "登入"
+curl -s localhost:8080/forum | grep -c "發表文章"
 kill %1
 ```
 預期：`200`、`200`（`strict_slashes=False` 生效）、`1`（topbar 顯示登入）、`0`（訪客看不到發表按鈕）
@@ -1689,14 +1689,14 @@ grep -E "EXPOSE|CMD|WORKDIR|FROM" Dockerfile
 ```text
 FROM python:3.11-slim
 WORKDIR /app
-EXPOSE 4000
+EXPOSE 8080
 CMD ["python", "app.py"]
 ```
 
 ```bash
-grep -E "DB_PATH|SECRET_KEY|4000|volumes" docker-compose.yml
+grep -E "DB_PATH|SECRET_KEY|8080|volumes" docker-compose.yml
 ```
-預期看到 `DB_PATH=/app/data/database.db`、`4000:4000`、volume 掛載設定
+預期看到 `DB_PATH=/app/data/database.db`、`8080:8080`、volume 掛載設定
 
 ```bash
 cat .dockerignore
@@ -1710,8 +1710,8 @@ cat .dockerignore
 ```bash
 docker compose up -d --build
 sleep 5
-curl -s localhost:4000/health          # 預期：OK
-curl -s -o /dev/null -w "%{http_code}\n" localhost:4000/   # 預期：200
+curl -s localhost:8080/health          # 預期：OK
+curl -s -o /dev/null -w "%{http_code}\n" localhost:8080/   # 預期：200
 docker compose down
 ```
 
@@ -2016,7 +2016,7 @@ for r in sorted(app.url_map.iter_rules(), key=str):
 rm -f database.db
 python app.py
 ```
-開啟 `http://localhost:4000`：
+開啟 `http://localhost:8080`：
 
 | # | 旅程 | 應觀察到 |
 |:--:|------|---------|

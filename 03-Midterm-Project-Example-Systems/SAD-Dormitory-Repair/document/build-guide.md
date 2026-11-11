@@ -1755,7 +1755,7 @@ pytest --collect-only -q 2>&1 | tail -3
 
 ```bash
 docker compose up -d --build
-curl --retry 15 --retry-delay 1 --retry-connrefused http://localhost:4000/health
+curl --retry 15 --retry-delay 1 --retry-connrefused http://localhost:8080/health
 docker compose logs --tail 20
 docker compose down            # 保留 volume
 docker compose up -d           # 重新啟動
@@ -1871,7 +1871,7 @@ pytest -q
 ### 完工檢查清單
 
 - [ ] `pytest -q` → 188 passed
-- [ ] `python app.py` 可啟動，`curl localhost:4000/health` → OK
+- [ ] `python app.py` 可啟動，`curl localhost:8080/health` → OK
 - [ ] 路由總數為 27
 - [ ] 四個種子帳號、六張種子報修單，六個狀態各一
 - [ ] 訪客首頁沒有任何可進入的子系統連結

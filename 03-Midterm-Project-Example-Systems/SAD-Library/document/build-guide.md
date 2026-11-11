@@ -1574,8 +1574,8 @@ pytest -q
 ```bash
 docker compose up --build -d
 sleep 5
-curl -s localhost:4000/health          # 預期 OK
-curl -s -o /dev/null -w "%{http_code}\n" localhost:4000/books/   # 預期 200
+curl -s localhost:8080/health          # 預期 OK
+curl -s -o /dev/null -w "%{http_code}\n" localhost:8080/books/   # 預期 200
 docker compose down
 ```
 

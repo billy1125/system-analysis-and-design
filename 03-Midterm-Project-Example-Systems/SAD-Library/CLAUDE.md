@@ -16,7 +16,7 @@ Flask + SQLite 的教學用圖書借閱系統：讀者可查館藏、借書、�
 
 ```bash
 pip install -r requirements.txt
-python app.py            # http://localhost:4000
+python app.py            # http://localhost:8080
 pytest                   # 218 個測試
 ```
 
@@ -130,7 +130,7 @@ pytest -k "overdue"               # 逾期相關
 python3 -c "import db; db.init_db()"   # 手動建表與植入種子
 
 docker compose up --build         # 容器啟動
-curl localhost:4000/health        # 健康檢查
+curl localhost:8080/health        # 健康檢查
 ```
 
 ---

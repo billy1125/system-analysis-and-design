@@ -87,7 +87,7 @@
 
 ## 基本安裝與執行方式
 
-安裝分成三步：開啟終端機、取得專案檔案、選一種方式把系統跑起來。系統跑起來之後，用瀏覽器開啟 <http://localhost:4000> 就能操作。
+安裝分成三步：開啟終端機、取得專案檔案、選一種方式把系統跑起來。系統跑起來之後，用瀏覽器開啟 <http://localhost:8080> 就能操作。
 
 ### 0. 開啟終端機
 
@@ -185,7 +185,7 @@ docker compose up -d --build
 docker compose ps
 ```
 
-`STATUS` 欄顯示 `Up` 就代表啟動成功。開啟瀏覽器前往「[http://localhost:4000](http://localhost:4000)」。
+`STATUS` 欄顯示 `Up` 就代表啟動成功。開啟瀏覽器前往「[http://localhost:8080](http://localhost:8080)」。
 
 ##### 日常執行
 
@@ -195,7 +195,7 @@ docker compose ps
 docker compose up -d
 ```
 
-開啟後，使用任何一種瀏覽器連到「[http://localhost:4000](http://localhost:4000)」
+開啟後，使用任何一種瀏覽器連到「[http://localhost:8080](http://localhost:8080)」
 
 ##### 停止與清除
 
@@ -209,7 +209,7 @@ docker compose up -d
 
 > 系統的資料（帳號、報修單、處理歷程）儲存在 Docker 的 named volume 中，`stop` 或 `down` 都不會刪除資料；只有加上 `-v` 才會完全清除，下次啟動時回復為四個種子帳號與六張種子報修單的初始狀態。加上 `--rmi all` 才會同時刪除本機的 Docker 映像。
 
-> 六套範例系統都使用 4000 這個連接埠，**同一時間只能啟動一套**。要換另一套之前，先到原本那套的資料夾執行 `docker compose stop`。各套的資料存在各自的 volume，不會互相影響。
+> 六套範例系統都使用 8080 這個連接埠，**同一時間只能啟動一套**。要換另一套之前，先到原本那套的資料夾執行 `docker compose stop`。各套的資料存在各自的 volume，不會互相影響。
 
 ---
 
@@ -274,7 +274,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-畫面出現 `Running on http://127.0.0.1:4000` 就代表啟動成功，開啟瀏覽器前往「[http://localhost:4000](http://localhost:4000)」。同一個畫面上的 `WARNING: This is a development server` 是 Flask 的固定提醒，不影響使用。
+畫面出現 `Running on http://127.0.0.1:8080` 就代表啟動成功，開啟瀏覽器前往「[http://localhost:8080](http://localhost:8080)」。同一個畫面上的 `WARNING: This is a development server` 是 Flask 的固定提醒，不影響使用。
 
 伺服器執行期間，這個終端機視窗要保持開著。要停止系統，在終端機按 `Ctrl + C`。
 
@@ -305,7 +305,7 @@ python app.py
 | 出現 `no configuration file provided: not found` | 終端機不在系統資料夾裡，回〈確認目前的位置〉 |
 | Windows 輸入 `python` 後跳出 Microsoft Store | 還沒安裝 Python，見方法 B 步驟 1 |
 | `No module named 'flask'`（或 `bcrypt`、`captcha`） | 虛擬環境沒有啟用，或套件還沒安裝。啟用虛擬環境後重新執行 `pip install -r requirements.txt` |
-| 出現 `port is already allocated`、`Address already in use` 等連接埠被佔用的訊息 | 4000 連接埠已被佔用，通常是另一套範例系統還開著。先停掉它：Docker 用 `docker compose stop`，本機在原本的終端機按 `Ctrl + C` |
+| 出現 `port is already allocated`、`Address already in use` 等連接埠被佔用的訊息 | 8080 連接埠已被佔用，通常是另一套範例系統還開著。先停掉它：Docker 用 `docker compose stop`，本機在原本的終端機按 `Ctrl + C` |
 | 瀏覽器顯示「無法連上這個網站」 | 系統沒有在執行。Docker 用 `docker compose ps` 確認；本機確認執行 `python app.py` 的終端機還開著 |
 
 ---
@@ -395,7 +395,7 @@ pending ──派工──► assigned ──開始處理──► in_progress �
 4. 選擇承辦人「維修組 王師傅」後按「派工」→ 狀態變「已派工」，**處理歷程多了一則狀態紀錄**
 5. 依序按「開始處理」與「登記完成」→ 狀態變「已完成」，處理歷程再多兩則
 6. 登出，以 `user@example.com` 登入，打開同一張單。**修改、取消與回覆的入口都不見了**——已完成的單是終態
-7. 在網址列直接輸入 <http://localhost:4000/repair/5>，這是停用帳號的報修單。系統會顯示「無權限檢視此報修單」
+7. 在網址列直接輸入 <http://localhost:8080/repair/5>，這是停用帳號的報修單。系統會顯示「無權限檢視此報修單」
 8. 以 `admin@example.com` 登入，打開第 5 張單——**管理員看得到**。再回到第 1 步那張單，按「重新開啟」並填寫原因，觀察狀態回到「待受理」，承辦人欄位仍然是王師傅
 
 第 6 步要想的是：按鈕不見了，是畫面藏起來，還是後端真的擋下？第 7 步是資料範圍權限：一般使用者能不能進 `/repair/<id>` 這條路由不是問題，問題是**這一筆是不是你的**。

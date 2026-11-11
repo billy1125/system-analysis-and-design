@@ -149,7 +149,7 @@ def health():
 
 if __name__ == '__main__':
     db.init_db()
-    app.run(host='0.0.0.0', port=4000, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
 ```
 
 ### 關鍵決策
@@ -874,7 +874,7 @@ cat .dockerignore                          # 應含 tests/、document/、rules/
 
 ```bash
 docker compose up -d --build
-curl -s localhost:4000/health              # OK
+curl -s localhost:8080/health              # OK
 # 在瀏覽器申請一個新帳號
 docker compose down && docker compose up -d
 # 該帳號應仍然存在（named volume 有保住資料）
@@ -921,7 +921,7 @@ pytest -q                      # 125 passed
 rm -f database.db database.db-wal database.db-shm
 python app.py &
 sleep 2
-curl -s localhost:4000/health  # OK
+curl -s localhost:8080/health  # OK
 ```
 
 **3. 所有頁面可渲染**

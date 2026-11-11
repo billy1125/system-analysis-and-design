@@ -1,6 +1,6 @@
 // Factory visitor check-in system (revised): server.
 // Serves the pages in public/ and a JSON API that reads and writes database.db.
-// Start: node server.js, then open http://localhost:4000
+// Start: node server.js, then open http://localhost:8080
 // On the factory server (NFR-02), start with HOST=0.0.0.0 so other PCs in the plant can connect.
 
 const http = require('node:http');
@@ -10,7 +10,7 @@ const { getCurrentUser } = require('./lib/auth');
 const { UserError, FileResponse, sendFile, sendJson, readBody, serveStatic } = require('./lib/http');
 const { ROLE_ADMIN, ROLE_RECEPTIONIST, ROLE_EMPLOYEE } = require('./lib/validate');
 
-const PORT = Number(process.env.PORT) || 4000;
+const PORT = Number(process.env.PORT) || 8080;
 const HOST = process.env.HOST || '127.0.0.1';
 const PUBLIC_DIR = path.join(__dirname, 'public');
 

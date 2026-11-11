@@ -1319,9 +1319,9 @@ grep -A2 "environment" docker-compose.yml
 預期：`SECRET_KEY` 與 `DB_PATH=/app/data/database.db`
 
 ```bash
-grep "4000" Dockerfile docker-compose.yml
+grep "8080" Dockerfile docker-compose.yml
 ```
-預期：`EXPOSE 4000` 與 `"4000:4000"`
+預期：`EXPOSE 8080` 與 `"8080:8080"`
 
 ```bash
 cat .dockerignore
@@ -1332,8 +1332,8 @@ cat .dockerignore
 
 ```bash
 docker compose up -d --build
-curl -s localhost:4000/health          # 預期：OK
-curl -s localhost:4000/events | head -5 # 預期：HTML
+curl -s localhost:8080/health          # 預期：OK
+curl -s localhost:8080/events | head -5 # 預期：HTML
 docker compose down
 ```
 
@@ -1606,7 +1606,7 @@ grep -c "_is_admin" utils.py
 ### 完工檢查清單
 
 - [ ] `pytest -q` 回報 152 passed
-- [ ] `python app.py` 可啟動，瀏覽器能開啟 <http://localhost:4000>
+- [ ] `python app.py` 可啟動，瀏覽器能開啟 <http://localhost:8080>
 - [ ] 首頁訪客視圖有四張卡片，只有「校園活動報名」可點
 - [ ] 活動列表同時顯示五種狀態的 badge
 - [ ] 可用種子帳號登入，能建立活動、報名、取消、修改報名

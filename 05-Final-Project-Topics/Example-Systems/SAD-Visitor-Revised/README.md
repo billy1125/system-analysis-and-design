@@ -100,10 +100,10 @@ node server.js
 看到下面這行就代表啟動成功：
 
 ```text
-工廠訪客進出登記系統（修改版）已啟動：http://localhost:4000
+工廠訪客進出登記系統（修改版）已啟動：http://localhost:8080
 ```
 
-開啟瀏覽器，前往 <http://localhost:4000>，就會看到登入頁。
+開啟瀏覽器，前往 <http://localhost:8080>，就會看到登入頁。
 
 **使用期間這個終端機視窗不能關。** 要結束系統時，在終端機按 `Ctrl + C`。
 
@@ -148,7 +148,7 @@ $env:HOST="0.0.0.0"; node server.js
 HOST=0.0.0.0 node server.js
 ```
 
-其他電腦用 `http://那台電腦的 IP 位址:4000` 連線。Windows 第一次這樣啟動時，防火牆可能會詢問是否允許連線，選「允許」。**上課練習時不需要這樣做**，在自己的電腦上用 `localhost` 就能試所有功能。
+其他電腦用 `http://那台電腦的 IP 位址:8080` 連線。Windows 第一次這樣啟動時，防火牆可能會詢問是否允許連線，選「允許」。**上課練習時不需要這樣做**，在自己的電腦上用 `localhost` 就能試所有功能。
 
 ---
 
@@ -173,7 +173,7 @@ HOST=0.0.0.0 node server.js
 | `node` 不是內部或外部命令 | Node.js 沒裝好，或裝完沒有重開終端機 |
 | 無法載入 node:sqlite | Node.js 版本太舊，要 22.13 以上 |
 | 找不到資料庫檔 database.db | 終端機的位置不對，或 `database.db` 被刪掉了。見〈確認目前的位置〉與〈資料玩壞了怎麼辦〉 |
-| `EADDRINUSE`、port 4000 已被使用 | 另一個程式（例如期中的範例系統）佔用了 4000。先關掉它，或改用別的連接埠：PowerShell 執行 `$env:PORT=4001; node server.js`，macOS 執行 `PORT=4001 node server.js`，再開 <http://localhost:4001> |
+| `EADDRINUSE`、port 8080 已被使用 | 另一個程式（例如期中的範例系統）佔用了 8080。先關掉它，或改用別的連接埠：PowerShell 執行 `$env:PORT=8081; node server.js`，macOS 執行 `PORT=8081 node server.js`，再開 <http://localhost:8081> |
 | 重新啟動後被登出 | 正常現象。登入狀態只存在 `server.js` 的記憶體裡，重新啟動就會清空 |
 | 畫面排版被擠壓 | 系統只針對 1280 像素以上的桌上型電腦螢幕設計，不支援手機 |
 

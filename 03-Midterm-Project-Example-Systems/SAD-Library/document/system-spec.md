@@ -130,7 +130,7 @@
 
 ```bash
 pip install -r requirements.txt
-python app.py            # http://localhost:4000
+python app.py            # http://localhost:8080
 ```
 
 `app.py` 的 `__main__` 區塊會先呼叫 `db.init_db()` 建表並植入種子資料，再以 `debug=True` 啟動。

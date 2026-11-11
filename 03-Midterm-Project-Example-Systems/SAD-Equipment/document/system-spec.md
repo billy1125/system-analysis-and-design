@@ -96,7 +96,7 @@
 | 密碼 | bcrypt | 註冊 cost=10，種子帳號 cost=4 |
 | 驗證碼 | captcha（`ImageCaptcha`） | 伺服器端產生 160×50 PNG |
 | 測試 | pytest + pytest-flask | Flask test client，不啟動實際伺服器 |
-| 容器 | Docker + Docker Compose | `python:3.11-slim`，port 4000，named volume |
+| 容器 | Docker + Docker Compose | `python:3.11-slim`，port 8080，named volume |
 
 `requirements.txt` **不釘選版本**：
 
@@ -131,7 +131,7 @@ pytest-flask
 ```bash
 # 本機
 pip install -r requirements.txt
-python app.py                    # http://localhost:4000
+python app.py                    # http://localhost:8080
 
 # Docker
 docker compose up -d --build
@@ -139,7 +139,7 @@ docker compose down -v           # 停止並重置資料
 ```
 
 `app.py` 只在 `__name__ == '__main__'` 時呼叫 `db.init_db()` 並以 `debug=True` 啟動，
-port 固定 4000、綁定 `0.0.0.0`。
+port 固定 8080、綁定 `0.0.0.0`。
 
 ---
 
@@ -857,7 +857,7 @@ WHERE equipment_id = ? AND order_status IN ('approved','borrowed') AND NOT (end 
 修補方向：正式部署前刪除種子帳號，或改為只在 `FLASK_ENV=development` 時植入。工作量 30 分鐘。
 
 **KI-22 — `debug=True` 硬編碼**
-描述：`app.run(host='0.0.0.0', port=4000, debug=True)`，Docker 映像也是用它啟動。
+描述：`app.run(host='0.0.0.0', port=8080, debug=True)`，Docker 映像也是用它啟動。
 影響：未攔截的例外會回傳含原始碼的 Werkzeug 除錯頁；debugger PIN 若外洩可執行任意程式碼。
 為何接受：教學情境需要自動重載與詳細錯誤頁。
 修補方向：改由環境變數控制，正式部署改用 gunicorn。工作量 30 分鐘。

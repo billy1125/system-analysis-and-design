@@ -99,7 +99,7 @@
 | 密碼雜湊 | bcrypt | 註冊 cost=10，種子帳號 cost=4 |
 | 圖形驗證碼 | captcha（`ImageCaptcha`） | 伺服器端產生 PNG |
 | 測試 | pytest + pytest-flask | Flask test client，不啟動實際伺服器 |
-| 部署 | Docker + Docker Compose | port 4000，named volume 持久化 |
+| 部署 | Docker + Docker Compose | port 8080，named volume 持久化 |
 
 `requirements.txt` 僅五個套件：`flask`、`bcrypt`、`captcha`、`pytest`、`pytest-flask`。
 
@@ -129,7 +129,7 @@
 ```bash
 conda activate flask
 pip install -r requirements.txt
-python app.py                   # http://localhost:4000
+python app.py                   # http://localhost:8080
 rm database.db && python app.py # 重置資料庫
 ```
 
@@ -1341,7 +1341,7 @@ POST /profile/update             **仍然成功**——KI-03 的刻意缺陷
 - Docker 映像基於 `python:3.11-slim`
 - `docker-compose.yml` 使用 named volume `db_data` 持久化 `/app/data`
 - `DB_PATH` 指向 volume 內的路徑，容器重建不會遺失資料
-- port 4000
+- port 8080
 
 ---
 

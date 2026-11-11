@@ -73,7 +73,7 @@
 | 驗證碼 | `captcha` 套件產生 PNG | Canvas 2D 繪製 |
 | session | Flask 簽章 cookie，伺服器端驗證 | `sessionStorage` 的明文整數 |
 | 權限檢查 | 伺服器端，不可繞過 | 瀏覽器端，**可任意繞過** |
-| 部署 | Flask 開發伺服器，port 4000 | nginx 靜態服務，port 4000 |
+| 部署 | Flask 開發伺服器，port 8080 | nginx 靜態服務，port 8080 |
 | 測試 | pytest + Flask test client，約 112 案例 | 見 §12 |
 | 相依套件 | flask、bcrypt、captcha | **sql.js 一個**（WASM，隨專案打包） |
 
@@ -92,7 +92,7 @@
 | 持久化 | `localStorage` | 存 SQLite 檔的 base64 編碼 |
 | 密碼 | Web Crypto API（`crypto.subtle`） | PBKDF2-HMAC-SHA256，瀏覽器內建 |
 | 驗證碼 | Canvas 2D API | 瀏覽器內建 |
-| 部署 | nginx:alpine + Docker Compose | 純靜態檔服務，port 4000 |
+| 部署 | nginx:alpine + Docker Compose | 純靜態檔服務，port 8080 |
 
 ### 2.2 唯一的第三方相依：sql.js
 
@@ -116,14 +116,14 @@ sql.js 的兩個檔案（`sql-wasm.js` 與 `sql-wasm.wasm`）**隨專案打包�
 **方式 A：Docker（建議）**
 
 ```bash
-docker compose up -d --build    # http://localhost:4000
+docker compose up -d --build    # http://localhost:8080
 docker compose down
 ```
 
 **方式 B：任何靜態 http server**
 
 ```bash
-python -m http.server 4000      # 在專案根目錄執行
+python -m http.server 8080      # 在專案根目錄執行
 ```
 
 **不能用的方式**：直接雙擊 `index.html`。`file://` 協定下 ES Modules 與 WASM 都會被 CORS 擋下，且 `crypto.subtle` 不可用。
@@ -136,9 +136,9 @@ python -m http.server 4000      # 在專案根目錄執行
 
 | 存取方式 | `crypto.subtle` | 結果 |
 |---------|:---:|------|
-| `http://localhost:4000` | 可用 | 正常 |
-| `http://127.0.0.1:4000` | 可用 | 正常 |
-| `http://192.168.1.50:4000`（區網 IP） | **不可用** | 註冊與登入直接失敗 |
+| `http://localhost:8080` | 可用 | 正常 |
+| `http://127.0.0.1:8080` | 可用 | 正常 |
+| `http://192.168.1.50:8080`（區網 IP） | **不可用** | 註冊與登入直接失敗 |
 | `file:///.../index.html` | 不可用 | 連載入都失敗 |
 
 若要讓同學從其他機器連進來示範，必須改用 https（自簽憑證即可）或請他們各自在自己機器上跑容器。這一點在課堂上很容易踩到，`web-build-guide.md` 的 Phase 0 會再提醒一次。
@@ -712,7 +712,7 @@ function takeFlash() {
 
 ### 10.6 部署
 
-nginx:alpine 靜態服務，port 4000（與 Flask 版相同，方便對照）。需要在 `nginx.conf` 中確認 `.wasm` 的 MIME type 為 `application/wasm`——若回傳 `application/octet-stream`，部分瀏覽器的串流編譯會失敗。
+nginx:alpine 靜態服務，port 8080（與 Flask 版相同，方便對照）。需要在 `nginx.conf` 中確認 `.wasm` 的 MIME type 為 `application/wasm`——若回傳 `application/octet-stream`，部分瀏覽器的串流編譯會失敗。
 
 容器**不需要 volume**。所有資料都在使用者的瀏覽器裡，容器完全無狀態，重建不會丟失任何東西（見 §11 的 WKI-04）。
 

@@ -111,7 +111,7 @@
 | 密碼雜湊 | bcrypt | 註冊 cost=10，種子帳號 cost=4 |
 | 圖形驗證碼 | captcha（`ImageCaptcha`） | 伺服器端產生 PNG |
 | 測試 | pytest + pytest-flask | Flask test client，不啟動實際伺服器 |
-| 部署 | Docker + Docker Compose | port 4000，named volume 持久化 |
+| 部署 | Docker + Docker Compose | port 8080，named volume 持久化 |
 
 `requirements.txt` 僅五個套件：`flask`、`bcrypt`、`captcha`、`pytest`、`pytest-flask`。
 
@@ -151,7 +151,7 @@ application 層以「先 SELECT 再決定 INSERT 或 UPDATE」的方式維持。
 ```bash
 conda activate flask
 pip install -r requirements.txt
-python app.py                   # http://localhost:4000
+python app.py                   # http://localhost:8080
 rm database.db && python app.py # 重置資料庫
 ```
 
@@ -1396,7 +1396,7 @@ user 2 有兩筆 `registered`（活動 3、5）；user 3 沒有任何報名紀�
 services:
   web:
     build: .
-    ports: ["4000:4000"]
+    ports: ["8080:8080"]
     volumes: [db_data:/app/data]
     environment:
       - SECRET_KEY=please-change-this-to-a-random-string

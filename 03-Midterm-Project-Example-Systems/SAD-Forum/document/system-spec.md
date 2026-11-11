@@ -82,7 +82,7 @@
 | 密碼雜湊 | bcrypt | 註冊 cost=10，種子帳號 cost=4 |
 | 圖形驗證碼 | captcha（`ImageCaptcha`） | 伺服器端產生 PNG |
 | 測試 | pytest + pytest-flask | Flask test client，不啟動實際伺服器 |
-| 部署 | Docker + Docker Compose | port 4000，named volume 持久化 |
+| 部署 | Docker + Docker Compose | port 8080，named volume 持久化 |
 
 `requirements.txt` 僅五個套件：`flask`、`bcrypt`、`captcha`、`pytest`、`pytest-flask`。
 
@@ -103,7 +103,7 @@
 ```bash
 conda activate flask
 pip install -r requirements.txt
-python app.py                   # http://localhost:4000
+python app.py                   # http://localhost:8080
 rm database.db && python app.py # 重置資料庫
 ```
 
@@ -1357,7 +1357,7 @@ flash 的價值在於**跨 redirect** 傳遞訊息——它把字串暫存進 se
 
 ### 10.6 部署
 
-- Docker 映像基於 `python:3.11-slim`，`EXPOSE 4000`
+- Docker 映像基於 `python:3.11-slim`，`EXPOSE 8080`
 - `docker-compose.yml` 使用 named volume `db_data` 掛載到 `/app/data`，並將 `DB_PATH` 設為 `/app/data/database.db`，確保容器重建後資料仍在。`docker compose down -v` 才會刪除資料
 - `restart: unless-stopped`
 - `GET /health` 回傳 `OK` 與 200，供健康檢查使用
@@ -1443,7 +1443,7 @@ flash 的價值在於**跨 redirect** 傳遞訊息——它把字串暫存進 se
 修補方向：登入成功時先 `session.clear()` 再寫入 `user_id`。工作量 10 分鐘。
 
 **KI-16 — `debug=True` 且綁定 `0.0.0.0`**
-描述：`app.py` 以 `app.run(host='0.0.0.0', port=4000, debug=True)` 啟動，而 `Dockerfile` 的 `CMD ["python", "app.py"]` 直接走這條路徑。沒有使用 gunicorn 或 waitress 等生產級 WSGI 伺服器。
+描述：`app.py` 以 `app.run(host='0.0.0.0', port=8080, debug=True)` 啟動，而 `Dockerfile` 的 `CMD ["python", "app.py"]` 直接走這條路徑。沒有使用 gunicorn 或 waitress 等生產級 WSGI 伺服器。
 影響：**這是本系統最嚴重的單一問題。** Werkzeug 的互動式 debugger 會暴露在網路上，任何能觸發例外的人都可以在該頁面執行任意 Python 程式碼，等同於拿到伺服器的完整控制權。同時還會洩漏完整的 traceback 與原始碼。
 為何接受：`debug=True` 提供的自動重載與錯誤頁對教學開發流程有實質幫助，而本系統的預期使用環境是本機或課堂內網。
 修補方向：以環境變數控制 debug 旗標；Dockerfile 改用 `gunicorn`。工作量 1 小時。

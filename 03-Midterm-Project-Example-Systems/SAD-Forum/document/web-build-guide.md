@@ -80,7 +80,7 @@ ls -la web/vendor/
 ```bash
 docker --version
 ```
-預期：有版本輸出。**若未安裝 Docker**，改用 `python -m http.server 4000`，本流程書的所有驗收都能照跑，只是 Phase 1 的容器驗收要跳過。
+預期：有版本輸出。**若未安裝 Docker**，改用 `python -m http.server 8080`，本流程書的所有驗收都能照跑，只是 Phase 1 的容器驗收要跳過。
 
 ### 安全內容的檢查
 
@@ -90,8 +90,8 @@ docker --version
 console.log(window.isSecureContext, typeof crypto?.subtle);
 ```
 
-- 在 `http://localhost:4000` 下預期：`true 'object'`
-- 在 `http://<區網IP>:4000` 下會是：`false 'undefined'` ← **註冊與登入會完全失效**
+- 在 `http://localhost:8080` 下預期：`true 'object'`
+- 在 `http://<區網IP>:8080` 下會是：`false 'undefined'` ← **註冊與登入會完全失效**
 
 ### 關鍵決策記錄
 
@@ -127,7 +127,7 @@ console.log(window.isSecureContext, typeof crypto?.subtle);
 FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY . /usr/share/nginx/html
-EXPOSE 4000
+EXPOSE 8080
 ```
 
 沒有 `CMD`——nginx 映像自帶。沒有 build step——沒有打包工具。
@@ -138,7 +138,7 @@ EXPOSE 4000
 
 ```nginx
 server {
-    listen 4000;
+    listen 8080;
     root /usr/share/nginx/html;
     index index.html;
 
@@ -163,7 +163,7 @@ services:
   web:
     build: .
     ports:
-      - "4000:4000"
+      - "8080:8080"
     restart: unless-stopped
 ```
 
@@ -209,14 +209,14 @@ document.getElementById('loading').textContent = 'sql.js 載入成功';
 ```bash
 cd web && docker compose up -d --build
 sleep 3
-curl -s -o /dev/null -w "%{http_code}\n" localhost:4000
-curl -sI localhost:4000/vendor/sql-wasm.wasm | grep -i "content-type"
+curl -s -o /dev/null -w "%{http_code}\n" localhost:8080
+curl -sI localhost:8080/vendor/sql-wasm.wasm | grep -i "content-type"
 ```
 預期：`200` 與 `Content-Type: application/wasm`
 
 **第二條是本階段最關鍵的驗收。** 若回傳 `application/octet-stream`，部分瀏覽器的 WASM 串流編譯會失敗。
 
-瀏覽器開 `http://localhost:4000`：
+瀏覽器開 `http://localhost:8080`：
 - 畫面顯示「sql.js 載入成功」
 - Console 顯示 `sql.js ok: 42`
 - Network 面板中 `sql-wasm.wasm` 為 200，type 為 `wasm`
@@ -225,7 +225,7 @@ curl -sI localhost:4000/vendor/sql-wasm.wasm | grep -i "content-type"
 
 ### 常見錯誤
 
-- 忘記 `COPY nginx.conf`，nginx 用預設設定聽 80 port，`localhost:4000` 連不上
+- 忘記 `COPY nginx.conf`，nginx 用預設設定聽 80 port，`localhost:8080` 連不上
 - 用 `file://` 開啟 `index.html` 測試。**一定失敗**——ES Modules 與 WASM 都會被 CORS 擋下
 - `locateFile` 的路徑寫錯，`.wasm` 404。這個錯誤在 Console 顯示為 `initSqlJs` 的 Promise rejection，訊息不直觀
 
@@ -1245,7 +1245,7 @@ async function freshDb() {
 
 **1. 測試全綠**
 
-開啟 `http://localhost:4000/tests.html`，預期約 70 個案例全數通過，失敗數為 0。
+開啟 `http://localhost:8080/tests.html`，預期約 70 個案例全數通過，失敗數為 0。
 
 **2. 路由清單對照**
 
@@ -1308,7 +1308,7 @@ console.log(window.isSecureContext);   // localhost 下為 true
 - [ ] 匯出的 `.sqlite` 可用外部工具開啟
 - [ ] 匯入功能可還原，壞檔案不會破壞現有資料
 - [ ] 稽核七項全部通過（SQL 只在 db/、零 `innerHTML`、零 inline handler…）
-- [ ] `docker compose up -d --build` 後 `localhost:4000` 可用
+- [ ] `docker compose up -d --build` 後 `localhost:8080` 可用
 - [ ] `.wasm` 的 Content-Type 為 `application/wasm`
 - [ ] 六個 CSS 與 Flask 版逐字相同（除 `login.css` 的 `body` 選擇器）
 
