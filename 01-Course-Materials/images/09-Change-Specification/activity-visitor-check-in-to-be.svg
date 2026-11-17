@@ -50,4 +50,21 @@
     <rect x="400" y="852" width="140" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="470" y="875" text-anchor="middle" fill="#111111">接待員交付訪客證</text>
     <circle cx="470" cy="925" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/><circle cx="470" cy="925" r="7" fill="#222222"/>
   </g>
+  <g font-size="13" fill="#333333">
+    <line x1="764" y1="360" x2="790" y2="360" stroke="#333333" stroke-width="1.2" stroke-dasharray="5,4"/>
+    <polygon points="790,316 948,316 960,328 960,404 790,404" fill="#ffffff" stroke="#333333" stroke-width="1.2"/>
+    <polyline points="948,316 948,328 960,328" fill="none" stroke="#333333" stroke-width="1.2"/>
+    <text x="800" y="338">附註：沿用原流程，接待員</text>
+    <text x="800" y="356">輸入姓名、公司、手機、</text>
+    <text x="800" y="374">身分證字號並檢查格式，</text>
+    <text x="800" y="392">此處省略。</text>
+    <line x1="270" y1="750" x2="352" y2="750" stroke="#333333" stroke-width="1.2" stroke-dasharray="5,4"/>
+    <polygon points="70,697 258,697 270,709 270,803 70,803" fill="#ffffff" stroke="#333333" stroke-width="1.2"/>
+    <polyline points="258,697 258,709 270,709" fill="none" stroke="#333333" stroke-width="1.2"/>
+    <text x="80" y="719">附註：原流程逐項檢查必填、</text>
+    <text x="80" y="737">隨行人數、訪客證是否啟用、</text>
+    <text x="80" y="755">訪客證是否未被使用、該訪客</text>
+    <text x="80" y="773">是否不在廠內。這些檢查都要</text>
+    <text x="80" y="791">保留，此處精簡成一個判斷。</text>
+  </g>
 </svg>

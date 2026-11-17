@@ -56,7 +56,7 @@
 | 6 | [行為建模](01-Course-Materials/06-Behavioral-Modeling.md) | [投影片](01-Course-Materials/06-Behavioral-Modeling.slides.md) | 活動圖、循序圖、狀態機圖 |
 | 7 | [資料建模與資料庫設計](01-Course-Materials/07-Data-Modeling.md) | [投影片](01-Course-Materials/07-Data-Modeling.slides.md) | ERD、正規化、資料字典 |
 | 8 | [系統環境與架構](01-Course-Materials/08-System-Architecture.md) | — | 系統放在哪裡、和誰連 |
-| 9 | [修改需求與變更規格](01-Course-Materials/09-Change-Specification.md) | — | 遇到系統修改需求時怎麼處理：修改需求整理、差異分析、影響分析、修改後的需求與資料變更 |
+| 9 | [修改需求與變更規格](01-Course-Materials/09-Change-Specification.md) | [投影片](01-Course-Materials/09-Change-Specification.slides.md) | 遇到系統修改需求時怎麼處理：修改需求整理、差異分析、影響分析、修改後的需求與資料變更 |
 | 10 | [效益評估與上線準備](01-Course-Materials/10-Benefit-and-Go-Live.md) | — | 效益評估、作業衝擊、資料轉換與上線切換 |
 | 11 | [系統介面與資料交換設計](01-Course-Materials/11-System-Interface-and-Data-Exchange.md) | — | 系統之間的資料交換 |
 | 12 | [使用者介面設計](01-Course-Materials/12-UI-Design.md) | — | 從需求與流程推出畫面 |
