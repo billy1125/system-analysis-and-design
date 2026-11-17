@@ -13,7 +13,7 @@
 | 項目 | 內容 |
 |---|---|
 | 使用者 | 接待員（大門警衛）、管理員（總務人員）、**受訪員工（新增）**。訪客不登入系統 |
-| 規模 | 11 個畫面、7 張資料表、3 種角色 |
+| 規模 | 12 個畫面、7 張資料表、3 種角色 |
 | 技術 | 與現行版相同：HTML + CSS + JavaScript、SQLite 資料庫檔 `database.db`、Node.js 小程式 `server.js` |
 | 執行位置 | 你自己的電腦（本機端）。也可以裝在廠內伺服器，讓其他電腦連線（見〈讓其他電腦連線〉） |
 
@@ -52,27 +52,27 @@ node --version
 
 ### 2. 取得專案
 
-這套系統收在課程教材儲存庫裡，路徑是 `05-Final-Project-Topics/SAD-Visitor-Revised/`，不是獨立的儲存庫。下面兩種方法擇一。
+這套系統收在課程教材儲存庫裡，路徑是 `05-Final-Project-Topics/Example-Systems/SAD-Visitor-Revised/`，不是獨立的儲存庫。下面兩種方法擇一。
 
 #### 方法 A：使用 Git
 
 ```bash
 git clone https://github.com/billy1125/system-analysis-and-design.git
-cd system-analysis-and-design/05-Final-Project-Topics/SAD-Visitor-Revised
+cd system-analysis-and-design/05-Final-Project-Topics/Example-Systems/SAD-Visitor-Revised
 ```
 
 #### 方法 B：下載 ZIP
 
 1. 開啟 <https://github.com/billy1125/system-analysis-and-design>，點選綠色 **Code** 按鈕 → **Download ZIP**
 2. 解壓縮到你想放的位置，解壓縮後的資料夾名稱是「system-analysis-and-design-main」
-3. 開啟終端機，切換到解壓縮資料夾底下的 `05-Final-Project-Topics/SAD-Visitor-Revised`
+3. 開啟終端機，切換到解壓縮資料夾底下的 `05-Final-Project-Topics/Example-Systems/SAD-Visitor-Revised`
 
 ```bash
 # Windows（PowerShell）
 cd "C:\Users\你的帳號\Downloads\system-analysis-and-design-main\05-Final-Project-Topics\SAD-Visitor-Revised"
 
 # macOS
-cd "/Users/你的帳號/Downloads/system-analysis-and-design-main/05-Final-Project-Topics/SAD-Visitor-Revised"
+cd "/Users/你的帳號/Downloads/system-analysis-and-design-main/05-Final-Project-Topics/Example-Systems/SAD-Visitor-Revised"
 ```
 
 > 把範例路徑換成你自己的完整路徑。Windows 在檔案總管點網址列就能複製路徑；macOS 在 Finder 按住 `Option` 右鍵點資料夾，選「複製路徑名稱」。

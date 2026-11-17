@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 590" width="600" height="590" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+  </defs>
+  <rect x="0" y="0" width="600" height="590" fill="#ffffff"/>
+  <g>
+    <polyline points="330,40 330,67" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,103 330,128" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,164 330,189" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,225 330,250" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,286 330,314" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,342 330,370" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="338" y="363" font-size="13" fill="#333333">[有]</text>
+    <polyline points="330,406 330,430" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="413,328 540,328 540,442 344,442" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="476" y="321" text-anchor="middle" font-size="13" fill="#333333">[沒有]</text>
+    <polyline points="330,454 330,479" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="330,515 330,540" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  </g>
+  <g>
+    <circle cx="330" cy="30" r="10" fill="#222222"/>
+    <rect x="183" y="67" width="294" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="90" text-anchor="middle" fill="#111111">管理員在在廠訪客清單抄下目前在廠的訪客</text>
+    <rect x="197" y="128" width="266" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="151" text-anchor="middle" fill="#111111">開啟來訪紀錄查詢頁，報到日期選今天</text>
+    <rect x="197" y="189" width="266" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="212" text-anchor="middle" fill="#111111">抄下今天報到的訪客，包括已離廠的人</text>
+    <rect x="225" y="250" width="210" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="273" text-anchor="middle" fill="#111111">對照兩份名單，合併重複的人</text>
+    <polygon points="247,328 257,314 403,314 413,328 403,342 257,342" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="333" text-anchor="middle" fill="#111111">訪客是否有隨行人員</text>
+    <rect x="218" y="370" width="224" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="393" text-anchor="middle" fill="#111111">只能記下隨行人數，寫不出姓名</text>
+    <polygon points="330,430 344,442 330,454 316,442" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+    <rect x="211" y="479" width="238" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="330" y="502" text-anchor="middle" fill="#111111">整理成當日名單，留存或交給主管</text>
+    <circle cx="330" cy="552" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/><circle cx="330" cy="552" r="7" fill="#222222"/>
+  </g>
+</svg>

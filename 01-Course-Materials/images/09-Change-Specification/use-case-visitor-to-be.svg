@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1010 1060" width="1010" height="1060" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#333333" stroke-width="1.5"/></marker>
+    <marker id="generalize" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#ffffff" stroke="#333333" stroke-width="1.2"/></marker>
+    <g id="actor" fill="none" stroke="#333333" stroke-width="1.5"><circle cx="0" cy="0" r="9" fill="#f3f3f3"/><line x1="0" y1="9" x2="0" y2="32"/><line x1="-15" y1="17" x2="15" y2="17"/><polyline points="-13,50 0,32 13,50"/></g>
+    <g id="actor-new" fill="none" stroke="#d9730d" stroke-width="1.5"><circle cx="0" cy="0" r="9" fill="#fdebd9"/><line x1="0" y1="9" x2="0" y2="32"/><line x1="-15" y1="17" x2="15" y2="17"/><polyline points="-13,50 0,32 13,50"/></g>
+  </defs>
+  <rect x="0" y="0" width="1010" height="1060" fill="#ffffff"/>
+  <rect x="290" y="12" width="690" height="983" rx="4" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <text x="635" y="34" text-anchor="middle" font-weight="bold" fill="#111111">工廠訪客進出登記系統（修改後）</text>
+  <g stroke="#333333" stroke-width="1.3">
+    <line x1="156" y1="130" x2="403.0" y2="71.2"/>
+    <line x1="156" y1="130" x2="411.1" y2="115.4"/>
+    <line x1="156" y1="130" x2="501.2" y2="163.4"/>
+    <line x1="156" y1="130" x2="518.7" y2="211.3"/>
+    <line x1="156" y1="420" x2="435.7" y2="77.5"/>
+    <line x1="156" y1="420" x2="452.5" y2="129.2"/>
+    <line x1="156" y1="420" x2="459.9" y2="305.1"/>
+    <line x1="156" y1="420" x2="408.3" y2="358.8"/>
+    <line x1="156" y1="420" x2="420.3" y2="404.9"/>
+    <line x1="156" y1="420" x2="436.6" y2="448.1"/>
+    <line x1="156" y1="420" x2="449.6" y2="496.8"/>
+    <line x1="156" y1="420" x2="452.5" y2="548.7"/>
+    <line x1="156" y1="420" x2="447.7" y2="602.9"/>
+    <line x1="156" y1="420" x2="434.5" y2="657.5"/>
+    <line x1="156" y1="855" x2="416.7" y2="760.7"/>
+    <line x1="156" y1="855" x2="397.2" y2="811.4"/>
+    <line x1="156" y1="855" x2="386.0" y2="855.0"/>
+    <line x1="156" y1="855" x2="406.5" y2="897.5"/>
+    <line x1="156" y1="855" x2="433.0" y2="949.0"/>
+  </g>
+  <line x1="140" y1="821" x2="140" y2="482" stroke="#333333" stroke-width="1.3" marker-end="url(#generalize)"/>
+  <line x1="574.0" y1="290.0" x2="716.0" y2="290.0" stroke="#333333" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+  <text x="645" y="281" text-anchor="middle" font-size="13" fill="#333333">«include»</text>
+  <line x1="761.0" y1="443.0" x2="528.4" y2="306.6" stroke="#333333" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+  <text x="640" y="410" text-anchor="middle" font-size="13" fill="#333333">«extend»</text>
+  <line x1="737.2" y1="351.3" x2="550.7" y2="303.1" stroke="#333333" stroke-width="1.3" stroke-dasharray="6,4" marker-end="url(#open)"/>
+  <text x="655" y="318" text-anchor="middle" font-size="13" fill="#333333">«extend»</text>
+  <path d="M590,470 L695,470 L705,480 L705,518 L590,518 z" fill="#fbfbe6" stroke="#333333" stroke-width="1.2"/>
+  <path d="M695,470 L695,480 L705,480" fill="none" stroke="#333333" stroke-width="1.2"/>
+  <text x="600" y="489" font-size="13" fill="#111111">條件：手機號碼</text>
+  <text x="600" y="507" font-size="13" fill="#111111">查無訪客時</text>
+  <line x1="647" y1="470" x2="628" y2="378" stroke="#333333" stroke-width="1" stroke-dasharray="3,3"/>
+  <path d="M860,395 L939,395 L949,405 L949,443 L860,443 z" fill="#fbfbe6" stroke="#333333" stroke-width="1.2"/>
+  <path d="M939,395 L939,405 L949,405" fill="none" stroke="#333333" stroke-width="1.2"/>
+  <text x="870" y="414" font-size="13" fill="#111111">條件：訪客</text>
+  <text x="870" y="432" font-size="13" fill="#111111">有預約時</text>
+  <line x1="904" y1="395" x2="640" y2="327" stroke="#333333" stroke-width="1" stroke-dasharray="3,3"/>
+  <use href="#actor-new" x="140" y="110"/>
+  <text x="140" y="180" text-anchor="middle" fill="#d9730d">受訪員工</text>
+  <use href="#actor" x="140" y="400"/>
+  <text x="140" y="470" text-anchor="middle" fill="#111111">接待員</text>
+  <use href="#actor" x="140" y="835"/>
+  <text x="140" y="905" text-anchor="middle" fill="#111111">管理員</text>
+  <ellipse cx="450" cy="60" rx="60" ry="18" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="450" y="65" text-anchor="middle" fill="#111111">UC-01 登入</text>
+  <ellipse cx="470" cy="112" rx="60" ry="18" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="470" y="117" text-anchor="middle" fill="#111111">UC-02 登出</text>
+  <ellipse cx="570" cy="170" rx="74" ry="18" fill="#fdebd9" stroke="#d9730d" stroke-width="1.5"/><text x="570" y="175" text-anchor="middle" fill="#111111">UC-14 登錄預約</text>
+  <ellipse cx="580" cy="225" rx="95" ry="18" fill="#fdebd9" stroke="#d9730d" stroke-width="1.5"/><text x="580" y="230" text-anchor="middle" fill="#111111">UC-15 修改或取消預約</text>
+  <ellipse cx="500" cy="290" rx="74" ry="18" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="500" y="295" text-anchor="middle" fill="#111111">UC-05 登記來訪</text>
+  <ellipse cx="465" cy="345" rx="88" ry="18" fill="#fdebd9" stroke="#d9730d" stroke-width="1.5"/><text x="465" y="350" text-anchor="middle" fill="#111111">UC-16 檢視預約清單</text>
+  <ellipse cx="505" cy="400" rx="88" ry="18" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="505" y="405" text-anchor="middle" fill="#111111">UC-06 檢視在廠訪客</text>
+  <ellipse cx="505" cy="455" rx="74" ry="18" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="505" y="460" text-anchor="middle" fill="#111111">UC-07 登記離廠</text>
+  <ellipse cx="500" cy="510" rx="74" ry="18" fill="#fdebd9" stroke="#d9730d" stroke-width="1.5"/><text x="500" y="515" text-anchor="middle" fill="#111111">UC-18 補登離廠</text>
+  <ellipse cx="490" cy="565" rx="88" ry="18" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="490" y="570" text-anchor="middle" fill="#111111">UC-08 查詢來訪紀錄</text>
+  <ellipse cx="475" cy="620" rx="88" ry="18" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="475" y="625" text-anchor="middle" fill="#111111">UC-09 修改來訪紀錄</text>
+  <ellipse cx="455" cy="675" rx="88" ry="18" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="455" y="680" text-anchor="middle" fill="#111111">UC-10 修改訪客資料</text>
+  <ellipse cx="460" cy="745" rx="88" ry="18" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="460" y="750" text-anchor="middle" fill="#111111">UC-11 維護員工名單</text>
+  <ellipse cx="460" cy="800" rx="81" ry="18" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="460" y="805" text-anchor="middle" fill="#111111">UC-12 維護訪客證</text>
+  <ellipse cx="460" cy="855" rx="74" ry="18" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="460" y="860" text-anchor="middle" fill="#111111">UC-13 管理帳號</text>
+  <ellipse cx="480" cy="910" rx="102" ry="18" fill="#fdebd9" stroke="#d9730d" stroke-width="1.5"/><text x="480" y="915" text-anchor="middle" fill="#111111">UC-19 檢視當日訪客總覽</text>
+  <ellipse cx="480" cy="965" rx="102" ry="18" fill="#fdebd9" stroke="#d9730d" stroke-width="1.5"/><text x="480" y="970" text-anchor="middle" fill="#111111">UC-20 匯出當日訪客總覽</text>
+  <ellipse cx="790" cy="290" rx="74" ry="18" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="790" y="295" text-anchor="middle" fill="#111111">UC-03 查詢訪客</text>
+  <ellipse cx="790" cy="460" rx="88" ry="18" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="790" y="465" text-anchor="middle" fill="#111111">UC-04 建立訪客資料</text>
+  <ellipse cx="790" cy="365" rx="81" ry="18" fill="#fdebd9" stroke="#d9730d" stroke-width="1.5"/><text x="790" y="370" text-anchor="middle" fill="#111111">UC-17 從預約報到</text>
+  <rect x="290" y="1012" width="18" height="12" rx="6" fill="#fdebd9" stroke="#d9730d" stroke-width="1.5"/>
+  <text x="316" y="1023" font-size="13" fill="#333333">橘色：修改後新增的角色與使用案例。CR-01：受訪員工、UC-14～UC-17；CR-02：UC-18；CR-03：UC-19、UC-20</text>
+</svg>

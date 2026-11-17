@@ -1,0 +1,64 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor 受訪員工 as EM #fdebd9
+actor 接待員 as RC
+actor 管理員 as AD
+
+rectangle 工廠訪客進出登記系統（修改後） {
+  usecase "UC-01 登入" as UC01
+  usecase "UC-02 登出" as UC02
+  usecase "UC-14 登錄預約" as UC14 #fdebd9
+  usecase "UC-15 修改或取消預約" as UC15 #fdebd9
+  usecase "UC-03 查詢訪客" as UC03
+  usecase "UC-04 建立訪客資料" as UC04
+  usecase "UC-05 登記來訪" as UC05
+  usecase "UC-16 檢視預約清單" as UC16 #fdebd9
+  usecase "UC-17 從預約報到" as UC17 #fdebd9
+  usecase "UC-06 檢視在廠訪客" as UC06
+  usecase "UC-07 登記離廠" as UC07
+  usecase "UC-18 補登離廠" as UC18 #fdebd9
+  usecase "UC-08 查詢來訪紀錄" as UC08
+  usecase "UC-09 修改來訪紀錄" as UC09
+  usecase "UC-10 修改訪客資料" as UC10
+  usecase "UC-11 維護員工名單" as UC11
+  usecase "UC-12 維護訪客證" as UC12
+  usecase "UC-13 管理帳號" as UC13
+  usecase "UC-19 檢視當日訪客總覽" as UC19 #fdebd9
+  usecase "UC-20 匯出當日訪客總覽" as UC20 #fdebd9
+}
+
+EM -- UC01
+EM -- UC02
+EM -- UC14
+EM -- UC15
+RC -- UC01
+RC -- UC02
+RC -- UC05
+RC -- UC16
+RC -- UC06
+RC -- UC07
+RC -- UC18
+RC -- UC08
+RC -- UC09
+RC -- UC10
+AD -- UC11
+AD -- UC12
+AD -- UC13
+AD -- UC19
+AD -- UC20
+AD --|> RC
+
+UC05 ..> UC03 : <<include>>
+UC04 ..> UC05 : <<extend>>
+UC17 ..> UC05 : <<extend>>
+note right of UC04
+  條件：手機號碼
+  查無訪客時
+end note
+note right of UC17
+  條件：訪客
+  有預約時
+end note
+@enduml

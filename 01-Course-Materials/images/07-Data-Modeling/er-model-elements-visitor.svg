@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 260" width="960" height="260" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <rect x="0" y="0" width="960" height="260" fill="#ffffff"/>
+
+  <g fill="none" stroke="#333333" stroke-width="1.5">
+    <!-- attribute links -->
+    <line x1="70" y1="80" x2="100" y2="130"/>
+    <line x1="170" y1="80" x2="140" y2="130"/>
+    <line x1="430" y1="80" x2="460" y2="130"/>
+    <line x1="530" y1="80" x2="500" y2="130"/>
+    <line x1="790" y1="80" x2="820" y2="130"/>
+    <line x1="890" y1="80" x2="860" y2="130"/>
+    <!-- relationship links -->
+    <line x1="180" y1="155" x2="240" y2="155"/>
+    <line x1="360" y1="155" x2="420" y2="155"/>
+    <line x1="540" y1="155" x2="600" y2="155"/>
+    <line x1="720" y1="155" x2="780" y2="155"/>
+  </g>
+
+  <!-- attributes -->
+  <g fill="#ffffff" stroke="#333333" stroke-width="1.5">
+    <ellipse cx="70" cy="60" rx="46" ry="20"/>
+    <ellipse cx="170" cy="60" rx="46" ry="20"/>
+    <ellipse cx="430" cy="60" rx="46" ry="20"/>
+    <ellipse cx="530" cy="60" rx="46" ry="20"/>
+    <ellipse cx="790" cy="60" rx="46" ry="20"/>
+    <ellipse cx="890" cy="60" rx="46" ry="20"/>
+  </g>
+  <g fill="#111111" text-anchor="middle">
+    <text x="70" y="65">姓名</text>
+    <text x="170" y="65">手機</text>
+    <text x="430" y="65">事由</text>
+    <text x="530" y="65">報到時間</text>
+    <text x="790" y="65">姓名</text>
+    <text x="890" y="65">分機</text>
+  </g>
+
+  <!-- entities and relationships -->
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <rect x="60" y="130" width="120" height="50"/>
+    <rect x="420" y="130" width="120" height="50"/>
+    <rect x="780" y="130" width="120" height="50"/>
+    <polygon points="240,155 300,121 360,155 300,189"/>
+    <polygon points="600,155 660,121 720,155 660,189"/>
+  </g>
+  <g fill="#111111" text-anchor="middle" font-size="15">
+    <text x="120" y="160">訪客</text>
+    <text x="480" y="160">來訪</text>
+    <text x="840" y="160">員工</text>
+    <text x="300" y="160">進行</text>
+    <text x="660" y="160">受訪</text>
+  </g>
+
+  <!-- cardinality -->
+  <g fill="#444444" font-size="13" text-anchor="middle">
+    <text x="196" y="147">1</text>
+    <text x="404" y="147">N</text>
+    <text x="556" y="147">N</text>
+    <text x="764" y="147">1</text>
+  </g>
+
+  <!-- legend -->
+  <g fill="#f3f3f3" stroke="#999999" stroke-width="1">
+    <rect x="60" y="220" width="30" height="20"/>
+    <polygon points="300,230 316,220 332,230 316,240"/>
+  </g>
+  <ellipse cx="195" cy="230" rx="17" ry="10" fill="#ffffff" stroke="#999999" stroke-width="1"/>
+  <g fill="#444444" font-size="13">
+    <text x="98" y="235">實體</text>
+    <text x="220" y="235">屬性</text>
+    <text x="340" y="235">關係</text>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+@startuml
+actor 接待員 as R
+participant 訪客登記系統 as S
+
+R -> S : 請求在廠訪客清單
+S --> R : 在廠紀錄、在廠人數、隨行人數合計
+R -> S : 送出離廠(來訪編號)
+alt 已登記離廠
+  S --> R : 此筆來訪已登記離廠
+else 尚未離廠
+  S --> R : 已登記 XXX 離廠、更新後的清單
+end
+@enduml

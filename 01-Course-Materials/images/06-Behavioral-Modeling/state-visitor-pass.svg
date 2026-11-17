@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 50 960 370" width="960" height="370" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="420" fill="#ffffff"/>
+  <circle cx="30" cy="100" r="10" fill="#222222"/>
+  <polyline points="40,100 150,100" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="95" y="91" text-anchor="middle" font-size="13" fill="#333333">管理員新增</text>
+  <polyline points="270,92 590,92" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="430" y="83" text-anchor="middle" font-size="13" fill="#333333">接待員登記來訪（UC-05）</text>
+  <polyline points="590,108 270,108" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="430" y="127" text-anchor="middle" font-size="13" fill="#333333">接待員登記離廠（UC-07）</text>
+  <polyline points="195,120 195,300" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="187" y="206" text-anchor="end" font-size="13" fill="#333333">管理員停用</text><text x="187" y="223" text-anchor="end" font-size="13" fill="#333333">（UC-12）</text>
+  <polyline points="225,300 225,120" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="233" y="206" font-size="13" fill="#333333">管理員啟用</text><text x="233" y="223" font-size="13" fill="#333333">（UC-12）</text>
+  <polyline points="635,120 635,300" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="627" y="206" text-anchor="end" font-size="13" fill="#333333">管理員停用</text><text x="627" y="223" text-anchor="end" font-size="13" fill="#333333">（UC-12，系統不阻擋）</text>
+  <polyline points="665,300 665,120" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="673" y="206" font-size="13" fill="#333333">管理員啟用</text><text x="673" y="223" font-size="13" fill="#333333">（UC-12）</text>
+  <polyline points="555,320 270,320" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="412" y="311" text-anchor="middle" font-size="13" fill="#333333">接待員登記離廠（UC-07）</text>
+  <rect x="150" y="80" width="120" height="40" rx="12" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="210" y="105" text-anchor="middle" fill="#111111">可用</text>
+  <rect x="590" y="80" width="120" height="40" rx="12" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="650" y="105" text-anchor="middle" fill="#111111">使用中</text>
+  <rect x="150" y="300" width="120" height="40" rx="12" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="210" y="325" text-anchor="middle" fill="#111111">停用</text>
+  <rect x="555" y="300" width="190" height="40" rx="12" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="650" y="325" text-anchor="middle" fill="#111111">停用但仍在訪客身上</text>
+  <line x1="745" y1="320" x2="775" y2="320" stroke="#333333" stroke-width="1" stroke-dasharray="3,3"/>
+  <path d="M775,296 L930,296 L940,306 L940,344 L775,344 z" fill="#fbfbe6" stroke="#333333" stroke-width="1.2"/>
+  <path d="M930,296 L930,306 L940,306" fill="none" stroke="#333333" stroke-width="1.2"/>
+  <text x="785" y="316" font-size="13" fill="#111111">系統沒有阻止進入</text>
+  <text x="785" y="335" font-size="13" fill="#111111">這個狀態（I-09）</text>
+  <path d="M150,370 L790,370 L800,380 L800,404 L150,404 z" fill="#fbfbe6" stroke="#333333" stroke-width="1.2"/>
+  <path d="M790,370 L790,380 L800,380" fill="none" stroke="#333333" stroke-width="1.2"/>
+  <text x="160" y="392" font-size="13" fill="#111111">四個狀態都沒有存成欄位值：由 is_active 加上「有沒有離廠時間為空的來訪紀錄」組合而成</text>
+</svg>

@@ -15,7 +15,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 資料夾 | 說明 |
 |---|---|
 | `00-Course-Introduction/` | 課程規範與參考文件，採描述性英文檔名 |
-| `01-Course-Materials/` | 教材正文，檔名格式 `編號-主題.md`，兩位數編號即授課順序 |
+| `01-Course-Materials/` | 教材正文，檔名格式 `編號-主題.md`，兩位數編號即授課順序。`old-versions/` 是 2026-11-17 改寫前的舊版教材，只供對照，不要修改，也不要從正文連過去 |
 | `02-Midterm-Project-Example-Reports/` | 期中的範例報告與說明（`Analysis-Phase-*.md`），只放這兩份 |
 | `03-Midterm-Project-Example-Systems/` | 期中的校園情境系統六套，加一份 `README.md` 當索引。**`SAD-Equipment`（器材借用）、`SAD-Events`（活動報名）、`SAD-Meal-Order`（校園訂餐）、`SAD-Dormitory-Repair`（宿舍報修）與 `SAD-Library`（圖書借閱）是各組抽籤分配的分析題目；`SAD-Forum`（討論區）是範例報告的示範對象，不列入抽籤**——這條界線與期末「示範題目不在五題之中」是同一個道理。都是 Flask + SQLite 的完整可執行系統，各自附 `README.md`、`CLAUDE.md` 與 `document/` 系統文件。`database.db` 是課程用的種子資料，一併進版控。**這個資料夾採 MIT 授權**（`LICENSE` 置於資料夾內），不適用專案 `README.md` 宣告的 CC BY-NC-SA |
 | `04-Final-Project-Example-Reports/` | 期末的範例報告：`Final-Phase-Sample-Report.md`，加上 `Visitor-System-Full-Analysis.md`（同一套示範系統依期中九項寫的完整分析，供對照第一部分省略了什麼）與 `Final-Phase-Report-Template.md`（五題通用的章節骨架，每節只有一段引言與欄位佔位，不放任何題目的內容；各題的待決問題表放在各自提案書的〈五、你要交出什麼〉） |
@@ -72,13 +72,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | 範例取材領域 | 製造業與工業工程場域（生產排程、品管、物料與訂單流程、工廠資訊系統等），情境優先取材自學生實習或未來職場會遇到的系統 |
 | 學習重點總結的固定引言 | 「讀完本章後，你應該能夠理解以下核心概念，並將其應用於工業場域的思考與決策：」 |
 | 參考文獻取材 | 系統分析與設計領域的經典教科書（如 Dennis、Kendall、Pressman、Sommerville、Yourdon）與原典或里程碑論文（如 Royce 1970、Chen 1976、UML 與敏捷方法的原始文獻），各章約 20 筆以上 |
-| 必讀標記 | 兩組：`🔴 期中必讀` 與 `🔵 期末必讀`，接在小節標題之後（格式見 `reference/chapter-writing-guide.md`〈七、7.1〉），同一行並列時期中在前、期末在後。**判準是該小節的產出或方法，在該階段的範例文件中被明確要求或實際示範**——期中看 `02-Midterm-Project-Example-Reports/` 的 `Analysis-Phase-Deliverables.md` 與 `Analysis-Phase-Sample-Report.md`，期末看 `04-Final-Project-Example-Reports/` 的 `Final-Phase-Sample-Report.md`；概念相關但這些文件沒有真的用到的一律不標，列為可選項目的（狀態機圖、概念類別圖、CRUD 矩陣等）也不標 |
+| 必讀標記 | 兩組：`🔴 期中必讀` 與 `🔵 期末必讀`，接在小節標題之後（格式見 `reference/chapter-writing-guide.md`〈七、7.1〉），同一行並列時期中在前、期末在後。**判準是該小節的產出或方法，在該階段的範例文件中被明確要求或實際示範**——期中看 `02-Midterm-Project-Example-Reports/` 的 `Analysis-Phase-Deliverables.md` 與 `Analysis-Phase-Sample-Report.md`，期末看 `04-Final-Project-Example-Reports/` 的 `Final-Phase-Sample-Report.md`；概念相關但這些文件沒有真的用到的一律不標，列為可選項目的（狀態機圖、CRUD 矩陣等）也不標 |
 | 必讀標記的章首說明 | 放在章首導言最後一則 blockquote 之後，依該章帶哪幾組標記三擇一。**三種措辭全專案一致，已寫進 `reference/chapter-template.md` 的骨架，直接貼上，不要自己重寫。** |
 | 終點章與銜接順序 | 授課順序即檔名編號順序。**`13-Design-Specification.md` 是全書終點章**，不加 `> **銜接提示**`；其餘各章末尾都要有銜接提示指向下一號章節 |
 
 `Analysis-Phase-Deliverables.md`（在 `02-Midterm-Project-Example-Reports/`）是範例報告說明，不是教材正文：說明講「要交什麼」，教材講「怎麼做」。同一主題在兩邊都出現時，概念說明留在教材，繳交欄位與最低標準留在說明，彼此以連結互指。它配一份 `Analysis-Phase-Sample-Report.md`，是照說明寫完的成品，只放內容不放解說。期末沒有範例報告說明，只有 `Final-Phase-Sample-Report.md` 一份成品，要交什麼以 `Report-Contents.md`〈二〉為準。
 
-**兩個階段刻意用不同的示範系統，改動時不要把它們統一：** 分析階段（`Analysis-Phase-*.md`）用課堂範例系統 `sad-forum`（原始碼在 `03-Midterm-Project-Example-Systems/SAD-Forum/`），因為分析要對照既有系統的原始碼才驗證得出有沒有看懂；期末階段（`Final-Phase-Sample-Report.md`）用**工廠訪客進出登記系統**（原始碼在 `05-Final-Project-Topics/Example-Systems/SAD-Visitor/`），因為期末題目全在工廠，校園系統示範不出法規對資料的限制與現場環境條件。**期末階段的文件不得再出現論壇系統的內容。**
+**範例報告兩個階段用不同的示範系統，改動時不要把它們統一：** 期中的範例報告與說明（`Analysis-Phase-*.md`）用課堂範例系統 `sad-forum`（原始碼在 `03-Midterm-Project-Example-Systems/SAD-Forum/`），因為分析要對照既有系統的原始碼才驗證得出有沒有看懂；期末的範例報告（`Final-Phase-Sample-Report.md`）用**工廠訪客進出登記系統**，因為期末題目全在工廠，校園系統示範不出法規對資料的限制與現場環境條件。**期末階段的文件不得再出現論壇系統的內容。**
+
+**教材正文只用工廠訪客進出登記系統一套範例**，不用論壇系統，也不另編假設的系統，依章節分成修改前與修改後兩個版本：
+
+| 章節 | 範例文件 | 系統 |
+|---|---|---|
+| 第 1–7 章 | `04-Final-Project-Example-Reports/Visitor-System-Full-Analysis.md` | 修改前的 `05-Final-Project-Topics/Example-Systems/SAD-Visitor/` |
+| 第 8–13 章 | `04-Final-Project-Example-Reports/Final-Phase-Sample-Report.md` | 修改後的 `05-Final-Project-Topics/Example-Systems/SAD-Visitor-Revised/` |
+
+第 1–7 章不放修改後的內容（變更需求、預約、修改後的資料表與畫面），期末專屬的方法集中在 `09-Change-Specification.md`。需要系統沒有的情境時，以同一套系統的條件式延伸簡短帶過（例如「如果要把與人資系統同步納入系統」），依據是範例文件裡列為界外或改善建議的項目。必讀標記的判準不受影響，仍依上方〈必讀標記〉一列所列的範例文件。
 
 **期末的示範系統刻意不在 `05-Final-Project-Topics/` 的五題之中**，學生才抄得到結構、抄不到答案。這條界線在改題目或改範例時都要維持：五題換了要確認訪客系統仍然不重疊，範例換了要確認新題目也不在五題裡。
 
@@ -99,6 +108,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `Course-Rules-Quiz.md` | 課程規範理解測驗 | 省略大標題的「（自我檢核）」 |
 | `Analysis-Phase-Sample-Report.md` | 系統分析範例報告 | 大標題含範例系統名稱，會看起來像是在講那套系統而非示範文件 |
 | `Final-Phase-Sample-Report.md` | 期末範例報告 | 同上 |
+| `Visitor-System-Full-Analysis.md` | 系統分析完整報告 | 同上；「完整」用來和期末範例報告第一部分的簡要版區分 |
 | `README.md` | SAD 課程教材 | 大標題只有課程名，看不出是什麼文件 |
 
 新增文件時，只有在大標題不適合直接當連結文字時才登記到上表。

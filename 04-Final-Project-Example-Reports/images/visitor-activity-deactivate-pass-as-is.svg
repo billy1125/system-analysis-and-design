@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 470" width="420" height="470" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+  </defs>
+  <rect x="0" y="0" width="420" height="470" fill="#ffffff"/>
+  <g>
+    <polyline points="210,40 210,67" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="210,103 210,127" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="210,163 210,187" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="210,223 210,247" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="265,261 368,261" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="316" y="254" text-anchor="middle" font-size="13" fill="#333333">[否，按取消]</text>
+    <polyline points="210,275 210,308" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="218" y="296" font-size="13" fill="#333333">[是]</text>
+    <polyline points="210,344 210,368" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <polyline points="210,404 210,429" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  </g>
+  <g>
+    <circle cx="210" cy="30" r="10" fill="#222222"/>
+    <rect x="119" y="67" width="182" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="210" y="90" text-anchor="middle" fill="#111111">管理員開啟訪客證管理頁</text>
+    <rect x="140" y="127" width="140" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="210" y="150" text-anchor="middle" fill="#111111">找到遺失的訪客證</text>
+    <rect x="140" y="187" width="140" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="210" y="210" text-anchor="middle" fill="#111111">按停用並填寫備註</text>
+    <polygon points="155,261 165,247 255,247 265,261 255,275 165,275" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="210" y="266" text-anchor="middle" fill="#111111">是否按確定</text>
+    <circle cx="380" cy="261" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/><circle cx="380" cy="261" r="7" fill="#222222"/>
+    <rect x="133" y="308" width="154" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="210" y="331" text-anchor="middle" fill="#111111">系統將該證設為停用</text>
+    <rect x="98" y="368" width="224" height="36" rx="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="210" y="391" text-anchor="middle" fill="#111111">登記頁的下拉選單不再出現該證</text>
+    <circle cx="210" cy="441" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/><circle cx="210" cy="441" r="7" fill="#222222"/>
+  </g>
+</svg>

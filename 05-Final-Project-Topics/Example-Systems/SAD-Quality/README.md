@@ -47,27 +47,27 @@ node --version
 
 ### 2. 取得專案
 
-這套系統收在課程教材儲存庫裡，路徑是 `05-Final-Project-Topics/SAD-Quality/`，不是獨立的儲存庫。下面兩種方法擇一。
+這套系統收在課程教材儲存庫裡，路徑是 `05-Final-Project-Topics/Example-Systems/SAD-Quality/`，不是獨立的儲存庫。下面兩種方法擇一。
 
 #### 方法 A：使用 Git
 
 ```bash
 git clone https://github.com/billy1125/system-analysis-and-design.git
-cd system-analysis-and-design/05-Final-Project-Topics/SAD-Quality
+cd system-analysis-and-design/05-Final-Project-Topics/Example-Systems/SAD-Quality
 ```
 
 #### 方法 B：下載 ZIP
 
 1. 開啟 <https://github.com/billy1125/system-analysis-and-design>，點選綠色 **Code** 按鈕 → **Download ZIP**
 2. 解壓縮到你想放的位置，解壓縮後的資料夾名稱是「system-analysis-and-design-main」
-3. 開啟終端機，切換到解壓縮資料夾底下的 `05-Final-Project-Topics/SAD-Quality`
+3. 開啟終端機，切換到解壓縮資料夾底下的 `05-Final-Project-Topics/Example-Systems/SAD-Quality`
 
 ```bash
 # Windows（PowerShell）
 cd "C:\Users\你的帳號\Downloads\system-analysis-and-design-main\05-Final-Project-Topics\SAD-Quality"
 
 # macOS
-cd "/Users/你的帳號/Downloads/system-analysis-and-design-main/05-Final-Project-Topics/SAD-Quality"
+cd "/Users/你的帳號/Downloads/system-analysis-and-design-main/05-Final-Project-Topics/Example-Systems/SAD-Quality"
 ```
 
 > 把範例路徑換成你自己的完整路徑。Windows 在檔案總管點網址列就能複製路徑；macOS 在 Finder 按住 `Option` 右鍵點資料夾，選「複製路徑名稱」。

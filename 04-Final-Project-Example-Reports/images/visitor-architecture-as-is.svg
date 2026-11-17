@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 240" width="960" height="240" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+    <marker id="arrow-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#333333"/></marker>
+    <g id="actor" fill="none" stroke="#333333" stroke-width="1.5"><circle cx="0" cy="0" r="9" fill="#f3f3f3"/><line x1="0" y1="9" x2="0" y2="32"/><line x1="-15" y1="17" x2="15" y2="17"/><polyline points="-13,50 0,32 13,50"/></g>
+  </defs>
+  <rect x="0" y="0" width="960" height="240" fill="#ffffff"/>
+  <rect x="160" y="20" width="780" height="200" rx="4" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <text x="550" y="44" text-anchor="middle" font-weight="bold" fill="#111111">櫃台電腦</text>
+  <use href="#actor" x="70" y="95"/>
+  <text x="70" y="170" text-anchor="middle" fill="#111111">接待員、管理員</text>
+  <g stroke="#333333" stroke-width="1.5" fill="none">
+    <line x1="100" y1="122" x2="189" y2="122" marker-end="url(#arrow)"/>
+    <line x1="391" y1="122" x2="479" y2="122" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+    <line x1="661" y1="122" x2="749" y2="122" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  </g>
+  <text x="435" y="112" text-anchor="middle" font-size="13" fill="#333333">請求與回應</text>
+  <text x="705" y="112" text-anchor="middle" font-size="13" fill="#333333">讀寫</text>
+  <rect x="190" y="90" width="200" height="64" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="290" y="116" text-anchor="middle" fill="#111111">瀏覽器畫面</text>
+  <text x="290" y="138" text-anchor="middle" font-size="13" fill="#111111">HTML、CSS、JavaScript</text>
+  <rect x="480" y="90" width="180" height="64" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="570" y="116" text-anchor="middle" fill="#111111">Node.js 程式</text>
+  <text x="570" y="138" text-anchor="middle" font-size="13" fill="#111111">server.js</text>
+  <path d="M750,86 L750,158 A80,10 0 0 0 910,158 L910,86" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <ellipse cx="830" cy="86" rx="80" ry="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="830" y="124" text-anchor="middle" fill="#111111">SQLite 資料庫檔</text>
+  <text x="830" y="144" text-anchor="middle" font-size="13" fill="#111111">database.db</text>
+</svg>

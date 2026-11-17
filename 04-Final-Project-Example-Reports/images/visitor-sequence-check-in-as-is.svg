@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 684" width="680" height="684" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+    <marker id="open" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#333333" stroke-width="1.5"/></marker>
+    <g id="actor" fill="none" stroke="#333333" stroke-width="1.5"><circle cx="0" cy="0" r="9" fill="#f3f3f3"/><line x1="0" y1="9" x2="0" y2="32"/><line x1="-15" y1="17" x2="15" y2="17"/><polyline points="-13,50 0,32 13,50"/></g>
+  </defs>
+  <rect x="0" y="0" width="680" height="684" fill="#ffffff"/>
+  <g stroke="#888888" stroke-width="1.2" stroke-dasharray="6,4">
+    <line x1="90" y1="104" x2="90" y2="582"/>
+    <line x1="560" y1="98" x2="560" y2="582"/>
+  </g>
+  <use href="#actor" x="90" y="22"/>
+  <text x="90" y="94" text-anchor="middle" fill="#111111">接待員</text>
+  <rect x="504" y="62" width="112" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="560" y="85" text-anchor="middle" fill="#111111">訪客登記系統</text>
+  <text x="90" y="602" text-anchor="middle" fill="#111111">接待員</text>
+  <use href="#actor" x="90" y="622"/>
+  <rect x="504" y="582" width="112" height="36" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="560" y="605" text-anchor="middle" fill="#111111">訪客登記系統</text>
+  <rect x="60" y="242" width="540" height="310" fill="none" stroke="#333333" stroke-width="1.5"/>
+  <path d="M60,242 L112,242 L112,254 L104,262 L60,262 z" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="84" y="257" text-anchor="middle" font-weight="bold" fill="#111111">alt</text>
+  <line x1="60" y1="304" x2="600" y2="304" stroke="#333333" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <line x1="60" y1="366" x2="600" y2="366" stroke="#333333" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <line x1="60" y1="428" x2="600" y2="428" stroke="#333333" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <line x1="60" y1="490" x2="600" y2="490" stroke="#333333" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <g stroke="#333333" stroke-width="1.5">
+    <line x1="90" y1="154" x2="559" y2="154" marker-end="url(#arrow)"/>
+    <line x1="560" y1="188" x2="91" y2="188" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="90" y1="222" x2="559" y2="222" marker-end="url(#arrow)"/>
+    <line x1="560" y1="282" x2="91" y2="282" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="560" y1="344" x2="91" y2="344" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="560" y1="406" x2="91" y2="406" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="560" y1="468" x2="91" y2="468" stroke-dasharray="6,4" marker-end="url(#open)"/>
+    <line x1="560" y1="530" x2="91" y2="530" stroke-dasharray="6,4" marker-end="url(#open)"/>
+  </g>
+  <g>
+    <text x="100" y="147" fill="#111111">請求來訪登記頁</text>
+    <text x="110" y="181" fill="#111111">在職員工清單、可用訪客證清單</text>
+    <text x="100" y="215" fill="#111111">送出登記(訪客資料, 受訪員工, 事由, 隨行人數, 車牌, 備註, 訪客證)</text>
+    <text x="120" y="257" font-size="13" font-weight="bold" fill="#333333">[欄位錯誤]</text>
+    <text x="110" y="275" fill="#111111">對應的錯誤訊息</text>
+    <text x="66" y="383" font-size="13" font-weight="bold" fill="#333333">[訪客證已在使用中]</text>
+    <text x="66" y="321" font-size="13" font-weight="bold" fill="#333333">[訪客證已停用]</text>
+    <text x="110" y="337" fill="#111111">訪客證 V-xx 已停用，請重新選擇</text>
+    <text x="110" y="399" fill="#111111">訪客證 V-xx 已在使用中，請重新選擇</text>
+    <text x="66" y="445" font-size="13" font-weight="bold" fill="#333333">[訪客仍在廠內]</text>
+    <text x="110" y="461" fill="#111111">此訪客目前仍在廠內，請先完成離廠登記</text>
+    <text x="66" y="507" font-size="13" font-weight="bold" fill="#333333">[通過]</text>
+    <text x="110" y="523" fill="#111111">登記完成：訪客證 V-xx</text>
+  </g>
+
+</svg>

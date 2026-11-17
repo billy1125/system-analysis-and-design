@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1275 1270" width="1275" height="1270" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1275" height="1270" fill="#ffffff"/>
+
+  <g transform="translate(20,10)">
+    <!-- swimlanes -->
+    <rect x="0" y="0" width="880" height="40" fill="#f3f3f3"/>
+    <g stroke="#333333" stroke-width="2">
+      <line x1="0" y1="0" x2="0" y2="1250"/>
+      <line x1="180" y1="0" x2="180" y2="1250"/>
+      <line x1="350" y1="0" x2="350" y2="1250"/>
+      <line x1="620" y1="0" x2="620" y2="1250"/>
+      <line x1="880" y1="0" x2="880" y2="1250"/>
+      <line x1="0" y1="0" x2="880" y2="0"/>
+      <line x1="0" y1="40" x2="880" y2="40"/>
+      <line x1="0" y1="1250" x2="880" y2="1250"/>
+    </g>
+    <g fill="#111111" font-size="18" text-anchor="middle">
+      <text x="90" y="27">受訪員工</text>
+      <text x="265" y="27">訪客</text>
+      <text x="485" y="27">接待員</text>
+      <text x="750" y="27">系統</text>
+    </g>
+    <text x="1065" y="26" font-size="13" text-anchor="middle" fill="#777777">（錯誤訊息，不放在任何泳道）</text>
+
+    <!-- flows -->
+    <g fill="none" stroke="#333333" stroke-width="1.5">
+      <line x1="265" y1="80" x2="265" y2="102" marker-end="url(#arrow)"/>
+      <polyline points="340,120 485,120 485,162" marker-end="url(#arrow)"/>
+      <polyline points="570,180 750,180 750,226" marker-end="url(#arrow)"/>
+      <polyline points="665,240 485,240 485,292" marker-end="url(#arrow)"/>
+      <line x1="750" y1="254" x2="750" y2="292" marker-end="url(#arrow)"/>
+      <line x1="485" y1="328" x2="485" y2="368" marker-end="url(#arrow)"/>
+      <polyline points="750,328 750,380 497,380" marker-end="url(#arrow)"/>
+      <line x1="485" y1="392" x2="485" y2="422" marker-end="url(#arrow)"/>
+      <line x1="485" y1="458" x2="485" y2="482" marker-end="url(#arrow)"/>
+      <line x1="395" y1="500" x2="170" y2="500" marker-end="url(#arrow)"/>
+      <line x1="90" y1="518" x2="90" y2="555" marker-end="url(#arrow)"/>
+      <line x1="90" y1="563" x2="90" y2="622" marker-end="url(#arrow)"/>
+      <line x1="485" y1="563" x2="485" y2="583" marker-end="url(#arrow)"/>
+      <line x1="485" y1="607" x2="485" y2="622" marker-end="url(#arrow)"/>
+      <polyline points="610,640 750,640 750,696" marker-end="url(#arrow)"/>
+      <line x1="840" y1="710" x2="965" y2="710" marker-end="url(#arrow)"/>
+      <polyline points="1065,692 1065,595 497,595" marker-end="url(#arrow)"/>
+      <line x1="750" y1="724" x2="750" y2="766" marker-end="url(#arrow)"/>
+      <line x1="840" y1="780" x2="934" y2="780" marker-end="url(#arrow)"/>
+      <polyline points="1196,780 1235,780"/>
+      <line x1="840" y1="850" x2="920" y2="850" marker-end="url(#arrow)"/>
+      <polyline points="1210,850 1235,850 1235,595 1065,595"/>
+      <line x1="750" y1="794" x2="750" y2="836" marker-end="url(#arrow)"/>
+      <line x1="750" y1="864" x2="750" y2="906" marker-end="url(#arrow)"/>
+      <line x1="840" y1="920" x2="905" y2="920" marker-end="url(#arrow)"/>
+      <line x1="1065" y1="938" x2="1065" y2="973" marker-end="url(#arrow)"/>
+      <line x1="750" y1="934" x2="750" y2="972" marker-end="url(#arrow)"/>
+      <polyline points="750,1008 750,1050 565,1050" marker-end="url(#arrow)"/>
+      <line x1="405" y1="1050" x2="325" y2="1050" marker-end="url(#arrow)"/>
+      <line x1="265" y1="1068" x2="265" y2="1105" marker-end="url(#arrow)"/>
+      <line x1="90" y1="658" x2="90" y2="1105" marker-end="url(#arrow)"/>
+      <line x1="90" y1="1113" x2="90" y2="1142" marker-end="url(#arrow)"/>
+      <line x1="90" y1="1178" x2="90" y2="1208" marker-end="url(#arrow)"/>
+    </g>
+
+    <!-- branch labels -->
+    <g font-size="13" fill="#333333">
+      <text x="575" y="233" text-anchor="middle">[查無]</text>
+      <text x="758" y="278">[查到]</text>
+      <text x="900" y="703" text-anchor="middle">[否]</text>
+      <text x="758" y="750">[是]</text>
+      <text x="907" y="773" text-anchor="middle">[否]</text>
+      <text x="758" y="820">[是]</text>
+      <text x="900" y="843" text-anchor="middle">[否]</text>
+      <text x="758" y="890">[是]</text>
+      <text x="860" y="913" text-anchor="middle">[否]</text>
+      <text x="758" y="960">[是]</text>
+      <text x="526" y="564" font-size="12" fill="#666666">分岔</text>
+      <text x="306" y="1114" font-size="12" fill="#666666">會合</text>
+    </g>
+
+    <!-- start, fork, join, ends -->
+    <circle cx="265" cy="70" r="10" fill="#222222"/>
+    <rect x="60" y="556" width="460" height="7" fill="#222222"/>
+    <rect x="60" y="1106" width="240" height="7" fill="#222222"/>
+    <circle cx="1065" cy="985" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/><circle cx="1065" cy="985" r="7" fill="#222222"/>
+    <circle cx="90" cy="1220" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/><circle cx="90" cy="1220" r="7" fill="#222222"/>
+
+    <!-- actions -->
+    <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+      <rect x="190" y="102" width="150" height="36" rx="10"/>
+      <rect x="400" y="162" width="170" height="36" rx="10"/>
+      <rect x="360" y="292" width="250" height="36" rx="10"/>
+      <rect x="645" y="292" width="210" height="36" rx="10"/>
+      <rect x="425" y="422" width="120" height="36" rx="10"/>
+      <rect x="395" y="482" width="180" height="36" rx="10"/>
+      <rect x="10" y="482" width="160" height="36" rx="10"/>
+      <rect x="20" y="622" width="140" height="36" rx="10"/>
+      <rect x="360" y="622" width="250" height="36" rx="10"/>
+      <rect x="965" y="692" width="200" height="36" rx="10"/>
+      <rect x="934" y="762" width="262" height="36" rx="10"/>
+      <rect x="920" y="832" width="290" height="36" rx="10"/>
+      <rect x="905" y="902" width="320" height="36" rx="10"/>
+      <rect x="655" y="972" width="190" height="36" rx="10"/>
+      <rect x="405" y="1032" width="160" height="36" rx="10"/>
+      <rect x="205" y="1032" width="120" height="36" rx="10"/>
+      <rect x="15" y="1142" width="150" height="36" rx="10"/>
+      <polygon points="665,240 675,226 825,226 835,240 825,254 675,254"/>
+      <polygon points="485,368 497,380 485,392 473,380"/>
+      <polygon points="485,583 497,595 485,607 473,595"/>
+      <polygon points="660,710 670,696 830,696 840,710 830,724 670,724"/>
+      <polygon points="660,780 670,766 830,766 840,780 830,794 670,794"/>
+      <polygon points="660,850 670,836 830,836 840,850 830,864 670,864"/>
+      <polygon points="660,920 670,906 830,906 840,920 830,934 670,934"/>
+    </g>
+    <g fill="#111111" text-anchor="middle">
+      <text x="265" y="125">告知手機並出示證件</text>
+      <text x="485" y="185">輸入手機號碼查詢</text>
+      <text x="750" y="245">是否查到訪客資料</text>
+      <text x="485" y="315">輸入姓名、公司、手機、身分證字號</text>
+      <text x="750" y="315">帶出姓名、公司、身分證字號</text>
+      <text x="485" y="445">核對證件</text>
+      <text x="485" y="505">打分機通知受訪員工</text>
+      <text x="90" y="505">接電話，答應出來接人</text>
+      <text x="90" y="645">走到大門櫃台</text>
+      <text x="485" y="645">選擇受訪員工、事由、訪客證，送出</text>
+      <text x="750" y="715">必填與格式是否正確</text>
+      <text x="1065" y="715">顯示對應的錯誤訊息</text>
+      <text x="750" y="785">訪客證是否啟用</text>
+      <text x="1065" y="785">顯示：訪客證 V-xx 已停用，請重新選擇</text>
+      <text x="750" y="855">訪客證是否未被使用</text>
+      <text x="1065" y="855">顯示：訪客證 V-xx 已在使用中，請重新選擇</text>
+      <text x="750" y="925">該訪客是否不在廠內</text>
+      <text x="1065" y="925">顯示：此訪客目前仍在廠內，請先完成離廠登記</text>
+      <text x="750" y="995">寫入來訪紀錄與報到時間</text>
+      <text x="485" y="1055">把訪客證交給訪客</text>
+      <text x="265" y="1055">掛上訪客證</text>
+      <text x="90" y="1165">到櫃台接走訪客</text>
+    </g>
+  </g>
+</svg>

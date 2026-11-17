@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340" width="960" height="340" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+    <marker id="arrow-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#333333"/></marker>
+    <marker id="arrow-new" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9730d"/></marker>
+    <g id="actor" fill="none" stroke="#333333" stroke-width="1.5"><circle cx="0" cy="0" r="9" fill="#f3f3f3"/><line x1="0" y1="9" x2="0" y2="32"/><line x1="-15" y1="17" x2="15" y2="17"/><polyline points="-13,50 0,32 13,50"/></g>
+    <g id="actor-new" fill="none" stroke="#d9730d" stroke-width="1.5"><circle cx="0" cy="0" r="9" fill="#ffffff"/><line x1="0" y1="9" x2="0" y2="32"/><line x1="-15" y1="17" x2="15" y2="17"/><polyline points="-13,50 0,32 13,50"/></g>
+  </defs>
+  <rect x="0" y="0" width="960" height="340" fill="#ffffff"/>
+
+  <!-- factory network boundary -->
+  <rect x="10" y="10" width="800" height="320" rx="4" fill="none" stroke="#333333" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="26" y="34" font-weight="bold" fill="#111111">廠內網路</text>
+
+  <!-- users -->
+  <use href="#actor" x="62" y="85"/>
+  <text x="62" y="160" text-anchor="middle" font-size="13" fill="#111111">接待員、管理員</text>
+  <use href="#actor-new" x="62" y="225"/>
+  <text x="62" y="300" text-anchor="middle" font-size="13" fill="#d9730d">受訪員工</text>
+
+  <!-- client PCs -->
+  <rect x="110" y="80" width="180" height="64" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="200" y="106" text-anchor="middle" fill="#111111">櫃台電腦</text>
+  <text x="200" y="128" text-anchor="middle" font-size="13" fill="#111111">瀏覽器畫面</text>
+  <rect x="110" y="220" width="180" height="64" rx="4" fill="#ffffff" stroke="#d9730d" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="200" y="246" text-anchor="middle" fill="#d9730d">員工座位的電腦</text>
+  <text x="200" y="268" text-anchor="middle" font-size="13" fill="#d9730d">瀏覽器畫面</text>
+
+  <g fill="none" stroke-width="1.5">
+    <line x1="83" y1="112" x2="109" y2="112" stroke="#333333" marker-end="url(#arrow)"/>
+    <line x1="83" y1="252" x2="109" y2="252" stroke="#d9730d" marker-end="url(#arrow-new)"/>
+    <line x1="291" y1="112" x2="399" y2="170" stroke="#333333" marker-end="url(#arrow)"/>
+    <line x1="291" y1="252" x2="399" y2="194" stroke="#d9730d" marker-end="url(#arrow-new)"/>
+    <line x1="561" y1="182" x2="629" y2="182" stroke="#333333" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  </g>
+  <text x="330" y="124" text-anchor="middle" font-size="13" fill="#333333">HTTP 請求</text>
+  <text x="330" y="252" text-anchor="middle" font-size="13" fill="#d9730d">HTTP 請求</text>
+  <text x="595" y="172" text-anchor="middle" font-size="13" fill="#333333">讀寫</text>
+
+  <!-- factory server -->
+  <rect x="380" y="110" width="410" height="140" rx="4" fill="none" stroke="#d9730d" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="585" y="134" text-anchor="middle" font-weight="bold" fill="#d9730d">廠內伺服器</text>
+  <rect x="400" y="150" width="160" height="64" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="480" y="176" text-anchor="middle" fill="#111111">Node.js 程式</text>
+  <text x="480" y="198" text-anchor="middle" font-size="13" fill="#111111">server.js</text>
+  <path d="M630,150 L630,214 A70,10 0 0 0 770,214 L770,150" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <ellipse cx="700" cy="150" rx="70" ry="10" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="700" y="188" text-anchor="middle" fill="#111111">SQLite 資料庫檔</text>
+  <text x="700" y="206" text-anchor="middle" font-size="13" fill="#111111">database.db</text>
+
+  <!-- outside the plant -->
+  <text x="885" y="150" text-anchor="middle" font-weight="bold" fill="#111111">廠外</text>
+  <line x1="870" y1="182" x2="818" y2="182" stroke="#333333" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <g stroke="#333333" stroke-width="2">
+    <line x1="802" y1="174" x2="818" y2="190"/>
+    <line x1="802" y1="190" x2="818" y2="174"/>
+  </g>
+  <text x="885" y="214" text-anchor="middle" font-size="13" fill="#333333">不開放</text>
+  <text x="885" y="232" text-anchor="middle" font-size="13" fill="#333333">廠外連線</text>
+</svg>

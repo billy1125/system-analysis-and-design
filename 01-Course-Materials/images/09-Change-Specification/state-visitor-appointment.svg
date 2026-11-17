@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 345" width="940" height="345" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+  </defs>
+  <rect x="0" y="0" width="940" height="345" fill="#ffffff"/>
+  <circle cx="70" cy="150" r="10" fill="#222222"/>
+  <circle cx="900" cy="150" r="12" fill="#ffffff" stroke="#222222" stroke-width="1.5"/><circle cx="900" cy="150" r="7" fill="#222222"/>
+  <polyline points="80,150 205,150" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="140" y="141" text-anchor="middle" font-size="13" fill="#333333">受訪員工登錄</text>
+  <polyline points="315,150 400,150 400,60 605,60" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="410" y="52" font-size="13" fill="#333333">接待員報到 [預約當天]</text>
+  <polyline points="315,150 605,150" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="500" y="141" text-anchor="middle" font-size="13" fill="#333333">受訪員工取消</text>
+  <polyline points="315,150 400,150 400,240 605,240" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/><text x="410" y="232" font-size="13" fill="#333333">[預約日期已過]</text>
+  <polyline points="715,60 800,60 800,150 887,150" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <polyline points="715,150 800,150 800,150 887,150" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <polyline points="715,240 800,240 800,150 887,150" fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M520,290 L790,290 L800,300 L800,330 L520,330 z" fill="#fbfbe6" stroke="#333333" stroke-width="1.2"/>
+  <path d="M790,290 L790,300 L800,300" fill="none" stroke="#333333" stroke-width="1.2"/>
+  <text x="530" y="315" font-size="13" fill="#111111">「未到」不存欄位，由日期推導（BR-01）</text>
+  <line x1="660" y1="260" x2="660" y2="290" stroke="#333333" stroke-width="1" stroke-dasharray="3,3"/>
+  <rect x="205" y="130" width="110" height="40" rx="12" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="260" y="155" text-anchor="middle" fill="#111111">已預約</text>
+  <rect x="605" y="40" width="110" height="40" rx="12" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="660" y="65" text-anchor="middle" fill="#111111">已報到</text>
+  <rect x="605" y="130" width="110" height="40" rx="12" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/><text x="660" y="155" text-anchor="middle" fill="#111111">已取消</text>
+  <rect x="605" y="220" width="110" height="40" rx="12" fill="#f3f3f3" stroke="#333333" stroke-width="1.5" stroke-dasharray="6,4"/><text x="660" y="245" text-anchor="middle" fill="#111111">未到</text>
+
+</svg>

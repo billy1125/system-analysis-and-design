@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" width="960" height="640" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="640" fill="#ffffff"/>
+
+  <!-- presentation: browser -->
+  <rect x="300" y="20" width="360" height="60" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="480" y="45" text-anchor="middle" fill="#111111">瀏覽器畫面</text>
+  <text x="480" y="66" text-anchor="middle" font-size="13" fill="#111111">public/*.html、public/js/*.js</text>
+
+  <!-- application system container -->
+  <rect x="90" y="120" width="780" height="380" rx="4" fill="#fafafa" stroke="#999999" stroke-width="1.5"/>
+  <text x="106" y="142" fill="#444444">應用系統（server.js 啟動的程式）</text>
+
+  <rect x="260" y="155" width="440" height="50" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="480" y="186" text-anchor="middle" fill="#111111">server.js：路由表、登入與角色檢查、錯誤處理</text>
+
+  <rect x="110" y="240" width="740" height="160" rx="4" fill="#ffffff" stroke="#999999" stroke-width="1.5"/>
+  <text x="126" y="262" fill="#444444">routes/：每支檔案對應一組功能</text>
+
+  <g stroke-width="1.5">
+    <rect x="119" y="275" width="170" height="50" rx="4" fill="#f3f3f3" stroke="#333333"/>
+    <rect x="303" y="275" width="170" height="50" rx="4" fill="#f3f3f3" stroke="#333333"/>
+    <rect x="487" y="275" width="170" height="50" rx="4" fill="#f3f3f3" stroke="#333333"/>
+    <rect x="671" y="275" width="170" height="50" rx="4" fill="#f3f3f3" stroke="#333333"/>
+    <rect x="119" y="337" width="170" height="50" rx="4" fill="#f3f3f3" stroke="#333333"/>
+    <rect x="303" y="337" width="170" height="50" rx="4" fill="#ffffff" stroke="#d9730d" stroke-dasharray="6,4"/>
+    <rect x="487" y="337" width="170" height="50" rx="4" fill="#ffffff" stroke="#d9730d" stroke-dasharray="6,4"/>
+    <rect x="671" y="337" width="170" height="50" rx="4" fill="#f3f3f3" stroke="#333333"/>
+  </g>
+  <g text-anchor="middle" fill="#111111" font-size="13">
+    <text x="204" y="296">auth.js</text>
+    <text x="204" y="314">登入、登出</text>
+    <text x="388" y="296">onsite.js</text>
+    <text x="388" y="314">在廠清單、離廠</text>
+    <text x="572" y="296">register.js</text>
+    <text x="572" y="314">查詢訪客、來訪登記</text>
+    <text x="756" y="296">visits.js</text>
+    <text x="756" y="314">來訪紀錄</text>
+    <text x="204" y="358">visitors.js</text>
+    <text x="204" y="376">訪客資料</text>
+    <text x="756" y="358">admin.js</text>
+    <text x="756" y="376">員工、訪客證、帳號</text>
+  </g>
+  <g text-anchor="middle" fill="#d9730d" font-size="13">
+    <text x="388" y="358">appointments.js</text>
+    <text x="388" y="376">預約（CR-01）</text>
+    <text x="572" y="358">overview.js</text>
+    <text x="572" y="376">當日總覽（CR-03）</text>
+  </g>
+
+  <rect x="300" y="430" width="360" height="50" rx="4" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="480" y="461" text-anchor="middle" fill="#111111">lib/db.js：開啟資料庫、交易、本機時間</text>
+
+  <!-- links -->
+  <g fill="none" stroke="#333333" stroke-width="1.5" marker-end="url(#arrow)">
+    <line x1="480" y1="80" x2="480" y2="153"/>
+    <line x1="480" y1="205" x2="480" y2="238"/>
+    <line x1="480" y1="400" x2="480" y2="428"/>
+    <line x1="480" y1="480" x2="480" y2="538"/>
+  </g>
+  <text x="490" y="116" font-size="13" fill="#444444">HTTP 請求（資料以 JSON 傳回）</text>
+  <text x="490" y="516" font-size="13" fill="#444444">讀寫</text>
+
+  <!-- database -->
+  <path d="M410,540 L410,600 A70,12 0 0 0 550,600 L550,540" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <ellipse cx="480" cy="540" rx="70" ry="12" fill="#f3f3f3" stroke="#333333" stroke-width="1.5"/>
+  <text x="480" y="574" text-anchor="middle" fill="#111111">SQLite 資料庫檔</text>
+  <text x="480" y="594" text-anchor="middle" font-size="13" fill="#111111">database.db</text>
+
+  <!-- layer labels -->
+  <g text-anchor="middle" font-size="13" fill="#444444">
+    <text x="915" y="55">表現層</text>
+    <text x="915" y="300">業務邏輯層</text>
+    <text x="915" y="460">資料存取層</text>
+  </g>
+</svg>

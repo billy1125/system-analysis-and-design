@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 230" width="840" height="230" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <rect x="0" y="0" width="840" height="230" fill="#ffffff"/>
+
+  <g fill="#444444" font-size="13">
+    <text x="40" y="26">拆開前：訪客與員工是多對多</text>
+    <text x="40" y="136">拆開後：中間多了一張來訪紀錄</text>
+  </g>
+
+  <g fill="none" stroke="#333333" stroke-width="1.5">
+    <!-- before: visitors to employees, many on both ends -->
+    <line x1="200" y1="68" x2="640" y2="68"/>
+    <line x1="214" y1="68" x2="200" y2="56"/>
+    <line x1="214" y1="68" x2="200" y2="80"/>
+    <line x1="626" y1="68" x2="640" y2="56"/>
+    <line x1="626" y1="68" x2="640" y2="80"/>
+    <!-- after: visitors to visits -->
+    <line x1="200" y1="178" x2="340" y2="178"/>
+    <line x1="212" y1="168" x2="212" y2="188"/>
+    <line x1="220" y1="168" x2="220" y2="188"/>
+    <line x1="326" y1="178" x2="340" y2="166"/>
+    <line x1="326" y1="178" x2="340" y2="190"/>
+    <!-- after: employees to visits -->
+    <line x1="500" y1="178" x2="640" y2="178"/>
+    <line x1="628" y1="168" x2="628" y2="188"/>
+    <line x1="620" y1="168" x2="620" y2="188"/>
+    <line x1="514" y1="178" x2="500" y2="166"/>
+    <line x1="514" y1="178" x2="500" y2="190"/>
+  </g>
+  <g fill="#ffffff" stroke="#333333" stroke-width="1.5">
+    <circle cx="222" cy="68" r="6"/>
+    <circle cx="618" cy="68" r="6"/>
+    <circle cx="318" cy="178" r="6"/>
+    <circle cx="522" cy="178" r="6"/>
+  </g>
+
+  <!-- entities -->
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <rect x="40" y="40" width="160" height="56"/>
+    <rect x="640" y="40" width="160" height="56"/>
+    <rect x="40" y="150" width="160" height="56"/>
+    <rect x="340" y="150" width="160" height="56"/>
+    <rect x="640" y="150" width="160" height="56"/>
+  </g>
+  <g fill="#111111" text-anchor="middle" font-family="Consolas, 'Courier New', monospace" font-size="15">
+    <text x="120" y="73">visitors</text>
+    <text x="720" y="73">employees</text>
+    <text x="120" y="183">visitors</text>
+    <text x="420" y="183">visits</text>
+    <text x="720" y="183">employees</text>
+  </g>
+
+  <!-- relationship labels -->
+  <g fill="#444444" font-size="13" text-anchor="middle">
+    <text x="420" y="60">拜訪</text>
+    <text x="270" y="166">來訪</text>
+    <text x="570" y="166">受訪</text>
+  </g>
+</svg>

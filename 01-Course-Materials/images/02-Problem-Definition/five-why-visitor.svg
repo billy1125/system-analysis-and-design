@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 330" width="1140" height="330" font-family="'Noto Sans TC', 'Microsoft JhengHei', sans-serif" font-size="14">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333333"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1140" height="330" fill="#ffffff"/>
+  <text x="570" y="34" text-anchor="middle" font-size="18" fill="#111111">五問法（5 Why）：在廠訪客清單不準</text>
+
+  <!-- boxes -->
+  <g fill="#f3f3f3" stroke="#333333" stroke-width="1.5">
+    <rect x="20" y="60" width="196" height="170" rx="10"/>
+    <rect x="250" y="60" width="196" height="170" rx="10"/>
+    <rect x="480" y="60" width="196" height="170" rx="10"/>
+    <rect x="710" y="60" width="196" height="170" rx="10"/>
+    <rect x="940" y="60" width="180" height="170" rx="10"/>
+  </g>
+  <g fill="#e6e6e6" stroke="#333333" stroke-width="1.5">
+    <path d="M20,96 L20,70 Q20,60 30,60 L206,60 Q216,60 216,70 L216,96 z"/>
+    <path d="M250,96 L250,70 Q250,60 260,60 L436,60 Q446,60 446,70 L446,96 z"/>
+    <path d="M480,96 L480,70 Q480,60 490,60 L666,60 Q676,60 676,70 L676,96 z"/>
+    <path d="M710,96 L710,70 Q710,60 720,60 L896,60 Q906,60 906,70 L906,96 z"/>
+    <path d="M940,96 L940,70 Q940,60 950,60 L1110,60 Q1120,60 1120,70 L1120,96 z"/>
+  </g>
+  <g font-size="16" text-anchor="middle" fill="#111111">
+    <text x="118" y="84">現象</text>
+    <text x="348" y="84">為什麼？</text>
+    <text x="578" y="84">為什麼？</text>
+    <text x="808" y="84">為什麼？</text>
+    <text x="1030" y="84">為什麼？</text>
+  </g>
+
+  <!-- arrows -->
+  <g fill="none" stroke="#333333" stroke-width="1.5">
+    <line x1="216" y1="145" x2="248" y2="145" marker-end="url(#arrow)"/>
+    <line x1="446" y1="145" x2="478" y2="145" marker-end="url(#arrow)"/>
+    <line x1="676" y1="145" x2="708" y2="145" marker-end="url(#arrow)"/>
+    <line x1="906" y1="145" x2="938" y2="145" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- contents -->
+  <g text-anchor="middle" fill="#111111">
+    <text x="118" y="130">在廠訪客清單上</text>
+    <text x="118" y="152">的人數比實際多</text>
+
+    <text x="348" y="130">有些訪客已經離開，</text>
+    <text x="348" y="152">系統上仍算在廠</text>
+
+    <text x="578" y="130">他們沒交回訪客證</text>
+    <text x="578" y="152">就走了，沒有人</text>
+    <text x="578" y="174">按「離廠」</text>
+
+    <text x="808" y="130">沒交回訪客證時，</text>
+    <text x="808" y="152">沒有人去追；</text>
+    <text x="808" y="174">交班時也不核對</text>
+    <text x="808" y="196">在廠清單</text>
+
+    <text x="1030" y="130">沒有規定訪客</text>
+    <text x="1030" y="152">未交回訪客證時</text>
+    <text x="1030" y="174">由誰追蹤、</text>
+    <text x="1030" y="196">什麼時候核對</text>
+  </g>
+
+  <!-- conclusion -->
+  <rect x="20" y="256" width="1100" height="50" rx="10" fill="#e6e6e6" stroke="#333333" stroke-width="1.5"/>
+  <text x="570" y="287" text-anchor="middle" font-size="16" fill="#111111">追到第五層：問題出在權責沒有訂，屬於組織層次，不是系統功能不足</text>
+</svg>
