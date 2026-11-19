@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>誰上過這堂課｜員工教育訓練紀錄情境模擬</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="game.js"></script>
+</head>
+<body>
+<div id="app">
+  <section id="title-screen">
+    <header class="title-head">
+      <p class="edition" id="edition-tag"></p>
+      <h1>誰上過這堂課</h1>
+      <p class="sub">員工教育訓練紀錄系統｜情境模擬教材</p>
+    </header>
+    <section id="menu-midterm" class="menu"></section>
+    <section id="menu-final" class="menu" hidden></section>
+    <footer class="title-foot">
+      <button type="button" class="secondary" id="btn-help-title">操作說明</button>
+      <p>所有人名、員工編號、部門與課程資料皆為虛構。遊戲不連網、不儲存資料，重新整理就回到標題。</p>
+      <p>遊戲是理解與提問的工具，不是原系統的證據；模擬結果須回到實際系統與 SQLite 查證。</p>
+    </footer>
+  </section>
+
+  <section id="game-screen" hidden>
+    <header class="topbar">
+      <h1 id="mode-title"></h1>
+      <span id="clock"></span>
+      <button type="button" class="secondary" id="btn-music" aria-pressed="true">音樂：開</button>
+      <button type="button" class="secondary" id="btn-sfx" aria-pressed="true">音效：開</button>
+      <button type="button" id="btn-pause">暫停（Esc）</button>
+    </header>
+    <div class="main">
+      <div class="stage">
+        <div id="map-wrap" tabindex="0" aria-label="場景地圖：用方向鍵或 WASD 移動，按 E 互動，Esc 暫停">
+          <div id="map"></div>
+          <div id="ents"></div>
+        </div>
+        <div id="toast" role="status" aria-live="polite"></div>
+      </div>
+      <aside id="hud">
+        <p id="hud-role" class="role"></p>
+        <section id="hud-task" aria-live="polite"></section>
+        <p id="hud-near" class="near"></p>
+        <section id="hud-stats"></section>
+        <section id="hud-extra" hidden></section>
+        <section id="hud-quick"></section>
+        <section><h3>訊息紀錄</h3><ul id="hud-log" class="log"></ul></section>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<dialog id="modal" aria-labelledby="modal-title">
+  <header class="modal-head"><h2 id="modal-title"></h2><button type="button" id="modal-close" class="secondary" aria-label="關閉">×</button></header>
+  <div id="modal-body"></div>
+</dialog>
+<noscript>這個教材需要啟用 JavaScript。</noscript>
+</body>
+</html>

@@ -12,19 +12,21 @@
 
 ## 二、五個題目一覽
 
-| 題目 | 領域 | 既有系統 | 修改需求提案書 | 修改需求 |
-|---|---|---|---|---|
-| 品質異常回報管理系統 | 品質管理 | [SAD-Quality](Example-Systems/SAD-Quality/README.md) | [修改需求提案書](Change-Proposals/Quality-System-Change-Proposal.md) | CR-01 對策確認與退回 |
-| 倉庫盤點管理系統 | 物料與倉儲 | [SAD-Inventory](Example-Systems/SAD-Inventory/README.md) | [修改需求提案書](Change-Proposals/Inventory-System-Change-Proposal.md) | CR-01 覆盤與差異核准 |
-| 設備保養紀錄管理系統 | 設備維護 | [SAD-Maintenance](Example-Systems/SAD-Maintenance/README.md) | [修改需求提案書](Change-Proposals/Maintenance-System-Change-Proposal.md) | CR-01 年度保養計畫與逾期紀錄 |
-| 員工教育訓練紀錄系統 | 人力資源與工安 | [SAD-Training](Example-Systems/SAD-Training/README.md) | [修改需求提案書](Change-Proposals/Training-System-Change-Proposal.md) | CR-01 應受訓與到期追蹤 |
-| 工單分派管理系統 | 生產管理 | [SAD-Work-Order](Example-Systems/SAD-Work-Order/README.md) | [修改需求提案書](Change-Proposals/Work-Order-System-Change-Proposal.md) | CR-01 分批報工與工時 |
+| 題目 | 領域 | 既有系統 | 修改需求提案書 | 修改需求 | 情境模擬小遊戲 |
+|---|---|---|---|---|---|
+| 品質異常回報管理系統 | 品質管理 | [SAD-Quality](Example-Systems/SAD-Quality/README.md) | [修改需求提案書](Change-Proposals/Quality-System-Change-Proposal.md) | CR-01 對策確認與退回 | [《毛邊又回來了》](Example-Systems-Games/quality-game/dist/quality-game-final.zip) |
+| 倉庫盤點管理系統 | 物料與倉儲 | [SAD-Inventory](Example-Systems/SAD-Inventory/README.md) | [修改需求提案書](Change-Proposals/Inventory-System-Change-Proposal.md) | CR-01 覆盤與差異核准 | [《帳上說有幾個》](Example-Systems-Games/inventory-game/dist/inventory-game-final.zip) |
+| 設備保養紀錄管理系統 | 設備維護 | [SAD-Maintenance](Example-Systems/SAD-Maintenance/README.md) | [修改需求提案書](Change-Proposals/Maintenance-System-Change-Proposal.md) | CR-01 年度保養計畫與逾期紀錄 | [《下次保養是哪天》](Example-Systems-Games/maintenance-game/dist/maintenance-game-final.zip) |
+| 員工教育訓練紀錄系統 | 人力資源與工安 | [SAD-Training](Example-Systems/SAD-Training/README.md) | [修改需求提案書](Change-Proposals/Training-System-Change-Proposal.md) | CR-01 應受訓與到期追蹤 | [《誰上過這堂課》](Example-Systems-Games/training-game/dist/training-game-final.zip) |
+| 工單分派管理系統 | 生產管理 | [SAD-Work-Order](Example-Systems/SAD-Work-Order/README.md) | [修改需求提案書](Change-Proposals/Work-Order-System-Change-Proposal.md) | CR-01 分批報工與工時 | [《這張單做到哪》](Example-Systems-Games/workorder-game/dist/workorder-game-final.zip) |
 
 五題的領域各不相同，修改需求也刻意錯開，因此不會有兩組交出結構相同的報告。
 
 **五題共同的性質**：每套最多 5 張資料表、2–3 個角色；畫面用 HTML + CSS + JavaScript，一支 Node.js 小程式讀寫 SQLite 資料庫檔，在你自己的電腦上執行。每一題的修改需求都會同時動到流程、資料表與畫面。
 
 範例報告的示範系統（工廠訪客進出登記系統）不在這五題之中，相關檔案見[報告內容](../00-Course-Introduction/Report-Contents.md)〈範例報告參考〉。
+
+五題與示範系統各有一款網頁小遊戲，讓你在操作系統之前先在工作現場的情境裡走一遍，下載與玩法見[「期末題目的情境模擬小遊戲」](Example-Systems-Games/README.md)。不過要提醒同學，網頁小遊戲只是參考性質的教材，內容和系統或提案書有落差時，以系統與提案書為準。
 
 ## 三、怎麼用這些文件
 
